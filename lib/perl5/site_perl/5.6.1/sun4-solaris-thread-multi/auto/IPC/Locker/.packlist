@@ -1,0 +1,6 @@
+IPC::Locker.3
+IPC::Locker::Server.3
+Locker.pm
+Server.pm
+lockerd
+lockerd.1

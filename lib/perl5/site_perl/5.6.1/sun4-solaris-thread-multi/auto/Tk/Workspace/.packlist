@@ -1,0 +1,11 @@
+RemoteFileSelect.pm
+SearchDialog.pm
+Shell.pm
+Tk::RemoteFileSelect.3
+Tk::SearchDialog.3
+Tk::Shell.3
+Tk::Workspace.3
+Tk::XFontSelect.3
+Workspace.pm
+WorkspaceText.pm
+XFontSelect.pm

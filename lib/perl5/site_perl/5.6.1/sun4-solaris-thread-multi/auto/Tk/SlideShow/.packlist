@@ -1,0 +1,12 @@
+Arrow.pm
+DblArrow.pm
+Diapo.pm
+Dict.pm
+Link.pm
+Org.pm
+Oval.pm
+Placeable.pm
+SlideShow.pm
+SlideShow.pod
+Sprite.pm
+Tk::SlideShow.3

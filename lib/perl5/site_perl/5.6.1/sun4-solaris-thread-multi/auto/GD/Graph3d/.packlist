@@ -1,0 +1,6 @@
+GD::Graph3d.3
+Graph3d.pm
+axestype3d.pm
+bars3d.pm
+lines3d.pm
+pie3d.pm

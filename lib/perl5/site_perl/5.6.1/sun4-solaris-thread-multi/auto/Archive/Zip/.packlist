@@ -1,0 +1,7 @@
+Archive::Zip.3
+Archive::Zip::Tree.3
+BufferedFileHandle.pm
+MockFileHandle.pm
+Tree.pm
+Zip.pm
+crc32

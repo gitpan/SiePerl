@@ -1,0 +1,14 @@
+Entities.pm
+Filter.pm
+HTML::Entities.3
+HTML::Filter.3
+HTML::HeadParser.3
+HTML::LinkExtor.3
+HTML::Parser.3
+HTML::TokeParser.3
+HeadParser.pm
+LinkExtor.pm
+Parser.bs
+Parser.pm
+Parser.so
+TokeParser.pm

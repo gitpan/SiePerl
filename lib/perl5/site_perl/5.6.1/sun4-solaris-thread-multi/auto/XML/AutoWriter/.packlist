@@ -1,0 +1,10 @@
+AttDef.pm
+AutoWriter.pm
+Doctype.pm
+ElementDecl.pm
+ValidWriter.pm
+XML::AutoWriter.3
+XML::Doctype.3
+XML::Doctype::AttDef.3
+XML::Doctype::ElementDecl.3
+XML::ValidWriter.3

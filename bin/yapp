@@ -5,7 +5,7 @@ eval 'exec /usr/local/bin/perl  -S $0 ${1+"$@"}'
 #
 # yapp -- Front end to the Parse::Yapp module
 #
-# (c) Copyright 1998-1999 Francois Desarmenien, all rights reserved.
+# (c) Copyright 1998-2001 Francois Desarmenien, all rights reserved.
 # (see the pod text in Parse::Yapp module for use and distribution rights)
 #
 #
@@ -106,6 +106,10 @@ Display the usage screen.
 =head1 BUGS
 
 None known now :-)
+
+=head1 AUTHOR
+
+Francois Desarmenien <francois@fdesar.net>
 
 =head1 COPYRIGHT
 

@@ -1,0 +1,16 @@
+More.pm
+Parse.pm
+Pod.pm
+Pod_usage.pod
+Search.pm
+Search_db.pm
+Text.pm
+Tk::More.3
+Tk::Parse.3
+Tk::Pod.3
+Tk::Pod::Search.3
+Tk::Pod::Search_db.3
+Tk::Pod::Text.3
+Tk::Pod_usage.3
+tkpod
+tkpod.1

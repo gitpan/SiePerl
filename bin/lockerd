@@ -1,0 +1,152 @@
+#!/usr/local/bin/perl -Tw
+
+eval 'exec /usr/local/bin/perl -Tw -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+# lockerd - distributed lock handler for perl IPC::Locker
+
+# RCS Status      : $Id: lockerd,v 1.11 2001/02/13 15:11:13 wsnyder Exp $
+# Author          : Wilson Snyder <wsnyder@wsnyder.org>
+
+################ Introduction ################
+#
+# This program is Copyright 2000 by Wilson Snyder.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of either the GNU General Public License or the
+# Perl Artistic License, with the exception that it cannot be placed
+# on a CD-ROM or similar media for commercial distribution without the
+# prior approval of the author.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# If you do not have a copy of the GNU General Public License write to
+# the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, 
+# MA 02139, USA.
+######################################################################
+
+require 5.004;
+use lib './blib/lib';	# testing
+use English;
+use Getopt::Long;
+use Pod::Text;
+use IPC::Locker::Server;
+
+BEGIN { $ENV{PATH} = '/usr/ucb:/bin' }	# Secure path
+
+######################################################################
+# configuration
+
+######################################################################
+# globals
+
+######################################################################
+# main
+
+my $Debug = 0;
+my %server_params = ();
+
+$result = &GetOptions (
+		       "help"		=> \&usage,
+		       "debug"		=> \&debug,
+		       "version"	=> \&version,
+		       "port=i"		=> sub {$server_params{port} = shift;},
+		       "path=s"		=> sub {$server_params{port} = $_[1];
+    	    	    			        $server_params{family}='UNIX';},
+		       );
+
+if (!$result) { &usage(); }
+
+# Loop in case something kills us
+$SIG{HUP}  = \&sig_HUP;
+$SIG{CHLD} = \&sig_HUP;
+while (1) {
+    print "Starting server\n" if $Debug;
+    unless ($Pid = fork) {
+        IPC::Locker::Server->new(%server_params)->start_server ();
+	exit(0);
+    }
+    waitpid($Pid,0) if $Pid;
+    warn "%Warning: Server aborted\n" if $Debug;
+    sleep(1);
+    kill 9, $Pid if $Pid;
+    $Pid = 0;
+    sleep(1);
+}
+
+exit (0);
+
+sub sig_HUP {
+    kill 9, $Pid if $Pid;
+    $Pid = 0;
+}
+
+######################################################################
+
+sub usage {
+    print '$Id: lockerd,v 1.11 2001/02/13 15:11:13 wsnyder Exp $ ', "\n";
+    $SIG{__WARN__} = sub{};	#pod2text isn't clean.
+    pod2text($0);
+    exit(1);
+}
+
+sub version {
+    print 'Version: $Id: lockerd,v 1.11 2001/02/13 15:11:13 wsnyder Exp $ ';
+    print "\n";
+    exit (1);
+}
+
+sub debug {
+    $Debug = 1;
+    $IPC::Locker::Server::Debug = 1;
+}
+
+######################################################################
+__END__
+
+=pod
+
+=head1 NAME
+
+lockerd - Distributed lock handler for perl IPC::Locker
+
+=head1 SYNOPSIS
+
+B<lockerd>
+[ B<--help> ]
+[ B<--port=>I<port> ]
+[ B<--path=>I<fifo_path> ]
+[ B<--version> ]
+
+=head1 DESCRIPTION
+
+Lockerd will start a deamon to watch for and service connects by the perl
+IPC::Locker package.
+
+=head1 ARGUMENTS
+
+=over 4
+
+=item --help
+Displays this message and program version and exits.
+
+=item --port
+Specifies the port number to be used.
+
+=item --path
+Specifies that UNIX fifo will be used for communications with clients and
+the path to the fifo.
+  
+=item --version
+Displays program version and exits.
+
+=back
+
+=head1 AUTHORS
+
+Wilson Snyder <wsnyder@wsnyder.org>
+
+=cut
+######################################################################

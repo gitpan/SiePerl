@@ -1,0 +1,10 @@
+TableMatrix.bs
+TableMatrix.pm
+TableMatrix.pod
+TableMatrix.so
+Tk::TableMatrix.3
+autosplit.ix
+extralibs.ld
+mm.h
+tkTable.h
+tkTableversion.h

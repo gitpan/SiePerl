@@ -1,0 +1,17 @@
+#!/usr/local/bin/perl
+
+eval 'exec /usr/local/bin/perl  -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+
+use XML::PYX;
+
+my $p = XML::PYX::Parser::ToCSF->new;
+
+if (@ARGV && $ARGV[0] eq '-l') {
+	shift @ARGV;
+	$XML::PYX::Lame = 1;
+}
+
+if (@ARGV) { $p->parsefile($ARGV[0]); }
+else { $p->parse(\*STDIN); }
+

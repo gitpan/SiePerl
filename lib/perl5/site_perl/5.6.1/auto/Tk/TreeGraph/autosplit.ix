@@ -1,0 +1,46 @@
+# Index created by AutoSplit for blib/lib/Tk/TreeGraph.pm
+#    (file acts as timestamp)
+package Tk::TreeGraph;
+sub clear 
+;
+sub addLabel 
+;
+sub checkOverlay 
+;
+sub addDirectArrow 
+;
+sub arrowBind  
+;
+sub setArrow 
+;
+sub addSlantedArrow 
+;
+sub addShortcutInfo 
+;
+sub addAllShortcuts 
+;
+sub addNode 
+;
+sub modifyNode 
+;
+sub flashNode 
+;
+sub toggleNode 
+;
+sub getNodeRectangle 
+;
+sub getSelectedNodes 
+;
+sub unselectAllNodes 
+;
+sub getCurrentNodeId 
+;
+sub setNode 
+;
+sub nodeBind 
+;
+sub command 
+;
+sub popupMenu 
+;
+1;
