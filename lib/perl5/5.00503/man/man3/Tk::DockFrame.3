@@ -1,0 +1,361 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Tk::DockFrame 3 "perl 5.005, patch 03" "26/Nov/1999" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Tk::DockFrame \- A multicolumn list widget with sortable & sizeable columns
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\&    use Tk::DockFrame;
+.Ve
+.Vb 1
+\&    $DockPort = $parent->DockPort();
+.Ve
+.Vb 1
+\&    $DockPort->pack();
+.Ve
+.Vb 8
+\&    $DockFrame = $parent->DockFrame
+\&       (
+\&        '-dock' => $DockPort,
+\&        '-trimcount' => 1,
+\&        '-sensitivity' => 10,
+\&        '-decorate' => 0,
+\&        '-trimgap' => 2
+\&       );
+.Ve
+.Vb 1
+\&    $DockFrame->Widget (...)->pack();
+.Ve
+.Vb 1
+\&    ...
+.Ve
+.Vb 1
+\&    Tk::MainLoop;
+.Ve
+.SH "DESCRIPTION"
+The two public classes in this module combine to implement a dockable widget subsystem.
+.PP
+Objects of class DockFrame are simple frames which can be made to \*(L"float\*(R" free as Toplevel
+widgets or packed as Frames. Dockframes can have any number of direct children but the
+favored use is to pack a single Frame based child widget and add widgets to that
+using any geometry manager.
+.PP
+DockPorts are simple frame widgets which must be managed by the packer. They normally
+have no width or height and are thus rendered invisible. DockFrame children of the same
+parentage, when dragged over them, will be converted from \*(L"floating\*(R" Toplevels into Frame
+widgets rendered within the DockPort, resizing it accordingly.
+.Ip "\s-1IMPORTANT\s0 \s-1UPDATE\s0" 0
+The DockFrames are now managed \s-1WITHIN\s0 the DockPorts, therefore any geometry manager
+can be used with all the widgets described here
+.SH "STANDARD OPTIONS"
+.Ip "DockFrame" 4
+\fI\-background \-borderwidth \-relief \-bg \-width \-height\fR
+.Ip "DockPort" 4
+\fInone\fR
+.PP
+See \fITk\fR for details of the standard options.
+.SH "WIDGET\-SPECIFIC OPTIONS"
+.Ip "Name:	\fBdock\fR" 4
+.Ip "Class:	\fBDock\fR" 4
+.Ip "Switch:	\fB\-dock\fR" 4
+Used to \*(L"dock\*(R" a DockFrame to a DockPort. The parameter passed must be
+a reference to a DockPort and nothing else. If a DockPort is not specified
+in this manner on creation, then the DockFrame will initially \*(L"float\*(R" free.
+.Ip "Name:	\fBtrimcount\fR" 4
+.Ip "Class:	\fBTrimCount\fR" 4
+.Ip "Switch:	\fB\-trimcount\fR" 4
+Specifies the number of button trim drag \*(L'handles\*(R'. Specifying 0 will prevent
+attachment/detachment of the DockFrame.
+.Ip "Name:	\fBsensitivity\fR" 4
+.Ip "Class:	\fBSensitivity\fR" 4
+.Ip "Switch:	\fB\-sensitivity\fR" 4
+The DockFrame will \*(L"dock\*(R" when it gets within the specified number of pixels of the DockPort.
+.Ip "Name:	\fBdecorate\fR" 4
+.Ip "Class:	\fBDecorate\fR" 4
+.Ip "Switch:	\fB\-decorate\fR" 4
+Boolean value indicating whether or not to instruct the window manager to add decoration
+(titlebar, etc) to the undocked DockFrame. It is important to note here that, due to the
+nature of the event handling, dragging the DockFrame by the titlebar will not cause it to
+dock.
+.Ip "Name:	\fBtrimgap\fR" 4
+.Ip "Class:	\fBTrimgap\fR" 4
+.Ip "Switch:	\fB\-trimgap\fR" 4
+This option specifies the number of pixels to leave between the \*(L"handles\*(R" and the first
+child widget
+.SH "WIDGET METHODS"
+.Ip "\fI$DockFrame\fR\->\fBdock\fR (\fB$DockPort\fR)" 4
+Immediately docks the DockFrame to the specified DockPort
+.Ip "\fI$DockFrame\fR\->\fBundock\fR() " 4
+Immediately undocks the DockFrame
+.SH "BINDINGS"
+.Ip "\fB[1]\fR" 4
+Pressing and holding the left mouse button on a DockFrame trim element allows movement
+of that DockFrame. If the DockFrame is \*(L"dragged\*(R" over a DockPort, it will \*(L"dock\*(R" and
+dragging will cease until the \*(L"handle\*(R" is released and then selected again.
+.SH "AUTHORS"
+Damion K. Wilson, dwilson@ibl.bm, http://pwp.ibl.bm/~dkw
+.SH "COPYRIGHT"
+Copyright (c) 1999 Damion K. Wilson.
+.PP
+All rights reserved.
+.PP
+This program is free software, you may redistribute it and/or modify it
+under the same terms as Perl itself.
+.SH "HISTORY"
+.Ip "\fBOctober 1, 1999\fR: Written to replace experimental Tk::DockingGroup with no legacy support" 4
+
+.rn }` ''
+.IX Title "Tk::DockFrame 3"
+.IX Name "Tk::DockFrame - A multicolumn list widget with sortable & sizeable columns"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Item "\s-1IMPORTANT\s0 \s-1UPDATE\s0"
+
+.IX Header "STANDARD OPTIONS"
+
+.IX Item "DockFrame"
+
+.IX Item "DockPort"
+
+.IX Header "WIDGET\-SPECIFIC OPTIONS"
+
+.IX Item "Name:	\fBdock\fR"
+
+.IX Item "Class:	\fBDock\fR"
+
+.IX Item "Switch:	\fB\-dock\fR"
+
+.IX Item "Name:	\fBtrimcount\fR"
+
+.IX Item "Class:	\fBTrimCount\fR"
+
+.IX Item "Switch:	\fB\-trimcount\fR"
+
+.IX Item "Name:	\fBsensitivity\fR"
+
+.IX Item "Class:	\fBSensitivity\fR"
+
+.IX Item "Switch:	\fB\-sensitivity\fR"
+
+.IX Item "Name:	\fBdecorate\fR"
+
+.IX Item "Class:	\fBDecorate\fR"
+
+.IX Item "Switch:	\fB\-decorate\fR"
+
+.IX Item "Name:	\fBtrimgap\fR"
+
+.IX Item "Class:	\fBTrimgap\fR"
+
+.IX Item "Switch:	\fB\-trimgap\fR"
+
+.IX Header "WIDGET METHODS"
+
+.IX Item "\fI$DockFrame\fR\->\fBdock\fR (\fB$DockPort\fR)"
+
+.IX Item "\fI$DockFrame\fR\->\fBundock\fR() "
+
+.IX Header "BINDINGS"
+
+.IX Item "\fB[1]\fR"
+
+.IX Header "AUTHORS"
+
+.IX Header "COPYRIGHT"
+
+.IX Header "HISTORY"
+
+.IX Item "\fBOctober 1, 1999\fR: Written to replace experimental Tk::DockingGroup with no legacy support"
+

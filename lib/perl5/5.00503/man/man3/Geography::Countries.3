@@ -1,0 +1,349 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Countries 3 "perl 5.005, patch 03" "15/Sep/1999" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Geography::Countries -- 2-letter, 3-letter, and numerical codes for countries.
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\&    use Geography::Countries;
+.Ve
+.Vb 3
+\&    $country = country 'DE';  # 'Germany'
+\&    @list    = country  666;  # ('PM', 'SPM', 666,
+\&                              #  'Saint Pierre and Miquelon', 1)
+.Ve
+.SH "DESCRIPTION"
+This module maps country names, and their 2-letter, 3-letter and
+numerical codes, as defined by the ISO\-3166 maintenance agency [1],
+and defined by the UNSD.
+.Sh "The \f(CWcountry\fR subroutine."
+This subroutine is exported by default. It takes a 2-letter, 3-letter or
+numerical code, or a country name as argument. In scalar context, it will
+return the country name, in list context, it will return a list consisting
+of the 2-letter code, the 3-letter code, the numerical code, the country
+name, and a flag, which is explained below. Note that not all countries
+have all 3 codes; if a code is unknown, the undefined value is returned.
+.PP
+There are 3 categories of countries. The largest category are the 
+current countries. Then there is a small set of countries that no
+longer exist. The final set consists of areas consisting of multiple
+countries, like \fIAfrica\fR. No 2-letter or 3-letter codes are available
+for the second two sets. (\s-1ISO\s0 3166-3 [3] defines 4 letter codes for the
+set of countries that no longer exist, but the author of this module
+was unable to get her hands on that standard.) By default, \f(CWcountry\fR
+only returns countries from the first set, but this can be changed
+by giving \f(CWcountry\fR an optional second argument.
+.PP
+The module optionally exports the constants \f(CWCNT_F_REGULAR\fR,
+\f(CWCNT_F_OLD\fR, \f(CWCNT_F_REGION\fR and \f(CWCNT_F_ANY\fR. These constants can also
+be important all at once by using the tag \f(CW:FLAGS\fR. \f(CWCNT_F_ANY\fR is just
+the binary or of the three other flags. The second argument of \f(CWcountry\fR
+should be the binary or of a subset of the flags \f(CWCNT_F_REGULAR\fR,
+\f(CWCNT_F_OLD\fR, and \f(CWCNT_F_REGION\fR \- if no, or a false, second argument is
+given, \f(CWCNT_F_REGULAR\fR is assumed. If \f(CWCNT_F_REGULAR\fR is set, regular
+(current) countries will be returned; if \f(CWCNT_F_OLD\fR is set, old,
+no longer existing, countries will be returned, while \f(CWCNT_F_REGION\fR
+is used in case a region (not necessarely) a country might be returned.
+If \f(CWcountry\fR is used in list context, the fifth returned element is
+one of \f(CWCNT_F_REGULAR\fR, \f(CWCNT_F_OLD\fR and \f(CWCNT_F_REGION\fR, indicating
+whether the result is a regular country, an old country, or a region.
+.PP
+In list context, \f(CWcountry\fR returns a 5 element list. To avoid having
+to remember which element is in which index, the constants \f(CWCNT_I_CODE2\fR,
+\f(CWCNT_I_CODE3\fR, \f(CWCNT_I_NUMCODE\fR, \f(CWCNT_I_COUNTRY\fR and \f(CWCNT_I_FLAG\fR
+can be imported. Those constants contain the indices of the 2-letter code,
+the 3-letter code, the numerical code, the country, and the flag explained
+above, respectively. All index constants can be imported by using the
+\f(CW:INDICES\fR tag.
+.Sh "The \f(CWcode2\fR, \f(CWcode3\fR, \f(CWnumcode\fR and \f(CWcountries\fR routines."
+All known 2-letter codes, 3-letter codes, numerical codes and country
+names can be returned by the routines \f(CWcode2\fR, \f(CWcode3\fR, \f(CWnumcode\fR and
+\f(CWcountries\fR. None of these methods is exported by default; all need to
+be imported if one wants to use them. The tag \f(CW:LISTS\fR imports them 
+all. In scalar context, the number of known codes or countries is returned.
+.SH "REFERENCES"
+The 2-letter codes come from the ISO 3166-1:1997 standard [2]. ISO 3166
+bases its list of country names on the list of names published by
+the United Nations. This list is published by the Statistical Division
+of the United Nations [4]. The UNSD uses 3-letter codes, and numerical
+codes [5]. The information about old countries [6] and regions [7] also
+comes from the United Nations.
+.PP
+In a few cases, there was a conflict between the way how the United 
+Nations spelled a name, and how ISO 3166 spells it. In most cases,
+is was word order (for instance whether \fIThe republic of\fR should
+preceed the name, or come after the name. A few cases had minor
+spelling variations. In all such cases, the method in which the UN
+spelled the name was choosen; ISO 3166 claims to take the names from
+the UN, so we consider the UN authoritative.
+.Ip "[1]" 4
+\s-1ISO\s0 Maintenance Agency (\s-1ISO\s0 3166/\s-1MA\s0)
+\fIhttp://www.din.de/gremien/nas/nabd/iso3166ma/index.html\fR.
+.Ip "[2]" 4
+\fICountry codes\fR,
+\fIhttp://www.din.de/gremien/nas/nabd/iso3166ma/codlstp1.html\fR,
+7 September 1999.
+.Ip "[3]" 4
+\s-1ISO\s0 3166-3, \fICode for formerly used country names\fR.
+\fIhttp://www.din.de/gremien/nas/nabd/iso3166ma/info_pt3.html\fR.
+.Ip "[4]" 4
+United Nations, Statistics Division.
+\fIhttp://www.un.org/Depts/unsd/statdiv.htm\fR.
+.Ip "[5]" 4
+\fICountry or area codes in alphabetical order\fR.
+\fIhttp://www.un.org/Depts/unsd/methods/m49alpha.htm\fR,
+26 August 1999.
+.Ip "[6]" 4
+\fICodes added or changed\fR.
+\fIhttp://www.un.org/Depts/unsd/methods/m49chang.htm\fR,
+26 August 1999.
+.Ip "[7]" 4
+\fIGeographical regions\fR.
+\fIhttp://www.un.org/Depts/unsd/methods/m49regin.htm\fR,
+26 August 1999.
+.SH "BUGS"
+Looking up information using country names is far from perfect.
+Except for case and the amount of white space, the exact name as it
+appears on the list has to be given. \fIUSA\fR will not return anything,
+but \fIUnited States\fR will.
+.SH "HISTORY"
+.PP
+.Vb 3
+\&    $Log: Countries.pm,v $
+\&    Revision 1.1  1999/09/15 07:27:22  abigail
+\&    Initial revision
+.Ve
+.SH "AUTHOR"
+This package was written by Abigail, \fIabigail@delanet.com\fR.
+.SH "COPYRIGHT AND LICENSE"
+This package is copyright 1999 by Abigail.
+.PP
+This program is free and open software. You may use, copy, modify,
+distribute and sell this program (and any modified variants) in any way
+you wish, provided you do not restrict others to do the same.
+
+.rn }` ''
+.IX Title "Countries 3"
+.IX Name "Geography::Countries - 2-letter, 3-letter, and numerical codes for countries."
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Subsection "The \f(CWcountry\fR subroutine."
+
+.IX Subsection "The \f(CWcode2\fR, \f(CWcode3\fR, \f(CWnumcode\fR and \f(CWcountries\fR routines."
+
+.IX Header "REFERENCES"
+
+.IX Item "[1]"
+
+.IX Item "[2]"
+
+.IX Item "[3]"
+
+.IX Item "[4]"
+
+.IX Item "[5]"
+
+.IX Item "[6]"
+
+.IX Item "[7]"
+
+.IX Header "BUGS"
+
+.IX Header "HISTORY"
+
+.IX Header "AUTHOR"
+
+.IX Header "COPYRIGHT AND LICENSE"
+

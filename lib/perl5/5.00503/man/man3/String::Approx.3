@@ -1,0 +1,525 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Approx 3 "perl 5.005, patch 03" "24/Apr/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+String::Approx \- Perl extension for approximate matching (fuzzy matching)
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\&  use String::Approx 'amatch';
+.Ve
+.Vb 1
+\&  print if amatch("foobar");
+.Ve
+.Vb 1
+\&  my @matches = amatch("xyzzy", @inputs);
+.Ve
+.Vb 1
+\&  my @catches = amatch("plugh", ['2'], @inputs);
+.Ve
+.SH "DESCRIPTION"
+String::Approx lets you match and substitute strings approximately.
+With this you can emulate errors: typing errorrs, speling errors,
+closely related vocabularies (colour color), genetic mutations (GAG
+ACT), abbreviations (McScot, MacScot).
+.PP
+The measure of \fBapproximity\fR is the \fILevenshtein edit distance\fR.
+It is the total number of \*(L"edits": insertions,
+.PP
+.Vb 1
+\&        word world
+.Ve
+deletions,
+.PP
+.Vb 1
+\&        monkey money
+.Ve
+and substitutions
+.PP
+.Vb 1
+\&        sun fun
+.Ve
+required to transform a string to another string.  For example, to
+transform \fI"lead\*(R"\fR into \fI"gold\*(R"\fR, you need three edits:
+.PP
+.Vb 1
+\&        lead gead goad gold
+.Ve
+The edit distance of \*(L"lead\*(R" and \*(L"gold\*(R" is therefore three.
+.PP
+(NOTE: \fBapproximity\fR is a coinage, courtesy of Andy Oram; you won't
+ find it in a dictionary, but it sounds better than \*(L"approximateness")
+.SH "MATCH"
+.PP
+.Vb 1
+\&        use String::Approx 'amatch';
+.Ve
+.Vb 4
+\&        amatch("pattern") 
+\&        amatch("pattern", @inputs) 
+\&        amatch("pattern", [ modifiers ])
+\&        amatch("pattern", [ modifiers ], @inputs)
+.Ve
+Match \fBpattern\fR approximately.  In list context return the matched
+\fB@inputs\fR.  If no inputs are given, match against the \fB$_\fR.  In scalar
+context return true if \fIany\fR of the inputs match, false if none match.
+.PP
+Notice that the pattern is a string.  Not a regular expression.  None
+of the regular expression notations (^, ., *, and so on) work.  They
+are characters just like the others.  Note-on-note: some limited form
+of \fI"regular expressionism\*(R"\fR is planned in future: for example
+character classes ([abc]) and \fIany-chars\fR (.).  But that feature will
+be turned on by a special \fImodifier\fR (just a guess: \*(L"r"), so there
+should be no backward compatibility problem.
+.PP
+Notice also that matching is not symmetric.  The inputs are matched
+against the pattern, not the other way round.  In other words: the
+pattern can be a substring, a submatch, of an input element.  An input
+element is always a superstring of the pattern.
+.Sh "\s-1MODIFIERS\s0"
+With the modifiers you can control the amount of approximity and
+certain other control variables.  The modifiers are one or more
+strings, for example \f(CW"i"\fR, within a string optionally separated by
+whitespace.  The modifiers are inside an anonymous array: the \f(CW[ ]\fR
+in the syntax are not notational, they really do mean \f(CW[ ]\fR, for
+example \f(CW[ "i", "2" ]\fR.  \f(CW["2 i"]\fR would be identical.
+.PP
+The implicit default approximity is 10%, rounded up.  In other
+words: every tenth character in the pattern may be an error, an edit.
+You can explicitly set the maximum approximity by supplying a
+modifier like
+.PP
+.Vb 2
+\&        number
+\&        number%
+.Ve
+Examples: \f(CW"3"\fR, \f(CW"15%"\fR.
+.PP
+Using a similar syntax you can separately control the maximum number
+of insertions, deletions, and substitutions by prefixing the numbers
+with I, D, or S, like this:
+.PP
+.Vb 6
+\&        Inumber
+\&        Inumber%
+\&        Dnumber
+\&        Dnumber%
+\&        Snumber
+\&        Snumber%
+.Ve
+Examples: \f(CW"I2"\fR, \f(CW"D20%"\fR, \f(CW"S0"\fR.
+.PP
+You can ignore case (\f(CW"A"\fR becames equal to \f(CW"a"\fR and vice versa)
+by adding the \f(CW"i"\fR modifier.
+.PP
+For example
+.PP
+.Vb 1
+\&        [ "i 25%", "S0" ]
+.Ve
+means \fIignore case\fR, \fIallow every fourth character to be \*(L"an edit\*(R"\fR,
+but allow \fIno substitutions\fR.  (See the \fI\s-1NOTES\s0\fR manpage about disallowing
+substitutions or insertions.)
+.PP
+The starting and ending positions of matching can be changed from the
+beginning and end of the \fIinput\fR\|(s) to some other positions by using
+the modifiers
+.PP
+.Vb 2
+\&        "initial_position=24"
+\&        "final_position=42"
+.Ve
+.SH "SUBSTITUTE"
+.PP
+.Vb 1
+\&        use String::Approx 'asubstitute';
+.Ve
+.Vb 4
+\&        asubstitute("pattern", "replacement")
+\&        asubstitute("pattern", "replacement", @inputs) 
+\&        asubstitute("pattern", "replacement", [ modifiers ])
+\&        asubstitute("pattern", "replacement", [ modifiers ], @inputs)
+.Ve
+Substitute approximate \fBpattern\fR with \fBreplacement\fR and return
+\fIcopies\fR of \fB@inputs\fR, the substitutions having been made on the
+elements that did match the pattern.  If no inputs are given,
+substitute in the \fB$_\fR.  The replacement can contain magic strings
+\fB$&\fR, \fB$`\fR, \fB$\*(R'\fR that stand for the matched string, the string
+before it, and the string after it, respectively.  All the other
+arguments are as in \f(CWamatch()\fR, plus one additional modifier, \f(CW"g"\fR
+which means substitute globally (all the matches in an element and not
+just the first one, as is the default).
+.PP
+The starting and ending positions of substitution can be changed from
+the beginning and end of the \fIinput\fR\|(s) to some other positions by using
+the modifiers
+.PP
+.Vb 2
+\&        "initial_position=24"
+\&        "final_position=42"
+.Ve
+See the section on \fIBAD NEWS\fR about the unfortunate stinginess of \f(CWasubstitute()\fR.
+.SH "INDEX"
+.PP
+.Vb 1
+\&        use String::Approx 'aindex';
+.Ve
+.Vb 4
+\&        $index   = aindex("pattern")
+\&        @indices = aindex("pattern", @inputs)
+\&        $index   = aindex("pattern", [ modifiers ])
+\&        @indices = aindex("pattern", [ modifiers ], @inputs)
+.Ve
+Like \f(CWamatch()\fR but returns the index/indices at which the pattern
+matches approximately.  In list context and if \f(CW@inputs\fR are used,
+returns a list of indices, one index for each input element.
+If there's no approximate match, \f(CW-1\fR is returned as the index.
+.PP
+The starting and ending positions of indexing can be changed from
+the beginning and end of the \fIinput\fR\|(s) to some other positions by using
+the modifiers
+.PP
+.Vb 2
+\&        "initial_position=24"
+\&        "final_position=42"
+.Ve
+.SH "SLICE"
+.PP
+.Vb 1
+\&        use String::Approx 'aindex';
+.Ve
+.Vb 4
+\&        ($index, $size)   = aslice("pattern")
+\&        ([$i0, $s0], ...) = aslice("pattern", @inputs)
+\&        ($index, $size)   = aslice("pattern", [ modifiers ])
+\&        ([$i0, $s0], ...) = aslice("pattern", [ modifiers ], @inputs)
+.Ve
+Like \f(CWaindex()\fR but returns also the size of the match.  If the
+match fails, returns an empty list (when matching against \f(CW$_\fR) or
+an empty anonymous list corresponding to the particular input.
+.PP
+Note that the size of the match will very probably be something
+you did not expect (such as longer than the pattern).  This may
+or may not be fixed in future releases.
+.PP
+If the modifier
+.PP
+.Vb 1
+\&        "minimal_distance"
+.Ve
+is used, the minimal possible edit distance is returned as the
+third element:
+.PP
+.Vb 2
+\&        ($index, $size, $distance) = aslice("pattern", [ modifiers ])
+\&        ([$i0, $s0, $d0], ...)     = aslice("pattern", [ modifiers ], @inputs)
+.Ve
+The starting and ending positions of slicing can be changed from
+the beginning and end of the \fIinput\fR\|(s) to some other positions by using
+the modifiers
+.PP
+.Vb 2
+\&        "initial_position=24"
+\&        "final_position=42"
+.Ve
+.SH "NOTES"
+Because matching is by \fIsubstrings\fR, not by whole strings, insertions
+and substitutions produce often very similar results: \*(L"abcde\*(R" matches
+\*(L"axbcde\*(R" either by insertion \fBor\fR substitution of \*(L"x\*(R".
+.PP
+The maximum edit distance is also the maximum number of edits.
+That is, the \f(CW"I2"\fR in
+.PP
+.Vb 1
+\&        amatch("abcd", ["I2"])
+.Ve
+is useless because the maximum edit distance is (implicitly) 1.
+You may have meant to say
+.PP
+.Vb 1
+\&        amatch("abcd", ["2D1S1"])
+.Ve
+or something like that.
+.PP
+If you want to simulate transposes
+.PP
+.Vb 1
+\&        feet fete
+.Ve
+you need to allow at least edit distance of two because in terms of
+our edit primitives a transpose is one first deletion and then one
+insertion.
+.PP
+There's no backwards-scanning \*(L'arindex\*(R'.
+.SH "VERSION"
+Major release 3.
+.SH "CHANGES FROM VERSION 2"
+.Sh "\s-1GOOD\s0 \s-1NEWS\s0"
+.Ip "The version 3 is 2-3 times faster than version 2" 4
+.Ip "No pattern length limitation" 4
+The algorithm is independent on the pattern length: its time
+complexity is \fIO(kn)\fR, where \fIk\fR is the number of edits and \fIn\fR the
+length of the text (input).  The preprocessing of the pattern will of
+course take some \fIO(m)\fR (\fIm\fR being the pattern length) time, but
+\f(CWamatch()\fR and \f(CWasubstitute()\fR cache the result of this
+preprocessing so that it is done only once per pattern.
+.Sh "\s-1BAD\s0 \s-1NEWS\s0"
+.Ip "You do need a C compiler to install the module" 4
+Perl's regular expressions are no more used; instead a faster and more
+scalable algorithm written in C is used.
+.Ip "\f(CWasubstitute()\fR is now always stingy" 4
+The string matched and substituted is now always stingy, as short
+as possible.  It used to be as long as possible.  This is an unfortunate
+change stemming from switching the matching algorithm.  Example: with
+edit distance of two and substituting for \f(CW"word"\fR from \f(CW"cork"\fR and
+\f(CW"wool"\fR previously did match \f(CW"cork"\fR and \f(CW"wool"\fR.  Now it does
+match \f(CW"or"\fR and \f(CW"wo"\fR.  As little as possible, or, in other words,
+with as much approximity, as many edits, as possible.  Because
+there is no \fIneed\fR to match the \f(CW"c"\fR of \f(CW"cork"\fR, it is not matched.
+.Ip "no more \f(CWaregex()\fR because regular expressions are no more used" 4
+.Ip "no more \f(CWcompat1\fR for String::Approx version 1 compatibility" 4
+.SH "ACKNOWLEDGEMENTS"
+The following people have provided with valuable test cases and other
+feedback: Jared August, Steve A. Chervitz, Alberto Fontaneda, Dmitrij
+Frishman, Lars Gregersen, Kevin Greiner, Mike Hanafey, Ricky Houghton,
+Helmut Jarausch, Mark Land, Sergey Novoselov, Andy Oram, Stewart
+Russell, Slaven Rezic, Chris Rosin, Ilya Sandler, Bob
+J.A. Schijvenaars, Greg Ward, Rick Wise.
+.PP
+The matching algorithm was developed by Udi Manber, Sun Wu, and Burra
+Gopal in the Department of Computer Science, University of Arizona.
+.SH "AUTHOR"
+Jarkko Hietaniemi <jhi@iki.fi>
+
+.rn }` ''
+.IX Title "Approx 3"
+.IX Name "String::Approx - Perl extension for approximate matching (fuzzy matching)"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "MATCH"
+
+.IX Subsection "\s-1MODIFIERS\s0"
+
+.IX Header "SUBSTITUTE"
+
+.IX Header "INDEX"
+
+.IX Header "SLICE"
+
+.IX Header "NOTES"
+
+.IX Header "VERSION"
+
+.IX Header "CHANGES FROM VERSION 2"
+
+.IX Subsection "\s-1GOOD\s0 \s-1NEWS\s0"
+
+.IX Item "The version 3 is 2-3 times faster than version 2"
+
+.IX Item "No pattern length limitation"
+
+.IX Subsection "\s-1BAD\s0 \s-1NEWS\s0"
+
+.IX Item "You do need a C compiler to install the module"
+
+.IX Item "\f(CWasubstitute()\fR is now always stingy"
+
+.IX Item "no more \f(CWaregex()\fR because regular expressions are no more used"
+
+.IX Item "no more \f(CWcompat1\fR for String::Approx version 1 compatibility"
+
+.IX Header "ACKNOWLEDGEMENTS"
+
+.IX Header "AUTHOR"
+

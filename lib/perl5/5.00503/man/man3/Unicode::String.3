@@ -1,0 +1,538 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH String 3 "perl 5.005, patch 03" "17/Nov/1999" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Unicode::String \- String of Unicode characters (UCS2/UTF16)
+.SH "SYNOPSIS"
+.PP
+.Vb 3
+\& use Unicode::String qw(utf8 latin1 utf16);
+\& $u = utf8("The Unicode Standard is a fixed-width, uniform ");
+\& $u .= utf8("encoding scheme for written characters and text");
+.Ve
+.Vb 7
+\& # convert to various external formats
+\& print $u->ucs4;      # 4 byte characters
+\& print $u->utf16;     # 2 byte characters + surrogates
+\& print $u->utf8;      # 1-4 byte characters
+\& print $u->utf7;      # 7-bit clean format
+\& print $u->latin1;    # lossy
+\& print $u->hex;       # a hexadecimal string
+.Ve
+.Vb 3
+\& # all these can be used to set string value or as constructor
+\& $u->latin1("Å være eller å ikke være");
+\& $u = utf16("\e0Å\e0 \e0v\e0æ\e0r\e0e");
+.Ve
+.Vb 5
+\& # string operations
+\& $u2 = $u->copy;
+\& $u->append($u2);
+\& $u->repeat(2);
+\& $u->chop;
+.Ve
+.Vb 3
+\& $u->length;
+\& $u->index($other);
+\& $u->index($other, $pos);
+.Ve
+.Vb 3
+\& $u->substr($offset);
+\& $u->substr($offset, $length);
+\& $u->substr($offset, $length, $substitute);
+.Ve
+.Vb 4
+\& # overloading
+\& $u .= "more";
+\& $u = $u x 100;
+\& print "$u\en";
+.Ve
+.Vb 3
+\& # string <--> array of numbers
+\& @array = $u->unpack;
+\& $u->pack(@array);
+.Ve
+.Vb 3
+\& # misc
+\& $u->ord;
+\& $u = uchr($num);
+.Ve
+.SH "DESCRIPTION"
+A \fIUnicode::String\fR object represents a sequence of Unicode
+characters.  The Unicode Standard is a fixed-width, uniform encoding
+scheme for written characters and text.  This encoding treats
+alphabetic characters, ideographic characters, and symbols
+identically, which means that they can be used in any mixture and with
+equal facility.  Unicode is modeled on the ASCII character set, but
+uses a 16-bit encoding to support full multilingual text.
+.PP
+Internally a \fIUnicode::String\fR object is a string of 2 byte values in
+network byte order (big-endian).  The class provide various methods to
+convert from and to various external formats, and all string
+manipulations are made on strings in this the internal 16-bit format.
+.PP
+The functions \fIutf16()\fR, \fIutf8()\fR, \fIutf7()\fR, \fIucs2()\fR, \fIucs4()\fR, \fIlatin1()\fR,
+\fIuchr()\fR can be imported from the \fIUnicode::String\fR module and will
+work as constructors initializing strings of the corresponding
+encoding.  The \fIucs2()\fR and \fIutf16()\fR are really aliases for the same
+function.
+.PP
+The \fIUnicode::String\fR objects overload various operators, so they
+will normally work like plain 8-bit strings in Perl.  This includes
+conversions to strings, numbers and booleans as well as assignment,
+concatenation and repetition.
+.SH "METHODS"
+The following methods are available:
+.Ip "Unicode::String->stringify_as( [$enc] )" 4
+This class method specify which encoding will be used when
+\fIUnicode::String\fR objects are implicitly converted to and from plain
+strings.  It define which encoding to assume for the argument of the
+\fIUnicode::String\fR constructor \fInew()\fR.  Without an encoding argument,
+\fIstringify_as()\fR returns the current encoding ctor function.  The
+encoding argument ($enc) is a string with one of the following values:
+\*(L"ucs4\*(R", \*(L"ucs2\*(R", \*(L"utf16\*(R", \*(L"utf8\*(R", \*(L"utf7\*(R", \*(L"latin1\*(R", \*(L"hex\*(R".  The default
+is \*(L"utf8\*(R".
+.Ip "$us = Unicode::String->new( [$initial_value] )" 4
+This is the customary object constructor.  Without argument, it
+creates an empty \fIUnicode::String\fR object.  If an \f(CW$initial_value\fR
+argument is given, it is decoded according to the specified
+\fIstringify_as()\fR encoding and used to initialize the newly created
+object.
+.Sp
+Normally you create \fIUnicode::String\fR objects by importing some of
+the encoding methods below as functions into your namespace and
+calling them with an appropriate encoded argument.
+.Ip "$us->ucs4( [$newval] )" 4
+The \s-1UCS\s0\-4 encoding use 32 bits per character.  The main benefit of this
+encoding is that you don't have to deal with surrogate pairs.  Encoded
+as a Perl string we use 4-bytes in network byte order for each
+character.
+.Sp
+The \fIucs4()\fR method always return the old value of \f(CW$us\fR and if given an
+argument decodes the \s-1UCS\s0\-4 string and set this as the new value of \f(CW$us\fR.
+The characters in \f(CW$newval\fR must be in the range 0x0 .. 0x10FFFF.
+Characters outside this range is ignored.
+.Ip "$us->ucs2( [$newval] )" 4
+.Ip "$us->utf16( [$newval] )" 4
+The \fIucs2()\fR and \fIutf16()\fR are really just different names for the same
+method.  The \s-1UCS\s0\-2 encoding use 16 bits per character.  The \s-1UTF\s0\-16
+encoding is identical to \s-1UCS\s0\-2, but includes the use of surrogate
+pairs.  Surrogates make it possible to encode characters in the range
+0x010000 .. 0x10FFFF with the use of two consecutive 16-bit chars.
+Encoded as a Perl string we use 2-bytes in network byte order for each
+character (or surrogate code).
+.Sp
+The \fIucs2()\fR method always return the old value of \f(CW$us\fR and if given an
+argument set this as the new value of \f(CW$us\fR.
+.Ip "$us->utf8( [$newval] )" 4
+The \s-1UTF\s0\-8 encoding use 8-bit for the encoding of characters in the
+range 0x0 .. 0x7F, 16-bit for the encoding of characters in the range
+0x80 .. 0x7FF, 24-bit for the encoding of characters in the range
+0x800 .. 0xFFFF and 32-bit for characters in the range 0x01000
+\&.. 0x10FFFF.  Americans like this encoding, because plain \s-1US\s0\-\s-1ASCII\s0
+characters are still \s-1US\s0\-\s-1ASCII\s0.  Another benefit is that the character
+\&\*(R'\e0\*(R' only occurs as the encoding of 0x0, thus the normal
+\s-1NUL\s0\-terminated strings (popular in the C programming language) can
+still be used.
+.Sp
+The \fIutf8()\fR method always return the old value of \f(CW$us\fR encoded using
+\s-1UTF\s0\-8 and if given an argument decodes the \s-1UTF\s0\-8 string and set this as
+the new value of \f(CW$us\fR.
+.Ip "$us->utf7( [$newval] )" 4
+The \s-1UTF\s0\-7 encoding only use plain \s-1US\s0\-\s-1ASCII\s0 characters for the
+encoding.  This makes it safe for transport through 8-bit stripping
+protocols.  Characters outside the \s-1US\s0\-\s-1ASCII\s0 range are base64-encoded
+and \*(L'+\*(R' is used as an escape character.  The \s-1UTF\s0\-7 encoding is
+described in \s-1RFC1642\s0.
+.Sp
+The \fIutf7()\fR method always return the old value of \f(CW$us\fR encoded using
+\s-1UTF\s0\-7 and if given an argument decodes the \s-1UTF\s0\-7 string and set this as
+the new value of \f(CW$us\fR.
+.Sp
+If the (global) variable \f(CW$Unicode::String::UTF7_OPTIONAL_DIRECT_CHARS\fR
+is \s-1TRUE\s0, then a wider range of characters are encoded as themselves.
+It is even \s-1TRUE\s0 by default.  The characters affected by this are:
+.Sp
+.Vb 1
+\&   ! " # $ % & * ; < = > @ [ ] ^ _ ` { | }
+.Ve
+.Ip "$us->latin1( [$newval] )" 4
+The first 256 codes of Unicode is identical to the \s-1ISO\s0\-8859-1 8-bit
+encoding, also known as Latin-1.  The \fIlatin1()\fR method always return
+the old value of \f(CW$us\fR and if given an argument set this as the new
+value of \f(CW$us\fR.  Characters outside the 0x0 .. 0xFF range are ignored
+when returning a Latin-1 string.  If you want more control over the
+mapping from Unicode to Latin-1, use the \fIUnicode::Map8\fR class.  This
+is also the way to deal with other 8-bit character sets.
+.Ip "$us->hex( [$newval] )" 4
+This \fImethod()\fR return a plain \s-1ASCII\s0 string where each Unicode character
+is represented by the \*(L"U+\s-1XXXX\s0\*(R" string and separated by a single space
+character.  This format can also be used to set the value of \f(CW$us\fR (in
+which case the \*(L"U+\*(R" is optional).
+.Ip "$us->as_string;" 4
+Converts a \fIUnicode::String\fR to a plain string according to the
+setting of \fIstringify_as()\fR.  The default \fIstringify_as()\fR method is
+\*(L"utf8\*(R".
+.Ip "$us->as_num;" 4
+Converts a \fIUnicode::String\fR to a number.  Currently only the digits
+in the range 0x30 .. 0x39 are recognized.  The plan is to eventually
+support all Unicode digit characters.
+.Ip "$us->as_bool;" 4
+Converts a \fIUnicode::String\fR to a boolean value.  Only the empty
+string is \s-1FALSE\s0.  A string consisting of only the character U+0030 is
+considered \s-1TRUE\s0, even if Perl consider \*(L"0\*(R" to be \s-1FALSE\s0.
+.Ip "$us->repeat( $count );" 4
+Returns a new \fIUnicode::String\fR where the content of \f(CW$us\fR is repeated
+\f(CW$count\fR times.  This operation is also overloaded as:
+.Sp
+.Vb 1
+\&  $us x $count
+.Ve
+.Ip "$us->concat( $other_string );" 4
+Concatenates the string \f(CW$us\fR and the string \f(CW$other_string\fR.  If
+\f(CW$other_string\fR is not an \fIUnicode::String\fR object, then it is first
+passed to the Unicode::String->new constructor function.  This
+operation is also overloaded as:
+.Sp
+.Vb 1
+\&  $us . $other_string
+.Ve
+.Ip "$us->append( $other_string );" 4
+Appends the string \f(CW$other_string\fR to the value of \f(CW$us\fR.  If
+\f(CW$other_string\fR is not an \fIUnicode::String\fR object, then it is first
+passed to the Unicode::String->new constructor function.  This
+operation is also overloaded as:
+.Sp
+.Vb 1
+\&  $us .= $other_string
+.Ve
+.Ip "$us->copy;" 4
+Returns a copy of the current \fIUnicode::String\fR object.  This
+operation is overloaded as the assignment operator.
+.Ip "$us->length;" 4
+Returns the length of the \fIUnicode::String\fR.  Surrogate pairs are
+still counted as 2.
+.Ip "$us->byteswap;" 4
+This method will swap the bytes in the internal representation of the
+\fIUnicode::String\fR object.
+.Sp
+Unicode reserve the character U+\s-1FEFF\s0 character as a byte order mark.
+This works because the swapped character, U+\s-1FFFE\s0, is reserved to not
+be valid.  For strings that have the byte order mark as the first
+character, we can guaranty to get the byte order right with the
+following code:
+.Sp
+.Vb 1
+\&   $ustr->byteswap if $ustr->ord == 0xFFFE;
+.Ve
+.Ip "$us->unpack;" 4
+Returns a list of integers each representing an \s-1UTF\s0\-16 character code.
+.Ip "$us->pack( @uchr );" 4
+Sets the value of \f(CW$us\fR as a sequence of \s-1UTF\s0\-16 characters with the
+characters codes given as parameter.
+.Ip "$us->ord;" 4
+Returns the character code of the first character in \f(CW$us\fR.  The \fIord()\fR
+method deals with surrogate pairs, which gives us a result-range of
+0x0 .. 0x10FFFF.  If the \f(CW$us\fR string is empty, undef is returned.
+.Ip "$us->chr( $code );" 4
+Sets the value of \f(CW$us\fR to be a string containing the character assigned
+code \f(CW$code\fR.  The argument \f(CW$code\fR must be an integer in the range 0x0
+\&.. 0x10FFFF.  If the code is greater than 0xFFFF then a surrogate pair
+created.
+.Ip "$us->name" 4
+In scalar context returns the official Unicode name of the first
+character in \f(CW$us\fR.  In array context returns the name of all characters
+in \f(CW$us\fR.  Also see the \fIUnicode::CharName\fR manpage.
+.Ip "$us->substr( $offset, [$length, [$subst]] )" 4
+Returns a sub-string of \f(CW$us\fR.  Works similar to the builtin substr
+function, but because we can't make \s-1LVALUE\s0 subs yet, you have to pass
+the string you want to assign to the sub-string as the 3rd parameter.
+.Ip "$us->index( $other, [$pos] );" 4
+Locates the position of \f(CW$other\fR within \f(CW$us\fR, possibly starting the
+search at position \f(CW$pos\fR.
+.Ip "$us->chop;" 4
+Chops off the last character of \f(CW$us\fR and returns it (as a
+\fIUnicode::String\fR object).
+.SH "FUNCTIONS"
+The following utility functions are provided.  They will be exported
+on request.
+.Ip "byteswap2($str, ...)" 4
+This function will swap 2 and 2 bytes in the strings passed as
+arguments.  This can be used to fix up \s-1UTF\s0\-16 or \s-1UCS\s0\-2 strings from
+litle-endian systems.  If this function is called in void context,
+then it will modify its arguments in-place.  Otherwise, then swapped
+strings are returned.
+.Ip "byteswap4($str, ...)" 4
+The byteswap4 function works similar to byteswap2, but will reverse
+the order of 4 and 4 bytes.  Can be used to fix litle-endian \s-1UCS\s0\-4
+strings.
+.SH "SEE ALSO"
+the \fIUnicode::CharName\fR manpage,
+the \fIUnicode::Map8\fR manpage,
+http://www.unicode.org/
+.SH "COPYRIGHT"
+Copyright 1997-1999 Gisle Aas.
+.PP
+This library is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+.rn }` ''
+.IX Title "String 3"
+.IX Name "Unicode::String - String of Unicode characters (UCS2/UTF16)"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "METHODS"
+
+.IX Item "Unicode::String->stringify_as( [$enc] )"
+
+.IX Item "$us = Unicode::String->new( [$initial_value] )"
+
+.IX Item "$us->ucs4( [$newval] )"
+
+.IX Item "$us->ucs2( [$newval] )"
+
+.IX Item "$us->utf16( [$newval] )"
+
+.IX Item "$us->utf8( [$newval] )"
+
+.IX Item "$us->utf7( [$newval] )"
+
+.IX Item "$us->latin1( [$newval] )"
+
+.IX Item "$us->hex( [$newval] )"
+
+.IX Item "$us->as_string;"
+
+.IX Item "$us->as_num;"
+
+.IX Item "$us->as_bool;"
+
+.IX Item "$us->repeat( $count );"
+
+.IX Item "$us->concat( $other_string );"
+
+.IX Item "$us->append( $other_string );"
+
+.IX Item "$us->copy;"
+
+.IX Item "$us->length;"
+
+.IX Item "$us->byteswap;"
+
+.IX Item "$us->unpack;"
+
+.IX Item "$us->pack( @uchr );"
+
+.IX Item "$us->ord;"
+
+.IX Item "$us->chr( $code );"
+
+.IX Item "$us->name"
+
+.IX Item "$us->substr( $offset, [$length, [$subst]] )"
+
+.IX Item "$us->index( $other, [$pos] );"
+
+.IX Item "$us->chop;"
+
+.IX Header "FUNCTIONS"
+
+.IX Item "byteswap2($str, ...)"
+
+.IX Item "byteswap4($str, ...)"
+
+.IX Header "SEE ALSO"
+
+.IX Header "COPYRIGHT"
+

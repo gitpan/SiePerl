@@ -1,0 +1,537 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH SHOWTABLE 1 "perl 5.005, patch 03" "26/Feb/1997" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+\fBshowtable\fR \- Show data in nicely formatted columns
+.SH "USAGE"
+\fBshowtable\fR [\-\fIoptions\fR] [\fIfile\fR]
+.SH "DESCRIPTION"
+\fBShowtable\fR reads an input data stream and displays it in a nicely
+formatted listing, with exact formatting depending upon the options.
+The input stream, \fIfile\fR or \f(CWSTDIN\fR by default should consist of data
+separated by tabs or the defined \fIseparator\fR character (see \fB\-d\fR).
+.PP
+The actual output formatting is peformed by the \fBShowTable\fR module.
+.SH "OPTIONS"
+There are two general sets of options: those which help determine the format of the
+input, and those which determine the format of the output.
+.Sh "\fBOptions affecting input\fR"
+.Ip "\fB\-break=\fR\fIstr\fR" 10
+Set the inter-column break string to \*(L"\fIstr\fR\*(R".  The default
+is a tab ("\f(CW\et\fR").  If \fB\-strip\fR is also given, blanks surrounding
+the break string will also be ignored.
+.Ip "\fB\-d\fR\fIstr\fR" 10
+This is the same as \f(CW-break=\fR\fIstr\fR.
+.Ip "\fB\-nod(ashes)\fR" 10
+Do not ignore lines of separators, such as dashes, equal 
+signs, or underlines.  If \fB\-nodashes\fR is given, and these lines do occur
+in the stream, they will be treated as normal data.
+.Ip "\fB\-ti(tles)[=\fR\fI\s-1NN\s0\fR\fB]\fR" 10
+Treat the first \fI\s-1NN\s0\fR rows of data as column titles; multiple
+words in the column titles may wrap vertically. If \fI\s-1NN\s0\fR is
+omitted, it defaults to 1.  No \fB\-titles\fR option is the same
+as \fB\-titles=0\fR.
+.Ip "\fB\-in(put)=\fR\fItype\fR" 10
+Set the input type as \fItype\fR, which can be one of: \fIbox\fR, \fIlist\fR, \fItable\fR,
+or \fIsimple\fR.  A \fIsimple\fR\-type table is the same as a \fItable\fR\-type,
+but no wrapping characters are recognized.
+.Ip "\fB\-s(trip)\fR" 10
+Strip blanks from around the column values.
+.Ip "\fB\-nos(trip)\fR" 10
+Do not strip blanks from the input.  Useful if there is formatted or aligned
+data within a boxed table.
+.Sh "\fBOptions affecting output\fR"
+.Ip "\fB\-t(able)\fR" 10
+Use a \fItable\fR format for output, with wrapping of column values longer 
+than the given or determined column widths.  See the \fIShowTable\fR manpage for 
+more details.
+.Ip "\fB\-si(mple)\fR" 10
+Use a simple table format, without any wrapping of column values.  
+See the \fIShowTable\fR manpage for more details.
+.Ip "\fB\-l(ist)\fR" 10
+Use a list style format.  See the \fIShowTable\fR manpage for more details.
+.Ip "\fB\-b(ox)\fR" 10
+Use a \*(L"boxed\*(R" style table.  See the \fIShowTable\fR manpage for more details.
+.Ip "\fB\-ht(ml)\fR" 10
+Use \s-1HTML\s0\-formating.  See the \fIShowTable\fR manpage for more details.
+.Ip "\fB\-ti(tles)=\fR\fIname1\fR\fB,\fR\fIname2\fR\fB,...,\fR\fInameN\fR" 10
+Define the column names explicitly.  This is useful for naming columns
+of data from \f(CWSTDIN\fR, when \fBshowtable\fR is being used as a filter.  The
+first column name, \fIname1\fR, cannot begin with a digit.  This option
+allows any column titles obtained from the input to be overridden.
+.Ip "\fB\-noh(eaders)\fR" 10
+Do not output any headers on the tables; \fB\-titles=0\fR implies this option.
+.Ip "\fB\-f\fR\fIn1\fR[,\fIn2\fR, ..., \fInN\fR]" 10
+Select fields numbered \fIn1\fR, \fIn2\fR, etc., to display.  Each \fInN\fR is a
+field index, or a range of indexes in the form: \f(CWN\fR\-\f(CWM\fR The default
+is to show all the fields in each row.  Fields are numbered from 1.  An
+example:  to show the first, and three through five fields of the
+\f(CW/etc/passwd\fR file:
+.Sp
+.Vb 1
+\&    showtable -d: -f1,2-5 /etc/passwd
+.Ve
+.Ip "\fB\-fields\fR=\fIfname1\fR[,\fIfname2\fR, ..., \fIfnameN\fR]" 10
+Select the named fields to display.  The field names must be available, either
+through the data stream, or by using the \fB\-titles\fR option.   The field
+names given must match the existing field names \fIexactly\fR.
+.Sp
+Using the file \f(CW/etc/passwd\fR for another example: to show the same first two
+fields, by name:
+.Sp
+.Vb 1
+\&    showtable -d: -titles=Login,UID -fields=Login,UID /etc/passwd
+.Ve
+.Ip "\fB\-w(idth)\fR=\fInum\fR" 10
+Set the maximum table width.  This value is applied to the variable 
+the \fIData::Showtable::Max_Table_Width\fR manpage.  When the total width of all
+columns to be displayed exceeds this value, all column widths are scaled
+uniformly.  
+.Sp
+If \fB\-width\fR is not given, then for all output but \fB\-html\fR, the default
+value is either \*(L"\f(CWCOLUMNS\fR\*(R", if defined, or 80, if not.  Whith \fB\-html\fR
+mode, there is no default value for \fB\-width\fR; in other words, there is
+no limit to the width.
+.Ip "\fB\-cw(idths)\fR=\fIw1\fR[,\fIw2\fR,...,\fIwN\fR]" 10
+Set individual column widths to the specified values.  Empty column
+widths imply no maximum width.  If the \fB\-width\fR option is also given,
+then the \fB\-cwidth\fR column widths can also be given as fractions or
+percentages. 
+.Sp
+Example: To set the maximum width of the third column to 20 characters:
+.Sp
+.Vb 1
+\&    -cw=,,20
+.Ve
+.Sh "\fB\s-1HTML\s0\-only options\fR (the usage of which implies \fB\-html\fR)"
+.Ip "\fB\-noe(scape)\fR" 10
+Do not perform \s-1HTML\s0 escape sequences on the data; this allows embedded
+\s-1HTML\s0 text in the data to be displayed properly with the \fB\-html\fR option.
+.Ip "\fB\-attributes\fR=\*(T'\fIattr1\fR \fIattr2\fR ...\*(T'" 10
+Declare the table attributes, which are inserted into the \f(CWTABLE\fR
+token.  For example, the option:
+.Sp
+.Vb 1
+\&    -attributes='BORDER=0 CELLSPACING=2 CELLPADDING=4'
+.Ve
+would cause the following \s-1HTML\s0:
+.Sp
+.Vb 1
+\&    <TABLE BORDER=0 CELLSPACING=2 CELLPADDING=4>
+.Ve
+The default table attributes are:
+.Sp
+.Vb 1
+\&    <TABLE BORDER=1 CELLSPACING=1 CELLPADDING=1>
+.Ve
+.Ip "\fB\-t(itle)_f(ormats)\fR=\fIfmt1\fR;\fIfmt2\fR;...;\fIfmtN\fR" 10
+Set the \s-1HTML\s0 formats for the column titles.  The \fB\-title_formats\fR (or
+just \fB\-tf\fR) can be given multiple times, for each column, or formats
+for multiple columns can be given on the same option separated by
+semi-colons \*(L"\f(CW;\fR\*(R".
+.Sp
+Each \fIfmtN\fR can itself be multiple \s-1HTML\s0 items, separated by commas.
+Each \s-1HTML\s0 element can be given either as an \s-1HTML\s0 token (eg:
+\*(L"\f(CW\e<BOLD\e\fR>"), or as a plain name (eg: \*(L"\f(CWBOLD\fR").  
+.Sp
+For example, here is a title format specification for three columns,
+where the first column title should be bold italic, the second italic,
+and the third italic in a smaller font:
+.Sp
+.Vb 1
+\&        -tf='BOLD,I;I;<FONT SIZE=-2>,I'
+.Ve
+.Ip "\fB\-d(ata)_f(formats)\fR=\fIfmt1\fR;\fIfmt2\fR;...;\fIfmtN\fR" 10
+The same as \fB\-title_formats\fR but applies to the column data.
+.Ip "\fB\-url(s)=\fIcol1\fR=\fIurl1\fR,\fIcol2\fR=\fIurl2\fR,...\fR" 10
+Define a mapping from column names, or indexes, to URLs to be inserted
+as <A \s-1HREF\s0's> around the values for the named columns.  Each \fIcolN\fR is
+a column name or index, and each \fIurlN\fR is a string representing the
+\s-1URL\s0 to be inserted for the given column.
+.Sp
+The \s-1URL\s0 text may contain these substitution strings:
+.Sp
+\fB%K\fR \- will be substituted with the current column name (or \fIkey\fR). 
+.Sp
+\fB%V\fR \- will be substituted with the current column value.
+.Sp
+Multiple \fB\-url\fR options may be given, if desired, rather than
+creating one long argument for a single \fB\-url\fR.  For example:
+.Sp
+.Vb 4
+\&    showtable   -d: -f1,6 -titles=Login,Homedir \e
+\&                -url='Login=mailto:%V' \e
+\&                -url='HomeDir=file:%V' \e
+\&                /etc/passwd
+.Ve
+.Sh "\fBOther options\fR"
+.Ip "\fB\-help\fR" 10
+Display some help to the user and quit.
+.Sh "\fBBoxed Input\fR"
+If the input type is \fIbox\fR, then vertical and horizontal box characters
+are removed from the input stream, and blanks surrounding the vertical
+box characters are removed.  The vertical box characters (column
+separaters) are \*(L"\f(CW|\fR\*(R" or \*(L"\f(CW:\fR\*(R".  The The horizontal box characters are
+\*(L"\f(CW+\fR\*(R" and \*(L"\f(CW-\fR\*(R". 
+.PP
+Morever, data wrapped within a column is recognized and parsed as one
+column value, by recognizing the presence of a \fIwrapping prefix\fR or
+\fIwrapping suffix\fR character.  Currently, the wrapping prefix character
+is \*(L"<\*(R", and the wrapping suffix character is \*(L">\*(R". 
+.PP
+An example of data wrapped within a column is given here.  The table
+below has just two \fIlogical\fR rows of data; with both rows having data
+wrapped into multiple \fIphysical\fR rows. 
+.PP
+.Vb 9
+\&        +---------+---------+---------+
+\&        |  Col 1  |  Col 2  |  Col 3  |
+\&        +---------+---------+---------+
+\&        | This is>| Another>| Row 1,3>|
+\&        |< a cont>|< value. |<is also>|
+\&        |<inued  >|         |<long.   |
+\&        |<value.  |         |         |
+\&        |This is >| Item2-2 | Item2-3 |
+\&        +---------+---------+---------+
+.Ve
+.Sh "\fBList Format\fR"
+When using the \fB\-list\fR or \fB\-input=list\fR options, either, or both, the 
+input and output may be in a \*(L"list\*(R" format, which is implemented
+using the following syntax:
+.PP
+.Vb 4
+\&        r1c1_name: r1c1_value
+\&        r1c2_name: r1c2_value
+\&        ...
+\&        r1cN_name: r1cN_value
+.Ve
+.Vb 5
+\&        r2c1_name: r2c1_value
+\&        r2c2_name: r2c2_value
+\&                 : r2c2_value_continued
+\&        ...
+\&        r2cN_name: r2cN_value
+.Ve
+.Vb 4
+\&        rMc1_name: rMc1_value
+\&        rMc2_name: rMc2_value
+\&        ...
+\&        rMcN_name: rMcN_value
+.Ve
+Each \fIrow\fR of data consists of one or more \fIcolumns\fR, and ends with
+a blank line.
+.PP
+Each \fIcolumn\fR consists of a \fIcolumn name\fR, followed by a colon \*(L":\*(R",
+followed by an optional, single space or tab, followed by the 
+\fIcolumn value\fR, on the same line. 
+.PP
+Continuation lines of the previous column value consist of one or more
+space or tab characters, a colon \*(L":\*(R", one optional, single space
+or tab, followed by the continuation value.  In the example above,
+The second column value of the second row was continued.
+.Sh "\fB\s-1HTML\s0 Input with \s-1HTML\s0 Output\fR"
+When using \fB\-html\fR on data already containing \s-1HTML\s0\-formatted text,
+the \fB\-noescape\fR option should be used.  By default, all input
+text is assumed \fInot\fR to be \s-1HTML\s0\-formatted, and is escaped
+allowing embedded \*(L"<\*(R", \*(L">\*(R" characters, if any, to be displayed
+correctly.
+.SH "DEPENDENCIES"
+.Ip "\fBData::ShowTable\fR module" 10
+Performs the actual output formatting.
+.SH "AUTHOR"
+Alan K. Stebbens \fIaks@sgi.com\fR
+.SH "BUGS"
+.Ip "\(bu" 5
+Currently, the box formatting characters are not configurable: \*(L'+\*(R' for
+the corners; \*(L'\-\*(R' and \*(L'|\*(R' for the tops and sides, respectively.  In an
+ideal world, these things would be configurable.
+.Ip "\(bu" 5
+The continuation prefix and suffix characters, \*(L'<\*(R' and \*(L'>\*(R',
+respectively, are also not configurable:
+.Ip "\(bu" 5
+When reading \fItable\fR input, any data ending with \*(L">\*(R" will
+be considered to be continued by the next row of data.  To avoid
+this, use \fB\-input=simple\fR.
+.Ip "\(bu" 5
+When selecting noncontiguous fields (ie: \fB\-f1,4\fR>) without
+field names, the default field names will be consecutively
+numbered from 1, which is counter-intuitive to the original
+selection.  To avoid this, name the fields using the \fB\-title=...\fR 
+option.
+
+.rn }` ''
+.IX Title "SHOWTABLE 1"
+.IX Name "B<showtable> - Show data in nicely formatted columns"
+
+.IX Header "NAME"
+
+.IX Header "USAGE"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "OPTIONS"
+
+.IX Subsection "\fBOptions affecting input\fR"
+
+.IX Item "\fB\-break=\fR\fIstr\fR"
+
+.IX Item "\fB\-d\fR\fIstr\fR"
+
+.IX Item "\fB\-nod(ashes)\fR"
+
+.IX Item "\fB\-ti(tles)[=\fR\fI\s-1NN\s0\fR\fB]\fR"
+
+.IX Item "\fB\-in(put)=\fR\fItype\fR"
+
+.IX Item "\fB\-s(trip)\fR"
+
+.IX Item "\fB\-nos(trip)\fR"
+
+.IX Subsection "\fBOptions affecting output\fR"
+
+.IX Item "\fB\-t(able)\fR"
+
+.IX Item "\fB\-si(mple)\fR"
+
+.IX Item "\fB\-l(ist)\fR"
+
+.IX Item "\fB\-b(ox)\fR"
+
+.IX Item "\fB\-ht(ml)\fR"
+
+.IX Item "\fB\-ti(tles)=\fR\fIname1\fR\fB,\fR\fIname2\fR\fB,...,\fR\fInameN\fR"
+
+.IX Item "\fB\-noh(eaders)\fR"
+
+.IX Item "\fB\-f\fR\fIn1\fR[,\fIn2\fR, ..., \fInN\fR]"
+
+.IX Item "\fB\-fields\fR=\fIfname1\fR[,\fIfname2\fR, ..., \fIfnameN\fR]"
+
+.IX Item "\fB\-w(idth)\fR=\fInum\fR"
+
+.IX Item "\fB\-cw(idths)\fR=\fIw1\fR[,\fIw2\fR,...,\fIwN\fR]"
+
+.IX Subsection "\fB\s-1HTML\s0\-only options\fR (the usage of which implies \fB\-html\fR)"
+
+.IX Item "\fB\-noe(scape)\fR"
+
+.IX Item "\fB\-attributes\fR=\*(T'\fIattr1\fR \fIattr2\fR ...\*(T'"
+
+.IX Item "\fB\-t(itle)_f(ormats)\fR=\fIfmt1\fR;\fIfmt2\fR;...;\fIfmtN\fR"
+
+.IX Item "\fB\-d(ata)_f(formats)\fR=\fIfmt1\fR;\fIfmt2\fR;...;\fIfmtN\fR"
+
+.IX Item "\fB\-url(s)=\fIcol1\fR=\fIurl1\fR,\fIcol2\fR=\fIurl2\fR,...\fR"
+
+.IX Subsection "\fBOther options\fR"
+
+.IX Item "\fB\-help\fR"
+
+.IX Subsection "\fBBoxed Input\fR"
+
+.IX Subsection "\fBList Format\fR"
+
+.IX Subsection "\fB\s-1HTML\s0 Input with \s-1HTML\s0 Output\fR"
+
+.IX Header "DEPENDENCIES"
+
+.IX Item "\fBData::ShowTable\fR module"
+
+.IX Header "AUTHOR"
+
+.IX Header "BUGS"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+

@@ -1,0 +1,1568 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH TUTORIAL 1 "perl 5.005, patch 03" "4/Mar/1999" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+XQL Tutorial \- Describes the XQL query syntax
+.SH "DESCRIPTION"
+This document describes basic the features of the XML Query Language (XQL.)
+A proposal for the XML Query Language (XQL) specification was submitted
+to the XSL Working Group in September 1998. 
+The spec can be found at: http://www.w3.org/TandS/QL/QL98/pp/xql.html.
+Since it is only a proposal at this point, things may change, but it is very
+likely that the final version will be close to the proposal.
+Most of this document was copied straight from the spec.
+.PP
+See also the XML::XQL man page.
+.SH "INTRODUCTION"
+XQL (XML Query Language) provides a natural extension to the XSL pattern 
+language. It builds upon the capabilities XSL provides for identifying classes 
+of nodes, by adding Boolean logic, filters, indexing into collections of nodes, 
+and more.
+.PP
+XQL is designed specifically for XML documents. 
+It is a general purpose query language, providing a single syntax
+that can be used for queries, addressing, and patterns. 
+XQL is concise, simple, and powerful.
+.PP
+XQL is designed to be used in many contexts. Although it is a superset of XSL 
+patterns, it is also applicable to providing links to nodes, for searching 
+repositories, and for many other applications.
+.PP
+Note that the term XQL is a working term for the language described in this 
+proposal. It is not their intent that this term be used permanently.
+Also, beware that another query language exists called XML\-QL,
+which uses a syntax very similar to SQL.
+.PP
+The XML::XQL module has added functionality to the XQL spec, called \fIXQL+\fR.
+To allow only XQL functionality as described in the spec, use the 
+XML::XQL::Strict module. Note that the XQL spec makes the distinction between 
+core XQL and XQL extensions. This implementation makes no distinction and
+the Strict module, therefore, implements everything described in the XQL spec.
+See the XML::XQL man page for more information about the Strict module.
+This tutorial will clearly indicate when referring to XQL+.
+.SH "XQL Patterns"
+This section describes the core XQL notation. These features should be part 
+of every XQL implementation, and serve as the base level of functionality 
+for its use in different technologies.
+.PP
+The basic syntax for XQL mimics the URI directory navigation syntax, but 
+instead of specifying navigation through a
+physical file structure, the navigation is through elements in the XML tree.
+.PP
+For example, the following URI means find the foo.jpg file within the bar 
+directory:
+.PP
+.Vb 1
+\&     bar/foo.jpg
+.Ve
+Similarly, in XQL, the following means find the collection of fuz elements 
+within baz elements:
+.PP
+.Vb 1
+\&     baz/fuz
+.Ve
+Throughout this document you will find numerous samples. They refer to the data 
+shown in the sample file at the end of this man page.
+.SH "Context"
+A \fIcontext\fR is the set of nodes against which a query operates.
+For the entire query, which is passed to the XML::XQL::Query
+constructor through the \fIExpr\fR option, the context is the list of input nodes
+that is passed to the \fIquery()\fR method.
+.PP
+XQL allows a query to select between using the current context as the input 
+context and using the \*(L'root context\*(R' as the input context. 
+The \*(L'root context\*(R' is a context containing only the root-most
+element of the document. When using XML::DOM, this is the Document object.
+.PP
+By default, a query uses the current context. A query prefixed with \*(L'/\*(R' 
+(forward slash) uses the root context. A query may
+optionally explicitly state that it is using the current context by using 
+the \*(L'./\*(R' (dot, forward slash) prefix. Both of these
+notations are analogous to the notations used to navigate directories in a file 
+system.
+.PP
+The \*(L'./\*(R' prefix is only required in one situation. A query may use the \*(L'//\*(R' 
+operator to indicate recursive descent. When
+this operator appears at the beginning of the query, the initial \*(L'/\*(R' causes the 
+recursive decent to perform relative to the
+root of the document or repository. The prefix \*(L'.//\*(R' allows a query to perform 
+a recursive descent relative to the current context.
+.Ip "Examples:" 4
+Find all author elements within the current context. Since the period is really 
+not used alone, this example forward-references other features:
+.Sp
+.Vb 1
+\&     ./author
+.Ve
+Note that this is equivalent to:
+.Sp
+.Vb 1
+\&     author
+.Ve
+Find the root element (bookstore) of this document:
+.Sp
+.Vb 1
+\&     /bookstore
+.Ve
+Find all author elements anywhere within the current document:
+.Sp
+.Vb 1
+\&     //author
+.Ve
+Find all books where the value of the style attribute on the book is equal to 
+the value of the specialty attribute of the bookstore element at the root of 
+the document:
+.Sp
+.Vb 1
+\&     book[/bookstore/@specialty = @style]
+.Ve
+.SH "Query Results"
+The collection returned by an XQL expression preserves document order, 
+hierarchy, and identity, to the extent that these are defined. 
+That is, a collection of elements will always be returned in document order 
+without repeats. Note that the spec states that the order of attributes within
+an element is undefined, but that this implementation does keep attributes
+in document order. See the XML::XQL man page for more details regarding 
+\fIDocument Order\fR.
+.SH "Collections \- \*(M'element\*(S' and \*(M'.\*(S'"
+The collection of all elements with a certain tag name is expressed using the 
+tag name itself. This can be qualified by showing that the elements are 
+selected from the current context \*(L'./\*(R', but the current context is assumed and 
+often need not be noted explicitly.
+.Ip "Examples:" 4
+Find all first-name elements. These examples are equivalent:
+.Sp
+.Vb 1
+\&     ./first-name
+.Ve
+.Vb 1
+\&     first-name
+.Ve
+Find all unqualified book elements:
+.Sp
+.Vb 1
+\&     book
+.Ve
+Find all first.name elements:
+.Sp
+.Vb 1
+\&     first.name
+.Ve
+.SH "Selecting children and descendants \- \*(M'/\*(S' and \*(M'//\*(S'"
+The collection of elements of a certain type can be determined using the path 
+operators ('/\*(R' or \*(L'//'). These operators take as their arguments a collection 
+(left side) from which to query elements, and a collection indicating which
+elements to select (right side). The child operator ('/')selects from immediate 
+children of the left-side collection, while the descendant operator ('//') 
+selects from arbitrary descendants of the left-side collection. 
+In effect, the \*(L'//\*(R' can be thought of as a substitute for one or more levels of 
+hierarchy. Note that the path operators change the context as the
+query is performed. By stringing them together users can \*(L'drill down\*(R' into the 
+document.
+.Ip "Examples:" 4
+Find all first-name elements within an author element. Note that the author 
+children of the current context are found, and then first-name children are 
+found relative to the context of the author elements:
+.Sp
+.Vb 1
+\&     author/first-name
+.Ve
+Find all title elements, one or more levels deep in the bookstore 
+(arbitrary descendants):
+.Sp
+.Vb 1
+\&     bookstore//title
+.Ve
+Note that this is different from the following query, which finds all title 
+elements that are grandchildren of bookstore elements:
+.Sp
+.Vb 1
+\&     bookstore/*/title
+.Ve
+Find emph elements anywhere inside book excerpts, anywhere inside the bookstore:
+.Sp
+.Vb 1
+\&     bookstore//book/excerpt//emph
+.Ve
+Find all titles, one or more levels deep in the current context. Note that this 
+situation is essentially the only one where
+the period notation is required:
+.Sp
+.Vb 1
+\&     .//title
+.Ve
+.SH "Collecting element children \- \*(M'*\*(S'"
+An element can be referenced without using its name by substituting the \*(L'*\*(R' 
+collection. The \*(L'*\*(R' collection returns all
+elements that are children of the current context, regardless of their tag name.
+.Ip "Examples:" 4
+Find all element children of author elements:
+.Sp
+.Vb 1
+\&     author/*
+.Ve
+Find all last-names that are grand-children of books:
+.Sp
+.Vb 1
+\&     book/*/last-name
+.Ve
+Find the grandchildren elements of the current context:
+.Sp
+.Vb 1
+\&     */*
+.Ve
+Find all elements with specialty attributes. Note that this example uses 
+subqueries, which are covered in Filters, and
+attributes, which are discussed in Finding an attribute:
+.Sp
+.Vb 1
+\&     *[@specialty]
+.Ve
+.SH "Finding an attribute \- \*(M'@\*(S'"
+Attribute names are preceded by the \*(L'@\*(R' symbol. XQL is designed to treat 
+attributes and sub-elements impartially,
+and capabilities are equivalent between the two types wherever possible.
+.PP
+Note: attributes cannot contain subelements. Thus, attributes cannot have path 
+operators applied to them in a query.
+Such expressions will result in a syntax error. 
+The XQL spec states that attributes are inherently unordered and indices 
+cannot be applied to them, but this implementation allows it.
+.Ip "Examples:" 4
+Find the style attribute of the current element context:
+.Sp
+.Vb 1
+\&     @style
+.Ve
+Find the exchange attribute on price elements within the current context:
+.Sp
+.Vb 1
+\&     price/@exchange
+.Ve
+The following example is not valid:
+.Sp
+.Vb 1
+\&     price/@exchange/total
+.Ve
+Find all books with style attributes. Note that this example uses subqueries, 
+which are covered in Filters:
+.Sp
+.Vb 1
+\&     book[@style]
+.Ve
+Find the style attribute for all book elements:
+.Sp
+.Vb 1
+\&     book/@style
+.Ve
+.SH "XQL Literals"
+XQL query expressions may contain literal values (i.e. constants.)
+Numbers (integers and floats) are wrapped in XML::XQL::Number objects and
+strings in XML::XQL::Text objects. Booleans (as returned by \fItrue()\fR and \fIfalse()\fR)
+are wrapped in XML::XQL::Boolean objects.
+.PP
+Strings must be enclosed in single or double quotes. Since XQL does not allow
+escaping of special characters, it's impossible to create a string with both
+a single and a double quote in it. To remedy this, XQL+ has added the q// and
+qq// string delimiters which behave just like they do in Perl. 
+.PP
+For Numbers, exponential notation is not allowed. Use the XQL+ function \fIeval()\fR
+to circumvent this problem. See XML::XQL man page for details.
+.PP
+The empty list or undef is represented by [] (i.e. reference to empty array)
+in this implementation.
+.Ip "Example" 4
+Integer Numbers:
+.Sp
+.Vb 2
+\&     234
+\&     -456
+.Ve
+Floating point Numbers:
+.Sp
+.Vb 2
+\&     1.23
+\&     -0.99
+.Ve
+Strings:
+.Sp
+.Vb 2
+\&     "some text with 'single' quotes"
+\&     'text with "double" quotes'
+.Ve
+Not allowed:
+.Sp
+.Vb 1
+\&     1.23E-4         (use eval("1.23E-4", "Number") in XQL+)          
+.Ve
+.Vb 1
+\&     "can't use \e"double \e"quotes"  (use q/can't use "double" quotes/ in XQL+) 
+.Ve
+.SH "Grouping \- \*(M'()\*(S'"
+Parentheses can be used to group collection operators for clarity or where the 
+normal precedence is inadequate to express an operation.
+.SH "Filters \- \*(M'[]\*(S'"
+Constraints and branching can be applied to any collection by adding a filter 
+clause \*(L'[ ]\*(R' to the collection. The filter is analogous to the SQL WHERE clause 
+with ANY semantics. The filter contains a query within it, called the
+subquery. The subquery evaluates to a Boolean, and is tested for each element 
+in the collection. Any elements in the collection failing the subquery test are 
+omitted from the result collection.
+.PP
+For convenience, if a collection is placed within the filter, a Boolean TRUE 
+is generated if the collection contains any members, and a FALSE is generated 
+if the collection is empty. In essence, an expression such as author/degree
+implies a collection-to-Boolean conversion function like the following 
+mythical \*(L'there-exists-a\*(R' method.
+.PP
+.Vb 1
+\&     author[.there-exists-a(degree)]
+.Ve
+Note that any number of filters can appear at a given level of an expression. 
+Empty filters are not allowed.
+.Ip "Examples:" 4
+Find all books that contain at least one excerpt element:
+.Sp
+.Vb 1
+\&     book[excerpt]
+.Ve
+Find all titles of books that contain at least one excerpt element:
+.Sp
+.Vb 1
+\&     book[excerpt]/title
+.Ve
+Find all authors of books where the book contains at least one excerpt, and 
+the author has at least one degree:
+.Sp
+.Vb 1
+\&     book[excerpt]/author[degree]
+.Ve
+Find all books that have authors with at least one degree:
+.Sp
+.Vb 1
+\&     book[author/degree]
+.Ve
+Find all books that have an excerpt and a title:
+.Sp
+.Vb 1
+\&     book[excerpt][title]
+.Ve
+.Sh "Any and all semantics \- \*(M'$any$\*(S' and \*(M'$all$\*(S'"
+Users can explicitly indicate whether to use any or all semantics through 
+the \f(CW$any\fR$ and \f(CW$all\fR$ keywords.
+.PP
+$any$ flags that a condition will hold true if any item in a set meets that 
+condition. \f(CW$all\fR$ means that all elements in a
+set must meet the condition for the condition to hold true.
+.PP
+$any$ and \f(CW$all\fR$ are keywords that appear before a subquery expression within
+a filter.
+.Ip "Examples:" 4
+Find all author elements where one of the last names is Bob:
+.Sp
+.Vb 1
+\&     author[last-name = 'Bob']
+.Ve
+.Vb 1
+\&     author[$any$ last-name = 'Bob']
+.Ve
+Find all author elements where none of the last-name elements are Bob:
+.Sp
+.Vb 1
+\&     author[$all$ last-name != 'Bob']
+.Ve
+Find all author elements where the first last name is Bob:
+.Sp
+.Vb 1
+\&     author[last-name[0] = 'Bob']
+.Ve
+.SH "Indexing into a collection \- \*(M'[]\*(S' and \*(M'$to$\*(S'"
+XQL makes it easy to find a specific node within a set of nodes. 
+Simply enclose the index ordinal within square brackets. The ordinal is 0 based.
+.PP
+A range of elements can be returned. To do so, specify an expression rather 
+than a single value inside of the subscript operator (square brackets). 
+Such expressions can be a comma separated list of any of the following: 
+.PP
+.Vb 4
+\&  n             Returns the nth element
+\&  -n            Returns the element that is n-1 units from the last element. 
+\&                E.g., -1 means the last element. -2 is the next to last element.
+\&  m $to$ n      Returns elements m through n, inclusive
+.Ve
+.Ip "Examples:" 4
+Find the first author element:
+.Sp
+.Vb 1
+\&     author[0]
+.Ve
+Find the third author element that has a first-name:
+.Sp
+.Vb 1
+\&     author[first-name][2]
+.Ve
+Note that indices are relative to the parent. In other words, consider the 
+following data:
+.Sp
+.Vb 8
+\&     <x>
+\&       <y/>
+\&       <y/>
+\&     </x>
+\&     <x>
+\&       <y/>
+\&       <y/>
+\&     </x>
+.Ve
+The following expression will return the first y from each of the x's:
+.Sp
+.Vb 1
+\&     x/y[0]
+.Ve
+The following will return the first y from the entire set of y's within x's:
+.Sp
+.Vb 1
+\&     (x/y)[0]
+.Ve
+The following will return the first y from the first x:
+.Sp
+.Vb 1
+\&     x[0]/y[0]
+.Ve
+Find the first and fourth author elements: 
+.Sp
+.Vb 1
+\&     author[0,3]
+.Ve
+Find the first through fourth author elements: 
+.Sp
+.Vb 1
+\&     author[0 $to$ 3]
+.Ve
+Find the first, the third through fifth, and the last author elements: 
+.Sp
+.Vb 1
+\&     author[0, 2 $to$ 4, -1]
+.Ve
+Find the last author element: 
+.Sp
+.Vb 1
+\&     author[-1]
+.Ve
+.SH "Boolean Expressions"
+Boolean expressions can be used within subqueries. For example, one could use 
+Boolean expressions to find all nodes of a particular value, or all nodes with 
+nodes in particular ranges. Boolean expressions are of the form
+${op}$, where {op} may be any expression of the form {b|a} \- that is, the 
+operator takes lvalue and rvalue arguments and returns a Boolean result. 
+.PP
+Note that the XQL Extensions section defines additional Boolean operations.
+.Sh "Boolean \s-1AND\s0 and \s-1OR\s0 \- \*(M'$and$\*(S' and \*(M'$or$\*(S'"
+$and$ and \f(CW$or\fR$ are used to perform Boolean ands and ors.
+.PP
+The Boolean operators, in conjunction with grouping parentheses, can be used to 
+build very sophisticated logical expressions.
+.PP
+Note that spaces are not significant and can be omitted, or included for 
+clarity as shown here.
+.Ip "Examples:" 4
+Find all author elements that contain at least one degree and one award.
+.Sp
+.Vb 1
+\&     author[degree $and$ award]
+.Ve
+Find all author elements that contain at least one degree or award and at 
+least one publication.
+.Sp
+.Vb 1
+\&     author[(degree $or$ award) $and$ publication]
+.Ve
+.Sh "Boolean \s-1NOT\s0 \- \*(M'$not$\*(S'"
+$not$ is a Boolean operator that negates the value of an expression within a 
+subquery.
+.Ip "Examples:" 4
+Find all author elements that contain at least one degree element and that 
+contain no publication elements.
+.Sp
+.Vb 1
+\&     author[degree $and$ $not$ publication]
+.Ve
+Find all author elements that contain publications elements but do not contain 
+either degree elements or award elements.
+.Sp
+.Vb 1
+\&     author[$not$ (degree $or$ award) $and$ publication]
+.Ve
+.SH "Union and intersection \- \*(M'$union$\*(S', \*(M'|\*(S' and \*(M'$intersect$\*(S'"
+The \f(CW$union\fR$ operator (shortcut is \*(L'|') returns the combined set of values from 
+the query on the left and the query on the right. Duplicates are filtered out. 
+The resulting list is sorted in document order.
+.PP
+Note: because this is a union, the set returned may include 0 or more elements
+of each element type in the list. To restrict the returned set to nodes that 
+contain at least one of each of the elements in the list, use a filter, as 
+discussed in Filters.
+.PP
+The \f(CW$intersect\fR$ operator returns the set of elements in common between two sets.
+.Ip "Examples:" 4
+Find all first-names and last-names:
+.Sp
+.Vb 1
+\&     first-name $union$ last-name
+.Ve
+Find all books and magazines from a bookstore:
+.Sp
+.Vb 1
+\&     bookstore/(book | magazine)
+.Ve
+Find all books and all authors:
+.Sp
+.Vb 1
+\&     book $union$ book/author
+.Ve
+Find the first-names, last-names, or degrees from authors within either books 
+or magazines:
+.Sp
+.Vb 1
+\&     (book $union$ magazine)/author/(first-name $union$ last-name $union$ degree)
+.Ve
+Find all books with author/first-name equal to \*(L'Bob\*(R' and all magazines with 
+price less than 10: 
+.Sp
+.Vb 1
+\&     book[author/first-name = 'Bob'] $union$ magazine[price $lt$ 10]
+.Ve
+.SH "Equivalence \- \*(M'$eq$\*(S', \*(M'=\*(S', \*(M'$ne$\*(S' and \*(M'!=\*(S'"
+The \*(L'=\*(R' sign is used for equality; \*(L'!=\*(R' for inequality. Alternatively, \f(CW$eq\fR$ and
+ \f(CW$ne\fR$ can be used for equality and inequality.
+.PP
+Single or double quotes can be used for string delimiters in expressions. 
+This makes it easier to construct and pass XQL from within scripting languages.
+.PP
+For comparing values of elements, the \fIvalue()\fR method is implied. That is, 
+last-name < \*(L'foo\*(R' really means last-name!\fIvalue()\fR < \*(L'foo\*(R'.
+.PP
+Note that filters are always with respect to a context. That is, the expression 
+book[author] means for every book element that is found, see if it has an 
+author subelement. Likewise, book[author = \*(L'Bob'] means for
+every book element that is found, see if it has a subelement named author 
+whose value is \*(L'Bob\*(R'. One can examine the value of the context as well, by 
+using the . (period). For example, book[. = \*(L'Trenton'] means for every
+book that is found, see if its value is \*(L'Trenton\*(R'.
+.Ip "Examples:" 4
+Find all author elements whose last name is Bob:
+.Sp
+.Vb 1
+\&     author[last-name = 'Bob']
+.Ve
+.Vb 1
+\&     author[last-name $eq$ 'Bob']
+.Ve
+Find all authors where the from attribute is not equal to \*(L'Harvard':
+.Sp
+.Vb 1
+\&     degree[@from != 'Harvard']
+.Ve
+.Vb 1
+\&     degree[@from $ne$ 'Harvard']
+.Ve
+Find all authors where the last-name is the same as the /guest/last-name element:
+.Sp
+.Vb 1
+\&     author[last-name = /guest/last-name]
+.Ve
+Find all authors whose text is \*(L'Matthew Bob':
+.Sp
+.Vb 1
+\&     author[. = 'Matthew Bob']
+.Ve
+.Vb 1
+\&     author = 'Matthew Bob'
+.Ve
+.Sh "Comparison \- \*(M'<\*(S', \*(M'<=\*(S', \*(M'>\*(S', \*(M'>=\*(S', \*(M'$lt\*(S', \*(M'$ilt$\*(S' etc."
+A set of binary comparison operators is available for comparing numbers and 
+strings and returning Boolean results.
+\f(CW$lt\fR$, \f(CW$le\fR$, \f(CW$gt\fR$, \f(CW$ge\fR$ are used for less than, less than or equal, greater 
+than, or greater than or equal. These same
+operators are also available in a case insensitive form: \f(CW$ieq\fR$, \f(CW$ine\fR$, \f(CW$ilt\fR$, 
+\f(CW$ile\fR$, \f(CW$igt\fR$, \f(CW$ige\fR$.
+.PP
+<, <=, > and >= are allowed short cuts for \f(CW$lt\fR$, \f(CW$le\fR$, \f(CW$gt\fR$ and \f(CW$ge\fR$.
+.Ip "Examples:" 4
+Find all author elements whose last name is bob and whose price is > 50
+.Sp
+.Vb 1
+\&     author[last-name = 'Bob' $and$ price $gt$ 50]
+.Ve
+Find all authors where the from attribute is not equal to \*(L'Harvard':
+.Sp
+.Vb 1
+\&     degree[@from != 'Harvard']
+.Ve
+Find all authors whose last name begins with \*(L'M\*(R' or greater:
+.Sp
+.Vb 1
+\&     author[last-name $ge$ 'M']
+.Ve
+Find all authors whose last name begins with \*(L'M\*(R', \*(L'm\*(R' or greater:
+.Sp
+.Vb 1
+\&     author[last-name $ige$ 'M']
+.Ve
+Find the first three books:
+.Sp
+.Vb 1
+\&     book[index() $le$ 2]
+.Ve
+Find all authors who have more than 10 publications:
+.Sp
+.Vb 1
+\&     author[publications!count() $gt$ 10]
+.Ve
+.Sh "\s-1XQL\s0+ Match operators \- \*(M'$match$\*(S', \*(M'$no_match$\*(S', \*(M'=~\*(S' and \*(M'!~\*(S'"
+\s-1XQL\s0+ defines additional operators for pattern matching. The \f(CW$match\fR$ operator
+(shortcut is \*(L'=~') returns \s-1TRUE\s0 if the lvalue matches the pattern described by
+the rvalue. The \f(CW$no_match\fR$ operator (shortcut is \*(L'!~') returns \s-1FALSE\s0 if they
+match. Both lvalue and rvalue are first cast to strings.
+.PP
+The rvalue string should have the syntax of a Perl rvalue, that is the delimiters
+should be included and modifiers are allowed. When using delimiters other than
+slashes \*(L'/\*(R', the \*(L'm\*(R' should be included. The rvalue should be a string, so don't
+forget the quotes! (Or use the q// or qq// delimiters in \s-1XQL\s0+, see \s-1XML::XQL\s0
+man page.)
+.PP
+Note that you can't use the Perl substitution operator s/// here. Try using the
+\s-1XQL\s0+ \fIsubst()\fR function instead.
+.Ip "Examples:" 4
+Find all authors whose name contains bob or Bob:
+.Sp
+.Vb 1
+\&    author[first-name =~ '/[Bb]ob/']
+.Ve
+Find all book titles that don't contain \*(L'Trenton\*(R' (case-insensitive):
+.Sp
+.Vb 1
+\&    book[title !~ 'm!trenton!i']
+.Ve
+.Sh "Oher \s-1XQL\s0+ comparison operators \- \*(M'$isa\*(S', \*(M'$can$\*(S'"
+See the \s-1XML::XQL\s0 man page for other operators available in \s-1XQL\s0+.
+.Sh "Comparisons and vectors"
+The lvalue of a comparison can be a vector or a scalar. The rvalue of a 
+comparison must be a scalar or a value that can be cast at runtime to a scalar.
+.PP
+If the lvalue of a comparison is a set, then any (exists) semantics are used 
+for the comparison operators. That is, the result of a comparison is true if 
+any item in the set meets the condition.
+.Sh "Comparisons and literals"
+The spec states that the lvalue of an expression cannot be a literal. 
+That is, \fI'1\*(R' = a\fR is not allowed. This implementation allows it, but it's not
+clear how useful that is.
+.Sh "Casting of literals during comparison"
+Elements, attributes and other \s-1XML\s0 node types are casted to strings (Text)
+by applying the \fIvalue()\fR method. The \fIvalue()\fR method calls the \fItext()\fR method by 
+default, but this behavior can be altered by the user, so the \fIvalue()\fR method
+may return other \s-1XQL\s0 data types.
+.PP
+When two values are compared, they are first casted to the same type.
+See the \s-1XML::XQL\s0 man page for details on casting.
+.PP
+Note that the \s-1XQL\s0 spec is not very clear on how values should be casted for 
+comparison. Discussions with the authors of the \s-1XQL\s0 spec revealed that there
+was some disagreement and their implementations differed on this point.
+This implementation is closest to that of Joe Lapp from webMethods, Inc.
+.SH "Methods \- \*(M'\fImethod()\fR\*(S' or \*(M'query!\fImethod()\fR\*(S'"
+XQL makes a distinction between functions and methods. See the XML::XQL man page 
+for details.
+.PP
+XQL provides methods for advanced manipulation of collections. These methods 
+provide specialized collections of nodes (see Collection methods), as well as 
+information about sets and nodes.
+.PP
+Methods are of the form \fImethod(arglist)\fR
+.PP
+Consider the query book[author]. It will find all books that have authors. 
+Formally, we call the book corresponding to a particular author the reference 
+node for that author. That is, every author element that is examined is an author
+for one of the book elements. (See the Annotated XQL BNF Appendix for a much 
+more thorough definition of reference node and other terms. See also the
+XML::XQL man page.) Methods always apply to the reference node.
+.PP
+For example, the \fItext()\fR method returns the text contained within a node, 
+minus any structure. (That is, it is the concatenation of all text nodes 
+contained with an element and its descendants.) The following expression will 
+return all authors named \*(L'Bob':
+.PP
+.Vb 1
+\&     author[text() = 'Bob']
+.Ve
+The following will return all authors containing a first-name child whose 
+text is \*(L'Bob':
+.PP
+.Vb 1
+\&     author[first-name!text() = 'Bob']
+.Ve
+The following will return all authors containing a child named Bob:
+.PP
+.Vb 1
+\&     author[*!text() = 'Bob']
+.Ve
+Method names are case sensitive.
+See the XML::XQL man page on how to define your own methods and functions.
+.Sh "Information methods"
+The following methods provide information about nodes in a collection. 
+These methods return strings or numbers,
+and may be used in conjunction with comparison operators within subqueries.
+.Ip "Method: text()" 4
+The \fItext()\fR method concatenates text of the descendents of a node, 
+normalizing white space along the way. White space will be preserved for a node 
+if the node has the xml:space attribute set to \*(L'preserve\*(R', or if the
+nearest ancestor with the xml:space attribute has the attribute set to 
+\&'preserve\*(R'. When white space is normalized, it is normalized across the 
+entire string. Spaces are used to separate the text between nodes. 
+When entity references are used in a document, spacing is not inserted 
+around the entity refs when they are expanded.
+.Sp
+In this implementation, the method may receive an optional parameter
+to indicate whether the \fItext()\fR of Element nodes should include the \fItext()\fR of
+its Element descendants. See \s-1XML::XQL\s0 man page for details.
+.Sp
+Examples:
+.Sp
+Find the authors whose last name is \*(L'Bob':
+.Sp
+.Vb 1
+\&     author[last-name!text() = 'Bob']
+.Ve
+Note this is equivalent to:
+.Sp
+.Vb 1
+\&     author[last-name = 'Bob']
+.Ve
+Find the authors with value \*(L'Matthew Bob':
+.Sp
+.Vb 1
+\&     author[text() = 'Matthew Bob']
+.Ve
+.Vb 1
+\&     author[. = 'Matthew Bob']
+.Ve
+.Vb 1
+\&     author = 'Matthew Bob'
+.Ve
+.Ip "Method: rawText()" 4
+The \fIrawText()\fR method is similar to the \fItext()\fR method, but it does not
+normalize whitespace.
+.Sp
+In this implementation, the method may receive an optional parameter
+to indicate whether the \fIrawText()\fR of Element nodes should include the 
+\fIrawText()\fR of its Element descendants. See \s-1XML::XQL\s0 man page for details.
+.Ip "Method: value()" 4
+Returns a type cast version of the value of a node. If no data type is
+provided, returns the same as \fItext()\fR.
+.Ip "Shortcuts" 8
+For the purposes of comparison, \fIvalue\fR\|( )is implied if omitted. 
+In other words, when two items are compared, the comparison is between 
+the value of the two items. Remember that in absence of type information, 
+\fIvalue()\fR returns \fItext()\fR.
+.Sp
+The following examples are equivalent:
+.Sp
+.Vb 1
+\&     author[last-name!value() = 'Bob' $and$ first-name!value() = 'Joe']
+.Ve
+.Vb 1
+\&     author[last-name = 'Bob' $and$ first-name = 'Joe']
+.Ve
+.Vb 1
+\&     price[@intl!value() = 'canada']
+.Ve
+.Vb 1
+\&     price[@intl = 'canada']
+.Ve
+.Ip "Method: nodeType()" 4
+Returns a number to indicate the type of the node. The values were based
+on the node type values in the \s-1DOM\s0:
+.Sp
+.Vb 9
+\&        element         1
+\&        attribute       2
+\&        text            3
+\&        entity          6       (not in XQL spec)
+\&        PI              7
+\&        comment         8
+\&        document        9
+\&        doc. fragment   10      (not in XQL spec)
+\&        notation        11      (not in XQL spec)
+.Ve
+Note that in \s-1XQL\s0, CDATASection nodes and EntityReference nodes also return 3,
+whereas in the \s-1DOM\s0 CDATASection returns 4 and EntityReference returns 5.
+Use the \s-1XQL\s0+ method \fIDOM_nodeType()\fR to get \s-1DOM\s0 node type values.
+See the \s-1XML::DOM\s0 man page for node type values of nodes not mentioned here.
+.Ip "Method: nodeTypeString" 4
+Returns the name of the node type in lowercase or an empty string. The 
+following node types are currently supported 1 (element), 2 (attribute), 
+3 (text), 7 (processing_instruction), 8 (comment), 9 (document)
+.Ip "Method: nodeName()" 4
+Returns the tag name for Element nodes and the attribute name of attributes.
+.Sh "Collection index methods"
+.Ip "Method: index()" 4
+Returns the index of the value within the search context (i.e. with the input
+list of the subquery.) This is not necessarily the same as the index of a 
+node within its parent node. Note that the \s-1XQL\s0 spec doesn't explain it well.
+.Ip "Examples:" 8
+Find the first 3 degrees:
+.Sp
+.Vb 1
+\&     degree[index() $lt$ 3]
+.Ve
+Note that it skips over other nodes that may exist between the degree elements.
+.Sp
+Consider the following data:
+.Sp
+.Vb 8
+\&     <x>
+\&       <y/>
+\&       <y/>
+\&     </x>
+\&     <x>
+\&       <y/>
+\&       <y/>
+\&     </x>
+.Ve
+The following expression will return the first y from each x:
+.Sp
+.Vb 1
+\&     x/y[index() = 0]
+.Ve
+This could also be accomplished by (see Indexing into a Collection):
+.Sp
+.Vb 1
+\&     x/y[0]
+.Ve
+.Ip "Method: end()" 4
+The \fIend()\fR method returns true for the last element in the search context. 
+Again, the \s-1XQL\s0 spec does not explain it well.
+.Ip "Examples:" 8
+Find the last book:
+.Sp
+.Vb 1
+\&     book[end()]
+.Ve
+Find the last author for each book:
+.Sp
+.Vb 1
+\&     book/author[end()]
+.Ve
+Find the last author from the entire set of authors of books:
+.Sp
+.Vb 1
+\&     (book/author)[end()]
+.Ve
+.Sh "Aggregate methods"
+.Ip "Method: count( [\s-1QUERY\s0] )" 4
+Returns the number of values inside the search context. 
+In \s-1XQL\s0+, when the optional \s-1QUERY\s0 parameter is supplied, it returns the number of 
+values returned by the \s-1QUERY\s0.
+.Sh "Namespace methods"
+The following methods can be applied to a node to return namespace information.
+.Ip "Method: baseName()" 4
+Returns the local name portion of the node, excluding the prefix.
+Local names are defined only for element nodes and attribute nodes. 
+The local name of an element node is the local
+portion of the node's element type name. The local name of an attribute node is 
+the local portion of the node's attribute name. If a local name is not defined 
+for the reference node, the method evaluates to the empty set. 
+.Ip "Method: namespace()" 4
+Returns the \s-1URI\s0 for the namespace of the node.
+Namespace URIs are defined only for element nodes and attribute nodes. 
+The namespace \s-1URI\s0 of an element node is the namespace \s-1URI\s0 associated with the 
+node's element type name. The namespace \s-1URI\s0 of an attribute node is
+the namespace \s-1URI\s0 associated with the node's attribute name. If a namespace 
+\s-1URI\s0 is not defined for the reference node, the method evaluates to the 
+empty set. 
+.Ip "Method: prefix()" 4
+Returns the prefix for the node. Namespace prefixes are defined only for 
+element nodes and attribute nodes. The namespace prefix of an element
+node is the shortname for the namespace of the node's element type name. 
+The namespace prefix of an attribute
+node is the shortname for the namespace of the node's attribute name. 
+If a namespace prefix is not defined 
+for the reference node, the method evaluates to the empty set. 
+.Sp
+The spec states: A node's namespace prefix may be defined
+within the query expression, within the document under query, or within both 
+the query expression and the document under query. If it is defined in both 
+places the prefixes may not agree. In this case, the prefix assigned by
+the query expression takes precedence. 
+In this implementation you cannot define the namespace for a query, so this
+can never happen.
+.Ip "Examples:" 8
+Find all unqualified book elements. Note that this does not return my:book 
+elements:
+.Sp
+.Vb 1
+\&     book
+.Ve
+Find all book elements with the prefix \*(L'my\*(R'. Note that this query does not 
+return unqualified book elements:
+.Sp
+.Vb 1
+\&     my:book
+.Ve
+Find all book elements with a \*(L'my\*(R' prefix that have an author subelement:
+.Sp
+.Vb 1
+\&     my:book[author]
+.Ve
+Find all book elements with a \*(L'my\*(R' prefix that have an author subelement with a 
+my prefix:
+.Sp
+.Vb 1
+\&     my:book[my:author]
+.Ve
+Find all elements with a prefix of \*(L'my':
+.Sp
+.Vb 1
+\&     my:*
+.Ve
+Find all book elements from any namespace:
+.Sp
+.Vb 1
+\&     *:book
+.Ve
+Find any element from any namespace:
+.Sp
+.Vb 1
+\&     *
+.Ve
+Find the style attribute with a \*(L'my\*(R' prefix within a book element:
+.Sp
+.Vb 1
+\&     book/@my:style
+.Ve
+.Sp
+All attributes of an element can be returned using @*. 
+This is potentially useful for applications that treat attributes
+as fields in a record.
+.Ip "Examples:" 8
+Find all attributes of the current element context:
+.Sp
+.Vb 1
+\&     @*
+.Ve
+Find style attributes from any namespace:
+.Sp
+.Vb 1
+\&     @*:style
+.Ve
+Find all attributes from the \*(L'my\*(R' namespace, including unqualified attributes on 
+elements from the \*(L'my\*(R' namespace:
+.Sp
+.Vb 1
+\&     @my:*
+.Ve
+.SH "Functions"
+This section defines the functions of XQL. The spec states that: 
+XQL defines two kinds of functions: 
+collection functions and pure functions. Collection functions use the search 
+context of the Invocation instance, while pure functions ignore the
+search context, except to evaluate the function's parameters. A collection 
+function evaluates to a subset of the search context, and a pure function 
+evaluates to either a constant value or to a value that depends only on the
+function's parameters. 
+.PP
+Don't worry if you don't get it. Just use them!
+.Sh "Collection functions"
+The collection functions provide access to the various types of nodes in a 
+document. Any of these collections can be constrained and indexed. 
+The collections return the set of children of the reference node meeting the 
+particular restriction. 
+.Ip "Function: textNode()                   The collection of text nodes. " 4
+.Ip "Function: comment()" 4
+The collection of comment nodes. 
+.Ip "Function: pi()" 4
+The collection of processing instruction nodes.
+.Ip "Function: element( [\s-1NAME\s0] )" 4
+The collection of all element nodes. If the optional text
+parameter is provided, it only returns element children
+matching that particular name.
+.Ip "Function: attribute( [\s-1NAME\s0] )" 4
+The collection of all attribute nodes. If the optional text
+parameter is provided, it only returns attributes matching that
+particular name.
+.Ip "Function: node()" 4
+The collection of all non-attribute nodes.
+.Ip "Examples:" 8
+Find the second text node in each p element in the current context: 
+.Sp
+.Vb 1
+\&     p/textNode()[1]
+.Ve
+Find the second comment anywhere in the document. See Context for details on 
+setting the context to the document root: 
+.Sp
+.Vb 1
+\&     //comment()[1]
+.Ve
+.Sh "Other \s-1XQL\s0 Functions"
+.Ip "Function: ancestor(\s-1QUERY\s0)" 4
+Finds the nearest ancestor matching the provided query. It returns either a 
+single element result or an empty set [].
+Note that this node is never the reference node itself. 
+.Ip "Examples:" 8
+Find the nearest book ancestor of the current element:
+.Sp
+.Vb 1
+\&     ancestor(book)
+.Ve
+Find the nearest ancestor author element that is contained in a book element: 
+.Sp
+.Vb 1
+\&     ancestor(book/author)
+.Ve
+.Ip "Function: id(\s-1NAME\s0)" 4
+Pure function that evaluates to a set. The set contains an element node that 
+has an \*(L'id\*(R' attribute whose value is identical to the string that the Text 
+parameter quotes. The element node may appear anywhere within the
+document under query. If more than one element node meets these criteria,
+the function evaluates to a set that contains the first node appearing in a 
+document ordering of the nodes. 
+.Ip "Function: true() and false()" 4
+Pure functions that each evaluate to a Boolean. \*(L"\fItrue()\fR\*(R" evaluates to \*(L'true\*(R', 
+and \*(L"\fIfalse()\fR\*(R" evaluates to \*(L'false\*(R'. These functions are useful in expressions 
+that are constructed using entity references or variable substitution, since 
+they may replace an expression found in an instance of Subquery without 
+violating the syntax required by the instance of Subquery. 
+They return an object of type \s-1XML::XQL::\s0Boolean.
+.Ip "Function: date(\s-1QUERY\s0)" 4
+\*(L"date\*(R" is a pure function that typecasts the value of its parameter to a set of 
+dates. If the parameter matches a single string, the value of the function is a 
+set containing a single date. If the parameter matches a \s-1QUERY\s0, the value of 
+the function is a set of dates, where the set contains one date for each member
+of the set to which the parameter evaluates. 
+.Sp
+\s-1XQL\s0 does not define the representation of the date value, nor does it
+define how the function translates parameter values into dates. 
+This implementation uses the Date::Manip module to parse dates, which accepts
+almost any imaginable format. See the \s-1XML::XQL\s0 man page to plug in your own
+Date implementation.
+.Ip "Perl builtin functions and other \s-1XQL\s0+ functions" 4
+\s-1XQL\s0+ provides \s-1XQL\s0 function wrappers for most Perl builtin functions.
+It also provides other cool functions like \fIsubst()\fR, \fImap()\fR, and \fIeval()\fR that
+allow you to modify documents and embed perl code.
+If this is still not enough, you can add your own function and methods.
+See \s-1XML::XQL\s0 man page for details.
+.SH "Sequence Operators \- \*(M';\*(S' and \*(M';;\*(S'"
+The whitepaper \*(L'The Design of XQL\*(R' by Jonathan Robie, which can be found
+at http://www.texcel.no/whitepapers/xql-design.html describes the sequence
+operators \*(L';;\*(R' (precedes) and \*(L';\*(R' (immediately precedes.) Although these
+operators are not included in the XQL spec, I thought I'd add them anyway.
+.Sh "Immediately Precedes \- \*(M';\*(S'"
+.Ip "Example:" 4
+With the following input:
+.Sp
+.Vb 12
+\& <TABLE>
+\&  <ROWS>
+\&   <TR>
+\&    <TD>Shady Grove</TD>
+\&    <TD>Aeolian</TD>
+\&   </TR>
+\&   <TR>
+\&    <TD>Over the River, Charlie</TD>
+\&    <TD>Dorian</TD>
+\&   </TR>
+\&  </ROWS>
+\& </TABLE>
+.Ve
+Find the \s-1TD\s0 node that contains \*(L"Shady Grove\*(R" and the \s-1TD\s0 node that immediately
+follows it:
+.Sp
+.Vb 1
+\&        //(TD="Shady Grove" ; TD)
+.Ve
+.PP
+Note that in \s-1XML::DOM\s0 there is actually a text node with whitespace between
+the two \s-1TD\s0 nodes, but those are ignored by this operator, unless the text node
+has \*(L'xml:space\*(R' set to \*(L'preserve\*(R'. See ??? for details.
+.Sh "Precedes \- \*(M';;\*(S'"
+.Ip "Example:" 4
+With the following input (from Hamlet):
+.Sp
+.Vb 9
+\& <SPEECH>
+\&  <SPEAKER>MARCELLUS</SPEAKER>
+\&  <LINE>Tis gone!</LINE>
+\&  <STAGEDIR>Exit Ghost</STAGEDIR>
+\&  <LINE>We do it wrong, being so majestical,</LINE>
+\&  <LINE>To offer it the show of violence;</LINE>
+\&  <LINE>For it is, as the air, invulnerable,</LINE>
+\&  <LINE>And our vain blows malicious mockery.</LINE>
+\& </SPEECH>
+.Ve
+Return the \s-1STAGEDIR\s0 and all the LINEs that follow it:
+.Sp
+.Vb 1
+\&        SPEECH//( STAGEDIR ;; LINE )
+.Ve
+Suppose an actor playing the ghost wants to know when to exit; that is, he 
+wants to know who says what line just before
+he is supposed to exit. The line immediately precedes the stagedir, but the 
+speaker may occur at any time before the line.
+In this query, we will use the \*(L"precedes\*(R" operator (\*(R";;") to identify a speaker 
+that precedes the line somewhere within a
+speech. Our ghost can find the required information with the following query, 
+which selects the speaker, the line, and the stagedir:
+.Sp
+.Vb 1
+\&        SPEECH//( SPEAKER ;; LINE ; STAGEDIR="Exit Ghost")
+.Ve
+.SH "Operator Precedence"
+The following table lists operators in precedence order, highest precedence 
+first, where operators of a given row have the same precedence. 
+The table also lists the associated productions:
+.PP
+.Vb 16
+\&        Production      Operator(s)
+\&        ----------      -----------
+\&        Grouping        ( )
+\&        Filter          [ ]
+\&        Subscript       [ ]
+\&        Bang            !
+\&        Path            / //
+\&        Match           $match$ $no_match$ =~ !~ (XQL+ only)
+\&        Comparison      = != < <= > >= $eq$ $ne$ $lt$ $le$ $gt$
+\&                        $ge$ $ieq$ $ine$ $ilt$ $ile$ $igt$ $ige$
+\&        Intersection    $intersect$
+\&        Union           $union$ |
+\&        Negation        $not$
+\&        Conjunction     $and$
+\&        Disjunction     $or$
+\&        Sequence        ; ;;
+.Ve
+.SH "Sample XML Document \- bookstore.xml"
+This file is also stored in samples/bookstore.xml that comes with the
+XML::XQL distribution.
+.PP
+.Vb 57
+\& <?xml version='1.0'?>
+\& <!-- This file represents a fragment of a book store inventory database -->
+\& <bookstore specialty='novel'>
+\&   <book style='autobiography'>
+\&     <title>Seven Years in Trenton</title>
+\&     <author>
+\&       <first-name>Joe</first-name>
+\&       <last-name>Bob</last-name>
+\&       <award>Trenton Literary Review Honorable Mention</award>
+\&     </author>
+\&     <price>12</price>
+\&   </book>
+\&   <book style='textbook'>
+\&     <title>History of Trenton</title>
+\&     <author>
+\&       <first-name>Mary</first-name>
+\&       <last-name>Bob</last-name>
+\&       <publication>
+\&         Selected Short Stories of
+\&         <first-name>Mary</first-name> <last-name>Bob</last-name>
+\&       </publication>
+\&     </author>
+\&     <price>55</price>
+\&   </book>
+\&   <magazine style='glossy' frequency='monthly'>
+\&     <title>Tracking Trenton</title>
+\&     <price>2.50</price>
+\&     <subscription price='24' per='year'/>
+\&   </magazine>
+\&   <book style='novel' id='myfave'>
+\&     <title>Trenton Today, Trenton Tomorrow</title>
+\&     <author>
+\&       <first-name>Toni</first-name>
+\&       <last-name>Bob</last-name>
+\&       <degree from='Trenton U'>B.A.</degree>
+\&       <degree from='Harvard'>Ph.D.</degree>
+\&       <award>Pulizer</award>
+\&       <publication>Still in Trenton</publication>
+\&       <publication>Trenton Forever</publication>
+\&     </author>
+\&     <price intl='canada' exchange='0.7'>6.50</price>
+\&     <excerpt>
+\&       <p>It was a dark and stormy night.</p>
+\&       <p>But then all nights in Trenton seem dark and
+\&       stormy to someone who has gone through what
+\&       <emph>I</emph> have.</p>
+\&       <definition-list>
+\&         <term>Trenton</term>
+\&         <definition>misery</definition>
+\&       </definition-list>
+\&     </excerpt>
+\&   </book>
+\&   <my:book style='leather' price='29.50' xmlns:my='http://www.placeholder-name-here.com/schema/'>
+\&     <my:title>Who's Who in Trenton</my:title>
+\&     <my:author>Robert Bob</my:author>
+\&   </my:book>
+\& </bookstore>
+.Ve
+
+.rn }` ''
+.IX Title "TUTORIAL 1"
+.IX Name "XQL Tutorial - Describes the XQL query syntax"
+
+.IX Header "NAME"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "INTRODUCTION"
+
+.IX Header "XQL Patterns"
+
+.IX Header "Context"
+
+.IX Item "Examples:"
+
+.IX Header "Query Results"
+
+.IX Header "Collections \- \*(M'element\*(S' and \*(M'.\*(S'"
+
+.IX Item "Examples:"
+
+.IX Header "Selecting children and descendants \- \*(M'/\*(S' and \*(M'//\*(S'"
+
+.IX Item "Examples:"
+
+.IX Header "Collecting element children \- \*(M'*\*(S'"
+
+.IX Item "Examples:"
+
+.IX Header "Finding an attribute \- \*(M'@\*(S'"
+
+.IX Item "Examples:"
+
+.IX Header "XQL Literals"
+
+.IX Item "Example"
+
+.IX Header "Grouping \- \*(M'()\*(S'"
+
+.IX Header "Filters \- \*(M'[]\*(S'"
+
+.IX Item "Examples:"
+
+.IX Subsection "Any and all semantics \- \*(M'$any$\*(S' and \*(M'$all$\*(S'"
+
+.IX Item "Examples:"
+
+.IX Header "Indexing into a collection \- \*(M'[]\*(S' and \*(M'$to$\*(S'"
+
+.IX Item "Examples:"
+
+.IX Header "Boolean Expressions"
+
+.IX Subsection "Boolean \s-1AND\s0 and \s-1OR\s0 \- \*(M'$and$\*(S' and \*(M'$or$\*(S'"
+
+.IX Item "Examples:"
+
+.IX Subsection "Boolean \s-1NOT\s0 \- \*(M'$not$\*(S'"
+
+.IX Item "Examples:"
+
+.IX Header "Union and intersection \- \*(M'$union$\*(S', \*(M'|\*(S' and \*(M'$intersect$\*(S'"
+
+.IX Item "Examples:"
+
+.IX Header "Equivalence \- \*(M'$eq$\*(S', \*(M'=\*(S', \*(M'$ne$\*(S' and \*(M'!=\*(S'"
+
+.IX Item "Examples:"
+
+.IX Subsection "Comparison \- \*(M'<\*(S', \*(M'<=\*(S', \*(M'>\*(S', \*(M'>=\*(S', \*(M'$lt\*(S', \*(M'$ilt$\*(S' etc."
+
+.IX Item "Examples:"
+
+.IX Subsection "\s-1XQL\s0+ Match operators \- \*(M'$match$\*(S', \*(M'$no_match$\*(S', \*(M'=~\*(S' and \*(M'!~\*(S'"
+
+.IX Item "Examples:"
+
+.IX Subsection "Oher \s-1XQL\s0+ comparison operators \- \*(M'$isa\*(S', \*(M'$can$\*(S'"
+
+.IX Subsection "Comparisons and vectors"
+
+.IX Subsection "Comparisons and literals"
+
+.IX Subsection "Casting of literals during comparison"
+
+.IX Header "Methods \- \*(M'\fImethod()\fR\*(S' or \*(M'query!\fImethod()\fR\*(S'"
+
+.IX Subsection "Information methods"
+
+.IX Item "Method: text()"
+
+.IX Item "Method: rawText()"
+
+.IX Item "Method: value()"
+
+.IX Item "Shortcuts"
+
+.IX Item "Method: nodeType()"
+
+.IX Item "Method: nodeTypeString"
+
+.IX Item "Method: nodeName()"
+
+.IX Subsection "Collection index methods"
+
+.IX Item "Method: index()"
+
+.IX Item "Examples:"
+
+.IX Item "Method: end()"
+
+.IX Item "Examples:"
+
+.IX Subsection "Aggregate methods"
+
+.IX Item "Method: count( [\s-1QUERY\s0] )"
+
+.IX Subsection "Namespace methods"
+
+.IX Item "Method: baseName()"
+
+.IX Item "Method: namespace()"
+
+.IX Item "Method: prefix()"
+
+.IX Item "Examples:"
+
+.IX Item "Examples:"
+
+.IX Header "Functions"
+
+.IX Subsection "Collection functions"
+
+.IX Item "Function: textNode()                   The collection of text nodes. "
+
+.IX Item "Function: comment()"
+
+.IX Item "Function: pi()"
+
+.IX Item "Function: element( [\s-1NAME\s0] )"
+
+.IX Item "Function: attribute( [\s-1NAME\s0] )"
+
+.IX Item "Function: node()"
+
+.IX Item "Examples:"
+
+.IX Subsection "Other \s-1XQL\s0 Functions"
+
+.IX Item "Function: ancestor(\s-1QUERY\s0)"
+
+.IX Item "Examples:"
+
+.IX Item "Function: id(\s-1NAME\s0)"
+
+.IX Item "Function: true() and false()"
+
+.IX Item "Function: date(\s-1QUERY\s0)"
+
+.IX Item "Perl builtin functions and other \s-1XQL\s0+ functions"
+
+.IX Header "Sequence Operators \- \*(M';\*(S' and \*(M';;\*(S'"
+
+.IX Subsection "Immediately Precedes \- \*(M';\*(S'"
+
+.IX Item "Example:"
+
+.IX Subsection "Precedes \- \*(M';;\*(S'"
+
+.IX Item "Example:"
+
+.IX Header "Operator Precedence"
+
+.IX Header "Sample XML Document \- bookstore.xml"
+

@@ -1,0 +1,323 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH ColourChooser 3 "perl 5.005, patch 03" "19/Jan/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+ColourChooser \- Perl/Tk module providing a Colour selection dialogue box.
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\&    use Tk::ColourChooser ; 
+.Ve
+.Vb 9
+\&    my $col_dialog = $Window->ColourChooser ;
+\&    my $colour     = $col_dialog->Show ;
+\&    if( $colour ) {
+\&        # They pressed OK and the colour chosen is in $colour - could be
+\&        # transparent which is 'None' unless -transparent is set.
+\&    }
+\&    else {
+\&        # They cancelled.
+\&    }
+.Ve
+.Vb 3
+\&    # May optionally have the colour initialised.
+\&    my $col_dialog = $Window->ColourChooser( -colour => 'green' ) ;
+\&    my $col_dialog = $Window->ColourChooser( -colour => '#0A057C' ) ;
+.Ve
+.Vb 10
+\&    # The title may also be overridden; and we can insist that only hex values
+\&    # are returned rather than colour names. We can disallow transparent.
+\&    my $col_dialog = $Window->ColourChooser( 
+\&                        -language    => 'en', # Or 'de' or 'fr'.
+\&                        -title       => 'Select a colour',
+\&                        -colour      => '0A057C',
+\&                        -transparent => 0,
+\&                        -hexonly     => 1,
+\&                        -showhex     => 1,
+\&                        ) ;
+.Ve
+.SH "DESCRIPTION"
+ColourChooser is a dialogue box which allows the user to pick a colour from
+the list in rgb.txt (supplied with X Windows), or to create a colour by
+setting RGB (red, green, blue) values with slider controls.
+.PP
+You can scroll through all the named colours by using the <Down> and <Up>
+arrow keys on the keyboard or by clicking the mouse on the scrollbar and then
+clicking the colour list.
+.Sh "Options"
+.Ip "\f(CW-language\fR This is optional. Default is `en\*(T'. This option allows you to set the language for the title and labels. Valid values are \f(CWen\fR (english), \f(CWde\fR (german), \f(CWfr\fR (french) and \f(CWenglish\fR (for backward compatibility) which is also the default. Translations are by Babelfish. Other languages will be added if people provide translations." 4
+.Ip "\f(CW-title\fR   This is optional and allows you to set the title. Default is \*(N'Colour Chooser\*(T' in the \f(CW-language\fR specified." 4
+.Ip "\f(CW-colour\fR  This is optional and allows you to specify the colour that is shown when the dialogue is invoked. It may be specified as a colour name from rgb.txt or as a six digit hex number with an optional leading hash, i.e. as \*(N'\s-1HHHHHH\s0\*(T' or \*(N'#\s-1HHHHHH\s0\*(T'. Default is \*(N'black\*(T'." 4
+.Ip "\f(CW-hexonly\fR This is optional. If set to 1 it forces the ColourChooser to only return colours as hex numbers in Tk format ('#\s-1HHHHHH\s0'); if set to 0 it returns colours as names if they are named in rgb.txt, and as hex numbers if they have no name. Transparent is always returned as \*(N'None\*(T' however. Default is 0." 4
+.Ip "\f(CW-transparent\fR This is optional. If set to 0 it stops ColourChooser offering the Transparent button so that only valid colours may be chosen \- or cancel. Default is 1." 4
+.Ip "\f(CW-showhex\fR This is optional. If set to 1 it shows the hex value of the colour in the title bar. Default is 0." 4
+.PP
+The user has three options: 
+.Sh "\s-1OK\s0"
+Pressing \s-1OK\s0 will return the selected colour, as a name if it has one or as an
+\s-1RGB\s0 value if it doesn't. (Colours which do not have names are listed as
+\&'Unnamed\*(R' in the colour list box.) If the \f(CW-hexonly\fR option has been specified
+the colour is always returned as a Tk colour hex value, i.e. in the form
+\&'#\s-1HHHHHH\s0\*(R' except if Transparent is chosen in which case \*(L'None\*(R' is returned.
+.PP
+\s-1OK\s0 is pressed by a mouse click or <Return> or <o> or <Control-o> or <Alt-o>.
+.Sh "Transparent"
+Pressing Transparent will return the string \*(L'None\*(R' which is xpm's name for
+transparent.
+.PP
+Transparent is pressed by a mouse click or <t> or <Control-t> or <Alt-t>.
+.Sh "Cancel"
+Pressing Cancel will return an empty string.
+.PP
+Cancel is pressed by a mouse click or <Escape> or <c> or <Control-c> or
+<Alt-c>. (Note that if the language is not english then the letter to press
+will be the first letter of the translation of the word \*(L'Cancel\*(R'.
+.SH "INSTALLATION"
+ColourChooser.pm should be placed in any Tk directory in any lib directory in
+Perl's \f(CW%INC\fR path, for example, \*(L'/usr/lib/perl5/Tk\*(R'.
+.PP
+ColourChooser looks for the file rgb.txt on your system \- if it can't find it
+you will only be able to specify colours by RGB value.
+.SH "BUGS"
+Does almost no error checking.
+.PP
+Can be slow to load because rgb.txt is large.
+.PP
+If you scroll the list by keyboard or use the mouse to move the colour sliders
+the colour updates as you go; but if you use the mouse on the scrollbar you
+must click the colour name box for the colour to update. I don't know why this
+is and any advice on how to fix it would be welcome.
+.SH "AUTHOR"
+Mark Summerfield. I can be contacted as <summer@perlpress.com> \-
+please include the word \*(L'colourchooser\*(R' in the subject line.
+.PP
+The code draws from Stephen O. Lidie's work.
+.SH "COPYRIGHT"
+Copyright (c) Mark Summerfield 1999-2000. All Rights Reserved.
+.PP
+This module may be used/distributed/modified under the LGPL. 
+
+.rn }` ''
+.IX Title "ColourChooser 3"
+.IX Name "ColourChooser - Perl/Tk module providing a Colour selection dialogue box."
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Subsection "Options"
+
+.IX Item "\f(CW-language\fR This is optional. Default is `en\*(T'. This option allows you to set the language for the title and labels. Valid values are \f(CWen\fR (english), \f(CWde\fR (german), \f(CWfr\fR (french) and \f(CWenglish\fR (for backward compatibility) which is also the default. Translations are by Babelfish. Other languages will be added if people provide translations."
+
+.IX Item "\f(CW-title\fR   This is optional and allows you to set the title. Default is \*(N'Colour Chooser\*(T' in the \f(CW-language\fR specified."
+
+.IX Item "\f(CW-colour\fR  This is optional and allows you to specify the colour that is shown when the dialogue is invoked. It may be specified as a colour name from rgb.txt or as a six digit hex number with an optional leading hash, i.e. as \*(N'\s-1HHHHHH\s0\*(T' or \*(N'#\s-1HHHHHH\s0\*(T'. Default is \*(N'black\*(T'."
+
+.IX Item "\f(CW-hexonly\fR This is optional. If set to 1 it forces the ColourChooser to only return colours as hex numbers in Tk format ('#\s-1HHHHHH\s0'); if set to 0 it returns colours as names if they are named in rgb.txt, and as hex numbers if they have no name. Transparent is always returned as \*(N'None\*(T' however. Default is 0."
+
+.IX Item "\f(CW-transparent\fR This is optional. If set to 0 it stops ColourChooser offering the Transparent button so that only valid colours may be chosen \- or cancel. Default is 1."
+
+.IX Item "\f(CW-showhex\fR This is optional. If set to 1 it shows the hex value of the colour in the title bar. Default is 0."
+
+.IX Subsection "\s-1OK\s0"
+
+.IX Subsection "Transparent"
+
+.IX Subsection "Cancel"
+
+.IX Header "INSTALLATION"
+
+.IX Header "BUGS"
+
+.IX Header "AUTHOR"
+
+.IX Header "COPYRIGHT"
+

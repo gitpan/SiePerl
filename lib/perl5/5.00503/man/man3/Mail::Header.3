@@ -1,0 +1,392 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Mail::Header 3 "perl 5.005, patch 03" "28/Mar/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Mail::Header \- manipulate mail RFC822 compliant headers
+.SH "SYNOPSIS"
+.PP
+.Vb 5
+\&    use Mail::Header;
+\&    
+\&    $head = new Mail::Header;
+\&    $head = new Mail::Header \e*STDIN;
+\&    $head = new Mail::Header [<>], Modify => 0;
+.Ve
+.SH "DESCRIPTION"
+This package provides a class object which can be used for reading, creating,
+manipulating and writing RFC822 compliant headers.
+.SH "CONSTRUCTOR"
+.Ip "new ( [ \s-1ARG\s0 ], [ \s-1OPTIONS\s0 ] )" 4
+\f(CWARG\fR may be either a file descriptor (reference to a \s-1GLOB\s0)
+or a reference to an array. If given the new object will be
+initialized with headers either from the array of read from 
+the file descriptor.
+.Sp
+\f(CWOPTIONS\fR is a list of options given in the form of key-value
+pairs, just like a hash table. Valid options are
+.Ip "\fBModify\fR" 12
+If this value is \fItrue\fR then the headers will be re-formatted,
+otherwise the format of the header lines will remain unchanged.
+.Ip "\fBMailFrom\fR" 12
+This option specifies what to do when a header in the form `From \*(L'
+is encountered. Valid values are \f(CWIGNORE\fR \- ignore and discard the header,
+\f(CWERROR\fR \- invoke an error (call die), \f(CWCOERCE\fR \- rename them as Mail-From
+and \f(CWKEEP\fR \- keep them.
+.Ip "\fBFoldLength\fR" 12
+The default length of line to be used when folding header lines
+.SH "METHODS"
+.Ip "modify ( [ \s-1VALUE\s0 ] )" 4
+If \f(CWVALUE\fR is \fIfalse\fR then \f(CWMail::Header\fR will not do any automatic
+reformatting of the headers, other than to ensure that the line
+starts with the tags given.
+.Ip "mail_from ( \s-1OPTION\s0 )" 4
+\f(CWOPTION\fR specifies what to do when a \f(CW`From '\fR line is encountered.
+Valid values are \f(CWIGNORE\fR \- ignore and discard the header,
+\f(CWERROR\fR \- invoke an error (call die), \f(CWCOERCE\fR \- rename them as Mail-From
+and \f(CWKEEP\fR \- keep them.
+.Ip "fold ( [ \s-1LENGTH\s0 ] )" 4
+Fold the header. If \f(CWLENGTH\fR is not given then \f(CWMail::Header\fR uses the
+following rules to determine what length to fold a line.
+.Sp
+The fold length for the tag that is begin processed
+.Sp
+The default fold length for the tag that is being processed
+.Sp
+The default fold length for the object
+.Ip "extract ( \s-1ARRAY_REF\s0 )" 4
+Extract a header from the given array. \f(CWextract\fR \fBwill modify\fR this array.
+Returns the object that the method was called on.
+.Ip "read ( \s-1FD\s0 )" 4
+Read a header from the given file descriptor.
+.Ip "empty ()" 4
+Empty the \f(CWMail::Header\fR object of all lines.
+.Ip "header ( [ \s-1ARRAY_REF\s0 ] )" 4
+\f(CWheader\fR does multiple operations. First it will extract a header from
+the array, if given. It will the reformat the header, if reformatting
+is permitted, and finally return a reference to an array which
+contains the header in a printable form.
+.Ip "header_hashref ( [ \s-1HASH_REF\s0 ] )" 4
+As \f(CWheader\fR, but it will eventually set headers from a hash
+reference, and it will return the headers as a hash reference.
+.Sp
+The values in the hash might either be a scalar or an array reference,
+as an example:
+.Sp
+.Vb 2
+\&    $hashref->{From}='Tobias Brox <tobix@cpan.org>';
+\&    $hashref->{To}=['you@somewhere', 'me@localhost'];
+.Ve
+.Ip "add ( \s-1TAG\s0, \s-1LINE\s0 [, \s-1INDEX\s0 ] )" 4
+Add a new line to the header. If \f(CWTAG\fR is \fIundef\fR the the tag will be
+extracted from the beginning of the given line. If \f(CWINDEX\fR is given
+the new line will be inserted into the header at the given point, otherwise
+the new line will be appended to the end of the header.
+.Ip "replace ( \s-1TAG\s0, \s-1LINE\s0 [, \s-1INDEX\s0 ] )" 4
+Replace a line in the header.  If \f(CWTAG\fR is \fIundef\fR the the tag will be
+extracted from the beginning of the given line. If \f(CWINDEX\fR is given
+the new line will replace the Nth instance of that tag, otherwise the
+first instance of the tag is replaced. If the tag does not appear in the
+header then a new line will be appended to the header.
+.Ip "combine ( \s-1TAG\s0 [, \s-1WITH\s0 ] )" 4
+Combine all instances of \f(CWTAG\fR into one. The lines will be
+joined togther with \f(CWWITH\fR, or a single space if not given. The new
+item will be positioned in the header where the first instance was, all
+other instances of <\s-1TAG\s0> will be removed.
+.Ip "get ( \s-1TAG\s0 [, \s-1INDEX\s0 ] )" 4
+Get the text form a line. If \f(CWINDEX\fR is given then the text of the Nth
+instance will be returned. If it is not given the return value depends on the
+context in which \f(CWget\fR was called. In an array context a list of all the
+text from all the instances of \f(CWTAG\fR will be returned. In a scalar context
+the text for the first instance will be returned.
+.Ip "delete ( \s-1TAG\s0 [, \s-1INDEX\s0 ] )" 4
+Delete a tag from the header. If \f(CWINDEX\fR id given then the Nth instance
+of the tag will be removed. If \f(CWINDEX\fR is not given all instances
+of tag will be removed.
+.Ip "count ( \s-1TAG\s0 )" 4
+Returns the number of times the given atg appears in the header
+.Ip "print ( [ \s-1FD\s0 ] )" 4
+Print the header to the given file descriptor, or \f(CWSTDOUT\fR if no
+file descriptor is given.
+.Ip "as_string ()" 4
+Returns the header as a single string.
+.Ip "fold_length ( [ \s-1TAG\s0 ], [ \s-1LENGTH\s0 ] )" 4
+Set the default fold length for all tags or just one. With no arguments
+the default fold length is returned. With two arguments it sets the fold
+length for the given tag and returns the previous value. If only \f(CWLENGTH\fR
+is given it sets the default fold length for the current object.
+.Sp
+In the two argument form \f(CWfold_length\fR may be called as a static method,
+setting default fold lengths for tags that will be used by \fBall\fR
+\f(CWMail::Header\fR objects. See the \f(CWfold\fR method for
+a description on how \f(CWMail::Header\fR uses these values.
+.Ip "tags ()" 4
+Retruns an array of all the tags that exist in the header. Each tag will
+only appear in the list once. The order of the tags is not specified.
+.Ip "dup ()" 4
+Create a duplicate of the current object.
+.Ip "cleanup ()" 4
+Remove any header line that, other than the tag, only contains whitespace
+.Ip "unfold ( [ \s-1TAG\s0 ] )" 4
+Unfold all instances of the given tag so that they do not spread across
+multiple lines. \s-1IF\s0 \f(CWTAG\fR is not given then all lines are unfolded.
+.SH "AUTHOR"
+Graham Barr <gbarr@pobox.com>
+.SH "COPYRIGHT"
+Copyright (c) 1995-7 Graham Barr. All rights reserved. This program is free
+software; you can redistribute it and/or modify it under the same terms
+as Perl itself.
+
+.rn }` ''
+.IX Title "Mail::Header 3"
+.IX Name "Mail::Header - manipulate mail RFC822 compliant headers"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "CONSTRUCTOR"
+
+.IX Item "new ( [ \s-1ARG\s0 ], [ \s-1OPTIONS\s0 ] )"
+
+.IX Item "\fBModify\fR"
+
+.IX Item "\fBMailFrom\fR"
+
+.IX Item "\fBFoldLength\fR"
+
+.IX Header "METHODS"
+
+.IX Item "modify ( [ \s-1VALUE\s0 ] )"
+
+.IX Item "mail_from ( \s-1OPTION\s0 )"
+
+.IX Item "fold ( [ \s-1LENGTH\s0 ] )"
+
+.IX Item "extract ( \s-1ARRAY_REF\s0 )"
+
+.IX Item "read ( \s-1FD\s0 )"
+
+.IX Item "empty ()"
+
+.IX Item "header ( [ \s-1ARRAY_REF\s0 ] )"
+
+.IX Item "header_hashref ( [ \s-1HASH_REF\s0 ] )"
+
+.IX Item "add ( \s-1TAG\s0, \s-1LINE\s0 [, \s-1INDEX\s0 ] )"
+
+.IX Item "replace ( \s-1TAG\s0, \s-1LINE\s0 [, \s-1INDEX\s0 ] )"
+
+.IX Item "combine ( \s-1TAG\s0 [, \s-1WITH\s0 ] )"
+
+.IX Item "get ( \s-1TAG\s0 [, \s-1INDEX\s0 ] )"
+
+.IX Item "delete ( \s-1TAG\s0 [, \s-1INDEX\s0 ] )"
+
+.IX Item "count ( \s-1TAG\s0 )"
+
+.IX Item "print ( [ \s-1FD\s0 ] )"
+
+.IX Item "as_string ()"
+
+.IX Item "fold_length ( [ \s-1TAG\s0 ], [ \s-1LENGTH\s0 ] )"
+
+.IX Item "tags ()"
+
+.IX Item "dup ()"
+
+.IX Item "cleanup ()"
+
+.IX Item "unfold ( [ \s-1TAG\s0 ] )"
+
+.IX Header "AUTHOR"
+
+.IX Header "COPYRIGHT"
+

@@ -1,0 +1,426 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH XPath::XMLParser 3 "perl 5.005, patch 03" "20/Apr/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+XML::XPath::XMLParser \- The default XML parsing class that produces a node tree
+.SH "SYNOPSIS"
+.PP
+.Vb 7
+\&        my $parser = XML::XPath::XMLParser->new(
+\&                                filename => $self->get_filename,
+\&                                xml => $self->get_xml,
+\&                                ioref => $self->get_ioref,
+\&                                parser => $self->get_parser,
+\&                        );
+\&        my $root_node = $parser->parse;
+.Ve
+.SH "DESCRIPTION"
+This module generates a node tree for use as the context node for XPath processing.
+It aims to be a quick parser, nothing fancy, and yet has to store more information
+than most parsers. To achieve this I've used array refs everywhere \- no hashes.
+I don't have any performance figures for the speedups achieved, so I make no
+appologies for anyone not used to using arrays instead of hashes. I think they
+make good sense here where we know the attributes of each type of node.
+.SH "Node Structure"
+All nodes have the same first 2 entries in the array: node_parent
+and node_pos. The type of the node is determined using the \fIref()\fR function.
+The node_parent always contains an entry for the parent of the current
+node \- except for the root node which has undef in there. And node_pos is the
+position of this node in the array that it is in (think: 
+\f(CW$node\fR == \f(CW$node\fR\->[node_parent]\->[node_children]\->[$node->[node_pos]] )
+.PP
+Nodes are structured as follows:
+.Sh "Root Node"
+The root node is just an element node with no parent.
+.PP
+.Vb 6
+\&        [
+\&          undef, # node_parent - check for undef to identify root node
+\&          undef, # node_pos
+\&          undef, # node_prefix
+\&          [ ... ], # node_children (see below)
+\&        ]
+.Ve
+.Sh "Element Node"
+.PP
+.Vb 9
+\&        [
+\&          $parent, # node_parent
+\&          <position in current array>, # node_pos
+\&          'xxx', # node_prefix - namespace prefix on this element
+\&          [ ... ], # node_children
+\&          'yyy', # node_name - element tag name
+\&          [ ... ], # node_attribs - attributes on this element
+\&          [ ... ], # node_namespaces - namespaces currently in scope
+\&        ]
+.Ve
+.Sh "Attribute Node"
+.PP
+.Vb 7
+\&        [
+\&          $parent, # node_parent - the element node
+\&          <position in current array>, # node_pos
+\&          'xxx', # node_prefix - namespace prefix on this element
+\&          'href', # node_key - attribute name
+\&          'ftp://ftp.com/', # node_value - value in the node
+\&        ]
+.Ve
+.Sh "Namespace Nodes"
+Each element has an associated set of namespace nodes that are currently
+in scope. Each namespace node stores a prefix and the expanded name (retrieved
+from the xmlns:prefix=\*(R"...\*(R" attribute).
+.PP
+.Vb 6
+\&        [
+\&          $parent,
+\&          <pos>,
+\&          'a', # node_prefix - the namespace as it was written as a prefix
+\&          'http://my.namespace.com', # node_expanded - the expanded name.
+\&        ]
+.Ve
+.Sh "Text Nodes"
+.PP
+.Vb 5
+\&        [
+\&          $parent,
+\&          <pos>,
+\&          'This is some text' # node_text - the text in the node
+\&        ]
+.Ve
+.Sh "Comment Nodes"
+.PP
+.Vb 5
+\&        [
+\&          $parent,
+\&          <pos>,
+\&          'This is a comment' # node_comment
+\&        ]
+.Ve
+.Sh "Processing Instruction Nodes"
+.PP
+.Vb 6
+\&        [
+\&          $parent,
+\&          <pos>,
+\&          'target', # node_target
+\&          'data', # node_data
+\&        ]
+.Ve
+.SH "Usage"
+If you feel the need to use this module outside of XML::XPath (for example
+you might use this module directly so that you can cache parsed trees), you
+can follow the following API:
+.Sh "new"
+The new method takes either no parameters, or any of the following parameters:
+.PP
+.Vb 4
+\&                filename
+\&                xml
+\&                parser
+\&                ioref
+.Ve
+This uses the familiar hash syntax, so an example might be:
+.PP
+.Vb 3
+\&        use XML::XPath::XMLParser;
+\&        
+\&        my $parser = XML::XPath::XMLParser->new(filename => 'example.xml');
+.Ve
+The parameters represent a filename, a string containing \s-1XML\s0, an \s-1XML::\s0Parser
+instance and an open filehandle ref respectively. You can also set or get all
+of these properties using the get_ and set_ functions that have the same
+name as the property: e.g. get_filename, set_ioref, etc.
+.Sh "parse"
+The parse method generally takes no parameters, however you are free to
+pass either an open filehandle reference or an \s-1XML\s0 string if you so require.
+The return value is a tree that \s-1XML::\s0XPath can use. The parse method will
+die if there is an error in your \s-1XML\s0, so be sure to use perl's exception
+handling mechanism (eval{};) if you want to avoid this.
+.Sh "parsefile"
+The parsefile method is identical to \fIparse()\fR except it expects a single
+parameter that is a string naming a file to open and parse. Again it
+returns a tree and also dies if there are \s-1XML\s0 errors.
+.SH "Functions"
+There are a couple of utility function in here, located here because this is
+where specific knowledge of the node structure is.
+.Sh "\fIas_string\fR\|($node)"
+When passed a node this will correctly dump out \s-1XML\s0 that corresponds to that
+node. (actually that's not strictly true \- if you pass it anything other than
+an element node then it won't be proper \s-1XML\s0 at all). It should do all the
+appropriate escaping, etc.
+.Sh "\fIstring_value\fR\|($node)"
+This returns the \*(L"string-value\*(R" of a node, as per the spec. It probably doesn't
+need to be used by anyone except people developing XPath routines.
+.Sh "\fIdispose\fR\|($node)"
+This is a \fBvitally\fR important function. If you're building an application
+that uses \s-1XML::\s0XPath::XMLParser more than once (i.e. you're retrieving more
+than one tree) then you must dispose of your nodes using this method if
+you don't want them to continue to use memory in your system. This is because
+of Perl's crappy garbage collection system (refcounting) and the circular
+references in the node structure:
+.PP
+.Vb 1
+\&        XML::XPath::XMLParser::dispose($node);
+.Ve
+This method isn't exported and I don't intend it to ever be that way \- I hate
+exporting methods (I make exceptions for the node_ constants in this file).
+.Sh "mk*"
+The mk* functions construct nodes for you, should you need to do that outside
+of \s-1XML::\s0XPath. The do not add nodes to the right place in the parent, you
+have to do that manually after constructing the node (this is subject to change).
+Neither do they set the node_pos value.
+.Ip "mkelement($parent, $tag) \- Constructs an element node." 4
+.Ip "mkattrib($parent, $key, $value, $prefix) \- Constructs an attribute node. $prefix is the namespace prefix. $parent must be the element node. Does not add the attribute to the element's list of attributes." 4
+.Ip "mknamespace($parent, $prefix, $expanded) \- Constructs a namespace node." 4
+.Ip "mkcomment($parent, $text) \- Constructs a comment node" 4
+.Ip "mktext($parent, $text) \- Constructs a text node" 4
+.Ip "mkpi($parent, $target, $data) \- Constructs a processing instruction node." 4
+.SH "NOTICES"
+This file is distributed as part of the XML::XPath module, and is copyright
+2000 Fastnet Software Ltd. Please see the documentation for the module as a
+whole for licencing information.
+
+.rn }` ''
+.IX Title "XPath::XMLParser 3"
+.IX Name "XML::XPath::XMLParser - The default XML parsing class that produces a node tree"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "Node Structure"
+
+.IX Subsection "Root Node"
+
+.IX Subsection "Element Node"
+
+.IX Subsection "Attribute Node"
+
+.IX Subsection "Namespace Nodes"
+
+.IX Subsection "Text Nodes"
+
+.IX Subsection "Comment Nodes"
+
+.IX Subsection "Processing Instruction Nodes"
+
+.IX Header "Usage"
+
+.IX Subsection "new"
+
+.IX Subsection "parse"
+
+.IX Subsection "parsefile"
+
+.IX Header "Functions"
+
+.IX Subsection "\fIas_string\fR\|($node)"
+
+.IX Subsection "\fIstring_value\fR\|($node)"
+
+.IX Subsection "\fIdispose\fR\|($node)"
+
+.IX Subsection "mk*"
+
+.IX Item "mkelement($parent, $tag) \- Constructs an element node."
+
+.IX Item "mkattrib($parent, $key, $value, $prefix) \- Constructs an attribute node. $prefix is the namespace prefix. $parent must be the element node. Does not add the attribute to the element's list of attributes."
+
+.IX Item "mknamespace($parent, $prefix, $expanded) \- Constructs a namespace node."
+
+.IX Item "mkcomment($parent, $text) \- Constructs a comment node"
+
+.IX Item "mktext($parent, $text) \- Constructs a text node"
+
+.IX Item "mkpi($parent, $target, $data) \- Constructs a processing instruction node."
+
+.IX Header "NOTICES"
+

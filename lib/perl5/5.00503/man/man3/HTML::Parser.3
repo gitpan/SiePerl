@@ -1,0 +1,1016 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Parser 3 "perl 5.005, patch 03" "13/Mar/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+HTML::Parser \- HTML parser class
+.SH "NOTE"
+This is the new XS based HTML::Parser.
+It should be completely backwards compatible with
+HTML::Parser version 2.2x, but has many new features
+and is significantly faster.
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\& use HTML::Parser ();
+.Ve
+.Vb 6
+\& # Create parser object
+\& $p = HTML::Parser->new( api_version => 3,
+\&                         start_h => [\e&start, "tagname, attr"],
+\&                         end_h   => [\e&end,   "tagname"],
+\&                         marked_sections => 1,
+\&                       );
+.Ve
+.Vb 5
+\& # Parse document text chunk by chunk
+\& $p->parse($chunk1);
+\& $p->parse($chunk2);
+\& #...
+\& $p->eof;                 # signal end of document
+.Ve
+.Vb 5
+\& # Parse directly from file
+\& $p->parse_file("foo.html");
+\& # or
+\& open(F, "foo.html") || die;
+\& $p->parse_file(*F);
+.Ve
+HTML::Parser version 2 style subclassing and method callbacks:
+.PP
+.Vb 3
+\& {
+\&    package MyParser;
+\&    use base 'HTML::Parser';
+.Ve
+.Vb 4
+\&    sub start {
+\&       my($self, $tagname, $attr, $attrseq, $origtext) = @_;
+\&       #...
+\&    }
+.Ve
+.Vb 4
+\&    sub end {
+\&        my($self, $tagname, $origtext) = @_;
+\&        #...
+\&    }
+.Ve
+.Vb 5
+\&    sub text {
+\&        my($self, $origtext, $is_cdata) = @_;
+\&        #...
+\&    }
+\& }
+.Ve
+.Vb 2
+\& my $p = MyParser->new;
+\& $p->parse_file("foo.html");
+.Ve
+.SH "DESCRIPTION"
+Objects of the \f(CWHTML::Parser\fR class will recognize markup and
+separate it from plain text (alias data content) in HTML
+documents.  As different kinds of markup and text are recognized, the
+corresponding event handlers are invoked.
+.PP
+\f(CWHTML::Parser\fR in not a generic SGML parser.  We have tried to
+make it able to deal with the HTML that is actually \*(L"out there\*(R", and
+it normally parses as closely as possible to the way the popular web
+browsers do it instead of strictly following one of the many HTML
+specifications from W3C.  Where there is disagreement there is often
+an option that you can enable to get the official behaviour.
+.PP
+The document to be parsed may be supplied in arbitrary chunks.  This
+makes on-the-fly parsing as documents are received from the network
+possible.
+.PP
+If event driven parsing does not feel right for your application, you
+might want to use \f(CWHTML::TokeParser\fR.  It is a
+\f(CWHTML::Parser\fR subclass that allows a more conventional program
+structure.
+.SH "METHODS"
+The following method is used to construct a new \f(CWHTML::Parser\fR object:
+.Ip "$p = \s-1HTML::\s0Parser->new( %options_and_handlers )" 5
+This class method creates a new \f(CWHTML::Parser\fR object and
+returns it.  Key/value pair arguments may be provided to assign event
+handlers or initialize parser options.  The handlers and parser
+options can also be set or modified later by method calls described below.
+.Sp
+If a top level key is in the form \*(L"<event>_h\*(R" (e.g., \*(L"text_h"} then it
+assigns a handler to that event, otherwise it initializes a parser
+option. The event handler specification value must be an array
+reference.  Multiple handlers may also be assigned with the \*(L'handlers
+=> [%handlers]\*(R' option.  See examples below.
+.Sp
+If \fInew()\fR is called without any arguments, it will create a parser that
+uses callback methods compatible with version 2 of \f(CWHTML::Parser\fR.
+See the section on \*(L"version 2 compatibility\*(R" below for details.
+.Sp
+Special constructor option \*(L'api_version => 2\*(R' can be used to
+initialize version 2 callbacks while still setting other options and
+handlers.  The \*(L'api_version => 3\*(R' option can be used if you don't want
+to set any options and don't want to fall back to v2 compatible
+mode.
+.Sp
+Examples:
+.Sp
+.Vb 2
+\& $p = HTML::Parser->new(api_version => 3,
+\&                        text_h => [ sub {...}, "dtext" ]);
+.Ve
+This creates a new parser object with a text event handler subroutine
+that receives the original text with general entities decoded.
+.Sp
+.Vb 2
+\& $p = HTML::Parser->new(api_version => 3,
+\&                        start_h => [ 'my_start', "self,tokens" ]);
+.Ve
+This creates a new parser object with a start event handler method
+that receives the \f(CW$p\fR and the tokens array.
+.Sp
+.Vb 4
+\& $p = HTML::Parser->new(api_version => 3,
+\&                        handlers => { text => [\e@array, "event,text"],
+\&                                      comment => [\e@array, "event,text"],
+\&                                    });
+.Ve
+This creates a new parser object that stores the event type and the
+original text in \f(CW@array\fR for text and comment events.
+.PP
+The following methods feed the \s-1HTML\s0 document
+to the \f(CWHTML::Parser\fR object:
+.Ip "$p->parse( $string )" 5
+Parse \f(CW$string\fR as the next chunk of the \s-1HTML\s0 document.  The return
+value is normally a reference to the parser object (i.e. \f(CW$p\fR).
+.Sp
+If an invoked event handler aborts parsing by calling \f(CW$p\fR\->eof, then
+\f(CW$p\fR\->\fIparse()\fR will return a \s-1FALSE\s0 value.
+.Ip "$p->parse_file( $file )" 5
+Parse text directly from a file.  The \f(CW$file\fR argument can be a
+filename, an open file handle, or a reference to a an open file
+handle.
+.Sp
+If \f(CW$file\fR contains a filename and the file can't be opened, then the
+method returns an undefined value and $! tells why it failed.
+Otherwise the return value is a reference to the parser object.
+.Sp
+If a file handle is passed as the \f(CW$file\fR argument, then the file will
+normally be read until \s-1EOF\s0, but not closed.
+.Sp
+If an invoked event handler aborts parsing by calling \f(CW$p\fR\->eof,
+then \f(CW$p\fR\->\fIparse_file()\fR may not have read the entire file.
+.Sp
+On systems with multi-byte line terminators, the values passed for the
+offset and length argspecs may be too low if parse_file is called with
+a file handle that is not in binary mode.
+.Ip "$p->eof" 5
+Signals the end of the \s-1HTML\s0 document.  Calling the \f(CW$p\fR\->eof method
+outside a handler callback will flush any remaining buffered text
+(which triggers the \f(CWtext\fR event if there is any remaining text).
+.Sp
+Calling \f(CW$p\fR\->eof inside a handler will terminate parsing at that point
+and cause \f(CW$p\fR\->parse to return a \s-1FALSE\s0 value.  This also terminates
+parsing by \f(CW$p\fR\->\fIparse_file()\fR.
+.Sp
+The return value is a reference to the parser object.
+.PP
+Most parser options are controlled by boolean attributes.
+Each boolean attribute is enabled by calling the corresponding method
+with a \s-1TRUE\s0 argument and disabled with a \s-1FALSE\s0 argument.  The
+attribute value is left unchanged if no argument is given.  The return
+value from each method is the old attribute value.
+.PP
+Methods that can be used to get and/or set parser options are:
+.Ip "$p->strict_comment( [$bool] )" 5
+By default, comments are terminated by the first occurrence of \*(L"\*(-->\*(R".
+This is the behaviour of most popular browsers (like Netscape and
+\s-1MSIE\s0), but it is not correct according to the official \s-1HTML\s0
+standard.  Officially, you need an even number of \*(L"--\*(R" tokens before
+the closing \*(L">\*(R" is recognized and there may not be anything but
+whitespace between an even and an odd \*(L"--\*(R".
+.Sp
+The official behaviour is enabled by enabling this attribute.
+.Ip "$p->strict_names( [$bool] )" 5
+By default, almost anything is allowed in tag and attribute names.
+This is the behaviour of most popular browsers and allows us to parse
+some broken tags with invalid attr values like:
+.Sp
+.Vb 1
+\&   <IMG SRC=newprevlstGr.gif ALT=[PREV LIST] BORDER=0>
+.Ve
+By default, \*(L"\s-1LIST\s0]\*(R" is parsed as a boolean attribute, not as
+part of the \s-1ALT\s0 value as was clearly intended.  This is also what
+Netscape sees.
+.Sp
+The official behaviour is enabled by enabling this attribute.  If
+enabled, it will cause the tag above to be reported as text
+since \*(L"\s-1LIST\s0]\*(R" is not a legal attribute name.
+.Ip "$p->boolean_attribute_value( $val )" 5
+This method sets the value reported for boolean attributes inside \s-1HTML\s0
+start tags.  By default, the name of the attribute is also used as its
+value.  This affects the values reported for \f(CWtokens\fR and \f(CWattr\fR
+argspecs.
+.Ip "$p->xml_mode( [$bool] )" 5
+Enabling this attribute changes the parser to allow some \s-1XML\s0
+constructs such as \fIempty element tags\fR and \fI\s-1XML\s0 processing
+instructions\fR.  It disables forcing tag and attribute names to lower
+case when they are reported by the \f(CWtagname\fR and \f(CWattr\fR argspecs,
+and suppress special treatment of elements that are parsed as \s-1CDATA\s0
+for \s-1HTML\s0.
+.Sp
+\fIEmpty element tags\fR look like start tags, but end with the character
+sequence \*(L"/>\*(R".  When recognized by \f(CWHTML::Parser\fR they cause an
+artificial end event in addition to the start event.  The \f(CWtext\fR for
+the artificial end event will be empty and the \f(CWtokenpos\fR array will
+be undefined even though the only element in the token array will have
+the correct tag name.
+.Sp
+\fI\s-1XML\s0 processing instructions\fR are terminated by \*(L"?>\*(R" instead of a
+simple \*(L">\*(R" as is the case for \s-1HTML\s0.
+.Ip "$p->unbroken_text( [$bool] )" 5
+By default, blocks of text are given to the text handler as soon as
+possible (but the parser makes sure to always break text at the
+boundary between whitespace and non-whitespace so single words and
+entities always can be decoded safely).  This might create breaks that
+make it hard to do transformations on the text. When this attribute is
+enabled, blocks of text are always reported in one piece.  This will
+delay the text event until the following (non-text) event has been
+recognized by the parser.
+.Ip "$p->marked_sections( [$bool] )" 5
+By default, section markings like <![\s-1CDATA\s0[...]]> are treated like
+ordinary text.  When this attribute is enabled section markings are
+honoured.
+.Sp
+There are currently no events associated with marked section
+elements.
+.PP
+As markup and text is recognized, handlers are invoked.  The following
+method is used to set up handlers for different events:
+.Ip "$p->handler( event => \e&subroutine, argspec )" 5
+.Ip "$p->handler( event => method_name, argspec )" 5
+.Ip "$p->handler( event => \e@accum, argspec )" 5
+.Ip "$p->handler( event => """" );" 5
+.Ip "$p->handler( event => undef );" 5
+.Ip "$p->handler( event );" 5
+This method assigns a subroutine, method, or array to handle an event.
+.Sp
+Event is one of \f(CWtext\fR, \f(CWstart\fR, \f(CWend\fR, \f(CWdeclaration\fR, \f(CWcomment\fR,
+\f(CWprocess\fR or \f(CWdefault\fR.
+.Sp
+\fISubroutine\fR is a reference to a subroutine which is called to handle
+the event.
+.Sp
+\fIMethod_name\fR is the name of a method of \f(CW$p\fR which is called to handle
+the event.
+.Sp
+\fIAccum\fR is a array that will hold the event information as
+sub-arrays.
+.Sp
+If the second argument is "", the event is ignored.
+If it is undef, the default handler is invoked for the event.
+.Sp
+\fIArgspec\fR is a string that describes the information to be reported
+for the event.  Any requested information that does not apply to a
+specific event is passed as \f(CWundef\fR.  If argspec is omitted, then it
+is left unchanged since last update.
+.Sp
+The return value from \f(CW$p\fR\->handle is the old callback routine or a
+reference to the accumulator array.
+.Sp
+Return values from handler callback routines/methods are always
+ignored.  A handler callback can request parsing to be aborted by
+invoking the \f(CW$p\fR\->eof method.  A handler callback is not allowed to
+invoke \f(CW$p\fR\->\fIparse()\fR or \f(CW$p\fR\->\fIparse_file()\fR.
+.Sp
+Examples:
+.Sp
+.Vb 1
+\&    $p->handler(start =>  "start", 'self, attr, attrseq, text' );
+.Ve
+This causes the \*(L"start\*(R" method of object \f(CW$p\fR to be called for \*(L'start\*(R' events.
+The callback signature is \f(CW$p\fR\->\fIstart\fR\|(\e%attr, \e@attr_seq, \f(CW$text\fR).
+.Sp
+.Vb 1
+\&    $p->handler(start =>  \e&start, 'attr, attrseq, text' );
+.Ve
+This causes subroutine \fIstart()\fR to be called for \*(L'start\*(R' events.
+The callback signature is \fIstart\fR\|(\e%attr, \e@attr_seq, \f(CW$text\fR).
+.Sp
+.Vb 1
+\&    $p->handler(start =>  \e@accum, '"S", attr, attrseq, text' );
+.Ve
+This causes \*(L'start\*(R' event information to be saved in \f(CW@accum\fR.
+The array elements will be ['S\*(R', \e%attr, \e@attr_seq, \f(CW$text\fR].
+.Sp
+.Vb 1
+\&   $p->handler(start => "");
+.Ve
+This causes \*(L'start\*(R' events to be ignored.  It also supresses
+invokations of any default handler for start events.  It is equivalent
+to \f(CW$p\fR\->\fIhandler\fR\|(start => sub {}), but is more efficient.
+.Sp
+.Vb 1
+\&   $p->handler(start => undef);
+.Ve
+This causes no handler to be assosiated with start events.
+If there is a default handler it will be invoked.
+.Sh "Argspec"
+Argspec is a string containing a comma separated list that describes
+the information reported by the event.  The following argspec
+identifier names can be used:
+.Ip "\f(CWself\fR" 5
+Self causes the current object to be passed to the handler.  If the
+handler is a method, this must be the first element in the argspec.
+.Ip "\f(CWtokens\fR" 5
+Tokens causes a reference to an array of token strings to be passed.
+The strings are exactly as they were found in the original text,
+no decoding or case changes are applied.
+.Sp
+For \f(CWdeclaration\fR events, the array contains each word, comment, and
+delimited string starting with the declaration type.
+.Sp
+For \f(CWcomment\fR events, this contains each sub-comment.  If
+\f(CW$p\fR\->strict_comments is disabled, there will be only one sub-comment.
+.Sp
+For \f(CWstart\fR events, this contains the original tag name followed by
+the attribute name/value pairs.  The value of boolean attributes will
+be either the value set by \f(CW$p\fR\->boolean_attribute_value or the
+attribute name if no value has been set by
+\f(CW$p\fR\->boolean_attribute_value.
+.Sp
+For \f(CWend\fR events, this contains the original tag name (one token
+only).
+.Sp
+For \f(CWprocess\fR events, this contains the process instructions (one
+token only).
+.Sp
+This passes \f(CWundef\fR for \f(CWtext\fR events.
+.Ip "\f(CWtokenpos\fR" 5
+Tokenpos causes a reference to an array of token positions to be
+passed.  For each string that appears in \f(CWtokens\fR, this array
+contains two numbers.  The first number is the offset of the start of
+the token in the original \f(CWtext\fR and the second number is the length
+of the token.
+.Sp
+Boolean attributes in a \f(CWstart\fR event will have (0,0) for the
+attribute value offset and length.
+.Sp
+This passes undef if there are no tokens in the event (e.g., \f(CWtext\fR)
+and for artifical \f(CWend\fR events triggered by empty element tags.
+.Sp
+If you are using these offsets and lengths to modify \f(CWtext\fR, you
+should either work from right to left, or be very careful to calculate
+the changes to the offsets.
+.Ip "\f(CWtoken0\fR" 5
+Token0 causes the original text of the first token string to be
+passed.  This should always be the same as \f(CW$tokens\fR\->[0].
+.Sp
+For \f(CWdeclaration\fR events, this is the declaration type.
+.Sp
+For \f(CWstart\fR and \f(CWend\fR events, this is the tag name.
+.Sp
+This passes undef if there are no tokens in the event.
+.Ip "\f(CWtagname\fR" 5
+This is the element name (or \fIgeneric identifier\fR in \s-1SGML\s0 jargon) for
+start and end tags.  Since \s-1HTML\s0 is case insensitive this name is
+forced to lower case to ease string matching.
+.Sp
+Since \s-1XML\s0 is case sensitive, the tagname case is not
+changed when \f(CWxml_mode\fR is enabled.
+.Sp
+The declaration type of declaration elements is also passed as a tagname,
+even if that is a bit strange.
+In fact, in the current implementation tagname is
+identical to \f(CWtoken0\fR except that the name may be forced to lower case.
+.Ip "\f(CWattr\fR" 5
+Attr causes a reference to a hash of attribute name/value pairs to be
+passed.
+.Sp
+Boolean attributes\*(R' values are either the value set by
+\f(CW$p\fR\->boolean_attribute_value or the attribute name if no value has been
+set by \f(CW$p\fR\->boolean_attribute_value.
+.Sp
+This passes undef except for \f(CWstart\fR events.
+.Sp
+Unless \f(CWxml_mode\fR is enabled, the attribute names are forced to
+lower case.
+.Sp
+General entities are decoded in the attribute values and
+one layer of matching quotes enclosing the attribute values are removed.
+.Ip "\f(CWattrseq\fR" 5
+Attrseq causes a reference to an array of attribute names to be
+passed.  This can be useful if you want to walk the \f(CWattr\fR hash in
+the original sequence.
+.Sp
+This passes undef except for \f(CWstart\fR events.
+.Sp
+Unless \f(CWxml_mode\fR is enabled, the attribute names are forced to lower
+case.
+.Ip "\f(CWtext\fR" 5
+Text causes the source text (including markup element delimiters) to be
+passed.
+.Ip "\f(CWdtext\fR" 5
+Dtext causes the decoded text to be passed.  General entities are
+automatically decoded unless the event was inside a \s-1CDATA\s0 section or
+was between literal start and end tags (\f(CWscript\fR, \f(CWstyle\fR, \f(CWxmp\fR,
+and \f(CWplaintext\fR).
+.Sp
+The \s-1ISO\s0 8859-1 character set (aka Latin1) is assumed for entity
+decoding.
+.Sp
+It is planned that \f(CWHTML::Parser\fR will get an \f(CWutf8\fR option
+at some point that will affect the byte sequence that characters with
+codes greater than 127 will decode into.
+.Sp
+This passes undef except for \f(CWtext\fR events.
+.Ip "\f(CWis_cdata\fR" 5
+Is_cdata causes a \s-1TRUE\s0 value to be passed if the event is inside a \s-1CDATA\s0
+section or is between literal start and end tags (\f(CWscript\fR,
+\f(CWstyle\fR, \f(CWxmp\fR, and \f(CWplaintext\fR).
+.Sp
+When the flag is \s-1FALSE\s0 for a text event, then you should normally
+either use \f(CWdtext\fR or decode the entities yourself before the text is
+processed further.
+.Ip "\f(CWoffset\fR" 5
+Offset causes the byte position in the \s-1HTML\s0 document of the start of
+the event to be passed.  The first byte in the document is 0.
+.Ip "\f(CWlength\fR" 5
+Length causes the number of bytes of the source text of the event to
+be passed.
+.Ip "\f(CWevent\fR" 5
+Event causes the event name to be passed.
+.Sp
+The event name is one of \f(CWtext\fR, \f(CWstart\fR, \f(CWend\fR, \f(CWdeclaration\fR,
+\f(CWcomment\fR, \f(CWprocess\fR or \f(CWdefault\fR.
+.Ip "\f(CWline\fR" 5
+\fINote: This is not supported yet!\fR
+.Sp
+Line causes the line number of the start of the event to be passed.
+The first line in the document is 1.  Line counting doesn't start
+until at least one handler requests this value.
+.Ip "\f(CW'...'\fR" 5
+A literal string of 0 to 255 chracters enclosed
+in single (') or double (") quotes is passed as entered.
+.Ip "\f(CWundef\fR" 5
+Pass an undefined value.  Useful as padding.
+.Sh "Events"
+Handlers for the following events can be registered:
+.Ip "\f(CWtext\fR" 5
+This event is triggered when plain text is recognized.  The text may
+contain multiple lines.  A sequence of text may be broken between
+several text events unless \f(CW$p\fR\->unbroken_text is enabled.
+.Sp
+The parser will make sure that it does not break a word or a sequence
+of whitespace between two text events.
+.Ip "\f(CWstart\fR" 5
+This event is triggered when a start tag is recognized.
+.Sp
+Example:
+.Sp
+.Vb 1
+\&  <A HREF="http://www.perl.com/">
+.Ve
+.Ip "\f(CWend\fR" 5
+This event is triggered when an end tag is recognized.
+.Sp
+Example:
+.Sp
+.Vb 1
+\&  </A>
+.Ve
+.Ip "\f(CWdeclaration\fR" 5
+This event is triggered when a \fImarkup declaration\fR is recognized.
+.Sp
+For typical \s-1HTML\s0 documents, the only declaration you are
+likely to find is <!\s-1DOCTYPE\s0 ...>.
+.Sp
+Example:
+.Sp
+.Vb 2
+\&  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+\&  "http://www.w3.org/TR/html40/strict.dtd">
+.Ve
+DTDs inside <!\s-1DOCTYPE\s0 ...> will confuse \s-1HTML::\s0Parser.
+.Ip "\f(CWcomment\fR" 5
+This event is triggered when a markup comment is recognized.
+.Sp
+Example:
+.Sp
+.Vb 1
+\&  <!-- This is a comment -- -- So is this -->
+.Ve
+.Ip "\f(CWprocess\fR" 5
+This event is triggered when a processing instructions markup is
+recognized.
+.Sp
+The format and content of processing instructions is system and
+application dependent.
+.Sp
+Examples:
+.Sp
+.Vb 2
+\&  <? HTML processing instructions >
+\&  <? XML processing instructions ?>
+.Ve
+.Ip "\f(CWdefault\fR" 5
+This event is triggered for events that do not have a specific
+handler.  You can set up a handler for this event to catch stuff you
+did not want to catch explicitly.
+.SH "VERSION 2 COMPATIBILITY"
+When an \f(CWHTML::Parser\fR object is constructed with no arguments, a set
+of handlers is automatically provided that is compatible with the old
+HTML::Parser version 2 callback methods.
+.PP
+This is equivalent to the following method calls:
+.PP
+.Vb 14
+\&   $p->handler(start   => "start",   "self, tagname, attr, attrseq, text");
+\&   $p->handler(end     => "end",     "self, tagname, text");
+\&   $p->handler(text    => "text",    "self, text, is_cdata");
+\&   $p->handler(process => "process", "self, token0, text");
+\&   $p->handler(comment =>
+\&             sub {
+\&                 my($self, $tokens) = @_;
+\&                 for (@$tokens) {$self->comment($_);}},
+\&             "self, tokens");
+\&   $p->handler(declaration =>
+\&             sub {
+\&                 my $self = shift;
+\&                 $self->declaration(substr($_[0], 2, -1));},
+\&             "self, text");
+.Ve
+Setup of these handlers can also be requested with the \*(L"api_version =>
+2\*(R" constructor option.
+.SH "SUBCLASSING"
+The \f(CWHTML::Parser\fR class is subclassable.  Parser objects are plain
+hashes and \f(CWHTML::Parser\fR reserves only hash keys that start with
+\*(L"_hparser\*(R".  The parser state can be set up by invoking the \fIinit()\fR
+method which takes the same arguments as \fInew()\fR.
+.SH "EXAMPLES"
+The first simple example shows how you might strip out comments from
+an HTML document.  We achieve this by setting up a comment handler that
+does nothing and a default handler that will print out anything else:
+.PP
+.Vb 4
+\&  use HTML::Parser;
+\&  HTML::Parser->new(default_h => [sub { print shift }, 'text'],
+\&                    comment_h => [""],
+\&                   )->parse_file(shift || die) || die $!;
+.Ve
+The next example prints out the text that is inside the <title>
+element of an HTML document.  Here we start by setting up a start
+handler.  When it sees the title start tag it enables a text handler
+that prints any text found and an end handler that will terminate
+parsing as soon as the title end tag is seen:
+.PP
+.Vb 1
+\&  use HTML::Parser ();
+.Ve
+.Vb 8
+\&  sub start_handler
+\&  {
+\&    return if shift ne "title";
+\&    my $self = shift;
+\&    $self->handler(text => sub { print shift }, "dtext");
+\&    $self->handler(end  => sub { shift->eof if shift eq "title"; },
+\&                           "tagname,self");
+\&  }
+.Ve
+.Vb 4
+\&  my $p = HTML::Parser->new(api_version => 3);
+\&  $p->handler( start => \e&start_handler, "tagname,self");
+\&  $p->parse_file(shift || die) || die $!;
+\&  print "\en";
+.Ve
+More examples are found in the \*(L"eg/\*(R" directory of the \f(CWHTML-Parser\fR
+distribution; the program \f(CWhrefsub\fR shows how you can edit all links
+found in a document and \f(CWhtextsub\fR how to edid the text only; the
+program \f(CWhstrip\fR shows how you can strip out certain tags/elements
+and/or attributes; and the program \f(CWhtext\fR show how to obtain the
+plain text, but not any script/style content.
+.SH "BUGS"
+\f(CWHTML::Parser\fR will leave <plaintext> mode when it sees </plaintext>.
+Plaintext mode should not really be escapeable.
+.PP
+The <style> and <script> sections do not end with the first \*(L"</\*(R", but
+need the complete corresponding end tag.
+.PP
+When the \fIstrict_comment\fR option is enabled, we still recognize
+comments where there is something other than whitespace between even
+and odd \*(L"--\*(R" markers.
+.PP
+Once \f(CW$p\fR\->boolean_attribute_value has been set, there is no way to
+restore the default behaviour.
+.PP
+There is currently no way to get both quote characters
+into the same literal argspec.
+.PP
+Empty tags, e.g. \*(L"<>\*(R" and \*(L"</>\*(R", are not recognized.  SGML allows them
+to repeat the previous start tag or close the previous start tag
+respecitvely.
+.PP
+NET tags, e.g. \*(L"code/.../\*(R" are not recognized.  This is an SGML
+shorthand for \*(L"<code>...</code>\*(R".
+.PP
+Unclosed start or end tags, e.g. \*(L"<tt<b>...</b</tt>\*(R" are not
+recognized.
+.SH "DIAGNOSTICS"
+The following messages may be produced by HTML::Parser.  The notation
+in this listing is the same as used in the \fIperldiag\fR manpage:
+.Ip "Not a reference to a hash" 5
+(F) The object blessed into or subclassed from \s-1HTML::\s0Parser is not a
+hash as required by the \s-1HTML::\s0Parser methods.
+.Ip "Bad signature in parser state object at %p" 5
+(F) The _hparser_xs_state element does not refer to a valid state structure.
+Something must have changed the internal value
+stored in this hash element, or the memory has been overwritten.
+.Ip "_hparser_xs_state element is not a reference" 5
+(F) The _hparser_xs_state element has been destroyed.
+.Ip "Can't find \*(N'_hparser_xs_state\*(T' element in \s-1HTML::\s0Parser hash" 5
+(F) The _hparser_xs_state element is missing from the parser hash.
+It was either deleted, or not created when the object was created.
+.Ip "\s-1API\s0 version %s not supported by \s-1HTML::\s0Parser %s" 5
+(F) The constructor option \*(L'api_version\*(R' with an argument greater than
+or equal to 4 is reserved for future extentions.
+.Ip "Bad constructor option \*(N'%s\*(T'" 5
+(F) An unknown constructor option key was passed to the \fInew()\fR or
+\fIinit()\fR methods.
+.Ip "Parse loop not allowed" 5
+(F) A handler invoked the \fIparse()\fR or \fIparse_file()\fR method.
+This is not permitted.
+.Ip "marked sections not supported" 5
+(F) The \f(CW$p\fR\->\fImarked_sections()\fR method was invoked in a \s-1HTML::\s0Parser
+module that was compiled without support for marked sections. 
+.Ip "Unknown boolean attribute (%d)" 5
+(F) Something is wrong with the internal logic that set up aliases for
+boolean attributes.
+.Ip "Only code or array references allowed as handler" 5
+(F) The second argument for \f(CW$p\fR\->handler must be either a subroutine
+reference, then name of a subroutine or method, or a reference to an
+array.
+.Ip "No handler for %s events" 5
+(F) The first argument to \f(CW$p\fR\->handler must be a valid event name; i.e. one
+of \*(L"start\*(R", \*(L"end\*(R", \*(L"text\*(R", \*(L"process\*(R", \*(L"declaration\*(R" or \*(L"comment\*(R".
+.Ip "Unrecognized identifier %s in argspec" 5
+(F) The identifier is not a known argspec name.
+Use one of the names mentioned in the argspec section above.
+.Ip "Literal string is longer than 255 chars in argspec" 5
+(F) The current implementation limits the length of literals in
+an argspec to 255 characters.  Make the literal shorter.
+.Ip "Backslash reserved for literal string in argspec" 5
+(F) The backslash character \*(L"\e\*(R" is not allowed in argspec literals.
+It is reserved to permit quoting inside a literal in a later version.
+.Ip "Unterminated literal string in argspec" 5
+(F) The terminating quote character for a literal was not found.
+.Ip "Bad argspec (%s)" 5
+(F) Only identifier names, literals, spaces and commas
+are allowed in argspecs.
+.Ip "Missing comma separator in argspec" 5
+(F) Identifiers in an argspec must be separated with \*(L",\*(R".
+.SH "SEE ALSO"
+the \fIHTML::Entities\fR manpage, the \fIHTML::TokeParser\fR manpage, the \fIHTML::HeadParser\fR manpage,
+the \fIHTML::LinkExtor\fR manpage, the \fIHTML::Form\fR manpage
+.PP
+the \fIHTML::TreeBuilder\fR manpage (part of the \fIHTML\-Tree\fR distribution)
+.PP
+http://www.w3.org/TR/REC\-html40
+.PP
+More information about marked sections and processing instructions may
+be found at \f(CWhttp://www.sgml.u-net.com/book/sgml-8.htm\fR.
+.SH "COPYRIGHT"
+.PP
+.Vb 2
+\& Copyright 1996-2000 Gisle Aas. All rights reserved.
+\& Copyright 1999-2000 Michael A. Chase.  All rights reserved.
+.Ve
+This library is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+.rn }` ''
+.IX Title "Parser 3"
+.IX Name "HTML::Parser - HTML parser class"
+
+.IX Header "NAME"
+
+.IX Header "NOTE"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "METHODS"
+
+.IX Item "$p = \s-1HTML::\s0Parser->new( %options_and_handlers )"
+
+.IX Item "$p->parse( $string )"
+
+.IX Item "$p->parse_file( $file )"
+
+.IX Item "$p->eof"
+
+.IX Item "$p->strict_comment( [$bool] )"
+
+.IX Item "$p->strict_names( [$bool] )"
+
+.IX Item "$p->boolean_attribute_value( $val )"
+
+.IX Item "$p->xml_mode( [$bool] )"
+
+.IX Item "$p->unbroken_text( [$bool] )"
+
+.IX Item "$p->marked_sections( [$bool] )"
+
+.IX Item "$p->handler( event => \e&subroutine, argspec )"
+
+.IX Item "$p->handler( event => method_name, argspec )"
+
+.IX Item "$p->handler( event => \e@accum, argspec )"
+
+.IX Item "$p->handler( event => """" );"
+
+.IX Item "$p->handler( event => undef );"
+
+.IX Item "$p->handler( event );"
+
+.IX Subsection "Argspec"
+
+.IX Item "\f(CWself\fR"
+
+.IX Item "\f(CWtokens\fR"
+
+.IX Item "\f(CWtokenpos\fR"
+
+.IX Item "\f(CWtoken0\fR"
+
+.IX Item "\f(CWtagname\fR"
+
+.IX Item "\f(CWattr\fR"
+
+.IX Item "\f(CWattrseq\fR"
+
+.IX Item "\f(CWtext\fR"
+
+.IX Item "\f(CWdtext\fR"
+
+.IX Item "\f(CWis_cdata\fR"
+
+.IX Item "\f(CWoffset\fR"
+
+.IX Item "\f(CWlength\fR"
+
+.IX Item "\f(CWevent\fR"
+
+.IX Item "\f(CWline\fR"
+
+.IX Item "\f(CW'...'\fR"
+
+.IX Item "\f(CWundef\fR"
+
+.IX Subsection "Events"
+
+.IX Item "\f(CWtext\fR"
+
+.IX Item "\f(CWstart\fR"
+
+.IX Item "\f(CWend\fR"
+
+.IX Item "\f(CWdeclaration\fR"
+
+.IX Item "\f(CWcomment\fR"
+
+.IX Item "\f(CWprocess\fR"
+
+.IX Item "\f(CWdefault\fR"
+
+.IX Header "VERSION 2 COMPATIBILITY"
+
+.IX Header "SUBCLASSING"
+
+.IX Header "EXAMPLES"
+
+.IX Header "BUGS"
+
+.IX Header "DIAGNOSTICS"
+
+.IX Item "Not a reference to a hash"
+
+.IX Item "Bad signature in parser state object at %p"
+
+.IX Item "_hparser_xs_state element is not a reference"
+
+.IX Item "Can't find \*(N'_hparser_xs_state\*(T' element in \s-1HTML::\s0Parser hash"
+
+.IX Item "\s-1API\s0 version %s not supported by \s-1HTML::\s0Parser %s"
+
+.IX Item "Bad constructor option \*(N'%s\*(T'"
+
+.IX Item "Parse loop not allowed"
+
+.IX Item "marked sections not supported"
+
+.IX Item "Unknown boolean attribute (%d)"
+
+.IX Item "Only code or array references allowed as handler"
+
+.IX Item "No handler for %s events"
+
+.IX Item "Unrecognized identifier %s in argspec"
+
+.IX Item "Literal string is longer than 255 chars in argspec"
+
+.IX Item "Backslash reserved for literal string in argspec"
+
+.IX Item "Unterminated literal string in argspec"
+
+.IX Item "Bad argspec (%s)"
+
+.IX Item "Missing comma separator in argspec"
+
+.IX Header "SEE ALSO"
+
+.IX Header "COPYRIGHT"
+

@@ -1,0 +1,416 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Net::SMTP 3 "perl 5.005, patch 03" "6/Mar/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Net::SMTP \- Simple Mail Transfer Protocol Client
+.SH "SYNOPSIS"
+.PP
+.Vb 5
+\&    use Net::SMTP;
+\&    
+\&    # Constructors
+\&    $smtp = Net::SMTP->new('mailhost');
+\&    $smtp = Net::SMTP->new('mailhost', Timeout => 60);
+.Ve
+.SH "DESCRIPTION"
+This module implements a client interface to the SMTP and ESMTP
+protocol, enabling a perl5 application to talk to SMTP servers. This
+documentation assumes that you are familiar with the concepts of the
+SMTP protocol described in RFC821.
+.PP
+A new Net::SMTP object must be created with the \fInew\fR method. Once
+this has been done, all SMTP commands are accessed through this object.
+.PP
+The Net::SMTP class is a subclass of Net::Cmd and IO::Socket::INET.
+.SH "EXAMPLES"
+This example prints the mail domain name of the SMTP server known as mailhost:
+.PP
+.Vb 7
+\&    #!/usr/local/bin/perl -w
+\&    
+\&    use Net::SMTP;
+\&    
+\&    $smtp = Net::SMTP->new('mailhost');
+\&    print $smtp->domain,"\en";
+\&    $smtp->quit;
+.Ve
+This example sends a small message to the postmaster at the SMTP server
+known as mailhost:
+.PP
+.Vb 16
+\&    #!/usr/local/bin/perl -w
+\&    
+\&    use Net::SMTP;
+\&    
+\&    $smtp = Net::SMTP->new('mailhost');
+\&    
+\&    $smtp->mail($ENV{USER});
+\&    $smtp->to('postmaster');
+\&    
+\&    $smtp->data();
+\&    $smtp->datasend("To: postmaster\en");
+\&    $smtp->datasend("\en");
+\&    $smtp->datasend("A simple test message\en");
+\&    $smtp->dataend();
+\&    
+\&    $smtp->quit;
+.Ve
+.SH "CONSTRUCTOR"
+.Ip "new Net::\s-1SMTP\s0 [ \s-1HOST\s0, ] [ \s-1OPTIONS\s0 ]" 4
+This is the constructor for a new Net::\s-1SMTP\s0 object. \f(CWHOST\fR is the
+name of the remote host to which a \s-1SMTP\s0 connection is required.
+.Sp
+If \f(CWHOST\fR is not given, then the \f(CWSMTP_Host\fR specified in \f(CWNet::Config\fR
+will be used.
+.Sp
+\f(CWOPTIONS\fR are passed in a hash like fashion, using key and value pairs.
+Possible options are:
+.Sp
+\fBHello\fR \- \s-1SMTP\s0 requires that you identify yourself. This option
+specifies a string to pass as your mail domain. If not
+given a guess will be taken.
+.Sp
+\fBTimeout\fR \- Maximum time, in seconds, to wait for a response from the
+\s-1SMTP\s0 server (default: 120)
+.Sp
+\fBDebug\fR \- Enable debugging information
+.Sp
+Example:
+.Sp
+.Vb 5
+\&    $smtp = Net::SMTP->new('mailhost',
+\&                           Hello => 'my.mail.domain'
+\&                           Timeout => 30,
+\&                           Debug   => 1,
+\&                          );
+.Ve
+.SH "METHODS"
+Unless otherwise stated all methods return either a \fItrue\fR or \fIfalse\fR
+value, with \fItrue\fR meaning that the operation was a success. When a method
+states that it returns a value, failure will be returned as \fIundef\fR or an
+empty list.
+.Ip "banner ()" 8
+Returns the banner message which the server replied with when the
+initial connection was made.
+.Ip "domain ()" 8
+Returns the domain that the remote \s-1SMTP\s0 server identified itself as during
+connection.
+.Ip "hello ( \s-1DOMAIN\s0 )" 8
+Tell the remote server the mail domain which you are in using the \s-1EHLO\s0
+command (or \s-1HELO\s0 if \s-1EHLO\s0 fails).  Since this method is invoked
+automatically when the Net::\s-1SMTP\s0 object is constructed the user should
+normally not have to call it manually.
+.Ip "etrn ( \s-1DOMAIN\s0 )" 8
+Request a queue run for the \s-1DOMAIN\s0 given.
+.Ip "mail ( \s-1ADDRESS\s0 [, \s-1OPTIONS\s0] )" 8
+.Ip "send ( \s-1ADDRESS\s0 )" 8
+.Ip "send_or_mail ( \s-1ADDRESS\s0 )" 8
+.Ip "send_and_mail ( \s-1ADDRESS\s0 )" 8
+Send the appropriate command to the server \s-1MAIL\s0, \s-1SEND\s0, \s-1SOML\s0 or \s-1SAML\s0. \f(CWADDRESS\fR
+is the address of the sender. This initiates the sending of a message. The
+method \f(CWrecipient\fR should be called for each address that the message is to
+be sent to.
+.Sp
+The \f(CWmail\fR method can some additional \s-1ESMTP\s0 \s-1OPTIONS\s0 which is passed
+in hash like fashion, using key and value pairs.  Possible options are:
+.Sp
+.Vb 5
+\& Size        => <bytes>
+\& Return      => <???>
+\& Bits        => "7" | "8"
+\& Transaction => <ADDRESS>
+\& Envelope    => <ENVID>
+.Ve
+.Ip "reset ()" 8
+Reset the status of the server. This may be called after a message has been 
+initiated, but before any data has been sent, to cancel the sending of the
+message.
+.Ip "recipient ( \s-1ADDRESS\s0 [, \s-1ADDRESS\s0 [ ...]] [, \s-1OPTIONS\s0 ] )" 8
+Notify the server that the current message should be sent to all of the
+addresses given. Each address is sent as a separate command to the server.
+Should the sending of any address result in a failure then the
+process is aborted and a \fIfalse\fR value is returned. It is up to the
+user to call \f(CWreset\fR if they so desire.
+.Sp
+The \f(CWrecipient\fR method can some additional \s-1OPTIONS\s0 which is passed
+in hash like fashion, using key and value pairs.  Possible options are:
+.Sp
+.Vb 2
+\& Notify    =>
+\& SkipBad   => ignore bad addresses
+.Ve
+If \f(CWSkipBad\fR is true the \f(CWrecipient\fR will not return an error when a
+bad address is encountered and it will return an array of addresses
+that did succeed.
+.Ip "to ( \s-1ADDRESS\s0 [, \s-1ADDRESS\s0 [...]] )" 8
+A synonym for \f(CWrecipient\fR.
+.Ip "data ( [ \s-1DATA\s0 ] )" 8
+Initiate the sending of the data from the current message. 
+.Sp
+\f(CWDATA\fR may be a reference to a list or a list. If specified the contents
+of \f(CWDATA\fR and a termination string \f(CW".\er\en"\fR is sent to the server. And the
+result will be true if the data was accepted.
+.Sp
+If \f(CWDATA\fR is not specified then the result will indicate that the server
+wishes the data to be sent. The data must then be sent using the \f(CWdatasend\fR
+and \f(CWdataend\fR methods described in the \fINet::Cmd\fR manpage.
+.Ip "expand ( \s-1ADDRESS\s0 )" 8
+Request the server to expand the given address Returns an array
+which contains the text read from the server.
+.Ip "verify ( \s-1ADDRESS\s0 )" 8
+Verify that \f(CWADDRESS\fR is a legitimate mailing address.
+.Ip "help ( [ $subject ] )" 8
+Request help text from the server. Returns the text or undef upon failure
+.Ip "quit ()" 8
+Send the \s-1QUIT\s0 command to the remote \s-1SMTP\s0 server and close the socket connection.
+.SH "SEE ALSO"
+the \fINet::Cmd\fR manpage
+.SH "AUTHOR"
+Graham Barr <gbarr@pobox.com>
+.SH "COPYRIGHT"
+Copyright (c) 1995-1997 Graham Barr. All rights reserved.
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+.rn }` ''
+.IX Title "Net::SMTP 3"
+.IX Name "Net::SMTP - Simple Mail Transfer Protocol Client"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "EXAMPLES"
+
+.IX Header "CONSTRUCTOR"
+
+.IX Item "new Net::\s-1SMTP\s0 [ \s-1HOST\s0, ] [ \s-1OPTIONS\s0 ]"
+
+.IX Header "METHODS"
+
+.IX Item "banner ()"
+
+.IX Item "domain ()"
+
+.IX Item "hello ( \s-1DOMAIN\s0 )"
+
+.IX Item "etrn ( \s-1DOMAIN\s0 )"
+
+.IX Item "mail ( \s-1ADDRESS\s0 [, \s-1OPTIONS\s0] )"
+
+.IX Item "send ( \s-1ADDRESS\s0 )"
+
+.IX Item "send_or_mail ( \s-1ADDRESS\s0 )"
+
+.IX Item "send_and_mail ( \s-1ADDRESS\s0 )"
+
+.IX Item "reset ()"
+
+.IX Item "recipient ( \s-1ADDRESS\s0 [, \s-1ADDRESS\s0 [ ...]] [, \s-1OPTIONS\s0 ] )"
+
+.IX Item "to ( \s-1ADDRESS\s0 [, \s-1ADDRESS\s0 [...]] )"
+
+.IX Item "data ( [ \s-1DATA\s0 ] )"
+
+.IX Item "expand ( \s-1ADDRESS\s0 )"
+
+.IX Item "verify ( \s-1ADDRESS\s0 )"
+
+.IX Item "help ( [ $subject ] )"
+
+.IX Item "quit ()"
+
+.IX Header "SEE ALSO"
+
+.IX Header "AUTHOR"
+
+.IX Header "COPYRIGHT"
+

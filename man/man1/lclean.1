@@ -1,0 +1,351 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH LCLEAN 1 "perl 5.005, patch 03" "25/Feb/1998" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+lclean \- Detect and clean trash in Structured Storage documents
+.SH "SYNOPSIS"
+lclean \f(CW-r\fR || \f(CW-c\fR || \f(CW-s\fR || \f(CW-i\fR || \f(CW-l\fR || \f(CW-e\fR document
+.PP
+\fINote!\fR
+If you use switch \f(CW-c\fR or \f(CW-i\fR, lclean changes your document! Please keep
+a backup of the treated documents, until you are sure they did not take any
+harm! 
+.SH "DESCRIPTION"
+lclean deals with documents created typically with MS Windows applications.
+It gives a report about the trash sections in those \*(L"OLE / Structured
+Storage\*(R" documents, cleans this trash or saves it to files. Further more a
+file can be hidden into and extracted from those trash sections. 
+.Ip "clean" 4
+lclean \f(CW-c\fR [\f(CW-n\fR] {document}
+.Sp
+The trash sections will be cleaned. Unused blocks are filled with null
+bytes. System data will be cleaned with 0xff bytes. File end trash 
+(type 4) will be cleaned with random bytes. When using switch \f(CW-n\fR, file 
+end trash also will be filled with zero bytes (faster on files with 
+lots of embedded objects).
+.Ip "extract" 4
+lclean \f(CW-e\fR [\f(CW-f\fR] [\f(CW-z\fR] {document}
+.Sp
+Extracts the hidden file. This makes a copy of the hidden file. If the file
+got corrupted by what reason ever, it will not be extracted. The file will
+get the date of its last modification. If the file already exists, you will
+be prompted to overwrite it with the new extracted file. With switch \f(CW-f\fR
+you will not be prompted, but the file will be overwritten. With switch \f(CW-z\fR 
+no zero length files will be created.
+.Ip "insert" 4
+lclean \f(CW-i\fR <file> [\f(CW-a\fR] {document}
+.Sp
+Insert a file into the document (hide it).
+The trash in your document will be substituted by some <file>. This file
+cannot be seen by any standard Windows application. The file must be smaller,
+than the size of the trash in your documents (plus 20 bytes plus the size to
+store the filename). Normally, only trash types 1 and 2 will be used for
+this. If they offer not enough space, with switch \f(CW-a\fR trash type 4 and 8
+will be used additionally.
+.Ip "list" 4
+lclean \f(CW-l\fR {document}
+.Sp
+List if there is a file hidden in the documents trash.
+.Ip "report" 4
+lclean \f(CW-r\fR {document}
+.Sp
+Gets a small report about the trash in the documents.
+.Ip "save " 4
+lclean \f(CW-s\fR [\f(CW-a\fR] [\f(CW-d\fR] [\f(CW-z\fR] {document}
+.Sp
+The trash sections will be saved to own files. They will be stored to an
+directory in your current directory. Normally it will be the directory
+\*(L"\f(CWdoctrash\fR\*(R". E.g., if there is the example file \*(L"\f(CWlegacy.doc\fR\*(R" the
+trashfiles will be stored as: \*(L"\f(CWdoctrash/legacy.tr1\fR\*(R",
+\*(L"\f(CWdoctrash/legacy.tr2\fR\*(R", \*(L"\f(CWdoctrash/legacy.tr3\fR\*(R" and
+\*(L"\f(CWdoctrash/legacy.tr4\fR\*(R".
+.Ip "\f(CW-a\fR" 8
+All trash will be stored into one big file \*(L"\f(CWdoctrash/legacy.tra\fR\*(R".
+.Ip "\f(CW-d\fR" 8
+The trash \fIfile\fR\|(s) will not be stored into directory \*(L"\f(CWdoctrash\fR\*(R",
+but each into an own directory. E.g. into directory \*(L"\f(CWlegacy/\fR\*(R".
+.Ip "\f(CW-z\fR" 8
+When using switch \f(CW-z\fR, zero length files will not be created.
+.SH "EXAMPLES"
+.Ip "lclean \f(CW-cs\fR {document}" 8
+This would first save all trash chunks into separate files into 
+directory \*(L"\f(CWdoctrash\fR\*(R", then it would clean the document.
+.Ip "lclean \f(CW-aci\fR <file> {document}" 8
+This would first clean the document, then insert the hidden file by using
+all trash types.
+.SH "HISTORY"
+Microsoft's first and still most spread OLE implementations had bugs. One
+caused that some sections of documents that actually should be filled with
+zero bytes contained more or less private data.
+.Sp
+Management of OLE documents is a little bit difficult and takes some 
+time. A way to fasten this up is not to care about the old data, but
+simply to add the new data to the document. Cleaning up could be done later.
+When switched on the \*(L"fast save\*(R" option, Microsoft Word uses this strategy.
+So, thus saved files contain the new and the old version of a document. The
+old data cannot be edited any more and stays invisible in the document.
+.Sp
+Some programs seem to use the Microsoft OLE library not properly. 
+For example, the Star Office 3.1. programs create documents, that 
+always contain 1024 bytes of trash.
+.Sp
+As far as I know, Microsoft offers a bugfix for 32 bit Windows 
+systems, only.
+.Sp
+The program \*(L"lclean\*(R" can access this kind of garbage in OLE documents. 
+To do this it uses the \f(CWmodify_trash\fR method of OLE::Storage.
+This library decides between four different types of trash. 
+.Sp
+Overview:
+.Ip "Type 1" 8
+Unused \*(L"big blocks\*(R". These blocks are not used by the document. Each of 
+these blocks is 512 bytes long.
+.Ip "Type 2" 8
+Unused \*(L"small blocks\*(R". These blocks are not used by the document. Each of 
+these blocks is 64 bytes long.
+.Ip "Type 4" 8
+File end space. This refers to the \*(L"streams\*(R" of an \s-1OLE\s0 document.
+The space is made up of all the space between the end of a stream
+and the end of a block.
+.Ip "Type 8" 8
+System space. These sections are required by file format, though
+they are not used by \s-1OLE\s0 system. Actually this data is no garbage. 
+.SH "SEE ALSO"
+the \fIOLE::Storage\fR manpage
+.SH "AUTHOR"
+Martin Schwartz <\fIschwartz@cs.tu-berlin.de\fR>. 
+
+.rn }` ''
+.IX Title "LCLEAN 1"
+.IX Name "lclean - Detect and clean trash in Structured Storage documents"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Item "clean"
+
+.IX Item "extract"
+
+.IX Item "insert"
+
+.IX Item "list"
+
+.IX Item "report"
+
+.IX Item "save "
+
+.IX Item "\f(CW-a\fR"
+
+.IX Item "\f(CW-d\fR"
+
+.IX Item "\f(CW-z\fR"
+
+.IX Header "EXAMPLES"
+
+.IX Item "lclean \f(CW-cs\fR {document}"
+
+.IX Item "lclean \f(CW-aci\fR <file> {document}"
+
+.IX Header "HISTORY"
+
+.IX Item "Type 1"
+
+.IX Item "Type 2"
+
+.IX Item "Type 4"
+
+.IX Item "Type 8"
+
+.IX Header "SEE ALSO"
+
+.IX Header "AUTHOR"
+

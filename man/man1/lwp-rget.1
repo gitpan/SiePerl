@@ -1,0 +1,327 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH LWP-RGET 1 "libwww-perl-5.48" "26/Sep/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+lwp-rget \- Retrieve WWW documents recursively
+.SH "SYNOPSIS"
+.PP
+.Vb 4
+\& lwp-rget [--verbose] [--auth=USER:PASS] [--depth=N] [--hier] [--iis]
+\&          [--keepext=mime/type[,mime/type]] [--limit=N] [--nospace]
+\&          [--prefix=URL] [--referer=URL] [--sleep=N] [--tolower] <URL>
+\& lwp-rget --version
+.Ve
+.SH "DESCRIPTION"
+This program will retrieve a document and store it in a local file.  It
+will follow any links found in the document and store these documents
+as well, patching links so that they refer to these local copies.
+This process continues until there are no more unvisited links or the
+process is stopped by the one or more of the limits which can be
+controlled by the command line arguments.
+.PP
+This program is useful if you want to make a local copy of a
+collection of documents or want to do web reading off-line.
+.PP
+All documents are stored as plain files in the current directory. The
+file names chosen are derived from the last component of URL paths.
+.PP
+The options are:
+.Ip "--auth=\s-1USER:\s0PASn" 3
+Set the authentication credentials to user \*(L"\s-1USER\s0\*(R" and password \*(L"\s-1PASS\s0\*(R" if
+any restricted parts of the web site are hit.  If there are restricted
+parts of the web site and authentication credentials are not available,
+those pages will not be downloaded.
+.Ip "--depth=\fIn\fR" 3
+Limit the recursive level. Embedded images are always loaded, even if
+they fall outside the \fI--depth\fR. This means that one can use
+\fI--depth=0\fR in order to fetch a single document together with all
+inline graphics.
+.Sp
+The default depth is 5.
+.Ip "--hier" 3
+Download files into a hierarchy that mimics the web site structure.
+The default is to put all files in the current directory.
+.Ip "--referer=\fI\s-1URI\s0\fR" 3
+Set the value of the referer header for the initial request.  The
+special value \f(CW"NONE"\fR can be used to suppress the referer header in
+any of subsequent requests.
+.Ip "--iis" 3
+Sends an \*(L"Accept: */*\*(R" on all \s-1URL\s0 requests as a workaround for a bug in
+\s-1IIS\s0 2.0.  If no Accept \s-1MIME\s0 header is present, \s-1IIS\s0 2.0 returns with a
+\*(L"406 No acceptable objects were found\*(R" error.  Also converts any back
+slashes (\e\e) in URLs to forward slashes (/).
+.Ip "--keepext=\fImime/type[,mime/type]\fR" 3
+Keeps the current extension for the list \s-1MIME\s0 types.  Useful when
+downloading text/plain documents that shouldn't all be translated to
+*.txt files.
+.Ip "--limit=\fIn\fR" 3
+Limit the number of documents to get.  The default limit is 50.
+.Ip "--nospace" 3
+Changes spaces in all URLs to underscore characters (_).  Useful when
+downloading files from sites serving URLs with spaces in them.	Does not
+remove spaces from fragments, e.g., \*(L"file.html#somewhere in here\*(R".
+.Ip "--prefix=\fIurl_prefix\fR" 3
+Limit the links to follow. Only URLs that start the prefix string are
+followed.
+.Sp
+The default prefix is set as the \*(L"directory\*(R" of the initial \s-1URL\s0 to
+follow.	 For instance if we start lwp-rget with the \s-1URL\s0
+\f(CWhttp://www.sn.no/foo/bar.html\fR, then prefix will be set to
+\f(CWhttp://www.sn.no/foo/\fR.
+.Sp
+Use \f(CW--prefix=''\fR if you don't want the fetching to be limited by any
+prefix.
+.Ip "--sleep=\fIn\fR" 3
+Sleep \fIn\fR seconds before retrieving each document. This options allows
+you to go slowly, not loading the server you visiting too much.
+.Ip "--tolower" 3
+Translates all links to lowercase.  Useful when downloading files from
+\s-1IIS\s0 since it does not serve files in a case sensitive manner.
+.Ip "--verbose" 3
+Make more noise while running.
+.Ip "--quiet" 3
+Don't make any noise.
+.Ip "--version" 3
+Print program version number and quit.
+.Ip "--help" 3
+Print the usage message and quit.
+.PP
+Before the program exits the name of the file, where the initial \s-1URL\s0
+is stored, is printed on stdout.  All used filenames are also printed
+on stderr as they are loaded.  This printing can be suppressed with
+the \fI--quiet\fR option.
+.SH "SEE ALSO"
+the \fIlwp-request\fR manpage, the \fILWP\fR manpage
+.SH "AUTHOR"
+Gisle Aas <aas@sn.no>
+
+.rn }` ''
+.IX Title "LWP-RGET 1"
+.IX Name "lwp-rget - Retrieve WWW documents recursively"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Item "--auth=\s-1USER:\s0PASn"
+
+.IX Item "--depth=\fIn\fR"
+
+.IX Item "--hier"
+
+.IX Item "--referer=\fI\s-1URI\s0\fR"
+
+.IX Item "--iis"
+
+.IX Item "--keepext=\fImime/type[,mime/type]\fR"
+
+.IX Item "--limit=\fIn\fR"
+
+.IX Item "--nospace"
+
+.IX Item "--prefix=\fIurl_prefix\fR"
+
+.IX Item "--sleep=\fIn\fR"
+
+.IX Item "--tolower"
+
+.IX Item "--verbose"
+
+.IX Item "--quiet"
+
+.IX Item "--version"
+
+.IX Item "--help"
+
+.IX Header "SEE ALSO"
+
+.IX Header "AUTHOR"
+

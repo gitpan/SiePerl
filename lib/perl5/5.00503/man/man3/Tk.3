@@ -1,0 +1,992 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH TK 1 "Tk800.022" "6/Feb/2000" "perl/Tk Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Tk \- a graphical user interface toolkit for Perl
+.SH "SYNOPSIS"
+.PP
+.Vb 3
+\&    use Tk;
+\&    $top = new MainWindow;
+\&    MainLoop;
+.Ve
+.SH "DESCRIPTION"
+The Perl/Tk manual is split up into a number of sections:
+.Sh "Introduction"
+.Ip "\(bu" 4
+Tk::overview
+.Ip "\(bu" 4
+Tk::UserGuide
+.Sh "Tk Geometry Management"
+.Ip "\(bu" 4
+Tk::Adjuster
+.Ip "\(bu" 4
+Tk::form
+.Ip "\(bu" 4
+Tk::grid
+.Ip "\(bu" 4
+Tk::pack
+.Ip "\(bu" 4
+Tk::place
+.Ip "\(bu" 4
+Tk::Table
+.Ip "\(bu" 4
+Tk::Tiler
+.Ip "\(bu" 4
+Tk::Wm
+.Sh "Binding Events and Callbacks"
+.Ip "\(bu" 4
+Tk::After
+.Ip "\(bu" 4
+Tk::bind
+.Ip "\(bu" 4
+Tk::bindtags
+.Ip "\(bu" 4
+Tk::callbacks
+.Ip "\(bu" 4
+Tk::Error
+.Ip "\(bu" 4
+Tk::event
+.Ip "\(bu" 4
+Tk::exit
+.Ip "\(bu" 4
+Tk::fileevent
+.Ip "\(bu" 4
+Tk::\s-1IO\s0
+.Sh "Tk Image Classes"
+.Ip "\(bu" 4
+Tk::Animation
+.Ip "\(bu" 4
+Tk::Bitmap
+.Ip "\(bu" 4
+Tk::Compound
+.Ip "\(bu" 4
+Tk::Image
+.Ip "\(bu" 4
+Tk::Photo
+.Ip "\(bu" 4
+Tk::Pixmap
+.Sh "Tix Extensions"
+.Ip "\(bu" 4
+Tk::Balloon
+.Ip "\(bu" 4
+Tk::BrowseEntry
+.Ip "\(bu" 4
+Tk::DialogBox
+.Ip "\(bu" 4
+Tk::DirTree
+.Ip "\(bu" 4
+Tk::DItem
+.Ip "\(bu" 4
+Tk::InputO
+.Ip "\(bu" 4
+Tk::LabFrame
+.Ip "\(bu" 4
+Tk::Mwm
+.Ip "\(bu" 4
+Tk::NoteBook
+.Ip "\(bu" 4
+Tk::TixGrid
+.Ip "\(bu" 4
+Tk::tixWm
+.Ip "\(bu" 4
+Tk::TList
+.Ip "\(bu" 4
+Tk::Tree
+.Sh "Tk Widget Classes"
+.Ip "\(bu" 4
+Tk::Button
+.Ip "\(bu" 4
+Tk::Canvas
+.Ip "\(bu" 4
+Tk::Checkbutton
+.Ip "\(bu" 4
+Tk::Entry
+.Ip "\(bu" 4
+Tk::Frame
+.Ip "\(bu" 4
+Tk::HList
+.Ip "\(bu" 4
+Tk::Label
+.Ip "\(bu" 4
+Tk::Listbox
+.Ip "\(bu" 4
+Tk::Menu
+.Ip "\(bu" 4
+Tk::Menubutton
+.Ip "\(bu" 4
+Tk::Message
+.Ip "\(bu" 4
+Tk::Optionmenu
+.Ip "\(bu" 4
+Tk::Radiobutton
+.Ip "\(bu" 4
+Tk::Scale
+.Ip "\(bu" 4
+Tk::Scrollbar
+.Ip "\(bu" 4
+Tk::Text
+.Ip "\(bu" 4
+Tk::Toplevel
+.Sh "Tk Generic Methods"
+.Ip "\(bu" 4
+Tk::Font
+.Ip "\(bu" 4
+Tk::send
+.Ip "\(bu" 4
+Tk::tkvars
+.Ip "\(bu" 4
+Tk::Widget
+.Ip "\(bu" 4
+Tk::X11Font
+.Sh "User Interaction"
+.Ip "\(bu" 4
+Tk::DropSite
+.Ip "\(bu" 4
+Tk::Clipboard
+.Ip "\(bu" 4
+Tk::focus
+.Ip "\(bu" 4
+Tk::grab
+.Ip "\(bu" 4
+Tk::selection
+.Sh "Creating and Configuring Widgets"
+.Ip "\(bu" 4
+Tk::CmdLine
+.Ip "\(bu" 4
+Tk::MainWindow
+.Ip "\(bu" 4
+Tk::option
+.Ip "\(bu" 4
+Tk::options
+.Ip "\(bu" 4
+Tk::palette
+.Ip "\(bu" 4
+Tk::Xrm
+.Sh "Popups and Dialogs"
+.Ip "\(bu" 4
+Tk::chooseColor
+.Ip "\(bu" 4
+Tk::ColorEditor
+.Ip "\(bu" 4
+Tk::Dialog
+.Ip "\(bu" 4
+Tk::Dialog
+.Ip "\(bu" 4
+Tk::FileSelect
+.Ip "\(bu" 4
+Tk::getOpenFile
+.Ip "\(bu" 4
+Tk::messageBox
+.Sh "Derived Widgets"
+.Ip "\(bu" 4
+Tk::composite
+.Ip "\(bu" 4
+Tk::configspec
+.Ip "\(bu" 4
+Tk::Derived
+.Ip "\(bu" 4
+Tk::mega
+.Ip "\(bu" 4
+Tk::ROText
+.Ip "\(bu" 4
+Tk::Scrolled
+.Ip "\(bu" 4
+Tk::TextUndo
+.Ip "\(bu" 4
+Tk::Reindex
+.Ip "\(bu" 4
+Tk::Pane
+.Ip "\(bu" 4
+Tk::ProgressBar
+.Sh "C Programming"
+.Ip "\(bu" 4
+Internals
+.Ip "\(bu" 4
+pTk
+.Ip "\(bu" 4
+3DBorder
+.Ip "\(bu" 4
+BackgdErr
+.Ip "\(bu" 4
+BindTable
+.Ip "\(bu" 4
+CanvPsY
+.Ip "\(bu" 4
+CanvTkwin
+.Ip "\(bu" 4
+CanvTxtInfo
+.Ip "\(bu" 4
+Clipboard
+.Ip "\(bu" 4
+ClrSelect
+.Ip "\(bu" 4
+ConfigWidg
+.Ip "\(bu" 4
+ConfigWind
+.Ip "\(bu" 4
+CoordToWin
+.Ip "\(bu" 4
+CrtErrHdlr
+.Ip "\(bu" 4
+CrtGenHdlr
+.Ip "\(bu" 4
+CrtImgType
+.Ip "\(bu" 4
+CrtItemType
+.Ip "\(bu" 4
+CrtMainWin
+.Ip "\(bu" 4
+CrtPhImgFmt
+.Ip "\(bu" 4
+CrtSelHdlr
+.Ip "\(bu" 4
+CrtWindow
+.Ip "\(bu" 4
+DeleteImg
+.Ip "\(bu" 4
+DoOneEvent
+.Ip "\(bu" 4
+DoWhenIdle
+.Ip "\(bu" 4
+DrawFocHlt
+.Ip "\(bu" 4
+EventHndlr
+.Ip "\(bu" 4
+EventInit
+.Ip "\(bu" 4
+FileHndlr
+.Ip "\(bu" 4
+FindPhoto
+.Ip "\(bu" 4
+FontId
+.Ip "\(bu" 4
+FreeXId
+.Ip "\(bu" 4
+GeomReq
+.Ip "\(bu" 4
+GetAnchor
+.Ip "\(bu" 4
+GetBitmap
+.Ip "\(bu" 4
+GetCapStyl
+.Ip "\(bu" 4
+GetClrmap
+.Ip "\(bu" 4
+GetColor
+.Ip "\(bu" 4
+GetCursor
+.Ip "\(bu" 4
+GetFont
+.Ip "\(bu" 4
+GetFontStr
+.Ip "\(bu" 4
+GetGC
+.Ip "\(bu" 4
+GetImage
+.Ip "\(bu" 4
+GetJoinStl
+.Ip "\(bu" 4
+GetJustify
+.Ip "\(bu" 4
+GetOption
+.Ip "\(bu" 4
+GetPixels
+.Ip "\(bu" 4
+GetPixmap
+.Ip "\(bu" 4
+GetRelief
+.Ip "\(bu" 4
+GetRootCrd
+.Ip "\(bu" 4
+GetScroll
+.Ip "\(bu" 4
+GetSelect
+.Ip "\(bu" 4
+GetUid
+.Ip "\(bu" 4
+GetVisual
+.Ip "\(bu" 4
+GetVRoot
+.Ip "\(bu" 4
+HandleEvent
+.Ip "\(bu" 4
+IdToWindow
+.Ip "\(bu" 4
+ImgChanged
+.Ip "\(bu" 4
+InternAtom
+.Ip "\(bu" 4
+MainLoop
+.Ip "\(bu" 4
+MaintGeom
+.Ip "\(bu" 4
+MainWin
+.Ip "\(bu" 4
+ManageGeom
+.Ip "\(bu" 4
+MapWindow
+.Ip "\(bu" 4
+MeasureChar
+.Ip "\(bu" 4
+MoveToplev
+.Ip "\(bu" 4
+Name
+.Ip "\(bu" 4
+NameOfImg
+.Ip "\(bu" 4
+OwnSelect
+.Ip "\(bu" 4
+ParseArgv
+.Ip "\(bu" 4
+Preserve
+.Ip "\(bu" 4
+QWinEvent
+.Ip "\(bu" 4
+Restack
+.Ip "\(bu" 4
+RestrictEv
+.Ip "\(bu" 4
+SetAppName
+.Ip "\(bu" 4
+SetClass
+.Ip "\(bu" 4
+SetGrid
+.Ip "\(bu" 4
+SetVisual
+.Ip "\(bu" 4
+Sleep
+.Ip "\(bu" 4
+StrictMotif
+.Ip "\(bu" 4
+TextLayout
+.Ip "\(bu" 4
+TimerHndlr
+.Ip "\(bu" 4
+Tk_Init
+.Ip "\(bu" 4
+WindowId
+.Sh "Implementation"
+.Ip "\(bu" 4
+Tk::Eventloop
+.Ip "\(bu" 4
+Tk::Item
+.Ip "\(bu" 4
+Tk::Submethods
+.Ip "\(bu" 4
+Tk::WidgetDemo
+.Ip "\(bu" 4
+Tk::widgets
+.Sh "Experimental Modules"
+.Ip "\(bu" 4
+Tk::Common
+.Ip "\(bu" 4
+Tk::SunConst
+.Ip "\(bu" 4
+Tk::WinPhoto
+.Sh "Other Modules and Languages"
+.Ip "\(bu" 4
+Tk::Compile
+.Ip "\(bu" 4
+Tk::Tcl-perl
+.Ip "\(bu" 4
+Tk::X
+.SH "AUTHOR"
+Nick Ing-Simmons
+.SH "SEE ALSO"
+perl(1), wish(1).
+
+.rn }` ''
+.IX Title "TK 1"
+.IX Name "Tk - a graphical user interface toolkit for Perl"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Subsection "Introduction"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Tk Geometry Management"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Binding Events and Callbacks"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Tk Image Classes"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Tix Extensions"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Tk Widget Classes"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Tk Generic Methods"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "User Interaction"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Creating and Configuring Widgets"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Popups and Dialogs"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Derived Widgets"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "C Programming"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Implementation"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Experimental Modules"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Subsection "Other Modules and Languages"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Header "AUTHOR"
+
+.IX Header "SEE ALSO"
+

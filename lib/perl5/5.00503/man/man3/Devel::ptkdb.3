@@ -1,0 +1,900 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH ptkdb 3 "perl 5.005, patch 03" "6/Apr/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Devel::ptkdb \- Perl debugger using a Tk GUI
+.SH "DESCRIPTION"
+.PP
+.Vb 2
+\&                ptkdb is a debugger for perl that uses perlTk for a user interface.
+\&                Features include:
+.Ve
+.Vb 5
+\&                Hot Variable Inspection
+\&                Breakpoint Control Panel
+\&                Expression List
+\&                Subroutine Tree
+\&                
+.Ve
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\&                To debug a script using ptkdb invoke perl like this:
+.Ve
+.Vb 1
+\&                perl -d:ptkdb myscript.pl
+.Ve
+.SH "Usage"
+.PP
+.Vb 1
+\&                perl -d:ptkdb myscript.pl
+.Ve
+.Sh "Code Pane"
+.Ip "Line Numbers" 0
+.PP
+.Vb 8
+\&                Line numbers are presented on the left side of the window.      Lines that
+\&                have lines through them are not breakable.      Lines that are plain text
+\&                are breakable.  Clicking on these line numbers will insert a
+\&                breakpoint on that line and change the line number color to
+\&                $ENV{'PTKDB_BRKPT_COLOR'} (Defaults to Red).    Clicking on the number
+\&                again will remove the breakpoint.        If you disable the breakpoint with
+\&                the controls on the BrkPt notebook page the color will change to
+\&                $ENV{'PTKDB_DISABLEDBRKPT_COLOR'}(Defaults to Green).
+.Ve
+.Ip "Cursor Motion" 0
+.PP
+.Vb 4
+\&                If you place the cursor over a variable (i.e. $myVar, @myVar, or
+\&                                                                                                                                                                                 %myVar) and pause for a second the debugger will evaluate the current
+\&                value of the variable and pop a balloon up with the evaluated
+\&                result. I<This feature is not available with Tk400.>
+.Ve
+.Vb 3
+\&                If Data::Dumper(standard with perl5.00502)is available it will be used
+\&                to format the result.    If there is an active selection, the text of
+\&                that selection will be evaluated.
+.Ve
+.Sh "Notebook Pane"
+.Ip "Exprs" 0
+.PP
+.Vb 5
+\&                This is a list of expressions that are evaluated each time the debugger stops.  The results
+\&                of the expresssion are presented heirarchically for expression that result in hashes or lists.
+\&                Double clicking on such an expression will cause it to collapse; double clicking again
+\&                will cause the expression to expand.    Expressions are entered through B<Enter Expr> entry,
+\&                or by Alt-E when text is selected in the code pane.
+.Ve
+.Vb 2
+\&                The B<Quick Expr> entry, will take an expression, evaluate it, and replace the entries
+\&                contents with the result.        The result is also transfered to the 'clipboard' for pasting.
+.Ve
+.Ip "Subs" 0
+.PP
+.Vb 3
+\&                Displays a list of all the packages invoked with the script heirarchially.      At the bottom
+\&                of the heirarchy are the subroutines within the packages.        Double click on a package to
+\&                expand it.      Subroutines are listed by their full package names.      
+.Ve
+.Ip "BrkPts" 0
+.PP
+.Vb 5
+\&                Presents a list of the breakpoints current in use.      The pushbutton allows a breakpoint to
+\&                be 'disabled' without removing it.      Expressions can be applied to the breakpoint.    If the
+\&                expression evaluates to be 'true'(results in a defined value that is not 0) the debugger
+\&                will stop the script.    Pressing the 'Goto' button will set the text pane to that file and
+\&                line where the breakpoint is set.        Pressing the 'Delete' button will delete the breakpoint.
+.Ve
+.SH "Menus"
+.Sh "File Menu"
+.Ip "About..." 0
+.PP
+.Vb 2
+\&                Presents a dialog box telling you about the version of ptkdb.    It recovers
+\&                your OS name, version of perl, version of Tk, and some other information
+.Ve
+.Ip "Open" 0
+.PP
+.Vb 2
+\&                Presents a list of files that are part of the invoked perl script.      Selecting
+\&                a file from this list will present this file in the text window.        
+.Ve
+.Ip "Save Config..." 0
+.PP
+.Vb 4
+\&                Requires Data::Dumper.  Prompts for a filename to save the configuration to.    Saves
+\&                the breakpoints, expressions, eval text and window geometry.    If the name given as
+\&                the default is used and the script is reinvoked, this configuration will be reloaded
+\&                automatically.  
+.Ve
+.Vb 1
+\&                B<NOTE:>        You may find this preferable to using 
+.Ve
+.Ip "Restore Config..." 0
+.PP
+.Vb 2
+\&                Requires Data::Dumper.  Prompts for a filename to restore a configuration saved with
+\&                the "Save Config..." menu item.  
+.Ve
+.Ip "Goto Line..." 0
+.PP
+.Vb 1
+\&                Prompts for a line number.      Pressing the "Okay" button sends the window to the line number entered.
+.Ve
+.Ip "Find Text..." 0
+.PP
+.Vb 2
+\&                Prompts for text to search for.  Options include forward search, backwards search, and regular expression
+\&                searching.      
+.Ve
+.Ip "Quit" 0
+.PP
+.Vb 1
+\&                Causes the debugger and the target script to exit.      
+.Ve
+.Sh "Control Menu"
+.Ip "Run" 0
+.PP
+.Vb 1
+\&                The debugger allows the script to run to the next breakpoint or until the script exits.
+.Ve
+.Ip "Run To Here" 0
+.PP
+.Vb 2
+\&                Runs the debugger until it comes to wherever the insertion cursor in text window
+\&                is placed.
+.Ve
+.Ip "Set Breakpoint" 0
+.PP
+.Vb 1
+\&                Sets a breakpoint on the line at the insertion cursor.  
+.Ve
+.Ip "Clear Breakpoint" 0
+.PP
+.Vb 1
+\&                Remove a breakpoint on the at the insertion cursor.      
+.Ve
+.Ip "Clear All Breakpoints" 0
+.PP
+.Vb 1
+\&                Removes all current breakpoints
+.Ve
+.Ip "Step Over" 0
+.PP
+.Vb 3
+\&                Causes the debugger to step over the next line.  If the line
+\&                is a subroutine call it steps over the call, stopping when
+\&                the subroutine returns.  
+.Ve
+.Ip "Step In" 0
+.PP
+.Vb 3
+\&                Causes the debugger to step into the next line.  If the line
+\&                is a subroutine call it steps into the subroutine, stopping
+\&                at the first executable line within the subroutine.      
+.Ve
+.Ip "Return" 0
+.PP
+.Vb 2
+\&                Runs the script until it returns from the currently executing
+\&                subroutine.      
+.Ve
+.Ip "Restart" 0
+.PP
+.Vb 3
+\&                Saves the breakpoints and expressions in a temporary file and
+\&        restarts the script from the beginning.  CAUTION: This feature will
+\&        not work properly with debugging of CGI Scripts.
+.Ve
+.Ip "Stop On Warning" 0
+When \-w is enabled the debugger will stop when warnings such as, \*(L"Use
+of uninitialized value at undef_warn.pl line N\*(R" are encountered.  The debugger
+will stop on the \s-1NEXT\s0 line of execution since the error can't be detected
+until the current line has executed.  
+.PP
+This feature can be turned on at startup by adding:
+.PP
+$\s-1DB::\s0ptkdb::stop_on_warning = 1 ;
+.PP
+to a .ptkdbrc file
+.Sh "Data Menu"
+.Ip "Enter Expression" 0
+.PP
+.Vb 4
+\&                When an expression is entered in the "Enter Expression:" text box, selecting
+\&                this item will enter the expression into the expression list.    Each time the
+\&                debugger stops this expression will be evaluated and its result updated in
+\&                the list window.
+.Ve
+.Ip "Delete Expression" 0
+.PP
+.Vb 1
+\&                Deletes the highlighted expression in the expression window.
+.Ve
+.Ip "Delete All Expressions" 0
+.PP
+.Vb 1
+\&                Delete all expressions in the expression window.
+.Ve
+.Ip "Expression Eval Window" 0
+.PP
+.Vb 5
+\&                Pops up a two pane window.      Expressions of virtually unlimitted length
+\&                can be entered in the top pane.  Pressing the 'Eval' button will cause
+\&                the expression to be evaluated and its placed in the lower pane.        If
+\&Data::Dumper is available it will be used to format the resulting
+\&                text.    Undo is enabled for the text in the upper pane.        
+.Ve
+\s-1HINT\s0:	 You can enter multiple expressions by separating them with commas.	 
+.Ip "Use Data::Dumper for Eval Window" 0
+.PP
+.Vb 2
+\&                Enables or disables the use of Data::Dumper for formatting the results
+\&                of expressions in the Eval window.      
+.Ve
+.Sh "Stack Menu"
+.PP
+.Vb 3
+\&                Maintains a list of the current subroutine stack each time the debugger
+\&                stops.  Selecting an item from this menu will set the text in the code
+\&                window to that particular subourtine entry point.        
+.Ve
+.Sh "Bookmarks Menu"
+.PP
+.Vb 1
+\&                Maintains a list of bookmarks.  The booksmarks are saved in ~/.ptkdb_bookmarks
+.Ve
+.Ip "Add Bookmark" 0
+.PP
+.Vb 1
+\&                Adds a bookmark to the bookmark list.    
+.Ve
+.SH "Options"
+.PP
+.Vb 6
+\&                Here is a list of the current active XResources options.        Several
+\&                of these can be overridden with environmental variables.        Resources
+\&                can be added to .Xresources or .Xdefaults depending on your X configuration.
+\&                To enable these resources you must either restart your X server or 
+\&                use the xrdb -override resFile command.  xfontsel can be used to select
+\&                fonts.
+.Ve
+.Vb 69
+\&                /*
+\&                * Perl Tk Debugger XResources.   
+\&                * Note... These resources are subject to change.         
+\&                *
+\&                * Use 'xfontsel' to select different fonts.
+\&                *
+\&                * Append these resource to ~/.Xdefaults | ~/.Xresources
+\&                * and use xrdb -override ~/.Xdefaults | ~/.Xresources
+\&                * to activate them.     
+\&                */
+\&                /* Set Value to se to place scrollbars on the right side of windows 
+\&        CAUTION:        extra whitespace at the end of the line is causing
+\&                failures with Tk800.011.
+\&                
+\&                sw -> puts scrollbars on left, se puts scrollars on the right
+\&                
+\&                */
+\&                ptkdb*scrollbars: sw
+\&                /* controls where the code pane is oriented, down the left side, or across the top */
+\&                /* values can be set to left, right, top, bottom */
+\&                ptkdb*codeside: left
+\&                
+\&                /*
+\&                * Background color for the balloon
+\&                * CAUTION:      For certain versions of Tk trailing
+\&                * characters after the color produces an error
+\&                */
+\&                ptkdb.frame2.frame1.rotext.balloon.background: green
+\&                ptkdb.frame2.frame1.rotext.balloon.font: fixed                                                                                   /* Hot Variable Balloon Font */
+\&                
+\&                
+\&                ptkdb.frame*font: fixed                                                                                                         /* Menu Bar */
+\&                ptkdb.frame.menubutton.font: fixed                                                              /* File menu */
+\&                ptkdb.frame2.frame1.rotext.font: fixed                                          /* Code Pane */
+\&                ptkdb.notebook.datapage.frame1.hlist.font: fixed        /* Expression Notebook Page */
+\&                
+\&                ptkdb.notebook.subspage*font: fixed                                                             /* Subroutine Notebook Page */
+\&                ptkdb.notebook.brkptspage*entry.font: fixed                             /* Delete Breakpoint Buttons */
+\&                ptkdb.notebook.brkptspage*button.font: fixed                    /* Breakpoint Expression Entries */
+\&                ptkdb.notebook.brkptspage*button1.font: fixed                   /* Breakpoint Expression Entries */
+\&                ptkdb.notebook.brkptspage*checkbutton.font: fixed /* Breakpoint Checkbuttons */
+\&                ptkdb.notebook.brkptspage*label.font: fixed                             /* Breakpoint Checkbuttons */
+\&                
+\&                ptkdb.toplevel.frame.textundo.font: fixed                                       /* Eval Expression Entry Window */
+\&                ptkdb.toplevel.frame1.text.font: fixed                                          /* Eval Expression Results Window */
+\&                ptkdb.toplevel.button.font:      fixed                                                          /* "Eval..." Button */
+\&                ptkdb.toplevel.button1.font: fixed                                                              /* "Clear Eval" Button */
+\&                ptkdb.toplevel.button2.font: fixed                                                              /* "Clear Results" Button */
+\&                ptkdb.toplevel.button3.font: fixed                                                              /* "Clear Dismiss" Button */
+\&                
+\&                /*
+\&                * Background color for where the debugger has stopped   
+\&                */      
+\&                ptkdb*stopcolor: blue
+\&                
+\&                /*
+\&                * Background color for set breakpoints  
+\&                */
+\&                ptkdb*breaktagcolor*background: yellow
+\&                ptkdb*disabledbreaktagcolor*background: white
+\&                /*
+\&                * Font for where the debugger has stopped
+\&                */
+\&                ptkdb*stopfont: -*-fixed-bold-*-*-*-*-*-*-*-*-*-*-*
+\&                
+\&                /*
+\&                * Background color for the search tag
+\&                */      
+\&                ptkdb*searchtagcolor: green
+.Ve
+.SH "Environmental Variables"
+.Ip "\s-1PTKDB_BRKPT_COLOR\s0" 4
+.Sp
+.Vb 1
+\&                Sets the background color of a set breakpoint
+.Ve
+.Ip "\s-1PTKDB_DISABLEDBRKPT_COLOR\s0" 4
+.Sp
+.Vb 1
+\&                Sets the background color of a disabled breakpoint
+.Ve
+.Ip "\s-1PTKDB_CODE_FONT\s0" 4
+.Sp
+.Vb 1
+\&                Sets the font of the Text in the code pane.
+.Ve
+.Ip "\s-1PTKDB_CODE_SIDE\s0" 4
+.Sp
+.Vb 2
+\&                Sets which side the code pane is packed onto.    Defaults to 'left'.
+\&                Can be set to 'left', 'right', 'top', 'bottom'.  
+.Ve
+.Vb 1
+\&                Overrides the Xresource ptkdb*codeside: I<side>. 
+.Ve
+.Ip "\s-1PTKDB_EXPRESSION_FONT\s0" 4
+.Sp
+.Vb 1
+\&                Sets the font used in the expression notebook page.
+.Ve
+.Ip "\s-1PTKDB_EVAL_FONT\s0" 4
+.Sp
+.Vb 1
+\&                Sets the font used in the Expression Eval Window
+.Ve
+.Ip "\s-1PTKDB_EVAL_DUMP_INDENT\s0" 4
+.Sp
+.Vb 1
+\&                Sets the value used for Data::Dumper 'indent' setting.  See man Data::Dumper
+.Ve
+.Ip "\s-1PTKDB_SCROLLBARS_ONRIGHT\s0" 4
+.Sp
+.Vb 2
+\&                A non-zero value Sets the scrollbars of all windows to be on the right side of the window.      Useful
+\&                for Windows users using ptkdb in an XWindows environment.        
+.Ve
+.Ip "\s-1PTKDB_LINENUMBER_FORMAT\s0" 4
+.Sp
+.Vb 2
+\&                Sets the format of line numbers on the left side of the window.  Default value is %05d.  useful
+\&                if you have a script that contains more than 99999 lines.        
+.Ve
+.Ip "\s-1PTKDB_DISPLAY\s0" 4
+.Sp
+.Vb 2
+\&                Sets the X display that the ptkdb window will appear on when invoked.    Useful for debugging CGI
+\&                scripts on remote systems.      
+.Ve
+.Ip "\s-1PTKDB_BOOKMARKS_PATH\s0" 4
+.Sp
+.Vb 1
+\&                Sets the path of the bookmarks file.    Default is $ENV{'HOME'}/.ptkdb_bookmarks
+.Ve
+.Ip "\s-1PTKDB_STOP_TAG_COLOR\s0" 4
+.Sp
+.Vb 1
+\&                Sets the color that highlights the line where the debugger is stopped 
+.Ve
+.SH "FILES"
+.Sh ".ptkdbrc"
+.PP
+.Vb 5
+\&                If this file is present in ~/ or in the directory where perl is invoked the file will
+\&                be read and executed as a perl script before the debugger makes its initial stop at startup.    
+\&                There    are several 'api' calls that can be used with such scripts.    There is an internal
+\&                variable $DB::no_stop_at_start that may be set to non-zero to prevent the debugger from
+\&                stopping at the first line of the script.        This is useful for debugging CGI scripts.
+.Ve
+.Vb 1
+\&                There is a system ptkdbrc file in $PREFIX/lib/perl5/$VERS/Devel/ptkdbrc
+.Ve
+.Ip "brkpt($fname, @lines)" 4
+.Sp
+.Vb 2
+\&                Sets breakspoints on the list of lines in $fname.        A warning message is generated
+\&                if a line is not breakable.      
+.Ve
+.Ip "condbrkpt($fname, @($line, $expr) ) " 4
+.Sp
+.Vb 3
+\&                Sets conditional breakpoints in $fname on pairs of $line and $expr.     A warning message is generated
+\&                if a line is not breakable.      NOTE:  the validity of the expression will not be determined until execution
+\&                of that particular line.        
+.Ve
+.Ip "brkonsub(@names)" 4
+.Sp
+.Vb 3
+\&                Sets a breakpoint on each subroutine name listed.       A warning message is generated
+\&                if a subroutine does not exist.  NOTE:  for a script with no other packages the default
+\&                package is "main::" and the subroutines would be "main::mySubs".        
+.Ve
+.Ip "brkonsub_regex(@regExprs)" 4
+.Sp
+.Vb 2
+\&                Uses the list of @regExprs as a list of regular expressions to set breakpoints.  Sets breakpoints 
+\&                on every subroutine that matches any of the listed regular expressions.
+.Ve
+.Ip "textTagConfigure(tag, ?option?, ?value?)" 4
+.Sp
+.Vb 4
+\&                Allows the user to format the text in the code window.  The option
+\&                value pairs are the same values as the option for the tagConfigure
+\&                method documented in Tk::Text.  Currently the following tags are
+\&                in effect:
+.Ve
+.Vb 8
+\&                
+\&                'code'                                                   Format for code in the text pane
+\&                'stoppt'                                                 Format applied to the line where the debugger is currently stopped
+\&                'breakableLine'                  Format applied to line numbers where the code is 'breakable'
+\&                'nonbreakableLine'       Format applied to line numbers where the code is no breakable
+\&                'breaksetLine'                   Format applied to line numbers were a breakpoint is set
+\&                'breakdisabledLine'      Format applied to line numbers were a disabled breakpoint is set
+\&                'search_tag'                             Format applied to text when located by a search.        
+.Ve
+Example:
+.Sp
+#
+# Turns off the overstrike on lines that you can't set a breakpoint on
+# and makes the text color yellow.	
+#
+		\fItextTagConfigure\fR\|('nonbreakableLine\*(R', \-overstrike => 0, \-foreground => \*(L"yellow") ;
+.Ip "add_exprs(@exprList)" 4
+.Sp
+.Vb 3
+\&                Add a list of expressions to the 'Exprs' window.        NOTE: use the single
+\&                quote character \e' to prevent the expression from being "evaluated" in
+\&                the string context.
+.Ve
+.Vb 1
+\&        Example:
+.Ve
+.Vb 3
+\&                #
+\&                # Adds the $_ and @_ expressions to the active list
+\&                #
+.Ve
+.Vb 1
+\&                add_exprs('$_', '@_') ;
+.Ve
+.SH "NOTES"
+.Sh "Debugging Other perlTk Applications"
+.PP
+.Vb 6
+\&                ptkdb can be used to debug other perlTk applications if some
+\&                cautions are observed.  Basically, do not click the mouse in the
+\&                application's window(s) when you've entered the debugger and do not
+\&                click in the debugger's window(s) while the application is running.
+\&        Doing either one is not necessarily fatal, but it can confuse things
+\&        that are going on and produce unexpected results.        
+.Ve
+.Vb 6
+\&         Be aware that most perlTk applications have a central event loop.
+\&        User actions, such as mouse clicks, key presses, window exposures,
+\&        etc will generate 'events' that the script will process.        When
+\&        a perlTk application is running, its 'MainLoop' call will accept these
+\&        events and then dispatch them to appropriate callbacks associated
+\&        with the appropriate widgets.
+.Ve
+.Vb 5
+\&        Ptkdb has its own event loop that runs whenever you've stopped at a
+\&                breakpoint and entered the debugger.    However, it can accept events
+\&                that are generated by other perlTk windows and dispatch their callbacks.
+\&                The problem here is that the application is supposed to be 'stopped',
+\&                and logically the application should not be able to process events.
+.Ve
+.Vb 4
+\&                A future version of ptkdb will have an extension that will 'filter'
+\&                events so that application events are not processed while the
+\&                debugger is active, and debugger events will not be processed while
+\&                the target script is active.
+.Ve
+.Sh "Debugging \s-1CGI\s0 Scripts"
+.PP
+.Vb 3
+\&                One advantage of ptkdb over the builtin debugger(-d) is that it can
+\&                be used to debug CGI perl scripts as they run on a web server.  Be
+\&                sure that that your web server's perl instalation includes Tk.
+.Ve
+Change your
+.PP
+.Vb 1
+\& #! /usr/local/bin/perl
+.Ve
+to
+.PP
+.Vb 1
+\& #! /usr/local/bin/perl -d:ptkdb
+.Ve
+\s-1TIP\s0: You can debug scripts remotely if you're using a unix based
+		server and where you are authoring the script has an Xserver.	 The
+		Xserver can be another unix workstation, a Macintosh or Win32 platform
+		with an appropriate XWindows package.	 In your script insert the
+		following \s-1BEGIN\s0 subroutine:
+.PP
+.Vb 3
+\&                sub BEGIN {
+\&                        $ENV{'DISPLAY'} = "myHostname:0.0" ;
+\&                }
+.Ve
+Be sure that your web server has permission to open windows on your Xserver
+(see the xhost manpage).	
+.PP
+.Vb 4
+\&                Access your web page with your browswer and 'submit' the script as
+\&                normal.  The ptkdb window should appear on myHostname's monitor.        At
+\&this point you can start debugging your script.  Be aware that your
+\&browser may timeout waiting for the script to run.
+.Ve
+To expedite debugging you may want to setup your breakpoints in
+advance with a .ptkdbrc file and use the \f(CW$DB::no_stop_at_start\fR
+variable.	 \s-1NOTE\s0: for debugging web scripts you may have to have the
+\&.ptkdbrc file installed in the server account's home directory (~www)
+or whatever username your webserver is running under.	 Also try
+installing a .ptkdbrc file in the same directory as the target script.
+.SH "KNOWN PROBLEMS"
+.Ip "Breakpoint Controls " 0
+If the size of the right hand pane is too small the breakpoint controls
+are not visible.	The breakpoints are still there, the window may have
+to be enlarged in order for them to be visible.	 
+.Ip "Balloons and Tk400" 0
+The Balloons in Tk400 will not work with ptkdb.	 All other functions
+are supported, but the Balloons require Tk800 or higher.
+.SH "AUTHOR"
+Andrew E. Page, aep@world.std.com
+.SH "ACKNOWLEDGEMENTS"
+Matthew Persico		 For suggestions, and beta testing.
+
+.rn }` ''
+.IX Title "ptkdb 3"
+.IX Name "Devel::ptkdb - Perl debugger using a Tk GUI"
+
+.IX Header "NAME"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "Usage"
+
+.IX Subsection "Code Pane"
+
+.IX Item "Line Numbers"
+
+.IX Item "Cursor Motion"
+
+.IX Subsection "Notebook Pane"
+
+.IX Item "Exprs"
+
+.IX Item "Subs"
+
+.IX Item "BrkPts"
+
+.IX Header "Menus"
+
+.IX Subsection "File Menu"
+
+.IX Item "About..."
+
+.IX Item "Open"
+
+.IX Item "Save Config..."
+
+.IX Item "Restore Config..."
+
+.IX Item "Goto Line..."
+
+.IX Item "Find Text..."
+
+.IX Item "Quit"
+
+.IX Subsection "Control Menu"
+
+.IX Item "Run"
+
+.IX Item "Run To Here"
+
+.IX Item "Set Breakpoint"
+
+.IX Item "Clear Breakpoint"
+
+.IX Item "Clear All Breakpoints"
+
+.IX Item "Step Over"
+
+.IX Item "Step In"
+
+.IX Item "Return"
+
+.IX Item "Restart"
+
+.IX Item "Stop On Warning"
+
+.IX Subsection "Data Menu"
+
+.IX Item "Enter Expression"
+
+.IX Item "Delete Expression"
+
+.IX Item "Delete All Expressions"
+
+.IX Item "Expression Eval Window"
+
+.IX Item "Use Data::Dumper for Eval Window"
+
+.IX Subsection "Stack Menu"
+
+.IX Subsection "Bookmarks Menu"
+
+.IX Item "Add Bookmark"
+
+.IX Header "Options"
+
+.IX Header "Environmental Variables"
+
+.IX Item "\s-1PTKDB_BRKPT_COLOR\s0"
+
+.IX Item "\s-1PTKDB_DISABLEDBRKPT_COLOR\s0"
+
+.IX Item "\s-1PTKDB_CODE_FONT\s0"
+
+.IX Item "\s-1PTKDB_CODE_SIDE\s0"
+
+.IX Item "\s-1PTKDB_EXPRESSION_FONT\s0"
+
+.IX Item "\s-1PTKDB_EVAL_FONT\s0"
+
+.IX Item "\s-1PTKDB_EVAL_DUMP_INDENT\s0"
+
+.IX Item "\s-1PTKDB_SCROLLBARS_ONRIGHT\s0"
+
+.IX Item "\s-1PTKDB_LINENUMBER_FORMAT\s0"
+
+.IX Item "\s-1PTKDB_DISPLAY\s0"
+
+.IX Item "\s-1PTKDB_BOOKMARKS_PATH\s0"
+
+.IX Item "\s-1PTKDB_STOP_TAG_COLOR\s0"
+
+.IX Header "FILES"
+
+.IX Subsection ".ptkdbrc"
+
+.IX Item "brkpt($fname, @lines)"
+
+.IX Item "condbrkpt($fname, @($line, $expr) ) "
+
+.IX Item "brkonsub(@names)"
+
+.IX Item "brkonsub_regex(@regExprs)"
+
+.IX Item "textTagConfigure(tag, ?option?, ?value?)"
+
+.IX Item "add_exprs(@exprList)"
+
+.IX Header "NOTES"
+
+.IX Subsection "Debugging Other perlTk Applications"
+
+.IX Subsection "Debugging \s-1CGI\s0 Scripts"
+
+.IX Header "KNOWN PROBLEMS"
+
+.IX Item "Breakpoint Controls "
+
+.IX Item "Balloons and Tk400"
+
+.IX Header "AUTHOR"
+
+.IX Header "ACKNOWLEDGEMENTS"
+

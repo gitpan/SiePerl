@@ -1,0 +1,704 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH lib::Parse::Yapp 3 "perl 5.005, patch 03" "1/May/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Parse::Yapp \- Perl extension for generating and using LALR parsers. 
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\&  yapp -m MyParser grammar_file.yp
+.Ve
+.Vb 1
+\&  ...
+.Ve
+.Vb 1
+\&  use MyParser;
+.Ve
+.Vb 2
+\&  $parser=new MyParser();
+\&  $value=$parser->YYParse(yylex => \e&lexer_sub, yyerror => \e&error_sub);
+.Ve
+.Vb 1
+\&  $nberr=$parser->YYNberr();
+.Ve
+.Vb 1
+\&  $parser->YYData->{DATA}= [ 'Anything', 'You Want' ];
+.Ve
+.Vb 1
+\&  $data=$parser->YYData->{DATA}[0];
+.Ve
+.SH "DESCRIPTION"
+Parse::Yapp (Yet Another Perl Parser compiler) is a collection of modules
+that let you generate and use yacc like thread safe (reentrant) parsers with
+perl object oriented interface.
+.PP
+The script yapp is a front-end to the Parse::Yapp module and let you
+easily create a Perl OO parser from an input grammar file.
+.Sh "The Grammar file"
+.Ip "\f(CWComments\fR" 4
+Through all your files, comments are either Perl style, introduced by \fI#\fR
+up to the end of line, or C style, enclosed between  \fI/*\fR and \fI*/\fR.
+.Ip "\f(CWTokens and string literals\fR" 4
+Through all the grammar files, two kind of symbols may appear:
+\fINon-terminals\fR symbols, also called \fIleft-hand-side\fR symbols,
+which are the names of your rules, and \fITerminal\fR symbols, also
+called \fITokens\fR.
+.Sp
+Tokens are the symbols your lexer function will pass to your parser
+(see below). They come in two flavours: symbolic tokens and string
+literals.
+.Sp
+Non-terminals and symbolic tokens share the same identifier syntax:
+.Sp
+.Vb 1
+\&                [A-Za-z][A-Za-z0-9_]*
+.Ve
+String literals are enclosed in single quotes and can contain almost
+anything. They will be output to your parser file double-quoted, making
+any special character be as is. \*(L'"\*(R', \*(L'$\*(R' and \*(L'@\*(R' will be automatically
+quoted with \*(L'\e\*(R', making their writing more natural. On the other hand,
+if you need a single quote inside your literal, just quote it with \*(L'\e\*(R'.
+.Sp
+You cannot have a literal \fI'error\*(R'\fR in your grammar as it would
+confuse the driver with the \fIerror\fR token. Use a symbolic token instead.
+Using it anyway will produce a warning telling you you should have wrote
+it \fIerror\fR and will treat it as if it were the \fIerror\fR token.
+.Ip "\f(CWGrammar file syntax\fR" 4
+It is very close to yacc's one (in fact, \fIParse::Yapp\fR should compile
+a clean \fIyacc\fR grammar without any modification, whereas the opposit
+is no true).
+.Sp
+It is divided in three sections separated by \f(CW%%\fR:
+.Sp
+.Vb 5
+\&        header section
+\&        %%
+\&        rules section
+\&        %%
+\&        footer section
+.Ve
+.Ip "\fBThe Header Section\fR section may contain:" 8
+.Ip "\(bu" 8
+One ore more code blocks enclosed inside \f(CW%{\fR and \f(CW%}\fR just like in
+yacc. They may contain any valid Perl code and will be copied verbatim
+at the very beginning of the parser module. They are not as useful as
+they are in yacc, but you may use them, for example, for global variables
+declaration, though you will see later that such global variables can
+avoided to make reentrant parser modules.
+.Ip "\(bu" 8
+Precedence declarations, introduced by \f(CW%left\fR, \f(CW%right\fR and \f(CW%nonassoc\fR
+specifying associativity, followed by the list of tokens or litterals
+having the same precedence and associativity.
+The precedence beeing the later declared have the highest level.
+(see the yacc or bison manuals for a full explanation of how they work,
+as they are implemented exactly the same way in Parse::Yapp)
+.Ip "\(bu" 8
+\f(CW%start\fR followed by a rule's left hand side, declaring this rule to
+be the starting rule of your grammar. The default if \f(CW%start\fR is not
+declared is the first rule in your grammar section.
+.Ip "\(bu" 8
+\f(CW%token\fR followed by a list of symbols, forcing them to be recognized
+as tokens, generating a syntax error if used in the left hand side of
+a rule declaration.
+Note that in Parse::Yapp, you \fIdon't\fR need to declare tokens as in yacc: any
+symbol not appearing as a left hand side of a rule is considered to be
+a token.
+Other yacc declarations or constructs such as \f(CW%type\fR and \f(CW%union\fR are
+parsed but (almost) ignored.
+.Ip "\(bu" 8
+\f(CW%expect\fR followed by a number, suppress warnings about number of Shift/Reduce
+conflicts when both numbers match, a la bison.
+.Ip "\fBThe Rule Section\fR contains your grammar rules:" 8
+A rule is made of a left-hand-side symbol, followed by a \f(CW':'\fR and one
+or more right hand sides separated by \f(CW'|'\fR and terminated by a \f(CW';'\fR:
+.Sp
+.Vb 3
+\&    exp:    exp '+' exp
+\&        |   exp '-' exp
+\&        ;
+.Ve
+A right hand side may be empty:
+.Sp
+.Vb 3
+\&    input:  #empty
+\&        |   input line
+\&        ;
+.Ve
+(if you have more than one empty rhs, Parse::Yapp will issue a warning,
+as this is usually a mistake, and you sure will have a reduce/reduce
+conflict)
+.Sp
+A rhs may be followed by an optionnal \f(CW%prec\fR directive, followed
+by a token, giving the rule and explicit precedence (see yacc manuals
+for its precise meaning) and optionnal semantic action code block (see
+below).
+.Sp
+.Vb 4
+\&    exp:   '-' exp %prec NEG { -$_[1] }
+\&        |  exp '+' exp       { $_[1] + $_[3] }
+\&        |  NUM
+\&        ;
+.Ve
+Note that in Parse::Yapp, a lhs \fIcannot\fR appear more than once as
+a rule name (This differs from yacc).
+.Ip "\f(CWThe footer section\fR" 8
+may contain any valid Perl code and will be appended at the very end
+of your parser module. Here you can write your lexer, error report
+subs and anything relevant to you parser.
+.Ip "\f(CWSemantic actions\fR" 8
+Semantic actions are run every time a \fIreduction\fR occurs in the
+parsing flow and they must return a semantic value.
+.Sp
+They are (usually, but see below \f(CWIn rule actions\fR) written at
+the very end of the rhs, enclosed with \f(CW{ }\fR, and are copied verbatim
+to your parser file, inside of the rules table.
+.Sp
+Be aware that matching braces in Perl is much more difficult than
+in C: inside strings they don't need to match. While in C it is
+very easy to detect the beginning of a string construct, or a
+single character, it is much more difficult in Perl, as there
+are so many ways of writing such literals. So there is no check
+for that today. If you need a brace in a string, quote it (\f(CW\e{\fR or
+\f(CW\e}\fR) that should work. Or (weird) make a comment matching it. Sorry.
+.Sp
+.Vb 7
+\&    {
+\&        "{ My string block }".
+\&        "\e{ My other string block \e}".
+\&        qq/ My unmatched brace \e} /.
+\&        #Force the match: {
+\&        q/  My last brace } /
+\&    }
+.Ve
+All of these constructs should work.
+.Sp
+In Parse::Yapp, semantic actions are called like normal Perl sub calls,
+with their arguments passed in \f(CW@_\fR, and their semantic value are
+their return values.
+.Sp
+$_[1] to \f(CW$_\fR[n] are the parameters just as \f(CW$1\fR to \f(CW$n\fR in yacc, while
+\f(CW$_\fR[0] is the parser object itself.
+.Sp
+Having \f(CW$_\fR[0] beeing the parser object itself allows you to call
+parser methods. Thats how the yacc macros are implemented:
+.Sp
+.Vb 4
+\&        yyerrok is done by calling $_[0]->YYErrok
+\&        YYERROR is done by calling $_[0]->YYError
+\&        YYACCEPT is done by calling $_[0]->YYAccept
+\&        YYABORT is done by calling $_[0]->YYAbort
+.Ve
+All those methods explicitly return \fIundef\fR, for convenience.
+.Sp
+.Vb 1
+\&    YYRECOVERING is done by calling $_[0]->YYRecovering
+.Ve
+Four useful methods in error recovery sub
+.Sp
+.Vb 4
+\&    $_[0]->YYCurtok
+\&    $_[0]->YYCurval
+\&    $_[0]->YYExpect
+\&    $_[0]->YYLexer
+.Ve
+return respectivly the current input token that made the parse fail,
+its semantic value (both can be used to modify their values too, but
+know what you do ! See \fIError reporting routine\fR section for an example),
+a list which contains the tokens the parser expected when the failure
+occured and a reference to the lexer routine.
+.Sp
+Note that if \f(CW$_[0]->YYCurtok\fR is declared as a \f(CW%nonassoc\fR token,
+it can be included in \f(CW$_[0]->YYExpect\fR list whenever the input
+try to use it in an associative way. This is not a bug: the token
+\s-1IS\s0 expected to report an error if encountered.
+.Sp
+To detect such a thing in your error reporting sub, the following
+example should do the trick:
+.Sp
+.Vb 4
+\&        grep { $_[0]->YYCurtok eq $_ } $_[0]->YYExpect
+\&    and do {
+\&        #Non-associative token used in an associative expression
+\&    };
+.Ve
+Accessing semantics values on the left of your reducing rule is done
+through the method
+.Sp
+.Vb 1
+\&    $_[0]->YYSemval( index )
+.Ve
+where index is an integer. Its value beeing \fI1 .. n\fR returns the same values
+than \fI$_[1] .. $_[n]\fR, but \fI\-n .. 0\fR returns values on the left of the rule
+beeing reduced (It is related to \fI$\-n .. $0 .. $n\fR in yacc, but you
+cannot use \fI$_[0]\fR or \fI$_[\-n]\fR constructs in Parse::Yapp for obvious reasons)
+.Sp
+There is also a provision for user data area in the parser object,
+accessed by the method:
+.Sp
+.Vb 1
+\&    $_[0]->YYData
+.Ve
+which returns a reference to an anonymous hash, letting you have
+all of your parsing data held inside the object (see the Calc.yp
+or ParseYapp.yp files in the distribution for some examples).
+That's how you can make you parser module reentrant: all of your
+module states and variables are held inside the parser object.
+.Sp
+Note: unfortunatly, method calls in Perl have a lot of overhead,
+      and when YYData is used, it may be called a huge number
+      of times. If your are not a *real* purist and efficiency
+      is your concern, you may access directly the user-space
+      in the object: \f(CW$parser\fR\->{\s-1USER\s0} wich is a reference to an
+      anonymous hash array, and then benchmark.
+.Sp
+If no action is specified for a rule, the equivalant of a default
+action is run, which returns the first parameter:
+.Sp
+.Vb 1
+\&   { $_[1] }
+.Ve
+.Ip "\f(CWIn rule actions\fR" 8
+It is also possible to embbed semantic actions inside of a rule:
+.Sp
+.Vb 1
+\&    typedef:    TYPE { $type = $_[1] } identlist { ... } ;
+.Ve
+When the Parse::Yapp's parser encounter such an embeded action, it modifies
+the grammar as if you wrote (although \f(CW@x\fR\-1 is not a legal lhs value):
+.Sp
+.Vb 2
+\&    @x-1:   /* empty */ { $type = $_[1] };
+\&    typedef:    TYPE @x-1 identlist { ... } ;
+.Ve
+where \fIx\fR is a sequential number incremented for each \*(L"in rule\*(R" action,
+and \fI\-1\fR represents the \*(L"dot position\*(R" in the rule where the action arises.
+.Sp
+In such actions, you can use \fI$_[1]..$_[n]\fR variables, which are the
+semantic values on the left of your action.
+.Sp
+Be aware that the way Parse::Yapp modifies your grammar because of
+\fIin rule actions\fR can produce, in some cases, spurious conflicts
+that wouldn't happen otherwise.  
+.Ip "\f(CWGenerating the Parser Module\fR" 8
+Now that you grammar file is written, you can use yapp on it
+to generate your parser module:
+.Sp
+.Vb 1
+\&    yapp -v Calc.yp
+.Ve
+will create two files \fICalc.pm\fR, your parser module, and \fICalc.output\fR
+a verbose output of your parser rules, conflicts, warnings, states
+and summary.
+.Sp
+What your are missing now is a lexer routine.
+.Ip "\f(CWThe Lexer sub\fR" 8
+is called each time the parser need to read the next token.
+.Sp
+It is called with only one argument that is the parser object itself,
+so you can access its methods, specially the
+.Sp
+.Vb 1
+\&    $_[0]->YYData
+.Ve
+data area.
+.Sp
+It is its duty to return the next token and value to the parser.
+They \f(CWmust\fR be returned as a list of two variables, the first one
+beeing the token known by the parser (symbolic or literal), and the
+second one beeing anything you want (usualy the text of the next
+token, or the literal value) from a simple scalar value to any
+complex reference, as the parsing driver never use it but to call
+semantic actions:
+.Sp
+.Vb 5
+\&    ( 'NUMBER', $num )
+\&or
+\&    ( '>=', '>=' )
+\&or
+\&    ( 'ARRAY', [ @values ] )
+.Ve
+When the lexer reach the end of input, it must return the \f(CW''\fR
+empty token with an undef value:
+.Sp
+.Vb 1
+\&     ( '', undef )
+.Ve
+Note that your lexer should \fInever\fR return \f(CW'error'\fR as token
+value: for the driver, this is the error token used for error
+recovery and would lead to odd reactions.
+.Sp
+You now have your lexer written, maybe you will need to output
+meaningful error messages, instead of the default which is to
+print \*(L'Parse error.\*(R' on \s-1STDERR\s0.
+.Sp
+So you will need an Error reporting sub.
+.Sp
+item \f(CWError reporting routine\fR
+.Sp
+If you want one, write it knowing that it is passed as parameter
+the parser object. So you can share information whith the lexer
+routine quite easily.
+.Sp
+You can also use the \f(CW$_[0]-\fRYYErrok> method in it, which will
+resume parsing as if no error occured. Of course, as the invalid
+token is still invalid, you're supposed to fix the problem by
+yourself.
+.Sp
+The method \f(CW$_[0]-\fRYYLexer> may help you, as it returns a reference
+to the lexer routine, and can be called as
+.Sp
+.Vb 1
+\&    ($tok,$val)=&{$_[0]->Lexer}
+.Ve
+to get the next token and semantic value from the input stream. To
+make them current for the parser, use:
+.Sp
+.Vb 1
+\&    ($_[0]->YYCurtok, $_[0]->YYCurval) = ($tok, $val)
+.Ve
+and know what you're doing...
+.Ip "\f(CWParsing\fR" 8
+Now you've got everything to do the parsing.
+.Sp
+First, use the parser module:
+.Sp
+.Vb 1
+\&    use Calc;
+.Ve
+Then create the parser object:
+.Sp
+.Vb 1
+\&    $parser=new Calc;
+.Ve
+Now, call the YYParse method, telling it where to find the lexer
+and error report subs:
+.Sp
+.Vb 2
+\&    $result=$parser->YYParse(yylex => \e&Lexer,
+\&                           yyerror => \e&ErrorReport);
+.Ve
+(assuming Lexer and ErrorReport subs have been written in your current
+package)
+.Sp
+The order in which parameters appear is unimportant.
+.Sp
+Et voila.
+.Sp
+The YYParse method will do the parse, then return the last semantic
+value returned, or undef if error recovery cannot recover.
+.Sp
+If you need to be sure the parse has been successful (in case your
+last returned semantic value \fIis\fR undef) make a call to:
+.Sp
+.Vb 1
+\&    $parser->YYNberr()
+.Ve
+which returns the total number of time the error reporting sub has been called.
+.Ip "\f(CWError Recovery\fR" 8
+in Parse::Yapp is implemented the same way it is in yacc.
+.Ip "\f(CWDebugging Parser\fR" 8
+To debug your parser, you can call the YYParse method with a debug parameter:
+.Sp
+.Vb 1
+\&    $parser->YYParse( ... , yydebug => value, ... )
+.Ve
+where value is a bitfield, each bit representing a specific debug output:
+.Sp
+.Vb 6
+\&    Bit Value    Outputs
+\&    0x01         Token reading (useful for Lexer debugging)
+\&    0x02         States information
+\&    0x04         Driver actions (shifts, reduces, accept...)
+\&    0x08         Parse Stack dump
+\&    0x10         Error Recovery tracing
+.Ve
+To have a full debugging ouput, use
+.Sp
+.Vb 1
+\&    debug => 0x1F
+.Ve
+Debugging output is sent to \s-1STDERR\s0, and be aware that it can produce
+\f(CWhuge\fR outputs.
+.Ip "\f(CWStandalone Parsers\fR" 8
+By default, the parser modules generated will need the Parse::Yapp
+module installed on the system to run. They use the Parse::Yapp::Driver
+which can be safely shared between parsers in the same script.
+.Sp
+In the case you'd prefer to have a standalone module generated, use
+the \f(CW-s\fR switch with yapp: this will automagically copy the driver
+code into your module so you can use/distribute it without the need
+of the Parse::Yapp module, making it really a \f(CWStandalone Parser\fR.
+.Sp
+If you do so, please remember to include Parse::Yapp's copyright notice
+in your main module copyright, so others can know about Parse::Yapp module.
+.Ip "\f(CWSource file line numbers\fR" 8
+by default will be included in the generated parser module, which will help
+to find the guilty line in your source file in case of a syntax error.
+You can disable this feature by compiling your grammar with yapp using
+the \f(CW-n\fR switch.
+.SH "BUGS AND SUGGESTIONS"
+If you find any bug, think of anything that could improve Parse::Yapp
+or have any questions related to it, feel free to contact the author.
+.SH "AUTHOR"
+Francois Desarmenien  francois@fdesar.net
+.SH "SEE ALSO"
+\fIyapp\fR\|(1) \fIperl\fR\|(1) \fIyacc\fR\|(1) \fIbison\fR\|(1).
+.SH "COPYRIGHT"
+The Parse::Yapp module and its related modules and shell scripts are copyright
+(c) 1998-1999 Francois Desarmenien, France. All rights reserved.
+.Sp
+You may use and distribute them under the terms of either
+the GNU General Public License or the Artistic License,
+as specified in the Perl README file.
+.Sp
+If you use the \*(L"standalone parser\*(R" option so people don't need to install
+Parse::Yapp on their systems in order to run you software, this copyright
+noticed should be included in your software copyright too, and the copyright
+notice in the embedded driver should be left untouched.
+
+.rn }` ''
+.IX Title "lib::Parse::Yapp 3"
+.IX Name "Parse::Yapp - Perl extension for generating and using LALR parsers."
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Subsection "The Grammar file"
+
+.IX Item "\f(CWComments\fR"
+
+.IX Item "\f(CWTokens and string literals\fR"
+
+.IX Item "\f(CWGrammar file syntax\fR"
+
+.IX Item "\fBThe Header Section\fR section may contain:"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\(bu"
+
+.IX Item "\fBThe Rule Section\fR contains your grammar rules:"
+
+.IX Item "\f(CWThe footer section\fR"
+
+.IX Item "\f(CWSemantic actions\fR"
+
+.IX Item "\f(CWIn rule actions\fR"
+
+.IX Item "\f(CWGenerating the Parser Module\fR"
+
+.IX Item "\f(CWThe Lexer sub\fR"
+
+.IX Item "\f(CWParsing\fR"
+
+.IX Item "\f(CWError Recovery\fR"
+
+.IX Item "\f(CWDebugging Parser\fR"
+
+.IX Item "\f(CWStandalone Parsers\fR"
+
+.IX Item "\f(CWSource file line numbers\fR"
+
+.IX Header "BUGS AND SUGGESTIONS"
+
+.IX Header "AUTHOR"
+
+.IX Header "SEE ALSO"
+
+.IX Header "COPYRIGHT"
+

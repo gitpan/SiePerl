@@ -1,0 +1,453 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH lib::LWP::UserAgent 3 "libwww-perl-5.48" "9/Apr/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+LWP::UserAgent \- A WWW UserAgent class
+.SH "SYNOPSIS"
+.PP
+.Vb 2
+\& require LWP::UserAgent;
+\& $ua = LWP::UserAgent->new;
+.Ve
+.Vb 1
+\& $request = HTTP::Request->new('GET', 'file://localhost/etc/motd');
+.Ve
+.Vb 3
+\& $response = $ua->request($request); # or
+\& $response = $ua->request($request, '/tmp/sss'); # or
+\& $response = $ua->request($request, \e&callback, 4096);
+.Ve
+.Vb 1
+\& sub callback { my($data, $response, $protocol) = @_; .... }
+.Ve
+.SH "DESCRIPTION"
+The \f(CWLWP::UserAgent\fR is a class implementing a simple World-Wide Web
+user agent in Perl. It brings together the HTTP::Request,
+HTTP::Response and the LWP::Protocol classes that form the rest of the
+core of libwww-perl library. For simple uses this class can be used
+directly to dispatch WWW requests, alternatively it can be subclassed
+for application-specific behaviour.
+.PP
+In normal use the application creates a UserAgent object, and then
+configures it with values for timeouts, proxies, name, etc. It next
+creates an instance of \f(CWHTTP::Request\fR for the request that
+needs to be performed. This request is then passed to the UserAgent
+\fIrequest()\fR method, which dispatches it using the relevant protocol,
+and returns a \f(CWHTTP::Response\fR object.
+.PP
+The basic approach of the library is to use HTTP style communication
+for all protocol schemes, i.e. you also receive an \f(CWHTTP::Response\fR
+object for gopher or ftp requests.  In order to achieve even more
+similarity to HTTP style communications, gopher menus and file
+directories are converted to HTML documents.
+.PP
+The \fIrequest()\fR method can process the content of the response in one of
+three ways: in core, into a file, or into repeated calls to a
+subroutine.  You choose which one by the kind of value passed as the
+second argument to \fIrequest()\fR.
+.PP
+The in core variant simply stores the content in a scalar \*(L'content\*(R' attribute
+of the response object and is suitable for small
+HTML replies that might need further parsing.  This variant is used if
+the second argument is missing (or is undef).
+.PP
+The filename variant requires a scalar containing a filename as the
+second argument to \fIrequest()\fR and is suitable for large WWW objects
+which need to be written directly to the file without requiring large
+amounts of memory. In this case the response object returned from
+\fIrequest()\fR will have an empty content attribute.  If the request fails, then the
+content might not be empty, and the file will be untouched.
+.PP
+The subroutine variant requires a reference to callback routine as the
+second argument to \fIrequest()\fR and it can also take an optional chuck
+size as the third argument.  This variant can be used to construct
+\*(L"pipe-lined\*(R" processing, where processing of received chuncks can
+begin before the complete data has arrived.  The callback function is
+called with 3 arguments: the data received this time, a reference to
+the response object and a reference to the protocol object.  The
+response object returned from \fIrequest()\fR will have empty content.  If
+the request fails, then the the callback routine is
+called, and the response->content might not be empty.
+.PP
+The request can be aborted by calling \fIdie()\fR in the callback
+routine.  The die message will be available as the \*(L"X\-Died\*(R" special
+response header field.
+.PP
+The library also allows you to use a subroutine reference as
+content in the request object.  This subroutine should return the
+content (possibly in pieces) when called.  It should return an empty
+string when there is no more content.
+.SH "METHODS"
+The following methods are available:
+.Ip "$ua = \s-1LWP::\s0UserAgent->new;" 4
+Constructor for the UserAgent.  Returns a reference to a
+\s-1LWP::\s0UserAgent object.
+.Ip "$ua->simple_request($request, [$arg [, $size]])" 4
+This method dispatches a single \s-1WWW\s0 request on behalf of a user, and
+returns the response received.  The \f(CW$request\fR should be a reference
+to a \f(CWHTTP::Request\fR object with values defined for at least the
+\fImethod()\fR and \fIuri()\fR attributes.
+.Sp
+If \f(CW$arg\fR is a scalar it is taken as a filename where the content of
+the response is stored.
+.Sp
+If \f(CW$arg\fR is a reference to a subroutine, then this routine is called
+as chunks of the content is received.  An optional \f(CW$size\fR argument
+is taken as a hint for an appropriate chunk size.
+.Sp
+If \f(CW$arg\fR is omitted, then the content is stored in the response
+object itself.
+.Ip "$ua->request($request, $arg [, $size])" 4
+Process a request, including redirects and security.  This method may
+actually send several different simple requests.
+.Sp
+The arguments are the same as for \f(CWsimple_request()\fR.
+.Ip "$ua->redirect_ok" 4
+This method is called by \fIrequest()\fR before it tries to do any
+redirects.  It should return a true value if a redirect is allowed
+to be performed. Subclasses might want to override this.
+.Sp
+The default implementation will return \s-1FALSE\s0 for \s-1POST\s0 request and \s-1TRUE\s0
+for all others.
+.Ip "$ua->credentials($netloc, $realm, $uname, $pass)" 4
+Set the user name and password to be used for a realm.  It is often more
+useful to specialize the \fIget_basic_credentials()\fR method instead.
+.Ip "$ua->get_basic_credentials($realm, $uri, [$proxy])" 4
+This is called by \fIrequest()\fR to retrieve credentials for a Realm
+protected by Basic Authentication or Digest Authentication.
+.Sp
+Should return username and password in a list.  Return undef to abort
+the authentication resolution atempts.
+.Sp
+This implementation simply checks a set of pre-stored member
+variables. Subclasses can override this method to e.g. ask the user
+for a username/password.  An example of this can be found in
+\f(CWlwp-request\fR program distributed with this library.
+.Ip "$ua->agent([$product_id])" 4
+Get/set the product token that is used to identify the user agent on
+the network.  The agent value is sent as the \*(L"User-Agent\*(R" header in
+the requests. The default agent name is \*(L"libwww-perl/#.##\*(R", where
+\*(L"#.##\*(R" is substitued with the version numer of this library.
+.Sp
+The user agent string should be one or more simple product identifiers
+with an optional version number separated by the \*(L"/\*(R" character.
+Examples are:
+.Sp
+.Vb 2
+\&  $ua->agent('Checkbot/0.4 ' . $ua->agent);
+\&  $ua->agent('Mozilla/5.0');
+.Ve
+.Ip "$ua->from([$email_address])" 4
+Get/set the Internet e-mail address for the human user who controls
+the requesting user agent.  The address should be machine-usable, as
+defined in \s-1RFC\s0 822.  The from value is send as the \*(L"From\*(R" header in
+the requests.  There is no default.  Example:
+.Sp
+.Vb 1
+\&  $ua->from('gaas@cpan.org');
+.Ve
+.Ip "$ua->timeout([$secs])" 4
+Get/set the timeout value in seconds. The default \fItimeout()\fR value is
+180 seconds, i.e. 3 minutes.
+.Ip "$ua->cookie_jar([$cookies])" 4
+Get/set the \fI\s-1HTTP::\s0Cookies\fR object to use.  The default is to have no
+cookie_jar, i.e. never automatically add \*(L"Cookie\*(R" headers to the
+requests.
+.Ip "$ua->parse_head([$boolean])" 4
+Get/set a value indicating wether we should initialize response
+headers from the <head> section of \s-1HTML\s0 documents. The default is
+\s-1TRUE\s0.  Do not turn this off, unless you know what you are doing.
+.Ip "$ua->max_size([$bytes])" 4
+Get/set the size limit for response content.  The default is undef,
+which means that there is no limit.  If the returned response content
+is only partial, because the size limit was exceeded, then a
+\*(L"X\-Content-Range\*(R" header will be added to the response.
+.Ip "$ua->clone;" 4
+Returns a copy of the \s-1LWP::\s0UserAgent object
+.Ip "$ua->is_protocol_supported($scheme)" 4
+You can use this method to query if the library currently support the
+specified \f(CWscheme\fR.  The \f(CWscheme\fR might be a string (like \*(L'http\*(R' or
+\&'ftp') or it might be an \s-1URI\s0 object reference.
+.Ip "$ua->mirror($url, $file)" 4
+Get and store a document identified by a \s-1URL\s0, using If-Modified-Since,
+and checking of the Content-Length.  Returns a reference to the
+response object.
+.Ip "$ua->proxy(...)" 4
+Set/retrieve proxy \s-1URL\s0 for a scheme:
+.Sp
+.Vb 2
+\& $ua->proxy(['http', 'ftp'], 'http://proxy.sn.no:8001/');
+\& $ua->proxy('gopher', 'http://proxy.sn.no:8001/');
+.Ve
+The first form specifies that the \s-1URL\s0 is to be used for proxying of
+access methods listed in the list in the first method argument,
+i.e. \*(L'http\*(R' and \*(L'ftp\*(R'.
+.Sp
+The second form shows a shorthand form for specifying
+proxy \s-1URL\s0 for a single access scheme.
+.Ip "$ua->env_proxy()" 4
+Load proxy settings from *_proxy environment variables.  You might
+specify proxies like this (sh-syntax):
+.Sp
+.Vb 4
+\&  gopher_proxy=http://proxy.my.place/
+\&  wais_proxy=http://proxy.my.place/
+\&  no_proxy="localhost,my.domain"
+\&  export gopher_proxy wais_proxy no_proxy
+.Ve
+Csh or tcsh users should use the \f(CWsetenv\fR command to define these
+environment variables.
+.Ip "$ua->no_proxy($domain,...)" 4
+Do not proxy requests to the given domains.  Calling no_proxy without
+any domains clears the list of domains. Eg:
+.Sp
+.Vb 1
+\& $ua->no_proxy('localhost', 'no', ...);
+.Ve
+.SH "SEE ALSO"
+See the \fILWP\fR manpage for a complete overview of libwww-perl5.  See \fIlwp-request\fR and
+\fIlwp-mirror\fR for examples of usage.
+.SH "COPYRIGHT"
+Copyright 1995-2000 Gisle Aas.
+.PP
+This library is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+.rn }` ''
+.IX Title "lib::LWP::UserAgent 3"
+.IX Name "LWP::UserAgent - A WWW UserAgent class"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "METHODS"
+
+.IX Item "$ua = \s-1LWP::\s0UserAgent->new;"
+
+.IX Item "$ua->simple_request($request, [$arg [, $size]])"
+
+.IX Item "$ua->request($request, $arg [, $size])"
+
+.IX Item "$ua->redirect_ok"
+
+.IX Item "$ua->credentials($netloc, $realm, $uname, $pass)"
+
+.IX Item "$ua->get_basic_credentials($realm, $uri, [$proxy])"
+
+.IX Item "$ua->agent([$product_id])"
+
+.IX Item "$ua->from([$email_address])"
+
+.IX Item "$ua->timeout([$secs])"
+
+.IX Item "$ua->cookie_jar([$cookies])"
+
+.IX Item "$ua->parse_head([$boolean])"
+
+.IX Item "$ua->max_size([$bytes])"
+
+.IX Item "$ua->clone;"
+
+.IX Item "$ua->is_protocol_supported($scheme)"
+
+.IX Item "$ua->mirror($url, $file)"
+
+.IX Item "$ua->proxy(...)"
+
+.IX Item "$ua->env_proxy()"
+
+.IX Item "$ua->no_proxy($domain,...)"
+
+.IX Header "SEE ALSO"
+
+.IX Header "COPYRIGHT"
+

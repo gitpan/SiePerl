@@ -1,0 +1,1185 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH lib::HTML::Element 3 "perl 5.005, patch 03" "27/Mar/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+HTML::Element \- Class for objects that represent HTML elements
+.SH "SYNOPSIS"
+.PP
+.Vb 3
+\&  use HTML::Element;
+\&  $a = HTML::Element->new('a', href => 'http://www.perl.com/');
+\&  $a->push_content("The Perl Homepage");
+.Ve
+.Vb 4
+\&  $tag = $a->tag;
+\&  print "$tag starts out as:",  $a->starttag, "\en";
+\&  print "$tag ends as:",  $a->endtag, "\en";
+\&  print "$tag\e's href attribute is: ", $a->attr('href'), "\en";
+.Ve
+.Vb 5
+\&  $links_r = $a->extract_links();
+\&  print "Hey, I found ", scalar(@$links_r), " links.\en";
+\&  
+\&  print "And that, as HTML, is: ", $a->as_HTML, "\en";
+\&  $a = $a->delete;
+.Ve
+.SH "DESCRIPTION"
+Objects of the HTML::Element class can be used to represent elements
+of HTML.  These objects have attributes, notably attributes that
+designates the elements's parent and content.  The content is an array
+of text segments and other HTML::Element objects.  A tree with HTML::Element
+objects as nodes can represent the syntax tree for a HTML document.
+.SH "HOW WE REPRESENT TREES"
+It may occur to you to wonder what exactly a \*(L"tree\*(R" is, and how
+it's represented in memory.  Consider this HTML document:
+.PP
+.Vb 9
+\&  <html lang='en-US'>
+\&    <head>
+\&      <title>Stuff</title>
+\&      <meta name='author' content='Jojo'>
+\&    </head>
+\&    <body>
+\&     <h1>I like potatoes!</h1>
+\&    </body>
+\&  </html>
+.Ve
+Building a syntax tree out of it makes a tree-structure in memory
+that could be diagrammed as:
+.PP
+.Vb 11
+\&                     html (lang='en-US')
+\&                      / \e
+\&                    /     \e
+\&                  /         \e
+\&                head        body
+\&               /\e               \e
+\&             /    \e               \e
+\&           /        \e               \e
+\&         title     meta              h1
+\&          |       (name='author',     |
+\&       "Stuff"    content='Jojo')    "I like potatoes"
+.Ve
+This is the traditional way to diagram a tree, with the \*(L"root\*(R" at the
+top, and it's this kind of diagram that people have in mind when they
+say, for example, that \*(L"the meta element is under the head element
+instead of under the body element\*(R".  (The same is also said with
+\*(L"inside\*(R" instead of \*(L"under\*(R" -- the use of \*(L"inside\*(R" makes more sense
+when you're looking at the HTML source.)
+.PP
+Another way to represent the above tree is with indenting:
+.PP
+.Vb 8
+\&  html (attributes: lang='en-US')
+\&    head
+\&      title
+\&        "Stuff"
+\&      meta (attributes: name='author' content='Jojo')
+\&    body
+\&      h1
+\&        "I like potatoes"
+.Ve
+Incidentally, diagramming with indenting works much better for very
+large trees, and is easier for a program to generate.  The \f(CW$tree\fR\->dump
+method uses indentation just that way.
+.PP
+However you diagram the tree, it's stored the same in memory -- it's a
+network of objects, each of which has attributes like so:
+.PP
+.Vb 4
+\&  element #1:  _tag: 'html'
+\&               _parent: none
+\&               _content: [element #2, element #5]
+\&               lang: 'en-US'
+.Ve
+.Vb 3
+\&  element #2:  _tag: 'head'
+\&               _parent: element #1
+\&               _content: [element #3, element #4]
+.Ve
+.Vb 3
+\&  element #3:  _tag: 'title'
+\&               _parent: element #2
+\&               _content: [text segment "Stuff"]
+.Ve
+.Vb 5
+\&  element #4   _tag: 'meta'
+\&               _parent: element #2
+\&               _content: none
+\&               name: author
+\&               content: Jojo
+.Ve
+.Vb 3
+\&  element #5   _tag: 'body'
+\&               _parent: element #1
+\&               _content: [element #6]
+.Ve
+.Vb 3
+\&  element #6   _tag: 'h1'
+\&               _parent: element #5
+\&               _content: [text segment "I like potatoes"]
+.Ve
+The \*(L"treeness\*(R" of the tree-structure that these elements comprise is
+not an aspect of any particular object, but is emergent from the
+relatedness attributes (_parent and _content) of these element-objects
+and from how you use them to get from element to element.
+.PP
+While you could access the content of a tree by writing code that says
+\*(L"access the \*(L'src\*(R' attribute of the root's first child's seventh
+child's third child\*(R", you're more likely to have to scan the contents
+of a tree, looking for whatever nodes, or kinds of nodes, you want to
+do something with.  The most straightforward way to look over a tree
+is to \*(L"traverse\*(R" it; an HTML::Element method ($h->traverse) is
+provided for this purpose; and several other HTML::Element methods are
+based on it.
+.PP
+(For everything you ever wanted to know about trees, and then some,
+see Donald Knuth's \fIThe Art of Computer Programming, Volume 1\fR.)
+.SH "BASIC METHODS"
+.Ip "$h = \s-1HTML::\s0Element->new('tag\*(T', \*(N'attrname\*(T' => \*(N'value\*(T', ... )" 4
+This constructor method returns a new \s-1HTML::\s0Element object.  The tag
+name is a required argument; it will be forced to lowercase.
+Optionally, you can specify other initial attributes at object
+creation time.
+.Ip "$h->attr('attr') or $h->attr('attr\*(T', \*(N'value')" 4
+Returns (optionally sets) the value of the given attribute of \f(CW$h\fR.  The
+attribute name (but not the value, if provided) is forced to
+lowercase.  If setting a new value, the old value of that attribute is
+returned.  If methods are provided for accessing an attribute (like
+\f(CW$h\fR\->tag, \f(CW$h\fR\->content_list, etc. below), use those instead of calling
+attr \f(CW$h\fR\->attr, whether for reading or setting.
+.Sp
+Note that setting an attribute to undef (as opposed to "", the empty
+string) actually deletes the attribute.
+.Ip "$h->tag() or $h->tag('tagname')" 4
+Returns (optionally sets) the tag name (also known as the generic
+identifier) for the element \f(CW$h\fR.  In setting, the tag name is always
+converted to lower case.
+.Ip "$h->parent() or $h->parent($new_parent)" 4
+Returns (optionally sets) the parent for this element.
+The parent should either be undef, or should be another element.
+.Sp
+You \fBshould not\fR use this to directly set the parent of an element.
+Instead use any of the other methods under \*(L"Structure-Modifying
+Methods\*(R", below.
+.Sp
+Note that \fInot\fR\|($h->parent) is a simple test for whether \f(CW$h\fR is the
+root of its subtree.
+.Ip "$h->content_list()" 4
+Returns a list representing the content of this element -- i.e., what
+nodes (elements or text segments) are inside/under this element. (Note
+that this may be an empty list.)
+.Sp
+In a scalar context, this returns the count of the items,
+as you may expect.
+.Ip "$h->content()" 4
+This somewhat deprecated method returns the content of this element;
+but unlike content_list, this returns either undef (which you should
+understand to mean no content), or a \fIreference to the array\fR of
+content items, each of which is either a text segment (a string, i.e.,
+a defined non-reference scalar value), or an \s-1HTML::\s0Element object.
+Note that even if an arrayref is returned, it may be a reference to an
+empty array.
+.Sp
+While older code should feel free to continue to use \f(CW$h\fR\->content,
+new code should use \f(CW$h\fR\->content_list in almost all conceivable
+cases.  It is my experience that in most cases this leads to simpler
+code anyway, since it means one can say:
+.Sp
+.Vb 1
+\&  @children = $h->content_list;
+.Ve
+instead of the inelegant:
+.Sp
+.Vb 1
+\&  @children = @{$h->content || []};
+.Ve
+If you do use \f(CW$h\fR\->content, you should not use the reference returned
+by it (assuming it returned a reference, and not undef) to directly
+set or change the content of an element!  Instead use any of the other
+methods under \*(L"Structure-Modifying Methods\*(R", below.
+.Ip "$h->implicit() or $h->implicit($bool)" 4
+Returns (optionally sets) the \*(L"_implicit\*(R" attribute.  This attribute is
+a flag that's used to indicate that the element was not originally
+present in the source, but was added to the parse tree (by
+\s-1HTML::\s0TreeBuilder, for example) in order to conform to the rules of
+\s-1HTML\s0 structure.
+.Ip "$h->pos() or $h->pos($element)" 4
+Returns (and optionally sets) the \*(L"_pos\*(R" (for \*(L"current position")
+pointer of \f(CW$h\fR.
+This attribute is a pointer used during some parsing operations,
+whose value is whatever \s-1HTML::\s0Element element at or under \f(CW$h\fR is
+currently \*(L"open\*(R", where \f(CW$h\fR\->\fIinsert_element\fR\|(\s-1NEW\s0) will actually insert a
+new element.
+.Sp
+(This has nothing to do with the Perl function called \*(L"pos\*(R", for
+controlling where regular expression matching starts.)
+.Sp
+If you set \f(CW$h\fR\->\fIpos\fR\|($element), be sure that \f(CW$element\fR is either \f(CW$h\fR, or
+an element under \f(CW$h\fR.
+.Sp
+If you've been modifying the tree under \f(CW$h\fR and are
+no longer sure \f(CW$h\fR\->pos is valid, you can enforce validity with:
+.Sp
+.Vb 1
+\&    $h->pos(undef) unless $h->pos->is_inside($h);
+.Ve
+.Ip "$h->all_attr()" 4
+Returns all this element's attributes and values, as key-value pairs.
+This will include some \*(L"internal\*(R" attributes (i.e., ones not present
+in the original element, and which will not be represented if/when you
+call \f(CW$h\fR\->as_HTML).  Internal attributes are distinguished by the fact
+that the first character of their key (not value, key!) is an
+underscore ("_").
+.Ip "$h->all_external_attr()" 4
+Like all_attr, except that internal attributes are not present.
+.SH "STRUCTURE\-MODIFYING METHODS"
+These methods are provided for modifying the content of trees
+by adding or changing nodes as parents or children of other nodes.
+.Ip "$h->push_content($element_or_text, ...)" 4
+Adds the specified items to the \fIend\fR of the content list of the
+element \f(CW$h\fR.  The items of content to be added should each be either a
+text segment (a string) or an \s-1HTML::\s0Element object.
+.Sp
+The push_content method will try to consolidate adjacent text segments
+while adding to the content list.  That's to say, if \f(CW$h\fR's content_list is
+.Sp
+.Vb 1
+\&  ('foo bar ', $some_node, 'baz!')
+.Ve
+and you call
+.Sp
+.Vb 1
+\&   $h->push_content('quack?');
+.Ve
+then the resulting content list will be this:
+.Sp
+.Vb 1
+\&  ('foo bar ', $some_node, 'baz!quack?')
+.Ve
+and not this:
+.Sp
+.Vb 1
+\&  ('foo bar ', $some_node, 'baz!', 'quack?')
+.Ve
+If that latter is what you want, you'll have to override the
+feature of consolidating text by using splice_content,
+as in:
+.Sp
+.Vb 1
+\&  $h->splice_content(scalar($h->content_list),0,'quack?');
+.Ve
+Similarly, if you wanted to add \*(L'Skronk\*(R' to the beginning of
+the content list, calling this:
+.Sp
+.Vb 1
+\&   $h->push_content('Skronk');
+.Ve
+then the resulting content list will be this:
+.Sp
+.Vb 1
+\&  ('Skronkfoo bar ', $some_node, 'baz!')
+.Ve
+and not this:
+.Sp
+.Vb 1
+\&  ('Skronk', 'foo bar ', $some_node, 'baz!')
+.Ve
+What you'd to do get the latter is:
+.Sp
+.Vb 1
+\&  $h->splice_content(0,0,'Skronk');
+.Ve
+.Ip "$h->unshift_content($element_or_text, ...)" 4
+Adds the specified items to the \fIbeginning\fR of the content list of
+the element \f(CW$h\fR.  The items of content to be added should each be
+either a text segment (a string) or an \s-1HTML::\s0Element object.
+.Sp
+The unshift_content method will try to consolidate adjacent text segments
+while adding to the content list.  See above for a discussion of this.
+.Ip "$h->splice_content($offset, $length, $element_or_text, ...)" 4
+Detaches the elements from \f(CW$h\fR's list of content-nodes, starting at
+\f(CW$offset\fR and continuing for \f(CW$length\fR items, replacing them with the
+elements of the following list, if any.  Returns the elements (if any)
+removed from the content-list.  If \f(CW$offset\fR is negative, then it starts
+that far from the end of the array, just like Perl's normal \f(CWsplice\fR
+function.  If \f(CW$length\fR and the following list is omitted, removes
+everything from \f(CW$offset\fR onward.
+.Sp
+The items of content to be added (if any) should each be either a text
+segment (a string), or an \s-1HTML::\s0Element object that's not already
+a child of \f(CW$h\fR.
+.Ip "$h->detach()" 4
+This unlinks \f(CW$h\fR from its parent, by setting its \*(L'parent\*(R' attribute to
+undef, and by removing it from the content list of its parent (if it
+had one).  The return value is the parent that was detached from (or
+undef, if \f(CW$h\fR had no parent to start with).  Note that neither \f(CW$h\fR nor
+its parent are explicitly destroyed.
+.Ip "$h->detach_content()" 4
+This unlinks \f(CW$h\fR all of \f(CW$h\fR's children from \f(CW$h\fR, and returns them.
+Note that these are not explicitly destroyed; for that, you
+can just use \f(CW$h\fR\->delete_content.
+.Ip "$h->replace_with( $element_or_text, ... ) " 4
+This replaces \f(CW$h\fR in its parent's content list with the nodes specified.
+The element \f(CW$h\fR (which by then may have no parent) is
+returned.  This causes a fatal error if \f(CW$h\fR has no parent.  
+The list of nodes to insert may contain \f(CW$h\fR, but at most once.
+Aside from that possible exception, the nodes to insert should not
+already be children of \f(CW$h\fR's parent.
+.Sp
+Also, note that this method does not destroy \f(CW$h\fR -- use
+\f(CW$h\fR\->\fIreplace_with\fR\|(...)\->delete if you need that.
+.Ip "$h->preinsert($element_or_text...)" 4
+Inserts the given nodes right \s-1BEFORE\s0 \f(CW$h\fR in \f(CW$h\fR's parent's content list.
+This causes a fatal error if \f(CW$h\fR has no parent.  None of the
+given nodes should be \f(CW$h\fR or other children of \f(CW$h\fR.  Returns \f(CW$h\fR.
+.Ip "$h->postinsert($element_or_text...)" 4
+Inserts the given nodes right \s-1AFTER\s0 \f(CW$h\fR in \f(CW$h\fR's parent's content list.
+This causes a fatal error if \f(CW$h\fR has no parent.  None of the
+given nodes should be \f(CW$h\fR or other children of \f(CW$h\fR.  Returns \f(CW$h\fR.
+.Ip "$h->replace_with_content()" 4
+This replaces \f(CW$h\fR in its parent's content list with its own content.
+The element \f(CW$h\fR (which by then has no parent or content of its own) is
+returned.  This causes a fatal error if \f(CW$h\fR has no parent.  Also, note
+that this does not destroy \f(CW$h\fR -- use \f(CW$h\fR\->replace_with_content->delete
+if you need that.
+.Ip "$h->delete_content()" 4
+Clears the content of \f(CW$h\fR, calling \f(CW$i\fR\->delete for each content element.
+Compare with \f(CW$h\fR\->detach_content.
+.Sp
+Returns \f(CW$h\fR.
+.Ip "$h->delete()" 4
+Detaches this element from its parent (if it has one) and explicitly
+destroys the element and all its descendants.  The return value is
+undef.
+.Sp
+Perl uses garbage collection based on reference counting; when no
+references to a data structure exist, it's implicitly destroyed --
+i.e., when no value anywhere points to a given object anymore, Perl
+knows it can free up the memory that the now-unused object occupies.
+.Sp
+But this fails with \s-1HTML::\s0Element trees, because a parent element
+always holds references to its children, and its children elements
+hold references to the parent, so no element ever looks like it's
+\fInot\fR in use.  So, to destroy those elements, you need to call
+\f(CW$h\fR\->delete on the parent.
+.Ip "$h->clone()" 4
+Returns a copy of the element (whose children are clones (recursively)
+of the original's children, if any).
+.Sp
+The returned element is parentless.  Any \*(L'_pos\*(R' attributes present in the
+source element/tree will be absent in the copy.  For that and other reasons,
+the clone of an \s-1HTML::\s0TreeBuilder object that's in mid-parse (i.e, the head
+of a tree that \s-1HTML::\s0TreeBuilder is elaborating) cannot (currently) be used
+to continue the parse.
+.Sp
+You are free to clone \s-1HTML::\s0TreeBuilder trees, just as long as:
+1) they're done being parsed, or 2) you don't expect to resume parsing
+into the clone.  (You can continue parsing into the original; it is
+never affected.)
+.Ip "\s-1HTML::\s0Element->clone_list(...nodes...)" 4
+.Ip "or: ref($h)\->clone_list(...nodes...)" 4
+Returns a list consisting of a copy of each node given.
+Text segments are simply copied; elements are cloned by
+calling \f(CW$it\fR\->clone on each of them.
+.Ip "$h->normalize_content" 4
+Normalizes the content of \f(CW$h\fR -- i.e., concatenates any adjacent text nodes.
+(Any undefined text segments are turned into empty-strings.)
+Note that this does not recurse into \f(CW$h\fR's descendants.
+.Ip "$h->insert_element($element, $implicit)" 4
+Inserts (via push_content) a new element under the element at
+\f(CW$h\fR\->\fIpos()\fR.  Then updates \f(CW$h\fR\->\fIpos()\fR to point to the inserted element,
+unless \f(CW$element\fR is a prototypically empty element like \*(L"br\*(R", \*(L"hr\*(R",
+\*(L"img\*(R", etc.  The new \f(CW$h\fR\->\fIpos()\fR is returned.  This method is useful
+only if your particular tree task involves setting \f(CW$h\fR\->pos.
+.SH "DUMPING METHODS"
+.Ip "$h->dump()" 4
+Prints the element and all its children to \s-1STDOUT\s0, in a format useful
+only for debugging.  The structure of the document is shown by
+indentation (no end tags).
+.Ip "$h->as_HTML() or $h->as_HTML($entities)" 4
+.Ip "or $h->as_HTML($entities, $indent_char)" 4
+Returns a string representing in \s-1HTML\s0 the element and its
+children.  The optional argument \f(CW$entities\fR specifies a string of
+the entities to encode.  For compatibility with previous versions,
+specify \f(CW'<>&'\fR here.  If omitted or undef, \fIall\fR unsafe
+characters are encoded as \s-1HTML\s0 entities.  See the \fI\s-1HTML::\s0Entities\fR manpage for
+details.
+.Sp
+If \f(CW$indent_char\fR is specified and defined, the \s-1HTML\s0 to be output is
+intented, using the string you specify (which you probably should
+set to \*(L"\et\*(R", or some number of spaces, if you specify it).  This
+feature is currently somewhat experimental.  But try it, and feel
+free to email me any bug reports.  (Note that output, although
+indented, is not wrapped.  Patches welcome.)
+.Ip "$h->as_text()" 4
+.Ip "$h->as_text(skip_dels => 1)" 4
+Returns a string that represents only the text parts of the element's
+descendants.  Entities are decoded to corresponding \s-1ISO\s0\-8859-1
+(Latin-1) characters.  See the \fI\s-1HTML::\s0Entities\fR manpage for more information.
+.Sp
+If \f(CWskip_dels\fR is true, then text content under \*(L"del\*(R" nodes is not
+included in what's returned.
+.Ip "$h->starttag() or $h->starttag($entities)" 4
+Returns a string representing the complete start tag for the element.
+I.e., leading \*(L"<\*(R", tag name, attributes, and trailing \*(L">\*(R".  Attributes
+values that don't consist entirely of digits are surrounded with
+double-quotes, and appropriate characters are encoded.  If \f(CW$entities\fR
+is omitted or undef, \fIall\fR unsafe characters are encoded as \s-1HTML\s0
+entities.  See the \fI\s-1HTML::\s0Entities\fR manpage for details.  If you specify some
+value for \f(CW$entities\fR, remember to include the double-quote character in
+it.  (Previous versions of this module would basically behave as if
+\&\f(CW'&">'\fR were specified for \f(CW$entities\fR.)
+.Ip "$h->endtag()" 4
+Returns a string representing the complete end tag for this element.
+I.e., \*(L"</\*(R", tag name, and \*(L">\*(R".
+.SH "THE TRAVERSER METHOD"
+The \f(CWtraverse()\fR method is the most important general method for accessing
+the information in a tree.  It accepts the following syntaxes:
+.Ip "$h->traverse(\e&callback)" 5
+.Ip "or $h->traverse(\e&callback, $ignore_text)" 5
+.Ip "or $h->traverse([\e&pre_callback,\e&post_callback], $ignore_text)" 5
+.PP
+These all mean to traverse the element and all of its children.  That
+is, this method starts at node \f(CW$h\fR, \*(L"pre-order visits\*(R" \f(CW$h\fR, traverses its
+children, and then will \*(L"post-order visit\*(R" \f(CW$h\fR.  \*(L"Visiting\*(R" means that
+the callback routine is called, with these arguments:
+.PP
+.Vb 3
+\&    $_[0] : the node (element or text segment),
+\&    $_[1] : a startflag, and
+\&    $_[2] : the depth
+.Ve
+If the \f(CW$ignore_text\fR parameter is given and true, then the pre-order
+call \fIwill not\fR be happen for text content.
+.PP
+The startflag is 1 when we enter a node (i.e., in pre-order calls) and
+0 when we leave the node (in post-order calls).
+.PP
+Note, however, that post-order calls don't happen for nodes that are
+text segments or are elements that are prototypically empty (like \*(L"br\*(R",
+\*(L"hr\*(R", etc.).
+.PP
+If we visit text nodes (i.e., unless \f(CW$ignore_text\fR is given and true),
+then when text nodes are visited, we will also pass two extra
+arguments to the callback:
+.PP
+.Vb 4
+\&    $_[3] : the element that's the parent
+\&             of this text node
+\&    $_[4] : the index of this text node
+\&             in its parent's content list
+.Ve
+Note that you can specify that the pre-order routine can
+be a different routine from the post-order one:
+.PP
+.Vb 1
+\&    $h->traverse([\e&pre_callback,\e&post_callback], ...);
+.Ve
+You can also specify that no post-order calls are to be made,
+by providing a false value as the post-order routine:
+.PP
+.Vb 1
+\&    $h->traverse([ \e&pre_callback,0 ], ...);
+.Ve
+And similarly for suppressing pre-order callbacks:
+.PP
+.Vb 1
+\&    $h->traverse([ 0,\e&post_callback ], ...);
+.Ve
+Note that these two syntaxes specify the same operation:
+.PP
+.Vb 2
+\&    $h->traverse([\e&foo,\e&foo], ...);
+\&    $h->traverse( \e&foo       , ...);
+.Ve
+The return values from calls to your pre- or post-order 
+routines are significant, and are used to control recursion
+into the tree.
+.PP
+These are the values you can return, listed in descending order
+of my estimation of their usefulness:
+.Ip "\s-1HTML::\s0Element::\s-1OK\s0, 1, or any other true value" 5
+\&...to keep on traversing.
+.Sp
+Note that \f(CWHTML::Element::OK\fR et
+al are constants.  So if you're running under \f(CWuse strict\fR
+(as I hope you are), and you say:
+\f(CWreturn HTML::Element::PRUEN\fR
+the compiler will flag this as an error (an unallowable
+bareword, in fact), whereas if you spell \s-1PRUNE\s0 correctly,
+the compiler will not complain.
+.Ip "undef, 0, \*(N'0\*(T', \*(N'\*(T', or \s-1HTML::\s0Element::\s-1PRUNE\s0" 5
+\&...to block traversing under the current element's content.
+(This is ignored if received from a post-order callback,
+since by then the recursion has already happened.)
+If this is returned by a pre-order callback, no
+post-order callback for the current node will happen.
+.Ip "\s-1HTML::\s0Element::\s-1ABORT\s0" 5
+\&...to abort the whole traversal immediately.
+This is often useful when you're looking for just the first
+node in the tree that meets some criterion of yours.
+.Ip "\s-1HTML::\s0Element::\s-1PRUNE_UP\s0" 5
+\&...to abort continued traversal into this node and its parent
+node.  No post-order callback for the current or parent
+node will happen.
+.Ip "\s-1HTML::\s0Element::\s-1PRUNE_SOFTLY\s0" 5
+Like \s-1PRUNE\s0, except that the post-order call for the current
+node is not blocked.
+.PP
+Almost every task to do with extracting information from a tree can be
+expressed in terms of traverse operations (usually in only one pass,
+and usually paying attention to only pre-order, or to only
+post-order), or operations based on traversing. (In fact, many of the
+other methods in this class are basically calls to \fItraverse()\fR with
+particular arguments.)
+.PP
+The source code for \s-1HTML::\s0Element and \s-1HTML::\s0TreeBuilder contain
+many examples of the use of the \*(L"traverse\*(R" method to gather
+information about the content of trees and subtrees.
+.PP
+(Note: you should not change the structure of a tree \fIwhile\fR you are
+traversing it.)
+.SH "SECONDARY STRUCTURAL METHODS"
+These methods all involve some structural aspect of the tree;
+either they report some aspect of the tree's structure, or they involve
+traversal down the tree, or walking up the tree.
+.Ip "$h->is_inside('tag\*(T', ...) or $h->is_inside($element, ...)" 4
+Returns true if the \f(CW$h\fR element is, or is contained anywhere inside an
+element that is any of the ones listed, or whose tag name is any of
+the tag names listed.
+.Ip "$h->is_empty()" 4
+Returns true if \f(CW$h\fR has no content, i.e., has no elements or text
+segments under it.  In other words, this returns true if \f(CW$h\fR is a leaf
+node, \s-1AKA\s0 a terminal node.  Do not confuse this sense of \*(L"empty\*(R" with
+another sense that it can have in \s-1SGML/HTML/XML\s0 terminology, which
+means that the element in question is of the type (like \s-1HTML\s0's \*(L"hr\*(R",
+\*(L"br\*(R", \*(L"img\*(R", etc.) that \fIcan't\fR have any content.
+.Sp
+That is, a particular \*(L"p\*(R" element may happen to have no content, so
+\f(CW$that_p_element\fR\->is_empty will be true -- even though the prototypical
+\*(L"p\*(R" element isn't \*(L"empty\*(R" (not in the way that the prototypical \*(L"hr\*(R"
+element is).
+.Sp
+If you think this might make for potentially confusing code, consider
+simply using the clearer exact equivalent:  \fInot\fR\|($h->content_list)
+.Ip "$h->pindex()" 4
+Return the index of the element in its parent's contents array, such
+that \f(CW$h\fR would equal
+.Sp
+.Vb 3
+\&  $h->parent->content->[$h->pindex]
+\&  or
+\&  ($h->parent->content_list)[$h->pindex]
+.Ve
+assuming \f(CW$h\fR isn't root.  If the element \f(CW$h\fR is root, then
+\f(CW$h\fR\->pindex returns undef.
+.Ip "$h->address()" 4
+Returns a string representing the location of this node in the tree.
+The address consists of numbers joined by a \*(L'.\*(R', starting with \*(L'0\*(R',
+and followed by the pindexes of the nodes in the tree that are
+ancestors of \f(CW$h\fR, starting from the top.
+.Sp
+So if the way to get to a node starting at the root is to go to child
+2 of the root, then child 10 of that, and then child 0 of that, and
+then you're there -- then that node's address is \*(L"0.2.10.0\*(R".
+.Sp
+As a bit of a special case, the address of the root is simply \*(L"0\*(R".
+.Sp
+I forsee this being used mainly for debugging.
+.Ip "$h->address($address)" 4
+This returns the node (whether element or text-segment) at
+the given address in the tree that \f(CW$h\fR is a part of.  (That is,
+the address is resolved starting from \f(CW$h\fR\->root.)
+.Sp
+If there is no node at the given address, this returns undef.
+.Ip "$h->depth()" 4
+Returns a number expressing \f(CW$h\fR's depth within its tree, i.e., how many
+steps away it is from the root.  If \f(CW$h\fR has no parent (i.e., is root),
+its depth is 0.
+.Ip "$h->root()" 4
+Returns the element that's the top of \f(CW$h\fR's tree.  If \f(CW$h\fR is root, this
+just returns \f(CW$h\fR.  (If you want to test whether \f(CW$h\fR \fIis\fR the root,
+instead of asking what its root is, just test \fInot\fR\|($h->parent).)
+.Ip "$h->lineage()" 4
+Returns the list of \f(CW$h\fR's ancestors, starting with its parent, and then
+that parent's parent, and so on, up to the root.  If \f(CW$h\fR is root, this
+returns an empty list.
+.Sp
+If you simply want a count of the number of elements in \f(CW$h\fR's lineage,
+use \f(CW$h\fR\->depth.
+.Ip "$h->lineage_tag_names()" 4
+Returns the list of the tag names of \f(CW$h\fR's ancestors, starting
+with its parent, and that parent's parent, and so on, up to the
+root.  If \f(CW$h\fR is root, this returns an empty list.
+Example output: ('html\*(R', \*(L'body\*(R', \*(L'table\*(R', \*(L'tr\*(R', \*(L'td\*(R', \*(L'em')
+.Ip "$h->descendants()" 4
+In list context, returns the list of all \f(CW$h\fR's descendant elements,
+listed in pre-order (i.e., an element appears before its
+content-elements).  Text segments \s-1DO\s0 \s-1NOT\s0 appear in the list.
+In scalar context, returns a count of all such elements.
+.Ip "$h->find_by_tag_name('tag\*(T', ...)" 4
+In list context, returns a list of elements at or under \f(CW$h\fR that have
+any of the specified tag names.  In scalar context, returns the first
+(in pre-order traversal of the tree) such element found, or undef if
+none.
+.Ip "$h->find_by_attribute('attribute\*(T', \*(N'value')" 4
+In a list context, returns a list of elements at or under \f(CW$h\fR that have
+the specified attribute, and have the given value for that attribute.
+In a scalar context, returns the first (in pre-order traversal of the
+tree) such element found, or undef if none.
+.Ip "$h->attr_get_i('attribute')" 4
+In list context, returns a list consisting of the values of the given
+attribute for \f(CW$self\fR and for all its ancestors starting from \f(CW$self\fR and
+working its way up.  Nodes with no such attribute are skipped.
+("attr_get_i\*(R" stands for \*(L"attribute get, with inheritance\*(R".)
+In scalar context, returns the first such value, or undef if none.
+.Sp
+Consider a document consisting of:
+.Sp
+.Vb 10
+\&   <html lang='i-klingon'>
+\&     <head><title>Pati Pata</title></head>
+\&     <body>
+\&       <h1 lang='la'>Stuff</h1>
+\&       <p lang='es-MX' align='center'>
+\&         Foo bar baz <cite>Quux</cite>.
+\&       </p>
+\&       <p>Hooboy.</p>
+\&     </body>
+\&   </html>
+.Ve
+If \f(CW$h\fR is the \*(L"cite\*(R" element, \f(CW$h\fR\->\fIattr_get_i\fR\|("lang") in list context
+will return the list ('es-\s-1MX\s0\*(R', \*(L'i-klingon').  In scalar context, it
+will return the value \*(L'es-\s-1MX\s0\*(R'.
+.Sp
+If you call with multiple attribute names...
+.Ip "$h->attr_get_i('a1\*(T', \*(N'a2\*(T', \*(N'a3')" 4
+\&...in list context, this will return a list consisting of
+the values of these attributes which exist in \f(CW$self\fR and its ancestors.
+In scalar context, this returns the first value (i.e., the value of
+the first existing attribute from the first element that has
+any of the attributes listed).  So, in the above example,
+.Sp
+.Vb 1
+\&  $h->attr_get_i('lang', 'align');
+.Ve
+will return:
+.Sp
+.Vb 3
+\&   ('es-MX', 'center', 'i-klingon') # in list context
+\&  or
+\&   'es-MX' # in scalar context.
+.Ve
+But note that this:
+.Sp
+.Vb 1
+\& $h->attr_get_i('align', 'lang');
+.Ve
+will return:
+.Sp
+.Vb 3
+\&   ('center', 'es-MX', 'i-klingon') # in list context
+\&  or
+\&   'center' # in scalar context.
+.Ve
+.Ip "$h->extract_links() or $h->extract_links(@wantedTypes)" 4
+Returns links found by traversing the element and all of its children
+and looking for attributes (like \*(L"href\*(R" in an \*(L"a\*(R" element, or \*(L"src\*(R" in
+an \*(L"img\*(R" element) whose values represent links.  The return value is a
+\fIreference\fR to an array.  Each element of the array is reference to
+an array with two items: the link-value and a the element that has the
+attribute with that link-value.  You may or may not end up using the
+element itself -- for some purposes, you may use only the link value.
+.Sp
+You might specify that you want to extract links from just some kinds
+of elements (instead of the default, which is to extract links from
+\fIall\fR the kinds of elements known to have attributes whose values
+represent links).  For instance, if you want to extract links from
+only \*(L"a\*(R" and \*(L"img\*(R" elements, you could code it like this:
+.Sp
+.Vb 6
+\&  for (@{  $e->extract_links('a', 'img')  }) {
+\&      my($link, $element) = @$_;
+\&      print
+\&        "Hey, there's a ", $element->tag,
+\&        " that links to $link\en";
+\&  }
+.Ve
+.Ip "$h->same_as($i)" 4
+Returns true if \f(CW$h\fR and \f(CW$i\fR are both elements representing the same tree
+of elements, each with the same tag name, with the same explicit
+attributes (i.e., not counting attributes whose names start with \*(L"_"),
+and with the same content (textual, comments, etc.).
+.Sp
+Sameness of descendant elements is tested, recursively, with
+\f(CW$child1->same_as($child_2)\fR, and sameness of text segments is tested
+with \f(CW$segment1 eq $segment2\fR.
+.Ip "$h = \s-1HTML::\s0Element->new_from_lol(\s-1ARRAYREF\s0)" 4
+Resursively constructs a tree of nodes, based on the (non-cyclic)
+data structure represented by \s-1ARRAYREF\s0, where that is a reference
+to an array of arrays (of arrays (of arrays (etc.))).
+In each arrayref in that structure:  arrayrefs are considered to
+designate a sub-tree representing children for the node constructed
+from the current arrayref; hashrefs are considered to contain
+attribute-value pairs to add to the element to be constructed from
+the current arrayref; text segments at the start of any arrayref
+will be considered to specify the name of the element to be
+constructed from the current araryref; all other text segments will
+be considered to specify text segments as children for the current
+arrayref.
+.Sp
+An example will hopefully make this more obvious:
+.Sp
+.Vb 14
+\&  my $h = HTML::Element->new_from_lol(
+\&    ['html',
+\&      ['head',
+\&        [ 'title', 'I like stuff!' ],
+\&      ],
+\&      ['body',
+\&        {'lang', 'en-JP', _implicit => 1},
+\&        'stuff',
+\&        ['p', 'um, p < 4!', {'class' => 'par123'}],
+\&        ['div', {foo => 'bar'}, '123'],
+\&      ]
+\&    ]
+\&  );
+\&  $h->dump;
+.Ve
+Will print this:
+.Sp
+.Vb 10
+\&  <html> @0
+\&    <head> @0.0
+\&      <title> @0.0.0
+\&        "I like stuff!"
+\&    <body lang="en-JP"> @0.1 (IMPLICIT)
+\&      "stuff"
+\&      <p class="par123"> @0.1.1
+\&        "um, p < 4!"
+\&      <div foo="bar"> @0.1.2
+\&        "123"
+.Ve
+And printing \f(CW$h\fR\->as_HTML will give something like:
+.Sp
+.Vb 3
+\&  <html><head><title>I like stuff!</title></head>
+\&  <body lang="en-JP">stuff<p class="par123">um, p &lt; 4!
+\&  <div foo="bar">123</div></body></html>
+.Ve
+.Ip "$h->has_insane_linkage" 4
+This method is for testing whether this element or the elements
+under it have linkage attributes (_parent and _content) whose values
+are deeply aberrant: if there are undefs in a content list; if an
+element appears in the content lists of more than one element;
+if the _parent attribute of an element doesn't match its actual
+parent; or if an element appears as its own descendant (i.e.,
+if there is a cyclicity in the tree).
+.Sp
+This returns empty list (or false, in scalar context) if the subtree's
+linkage methods are sane; otherwise it returns two items (or true, in
+scalar context): the element where the error occurred, and a string
+describing the error.
+.Sp
+This method is provided is mainly for debugging and troubleshooting --
+it should be \fIquite impossible\fR for any document constructed via
+\s-1HTML::\s0TreeBuilder to parse into a non-sane tree (since it's not
+the content of the tree per se that's in question, but whether
+the tree in memory was properly constructed); and it \fIshould\fR be
+impossible for you to produce an insane tree just thru reasonable
+use of normal documented structure-modifying methods.  But if you're
+constructing your own trees, and your program is going into infinite
+loops as during calls to \fItraverse()\fR or any of the secondary
+structural methods, as part of debugging, consider calling is_insane
+on the tree.
+.SH "BUGS"
+* If you want to free the memory associated with a tree built of
+HTML::Element nodes, then you will have to delete it explicitly.
+See the \f(CW$h\fR\->delete method, above.
+.PP
+* There's almost nothing to stop you from making a \*(L"tree\*(R" with
+cyclicities (loops) in it, which could, for example, make the
+traverse method go into an infinite loop.  So don't make
+cyclicities!  (If all you're doing is parsing HTML files,
+and looking at the resulting trees, this will never be a problem
+for you.)
+.PP
+* There's no way to represent comments or processing directives
+in a tree with HTML::Elements.  Not yet, at least.
+.PP
+* There's (currently) nothing to stop you from using an undefined
+value as a text segment.  If you're running under \f(CWperl -w\fR, however,
+this may make HTML::Element's code produce a slew of warnings.
+.SH "NOTES ON SUBCLASSING"
+You are welcome to derive subclasses from HTML::Element, but you
+should be aware that the code in HTML::Element makes certain
+assumptions about elements (and I'm using \*(L"element\*(R" to mean ONLY an
+object of class HTML::Element, or of a subclass of HTML::Element):
+.PP
+* The value of an element's _parent attribute must either be undef or
+otherwise false, or must be an element.
+.PP
+* The value of an element's _content attribute must either be undef or
+otherwise false, or a reference to an (unblessed) array.  The array
+may be empty; but if it has items, they must ALL be either mere
+strings (text segments), or elements.
+.PP
+* The value of an element's _tag attribute should, at least, be a 
+string of printable characters.
+.PP
+Moreover, bear these rules in mind:
+.PP
+* Do not break encapsulation on objects.  That is, access their
+contents only thru \f(CW$obj\fR\->attr or more specific methods.
+.PP
+* You should think twice before completely overriding any of the
+methods that HTML::Element provides.  (Overriding with a method that
+calls the superclass method is not so bad, tho.)
+.SH "SEE ALSO"
+the \fIHTML::AsSubs\fR manpage, the \fIHTML::TreeBuilder\fR manpage
+.SH "COPYRIGHT"
+Copyright 1995-1998 Gisle Aas, 1999-2000 Sean M. Burke.
+.PP
+This library is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+.SH "AUTHOR"
+Original author Gisle Aas <gisle@aas.no>; current maintainer
+Sean M. Burke, <sburke@netadventure.net>
+
+.rn }` ''
+.IX Title "lib::HTML::Element 3"
+.IX Name "HTML::Element - Class for objects that represent HTML elements"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "HOW WE REPRESENT TREES"
+
+.IX Header "BASIC METHODS"
+
+.IX Item "$h = \s-1HTML::\s0Element->new('tag\*(T', \*(N'attrname\*(T' => \*(N'value\*(T', ... )"
+
+.IX Item "$h->attr('attr') or $h->attr('attr\*(T', \*(N'value')"
+
+.IX Item "$h->tag() or $h->tag('tagname')"
+
+.IX Item "$h->parent() or $h->parent($new_parent)"
+
+.IX Item "$h->content_list()"
+
+.IX Item "$h->content()"
+
+.IX Item "$h->implicit() or $h->implicit($bool)"
+
+.IX Item "$h->pos() or $h->pos($element)"
+
+.IX Item "$h->all_attr()"
+
+.IX Item "$h->all_external_attr()"
+
+.IX Header "STRUCTURE\-MODIFYING METHODS"
+
+.IX Item "$h->push_content($element_or_text, ...)"
+
+.IX Item "$h->unshift_content($element_or_text, ...)"
+
+.IX Item "$h->splice_content($offset, $length, $element_or_text, ...)"
+
+.IX Item "$h->detach()"
+
+.IX Item "$h->detach_content()"
+
+.IX Item "$h->replace_with( $element_or_text, ... ) "
+
+.IX Item "$h->preinsert($element_or_text...)"
+
+.IX Item "$h->postinsert($element_or_text...)"
+
+.IX Item "$h->replace_with_content()"
+
+.IX Item "$h->delete_content()"
+
+.IX Item "$h->delete()"
+
+.IX Item "$h->clone()"
+
+.IX Item "\s-1HTML::\s0Element->clone_list(...nodes...)"
+
+.IX Item "or: ref($h)\->clone_list(...nodes...)"
+
+.IX Item "$h->normalize_content"
+
+.IX Item "$h->insert_element($element, $implicit)"
+
+.IX Header "DUMPING METHODS"
+
+.IX Item "$h->dump()"
+
+.IX Item "$h->as_HTML() or $h->as_HTML($entities)"
+
+.IX Item "or $h->as_HTML($entities, $indent_char)"
+
+.IX Item "$h->as_text()"
+
+.IX Item "$h->as_text(skip_dels => 1)"
+
+.IX Item "$h->starttag() or $h->starttag($entities)"
+
+.IX Item "$h->endtag()"
+
+.IX Header "THE TRAVERSER METHOD"
+
+.IX Item "$h->traverse(\e&callback)"
+
+.IX Item "or $h->traverse(\e&callback, $ignore_text)"
+
+.IX Item "or $h->traverse([\e&pre_callback,\e&post_callback], $ignore_text)"
+
+.IX Item "\s-1HTML::\s0Element::\s-1OK\s0, 1, or any other true value"
+
+.IX Item "undef, 0, \*(N'0\*(T', \*(N'\*(T', or \s-1HTML::\s0Element::\s-1PRUNE\s0"
+
+.IX Item "\s-1HTML::\s0Element::\s-1ABORT\s0"
+
+.IX Item "\s-1HTML::\s0Element::\s-1PRUNE_UP\s0"
+
+.IX Item "\s-1HTML::\s0Element::\s-1PRUNE_SOFTLY\s0"
+
+.IX Header "SECONDARY STRUCTURAL METHODS"
+
+.IX Item "$h->is_inside('tag\*(T', ...) or $h->is_inside($element, ...)"
+
+.IX Item "$h->is_empty()"
+
+.IX Item "$h->pindex()"
+
+.IX Item "$h->address()"
+
+.IX Item "$h->address($address)"
+
+.IX Item "$h->depth()"
+
+.IX Item "$h->root()"
+
+.IX Item "$h->lineage()"
+
+.IX Item "$h->lineage_tag_names()"
+
+.IX Item "$h->descendants()"
+
+.IX Item "$h->find_by_tag_name('tag\*(T', ...)"
+
+.IX Item "$h->find_by_attribute('attribute\*(T', \*(N'value')"
+
+.IX Item "$h->attr_get_i('attribute')"
+
+.IX Item "$h->attr_get_i('a1\*(T', \*(N'a2\*(T', \*(N'a3')"
+
+.IX Item "$h->extract_links() or $h->extract_links(@wantedTypes)"
+
+.IX Item "$h->same_as($i)"
+
+.IX Item "$h = \s-1HTML::\s0Element->new_from_lol(\s-1ARRAYREF\s0)"
+
+.IX Item "$h->has_insane_linkage"
+
+.IX Header "BUGS"
+
+.IX Header "NOTES ON SUBCLASSING"
+
+.IX Header "SEE ALSO"
+
+.IX Header "COPYRIGHT"
+
+.IX Header "AUTHOR"
+

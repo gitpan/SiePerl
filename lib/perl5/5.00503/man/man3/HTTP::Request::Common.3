@@ -1,0 +1,368 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH lib::HTTP::Request::Common 3 "libwww-perl-5.48" "28/Oct/1999" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+HTTP::Request::Common \- Construct common HTTP::Request objects
+.SH "SYNOPSIS"
+.PP
+.Vb 4
+\&  use HTTP::Request::Common;
+\&  $ua = LWP::UserAgent->new;
+\&  $ua->request(GET 'http://www.sn.no/');
+\&  $ua->request(POST 'http://somewhere/foo', [foo => bar, bar => foo]);
+.Ve
+.SH "DESCRIPTION"
+This module provide functions that return newly created HTTP::Request
+objects.  These functions are usually more convenient to use than the
+standard HTTP::Request constructor for these common requests.  The
+following functions are provided.
+.Ip "\s-1GET\s0 $url, Header => Value,..." 4
+The \fI\s-1GET\s0()\fR function returns a \s-1HTTP::\s0Request object initialized with the
+\s-1GET\s0 method and the specified \s-1URL\s0.  Without additional arguments it
+is exactly equivalent to the following call
+.Sp
+.Vb 1
+\&  HTTP::Request->new(GET => $url)
+.Ve
+but is less cluttered.  It also reads better when used together with the
+\s-1LWP::\s0UserAgent->\fIrequest()\fR method:
+.Sp
+.Vb 3
+\&  my $ua = new LWP::UserAgent;
+\&  my $res = $ua->request(GET 'http://www.sn.no')
+\&  if ($res->is_success) { ...
+.Ve
+You can also initialize header values in the request by specifying
+some key/value pairs as optional arguments.  For instance:
+.Sp
+.Vb 4
+\&  $ua->request(GET 'http://www.sn.no',
+\&                   If_Match => 'foo',
+\&                   From     => 'gisle@aas.no',
+\&              );
+.Ve
+A header key called \*(L'Content\*(R' is special and when seen the value will
+initialize the content part of the request instead of setting a header.
+.Ip "\s-1HEAD\s0 $url, [Header => Value,...]" 4
+Like \fI\s-1GET\s0()\fR but the method in the request is \s-1HEAD\s0.
+.Ip "\s-1PUT\s0 $url, [Header => Value,...]" 4
+Like \fI\s-1GET\s0()\fR but the method in the request is \s-1PUT\s0.
+.Ip "\s-1POST\s0 $url, [$form_ref], [Header => Value,...]" 4
+This works mostly like \fI\s-1GET\s0()\fR with \s-1POST\s0 as the method, but this function
+also takes a second optional array or hash reference parameter
+($form_ref).  This argument can be used to pass key/value pairs for
+the form content.  By default we will initialize a request using the
+\f(CWapplication/x-www-form-urlencoded\fR content type.  This means that
+you can emulate a \s-1HTML\s0 <form> POSTing like this:
+.Sp
+.Vb 7
+\&  POST 'http://www.perl.org/survey.cgi',
+\&       [ name   => 'Gisle Aas',
+\&         email  => 'gisle@aas.no',
+\&         gender => 'M',
+\&         born   => '1964',
+\&         perc   => '3%',
+\&       ];
+.Ve
+This will create a \s-1HTTP::\s0Request object that looks like this:
+.Sp
+.Vb 3
+\&  POST http://www.perl.org/survey.cgi
+\&  Content-Length: 66
+\&  Content-Type: application/x-www-form-urlencoded
+.Ve
+.Vb 1
+\&  name=Gisle%20Aas&email=gisle%40aas.no&gender=M&born=1964&perc=3%25
+.Ve
+The \s-1POST\s0 method also supports the \f(CWmultipart/form-data\fR content used
+for \fIForm-based File Upload\fR as specified in \s-1RFC\s0 1867.  You trigger
+this content format by specifying a content type of \f(CW'form-data'\fR as
+one of the request headers.  If one of the values in the \f(CW$form_ref\fR is
+an array reference, then it is treated as a file part specification
+with the following interpretation:
+.Sp
+.Vb 1
+\&  [ $file, $filename, Header => Value... ]
+.Ve
+The first value in the array ($file) is the name of a file to open.
+This file will be read and its content placed in the request.  The
+routine will croak if the file can't be opened.  Use an \f(CWundef\fR as \f(CW$file\fR
+value if you want to specify the content directly.  The \f(CW$filename\fR is
+the filename to report in the request.  If this value is undefined,
+then the basename of the \f(CW$file\fR will be used.  You can specify an empty
+string as \f(CW$filename\fR if you don't want any filename in the request.
+.Sp
+Sending my \fI~/.profile\fR to the survey used as example above can be
+achieved by this:
+.Sp
+.Vb 8
+\&  POST 'http://www.perl.org/survey.cgi',
+\&       Content_Type => 'form-data',
+\&       Content      => [ name  => 'Gisle Aas',
+\&                         email => 'gisle@aas.no',
+\&                         gender => 'M',
+\&                         born   => '1964',
+\&                         init   => ["$ENV{HOME}/.profile"],
+\&                       ]
+.Ve
+This will create a \s-1HTTP::\s0Request object that almost looks this (the
+boundary and the content of your \fI~/.profile\fR is likely to be
+different):
+.Sp
+.Vb 3
+\&  POST http://www.perl.org/survey.cgi
+\&  Content-Length: 388
+\&  Content-Type: multipart/form-data; boundary="6G+f"
+.Ve
+.Vb 22
+\&  --6G+f
+\&  Content-Disposition: form-data; name="name"
+\&  
+\&  Gisle Aas
+\&  --6G+f
+\&  Content-Disposition: form-data; name="email"
+\&  
+\&  gisle@aas.no
+\&  --6G+f
+\&  Content-Disposition: form-data; name="gender"
+\&  
+\&  M
+\&  --6G+f
+\&  Content-Disposition: form-data; name="born"
+\&  
+\&  1964
+\&  --6G+f
+\&  Content-Disposition: form-data; name="init"; filename=".profile"
+\&  Content-Type: text/plain
+\&  
+\&  PATH=/local/perl/bin:$PATH
+\&  export PATH
+.Ve
+.Vb 1
+\&  --6G+f--
+.Ve
+If you set the \f(CW$DYNAMIC_FILE_UPLOAD\fR variable (exportable) to some \s-1TRUE\s0
+value, then you get back a request object with a subroutine closure as
+the content attribute.  This subroutine will read the content of any
+files on demand and return it in suitable chunks.  This allow you to
+upload arbitrary big files without using lots of memory.  You can even
+upload infinite files like \fI/dev/audio\fR if you wish.  Another
+difference is that there will be no Content-Length header defined for
+the request if you use this feature.  Not all servers (or server
+applications) like this.
+.SH "SEE ALSO"
+the \fIHTTP::Request\fR manpage, the \fILWP::UserAgent\fR manpage
+.SH "COPYRIGHT"
+Copyright 1997-1998, Gisle Aas
+.PP
+This library is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+.rn }` ''
+.IX Title "lib::HTTP::Request::Common 3"
+.IX Name "HTTP::Request::Common - Construct common HTTP::Request objects"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Item "\s-1GET\s0 $url, Header => Value,..."
+
+.IX Item "\s-1HEAD\s0 $url, [Header => Value,...]"
+
+.IX Item "\s-1PUT\s0 $url, [Header => Value,...]"
+
+.IX Item "\s-1POST\s0 $url, [$form_ref], [Header => Value,...]"
+
+.IX Header "SEE ALSO"
+
+.IX Header "COPYRIGHT"
+

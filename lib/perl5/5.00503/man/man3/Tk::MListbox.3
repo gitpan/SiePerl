@@ -1,0 +1,706 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH MListbox 3 "perl 5.005, patch 03" "10/Feb/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Tk::MListbox \- Multicolumn Listbox.
+.SH "SYNOPSIS"
+.PP
+.Vb 2
+\&  use Tk::MListbox;
+\&  $ml = $parent->MListbox (<options>);
+.Ve
+.SH "DESCRIPTION"
+Tk::MListbox is a multicolumn Listbox widget with builtin capabilites for
+sorting, resizing and repositioning of the columns.
+.PP
+Sorting is done by clicking on one of the column headings in the 
+widget. The first click will sort the data with the selected column
+as key, a new click will reverse the sort order.
+.PP
+The columns may be resized by dragging a separator line which
+is drawn between each column.
+.PP
+A column's position in the widget might be changed by dragging 
+it's heading left or right.
+.PP
+Tk::MListbox is used in a way similar to the standard Listbox, but in 
+stead of scalar values MListbox operates on lists of data. In addition
+to methods for accessing the data in the MListbox, the widget offer 
+methods for manipulation of the individual columns.
+.SH "AUTHOR"
+Hans Jorgen Helgesen, hans_helgesen@hotmail.com (from March 2000: hans.helgesen@novit.no)
+.SH "SEE ALSO"
+the \fITk::Listbox\fR manpage
+.SH "STANDARD OPTIONS"
+\fB\-background\fR \fB\-foreground\fR \fB\-relief\fR \fB\-takefocus\fR
+\fB\-borderwidth\fR	\fB\-heigh\fR \fB\-selectbackground\fR	\fB\-cursor\fR
+\fB\-highlightbackground\fR \fB\-selectborderwidth\fR \fB\-xscrollcommand\fR
+\fB\-exportselection\fR \fB\-highlightcolor\fR \fB\-selectforeground\fR
+\fB\-yscrollcommand\fR \fB\-font\fR \fB\-highlightthickness\fR \fB\-setgrid\fR
+.PP
+See the \fITk::options\fR manpage for details of the standard options.
+.SH "REQUIREMENTS"
+Tk::MListbox requires Tk::Pane.
+(and basic Perl/Tk of course....)
+.SH "WIDGET SPECIFIC OPTIONS"
+.Ip "-columns => \fIlist\fR" 4
+Defines the columns in the widget. Each element in the list 
+describes a column. See the \fB\s-1COLUMNS\s0\fR section below.
+.Ip "-configurecommand => \fIcallback\fR" 4
+The \-configurecommand callback will be called whenever the layout of the
+widget has changed due to user interaction. That is, the user changes the
+width of a column by dragging the separator, or moves a column by dragging
+the column header. 
+.Sp
+This option is useful if the application wants to store the widget layout 
+for later retrieval. The widget layout can be obtained by the callback
+by calling the method \fIcolumnPackInfo()\fR.
+.Ip "-moveable => \fIboolean\fR" 4
+A value of \fB1\fR indicates that it is okay for the user to move
+the columns by dragging the column headers. \fB0\fR disables this
+function.
+.Sp
+Default: \fB1\fR
+.Ip "-resizeable => \fIboolean\fR" 4
+A value of \fB1\fR indicates that it is okay for the user to resize
+the columns by dragging the column separators. \fB0\fR disables 
+this function.
+.Sp
+Default: \fB1\fR
+.Sp
+Note that you can also specify \-resizeable on a column
+by column basis. See the \fB\s-1COLUMNS\s0\fR section below.
+.Ip "-selectmode => \fIstring\fR" 4
+Should be \*(L"single\*(R", \*(L"browse\*(R", \*(L"multiple\*(R", or \*(L"extended\*(R".
+.Sp
+Default is \*(L"browse\*(R". See the \fITk::Listbox\fR manpage.
+.Ip "-separatorcolor => \fIstring\fR" 4
+Specifies the color of the separator lines 
+(the vertical lines that separates the columns). 
+.Sp
+Default: \fBblack\fR
+.Sp
+Note that you can also specify \-separatorcolor on a column
+by column basis. See the \fB\s-1COLUMNS\s0\fR section below.
+.Ip "-separatorwidth => \fIinteger\fR" 4
+Specifies the width in pixels of the separator lines 
+(the vertical lines that separates the columns). 
+.Sp
+Default: \fB1\fR
+.Sp
+Note that you can also specify \-separatorwidth on a column
+by column basis. See the \fB\s-1COLUMNS\s0\fR section below.
+.Ip "-sortable => \fIboolean\fR" 4
+A value of \fB1\fR indicates that it is okay for the user to sort
+the data by clicking column headings. \fB0\fR disables this function.
+.Sp
+Default: \fB1\fR
+.Sp
+Note that you can also specify \-sortable on a column
+by column basis. See \fI\s-1COLUMNS\s0\fR below.
+.SH "COLUMNS"
+The MListbox widget is a collection of \fIMLColumn\fR widgets. 
+Each MLColumn contains a Listbox, a heading and the separator bar.
+The columns are created and maintained through the \-columns 
+option or the column methods of the widget. The columns are indexed
+from 0 and up. Initially, column 0 is the leftmost column of the
+widget. The column indices \fBare not changed\fR when the columns
+are moved or hidden. The only ways to change the column indices 
+are to call \fIcolumnInsert()\fR, \fIcolumnDelete()\fR or \fIconfigure\fR\|(\-column).
+.Sp
+Each column has its own set of options which might be passed to 
+\fIMListbox::configure\fR\|(\-columns), \fIMListbox::insert()\fR,
+\fIMListbox::columnConfigure()\fR or \fIMLColumn::configure()\fR.
+.Sp
+The following code snippets are all equal:
+.Sp
+1.  \f(CW$ml\fR=$mw->\fIMListbox\fR\|(\-columns=>[[\-text=>'Heading1\*(R',
+                                  \-sortable=>0],
+                                 [\-text=>'Heading2']]);
+.Sp
+2.  \f(CW$ml\fR=$mw->MListbox;
+    \f(CW$ml\fR\->\fIcolumnInsert\fR\|(0,\-text=>'Heading1\*(R', \-sortable=>0);
+    \f(CW$ml\fR\->\fIcolumnInsert\fR\|(0,\-text=>'Heading2');
+.Sp
+3.  \f(CW$ml\fR=$mw->MListbox;
+    \f(CW$c\fR=$ml->\fIcolumnInsert\fR\|(0,\-text=>'Heading1');
+    \f(CW$ml\fR\->\fIcolumnInsert\fR\|(0,\-text=>'Heading2');
+    \f(CW$c\fR\->\fIconfigure\fR\|(\-sortable=>0);
+.Sp
+4.  \f(CW$ml\fR=$mw->MListbox;
+    \f(CW$ml\fR\->\fIcolumnInsert\fR\|(0,\-text=>'Heading1');
+    \f(CW$ml\fR\->\fIcolumnInsert\fR\|(0,\-text=>'Heading2');
+    \f(CW$ml\fR\->\fIcolumnConfigure\fR\|(0,\-sortable=>0);
+.Sp
+(See the \fIcolumnConfigure()\fR method below for details on column options).
+.Sp
+All column methods expects one or two column indices as arguments.
+The column indices might be an integer (between 0 and the number
+of columns minus one), \*(L'end\*(R' for the last column, or a reference
+to the MLColumn widget (obtained by calling MListbox->\fIcolumnGet()\fR 
+or by storing the return value from MListbox->\fIcolumnInsert()\fR).
+.SH "WIDGET METHODS"
+.Ip "$ml->bindColumns(\fIsequence\fR,\fIcallback\fR)" 8
+Adds the binding to all column headers in the widget. See the section
+\s-1BINDING\s0 \s-1EVENTS\s0 \s-1TO\s0 \s-1MLISTBOX\s0 below.
+.Ip "$ml->bindRows(\fIsequence\fR,\fIcallback\fR)" 8
+Adds the binding to all listboxes in the widget. See the section
+\s-1BINDING\s0 \s-1EVENTS\s0 \s-1TO\s0 \s-1MLISTBOX\s0 below.
+.Ip "$ml->bindSeparators(\fIsequence\fR,\fIcallback\fR)" 8
+Adds the binding to all separators in the widget. See the section
+\s-1BINDING\s0 \s-1EVENTS\s0 \s-1TO\s0 \s-1MLISTBOX\s0 below.
+.Sh "\s-1COLUMN\s0 \s-1METHODS\s0"
+(Methods for accessing and manipulating individual columns
+in the MListbox widget)
+.Ip "$ml->columnConfigure(\fIindex\fR,\fIoption\fR=>\fIvalue\fR...)" 4
+Set option values for a specific column.
+Equal to \f(CW$ml\fR\->\fIcolumnGet\fR\|(\fIindex\fR)\->\fIconfigure\fR\|(...).
+.Sp
+The following column options are supported:
+.Ip "" 8
+-comparecommand => \fIcallback\fR
+.Sp
+Specifies a callback to use when sorting the MListbox with this
+column as key. The callback will be called with two scalar arguments,
+each a value from this particular column. The callback should 
+return an integer less than, equal to, or greater than 0, depending
+on how the tow arguments are ordered. If for example the column
+should be sorted by numerical value:
+.Sp
+.Vb 1
+\&    -comparecommand => sub { $_[0] <=> $_[1]}
+.Ve
+The default is to sort the columns alphabetically.
+.Ip "" 8
+-text => \fIstring\fR
+.Sp
+Specifies the text to be used in the heading button of the column.
+.Ip "" 8
+-resizeable => \fIboolean\fR
+.Sp
+A value of \fB1\fR indicates that it is okay for the user to resize
+this column by dragging the separator. \fB0\fR disables this function.
+.Sp
+Default: \fB1\fR
+.Ip "" 8
+-separatorcolor => \fIstring\fR
+.Sp
+Specifies the color of the separator line, default is \fBblack\fR.
+.Ip "" 8
+-separatorwidth => \fIinteger\fR
+.Sp
+Specifies the width of the separator line in pixels. Default is \fB1\fR.
+.Ip "" 8
+-sortable => \fIboolean\fR
+.Sp
+A value of \fB1\fR indicates that it is okay for the user to sort
+the data by clicking this column's heading. \fB0\fR disables this 
+function.
+.Sp
+Default: \fB1\fR
+.Ip "$ml->columnDelete(\fIfirst\fR,\fIlast\fR)" 4
+If \fIlast\fR is omitted, deletes column \fIfirst\fR. If \fIlast\fR is
+specified, deletes all columns from \fIfirst\fR to \fIlast\fR, inclusive.
+.Sp
+All previous column indices greater than \fIlast\fR (or \fIfirst\fR if
+\fIlast\fR is omitted) are decremented by the number of columns 
+deleted.
+.Ip "$ml->columnGet(\fIfirst\fR,\fIlast\fR)" 4
+If \fIlast\fR is not specified, returns the MLColumn widget specified by \fIfirst\fR.
+If both \fIfirst\fR and \fIlast\fR are specified, returns an array containing all
+columns from \fIfirst\fR to \fIlast\fR.
+.Ip "$ml->columnHide(\fIfirst\fR,\fIlast\fR)" 4
+If \fIlast\fR is omitted, hides column \fIfirst\fR. If \fIlast\fR is
+specified, hides all columns from \fIfirst\fR to \fIlast\fR, inclusive.
+.Sp
+Hiding a column is equal to calling \f(CW$ml\fR\->\fIcolumnGet\fR\|(\fIindex\fR)\->packForget. 
+The column is \fBnot\fR deleted, all data are still available, 
+and the column indices remain the same.
+.Sp
+See also the \fIcolumnShow()\fR method below.
+.Ip "$ml->columnIndex(\fIindex\fR)" 4
+Returns an integer index for the column specifed by \fIindex\fR.
+.Ip "$ml->columnInsert(\fIindex\fR,\fIoption\fR=>\fIvalue\fR...)" 4
+Creates a new column in the MListbox widget. The column will 
+get the index specified by \fIindex\fR. If \fIindex\fR is \*(L'end\*(R', the
+new column's index will be one more than the previous highest
+column index.
+.Sp
+If column \fIindex\fR exists, the new column will be placed
+to the \fBleft\fR of this column. All previous column indices 
+equal to or greater than \fIindex\fR will be incremented by one.
+.Sp
+Returns the newly created MLColumn widget.
+.Sp
+(See the \fIcolumnConfigure()\fR method above for details on column options).
+.Ip "$ml->columnPack(\fIarray\fR)" 4
+Repacks all columns in the MListbox widget according to the 
+specification in \fIarray\fR. Each element in \fIarray\fR is a string
+on the format \fBindex:width\fR. \fIindex\fR is a column index, \fIwidth\fR 
+defines the columns width in pixels (may be omitted). The columns 
+are packed left to right in the order specified by by \fIarray\fR.
+Columns not specified in \fIarray\fR will be hidden.
+.Sp
+This method is most useful if used together with the 
+\fIcolumnPackInfo()\fR method.
+.Ip "$ml->columnPackInfo" 4
+Returns an array describing the current layout of the MListbox
+widget. Each element of the array is a string on the format
+\fBindex:width\fR (see \fIcolumnPack()\fR above). Only indices of columns that 
+are currently shown (not hidden) will be returned. The first element
+in the returned array represents the leftmost column.
+.Sp
+This method may be used in conjunction with \fIcolumnPack()\fR to save
+and restore the column configuration. 
+.Ip "$ml->columnShow(\fIindex\fR,\fIoption\fR=>\fIvalue\fR)" 4
+Shows a hidden column (see the \fIcolumnHide()\fR method above). 
+The column to show is specified by \fIindex\fR.
+.Sp
+By default, the column is pack'ed at the rigthmost end of the
+MListbox widget. This might be overridden by specifying one of
+the following options:
+.Ip "" 8
+-after => \fIindex\fR
+.Sp
+Place the column \fBafter\fR (to the right of) the column specified
+by \fIindex\fR.
+.Ip "" 8
+-before => \fIindex\fR
+.Sp
+Place the column \fBbefore\fR (to the left of) the column specified
+by \fIindex\fR.
+.Sh "\s-1ROW\s0 \s-1METHODS\s0"
+(Methods for accessing and manipulating rows of data)
+.Sp
+Many of the methods for MListbox take one or more indices as 
+arguments. See the \fITk::Listbox\fR manpage for a description of row indices.
+.Ip "$ml->delete(\fIfirst\fR,\fIlast\fR)" 4
+Deletes one or more row elements of the MListbox. \fIFirst\fR and \fIlast\fR
+are indices specifying the first and last elements in the range to 
+delete. If \fIlast\fR isn't specified it defaults to \fIfirst\fR, 
+i.e. a single element is deleted. 
+.Ip "$ml->get(\fIfirst\fR,\fIlast\fR)" 4
+If \fIlast\fR is omitted, returns the content of the MListbox row
+indicated by \fIfirst\fR. If \fIlast\fR is specified, the command returns
+a list whose elements are all of the listbox rows between 
+\fIfirst\fR and \fIlast\fR.
+.Sp
+The returned elements are all array references. The referenced
+arrays contains one element for each column of the MListbox.
+.Ip "$ml->getRow(\fIindex\fR)" 4
+In scalar context, returns the value of column 0 in the MListbox
+row specified by \fIindex\fR. In list context, returns the content
+of all columns in the row as an array.
+.Sp
+This method is provided for convenience, since retrieving a single
+row with the \fIget()\fR method might produce some ugly code.
+.Sp
+The following two code snippets are equal:
+.Sp
+.Vb 1
+\&   1. @row=$ml->getRow(0);
+.Ve
+.Vb 1
+\&   2. @row=@{($ml->get(0))[0]};
+.Ve
+.Ip "$ml->sort(\fIdescending\fR, \fIcolumnindex\fR...)" 4
+Sorts the content of the MListbox. If \fIdescending\fR is a \fBtrue\fR 
+value, the sort order will be descending. The default is ascending
+sort.
+.Sp
+If \fIcolumnindex\fR is specified, the sort will be done with the 
+specified column as key. You can specify as many \fIcolumnindex\fR
+arguments as you wish. Sorting is done on the first column, then
+on the second, etc...
+.Sp
+The default is to sort the data on all columns of the listbox, 
+with column 0 as the first sort key, column 1 as the second, etc.
+.SH "OTHER LISTBOX METHODS"
+Most other Tk::Listbox methods works for the MListbox widget.
+This includes the methods activate, cget, curselection, index,
+nearest, see, selectionXXX, size, xview, yview.
+.Sp
+See the \fITk::Listbox\fR manpage.
+.SH "ADVERTISED SUBWIDGETS"
+.Ip "pane" 4
+All MListbox columns are packed inside a Tk::Pane (this is done
+to enable horizontal scrolling).
+.PP
+Apart from \*(L"pane\*(R", the MListbox widget has no subwidgets, 
+except for the variable number of MLColumns, which obviously 
+cannot be advertised. The MLColumn widgets might be obtained 
+by calling the \fIcolumnGet()\fR or \fIcolumnInsert()\fR methods.
+.PP
+The MLColumn widget (which represents a single column in the
+MListbox) advertises the following subwidgets:
+.Ip "listbox" 4
+The individual Listbox. Note that this is \fBnot\fR the standard
+Tk::Listbox, but a derived version (CListbox). Several of the
+widget's methods will not work as expected.
+.Ip "separator" 4
+The column separator line. This is a Canvas.
+.Ip "heading" 4
+The column heading. This is a \*(L"HButton\*(R" (a Button with an additional
+\-pixelwidth option).
+.Ip "frame" 4
+A Frame which contains the \*(L"listbox\*(R" and the \*(L"heading\*(R"
+subwidgets (but not the \*(L"separator").
+.PP
+Example: If you want to change the background color of the
+heading of column 4:
+.PP
+.Vb 2
+\&    $ml->columnGet(4)->Subwidget("heading")
+\&        ->configure(-background=>'blue');
+.Ve
+.SH "BINDING EVENTS TO MLISTBOX"
+Calling \f(CW$ml\fR\->\fIbind\fR\|(...) probably makes little sense, since the call does not
+specify whether the binding should apply to the listbox, the header button 
+or the separator line between each column.
+.PP
+In stead of the ordinary bind, the following methods should be used:
+.Ip "$ml->bind(\fIsequence\fR,\fIcallback\fR)" 4
+Synonym for \f(CW$ml\fR\->\fIbindRows\fR\|(\fIsequence\fR,\fIcallback\fR).
+.Ip "$ml->bindRows(\fIsequence\fR,\fIcallback\fR)" 4
+Synonym for \f(CW$ml\fR\->\fIbindSubwidgets\fR\|('listbox\*(R',\fIsequence\fR,\fIcallback\fR)
+.Ip "$ml->bindColumns(\fIsequence\fR,\fIcallback\fR)" 4
+Synonym for \f(CW$ml\fR\->\fIbindSubwidgets\fR\|('heading\*(R',\fIsequence\fR,\fIcallback\fR)
+.Ip "$ml->bindSeparators(\fIsequence\fR,\fIcallback\fR)" 4
+Synonym for \f(CW$ml\fR\->\fIbindSubwidgets\fR\|('separator\*(R',\fIsequence\fR,\fIcallback\fR)
+.Ip "$ml->bindSubwidgets(\fIsubwidget\fR,\fIsequence\fR,\fIcallback\fR)" 4
+Adds the binding specified by \fIsequence\fR and \fIcallback\fR to all subwidgets
+of the given type (should be \*(L'listbox\*(R', \*(L'heading\*(R' or \*(L'separator'). 
+.Sp
+The binding is stored in the widget, and if you create a new column 
+by calling \f(CW$ml\fR\->\fIcolumnInsert()\fR, all bindings created by \f(CW$ml\fR\->\fIbindSubwidgets()\fR
+are automatically copied to the new column.
+.Sp
+The callback is called with the MListbox widget as first argument, and
+the index of the column where the event occured as the second argument.
+.Sp
+\s-1NOTE\s0 that \f(CW$ml\fR\->\fIbindSubwidgets()\fR does not support all of Tk's callback formats.
+The following are supported:
+.Sp
+.Vb 4
+\&     \e&subname
+\&     sub { code }
+\&     [ \e&subname, arguments...]
+\&     [ sub { code }, arguments...]
+.Ve
+If \fIsequence\fR is undefined, then the return value is a list whose elements 
+are all the sequences for which there exist bindings for \fIsubwidget\fR.
+.Sp
+If \fIsequence\fR is specified without \fIcallback\fR, then the callback currently 
+bound to sequence is returned, or an empty string is returned if there is no
+binding for sequence.
+.Sp
+If \fIsequence\fR is specified, and \fIcallback\fR is an empty string, then the
+current binding for sequence is destroyed, leaving sequence unbound. 
+An empty string is returned.
+.Sp
+An empty string is returned in all other cases.
+
+.rn }` ''
+.IX Title "MListbox 3"
+.IX Name "Tk::MListbox - Multicolumn Listbox."
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "AUTHOR"
+
+.IX Header "SEE ALSO"
+
+.IX Header "STANDARD OPTIONS"
+
+.IX Header "REQUIREMENTS"
+
+.IX Header "WIDGET SPECIFIC OPTIONS"
+
+.IX Item "-columns => \fIlist\fR"
+
+.IX Item "-configurecommand => \fIcallback\fR"
+
+.IX Item "-moveable => \fIboolean\fR"
+
+.IX Item "-resizeable => \fIboolean\fR"
+
+.IX Item "-selectmode => \fIstring\fR"
+
+.IX Item "-separatorcolor => \fIstring\fR"
+
+.IX Item "-separatorwidth => \fIinteger\fR"
+
+.IX Item "-sortable => \fIboolean\fR"
+
+.IX Header "COLUMNS"
+
+.IX Header "WIDGET METHODS"
+
+.IX Item "$ml->bindColumns(\fIsequence\fR,\fIcallback\fR)"
+
+.IX Item "$ml->bindRows(\fIsequence\fR,\fIcallback\fR)"
+
+.IX Item "$ml->bindSeparators(\fIsequence\fR,\fIcallback\fR)"
+
+.IX Subsection "\s-1COLUMN\s0 \s-1METHODS\s0"
+
+.IX Item "$ml->columnConfigure(\fIindex\fR,\fIoption\fR=>\fIvalue\fR...)"
+
+.IX Item ""
+
+.IX Item ""
+
+.IX Item ""
+
+.IX Item ""
+
+.IX Item ""
+
+.IX Item ""
+
+.IX Item "$ml->columnDelete(\fIfirst\fR,\fIlast\fR)"
+
+.IX Item "$ml->columnGet(\fIfirst\fR,\fIlast\fR)"
+
+.IX Item "$ml->columnHide(\fIfirst\fR,\fIlast\fR)"
+
+.IX Item "$ml->columnIndex(\fIindex\fR)"
+
+.IX Item "$ml->columnInsert(\fIindex\fR,\fIoption\fR=>\fIvalue\fR...)"
+
+.IX Item "$ml->columnPack(\fIarray\fR)"
+
+.IX Item "$ml->columnPackInfo"
+
+.IX Item "$ml->columnShow(\fIindex\fR,\fIoption\fR=>\fIvalue\fR)"
+
+.IX Item ""
+
+.IX Item ""
+
+.IX Subsection "\s-1ROW\s0 \s-1METHODS\s0"
+
+.IX Item "$ml->delete(\fIfirst\fR,\fIlast\fR)"
+
+.IX Item "$ml->get(\fIfirst\fR,\fIlast\fR)"
+
+.IX Item "$ml->getRow(\fIindex\fR)"
+
+.IX Item "$ml->sort(\fIdescending\fR, \fIcolumnindex\fR...)"
+
+.IX Header "OTHER LISTBOX METHODS"
+
+.IX Header "ADVERTISED SUBWIDGETS"
+
+.IX Item "pane"
+
+.IX Item "listbox"
+
+.IX Item "separator"
+
+.IX Item "heading"
+
+.IX Item "frame"
+
+.IX Header "BINDING EVENTS TO MLISTBOX"
+
+.IX Item "$ml->bind(\fIsequence\fR,\fIcallback\fR)"
+
+.IX Item "$ml->bindRows(\fIsequence\fR,\fIcallback\fR)"
+
+.IX Item "$ml->bindColumns(\fIsequence\fR,\fIcallback\fR)"
+
+.IX Item "$ml->bindSeparators(\fIsequence\fR,\fIcallback\fR)"
+
+.IX Item "$ml->bindSubwidgets(\fIsubwidget\fR,\fIsequence\fR,\fIcallback\fR)"
+

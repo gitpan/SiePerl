@@ -1,0 +1,283 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Reindex 3 "Tk1.1" "13/Mar/2000" "perl/Tk Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Tk::Reindex \- change the base index of Text-like widgets
+.SH "SYNOPSIS"
+.PP
+.Vb 2
+\&    use Tk::ReindexedText;
+\&    $t1=$w->ReindexedText(-linestart => 2);
+.Ve
+.Vb 2
+\&    use Tk::ReindexedROText;
+\&    $t2=$w->ReindexedROText(-linestart => 0);
+.Ve
+.SH "DESCRIPTION"
+Creates a new widget class based on \fBText\fR\-like widgets that can
+redefine the line number base (normally \fBText\fR widgets start line
+numbers at 1), or possibly other manipulations on indexes.
+.SH "STANDARD OPTIONS"
+The newly-defined widget takes all the same options as the base
+widget, which defaults to \fBText\fR.
+.SH "WIDGET\-SPECIFIC OPTIONS"
+.Ip "Name:   \fBlineStart\fR" 0
+.Ip "Class:  \fBLineStart\fR" 0
+.Ip "Switch: \fB\-linestart\fR" 0
+Sets the line number of the first line in the \fBText\fR widget. The
+default \fB\-toindexcmd\fR and \fB\-fromindexcmd\fR use this configuration
+option.
+.PP
+-item Name:   \fBtoIndexCmd\fR  \fBfromIndexCmd\fR
+.PP
+-item Class:  \fBToIndexCmd\fR  \fBFromIndexCmd\fR
+.PP
+-item Switch: \fB\-toindexcmd\fR \fB\-fromindexcmd\fR
+.PP
+These two options specify callbacks that are called with a list of
+indexes and are responsible for translating them to/from indexes that
+the base \fBText\fR widget can understand. The callback is passed the
+widget followed by a list of indexes, and should return a list of
+translated indexes. \fB\-toindexcmd\fR should translate from \*(L'user\*(R'
+indexes to \*(L'native\*(R' \fBText\fR\-compatible indexes, and \fB\-fromindexcmd\fR
+should translate from \*(L'native\*(R' indexes to \*(L'user\*(R' indexes.
+.PP
+The default callbacks simply add/subtract the offset given by the
+\fB\-linestart\fR option for all indexes in \*(L'line.character\*(R' format.
+.PP
+It would probably be prudent to make these functions inverses of each
+other.
+.SH "CLASS METHODS"
+.Ip "import" 0
+To make new Reindex widgets, this function should be called via \fBuse\fR
+with the name of the Text-like base class that you are extending with
+\*(L"Reindex\*(R" capability.  \*(L'use \fIbase\fR\|(Tk::Reindex Tk::nameofbasewidget)\*(R'
+should also be specified for that widget.
+.SH "BUGS"
+I've used the word \*(L"indexes\*(R" instead of \*(L"indices\*(R" throughout the
+documentation.
+.PP
+All the built-in perl code for widget bindings & methods will use the
+new \*(L'user\*(R' indexes.  Which means all this index manipulation might
+might break code that is trying to parse/manipulate indexes. Or even
+assume that \*(L'1.0\*(R' is the beginning index.  \fBTk::Text::Contents\fR comes
+to mind.
+.SH "AUTHOR"
+Andrew Allen <ada@fc.hp.com>
+.PP
+This code may be distributed under the same conditions as Perl.
+
+.rn }` ''
+.IX Title "Reindex 3"
+.IX Name "Tk::Reindex - change the base index of Text-like widgets"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "STANDARD OPTIONS"
+
+.IX Header "WIDGET\-SPECIFIC OPTIONS"
+
+.IX Item "Name:   \fBlineStart\fR"
+
+.IX Item "Class:  \fBLineStart\fR"
+
+.IX Item "Switch: \fB\-linestart\fR"
+
+.IX Header "CLASS METHODS"
+
+.IX Item "import"
+
+.IX Header "BUGS"
+
+.IX Header "AUTHOR"
+

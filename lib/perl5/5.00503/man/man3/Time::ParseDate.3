@@ -1,0 +1,364 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH lib::Time::ParseDate 3 "perl 5.005, patch 03" "17/Nov/1999" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Time::ParseDate -- date parsing both relative and absolute
+.SH "SYNOPSIS"
+.PP
+.Vb 3
+\&        use Time::ParseDate;
+\&        $seconds_since_jan1_1970 = parsedate("12/11/94 2pm", NO_RELATIVE => 1)
+\&        $seconds_since_jan1_1970 = parsedate("12/11/94 2pm", %options)
+.Ve
+.SH "OPTIONS"
+Date parsing can also use options.  The options are as follows:
+.PP
+.Vb 15
+\&        FUZZY   -> it's okay not to parse the entire date string
+\&        NOW     -> the "current" time for relative times (defaults to time())
+\&        ZONE    -> local timezone (defaults to $ENV{TZ})
+\&        WHOLE   -> the whole input string must be parsed
+\&        GMT     -> input time is assumed to be GMT, not localtime
+\&        UK      -> prefer UK style dates (dd/mm over mm/dd)
+\&        DATE_REQUIRED -> do not default the date
+\&        TIME_REQUIRED -> do not default the time
+\&        NO_RELATIVE -> input time is not relative to NOW
+\&        TIMEFIRST -> try parsing time before date [not default]
+\&        PREFER_PAST -> when year or day of week is ambigueous, assume past
+\&        PREFER_FUTURE -> when year or day of week is ambigueous, assume future
+\&        SUBSECOND -> parse fraction seconds
+\&        VALIDATE -> only accept normal values for HHMMSS, YYMMDD.  Otherwise
+\&                days like -1 might give the last day of the previous month.
+.Ve
+.SH "DATE FORMATS RECOGNIZED"
+.Sh "Absolute date formats"
+.PP
+.Vb 18
+\&        Dow, dd Mon yy
+\&        Dow, dd Mon yyyy
+\&        Dow, dd Mon
+\&        dd Mon yy
+\&        dd Mon yyyy
+\&        Month day{st,nd,rd,th}, year
+\&        Month day{st,nd,rd,th}
+\&        Mon dd yyyy
+\&        yyyy/mm/dd
+\&        yyyy/mm
+\&        mm/dd/yy
+\&        mm/dd/yyyy
+\&        mm/yy
+\&        yy/mm      (only if year > 12, or > 31 if UK)
+\&        yy/mm/dd   (only if year > 12 and day < 32, or year > 31 if UK)
+\&        dd/mm/yy   (only if UK, or an invalid mm/dd/yy or yy/mm/dd)
+\&        dd/mm/yyyy (only if UK, or an invalid mm/dd/yyyy)
+\&        dd/mm      (only if UK, or an invalid mm/dd)
+.Ve
+.Sh "Relative date formats:"
+.PP
+.Vb 17
+\&        count "days"
+\&        count "weeks"
+\&        count "months"
+\&        count "years"
+\&        Dow "after next"
+\&        Dow                     (requires PREFER_PAST or PREFER_FUTURE)
+\&        "next" Dow
+\&        "tomorrow"
+\&        "today"
+\&        "yesterday"
+\&        "last" dow
+\&        "last week"
+\&        "now"
+\&        "now" "+" count units
+\&        "now" "-" count units
+\&        "+" count units
+\&        "-" count units
+.Ve
+.Sh "Absolute time formats:"
+.PP
+.Vb 7
+\&        hh:mm:ss[.ddd] 
+\&        hh:mm 
+\&        hh:mm[AP]M
+\&        hh[AP]M
+\&        hhmmss[[AP]M] 
+\&        "noon"
+\&        "midnight"
+.Ve
+.Sh "Relative time formats:"
+.PP
+.Vb 7
+\&        count "minuts"
+\&        count "seconds"
+\&        count "hours"
+\&        "+" count units
+\&        "+" count
+\&        "-" count units
+\&        "-" count
+.Ve
+.Sh "Timezone formats:"
+.PP
+.Vb 4
+\&        [+-]dddd
+\&        GMT[+-]d+
+\&        [+-]dddd (TZN)
+\&        TZN
+.Ve
+.Sh "Special formats:"
+.PP
+.Vb 2
+\&        [ d]d/Mon/yyyy:hh:mm:ss [[+-]dddd]
+\&        yy/mm/dd.hh:mm
+.Ve
+.SH "DESCRIPTION"
+This module recognizes the above date/time formats.   Usually a
+date and a time are specified.  There are numerous options for 
+controlling what is recognized and what is not.
+.PP
+The return code is always the time in seconds since January 1st, 1970
+or undef if it was unable to parse the time.
+.PP
+If a timezone is specified it must be after the time.  Year specifications
+can be tacked onto the end of absolute times.
+.PP
+If \f(CWparsedate()\fR is called from array contect, then it will return two
+elements.  On sucessful parses, it will return the seconds and what 
+remains of its input string.  On unsucessful parses, it will return
+\f(CWundef\fR and an error string.
+.SH "EXAMPLES"
+.PP
+.Vb 8
+\&        $seconds = parsedate("Mon Jan  2 04:24:27 1995");
+\&        $seconds = parsedate("Tue Apr 4 00:22:12 PDT 1995");
+\&        $seconds = parsedate("04.04.95 00:22", ZONE => PDT);
+\&        $seconds = parsedate("Jan 1 1999 11:23:34.578", SUBSECOND => 1);
+\&        $seconds = parsedate("122212 950404", ZONE => PDT, TIMEFIRST => 1);
+\&        $seconds = parsedate("+3 secs", NOW => 796978800);
+\&        $seconds = parsedate("2 months", NOW => 796720932);
+\&        $seconds = parsedate("last Tuesday");
+.Ve
+.Vb 2
+\&        ($seconds, $remaining) = parsedate("today is the day");
+\&        ($seconds, $error) = parsedate("today is", WHOLE=>1);
+.Ve
+.SH "AUTHOR"
+David Muir Sharnoff <muir@idiom.com>.  Copyright (C) 1996-1999 All
+Rights Reserved.  Use and redistribution allowed at user's own
+risk.
+
+.rn }` ''
+.IX Title "lib::Time::ParseDate 3"
+.IX Name "Time::ParseDate - date parsing both relative and absolute"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "OPTIONS"
+
+.IX Header "DATE FORMATS RECOGNIZED"
+
+.IX Subsection "Absolute date formats"
+
+.IX Subsection "Relative date formats:"
+
+.IX Subsection "Absolute time formats:"
+
+.IX Subsection "Relative time formats:"
+
+.IX Subsection "Timezone formats:"
+
+.IX Subsection "Special formats:"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "EXAMPLES"
+
+.IX Header "AUTHOR"
+

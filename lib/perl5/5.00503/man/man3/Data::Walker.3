@@ -1,0 +1,659 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Data::Walker 3 "perl 5.005, patch 03" "23/Apr/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+\fBData::Walker\fR \- A tool for navigating through Perl data structures
+.SH "SYNOPSIS"
+Without any explicit objects:
+.PP
+.Vb 2
+\&  use Data::Walker;
+\&  Data::Walker->cli( $data_structure );
+.Ve
+Object-style invocation:
+.PP
+.Vb 6
+\&  use Data::Walker;
+\&  my $w = new Data::Walker;
+\&  $w->walk( $data_structure );
+\&  $w->ls("-al");
+\&  $w->pwd;
+\&  $w->cli;
+.Ve
+Importing methods into the current package:
+.PP
+.Vb 5
+\&  use Data::Walker qw(:direct);
+\&  walk $data_structure;
+\&  ls "-al";
+\&  pwd;
+\&  cli;
+.Ve
+.SH "DESCRIPTION"
+This module allows you to \*(L"walk\*(R" an arbitrary Perl data 
+structure in the same way that you can walk a directory tree 
+from a UNIX command line.   It reuses familiar unix commands 
+(such as \*(L"ls\*(R", \*(L"cd\*(R", \*(L"pwd") and applies these to data structures. 
+.PP
+It has a command-line interface which behaves like a UNIX shell.   
+You can also use object-style sytax to invoke the CLI commands from 
+outside the CLI.   Data::Walker objects are encapsulated, 
+so that you can hop into and out of a CLI without losing state, 
+and you can have several Data::Walker objects pointing at 
+different structures. 
+.PP
+The main functions can also be imported and used directly 
+from within the Perl debugger's CLI.  
+.SH "INSTALLATION"
+To install this package, just into the directory which
+you created by untarring the package, and type the following:
+.PP
+.Vb 4
+\&        perl Makefile.PL
+\&        make test
+\&        make
+\&        make install
+.Ve
+This will copy Walker.pm to your perl library directory for
+use by all perl scripts.  You probably must be root to do this,
+unless you have installed a personal copy of perl or you have
+write access to a Perl lib directory.
+.SH "USAGE"
+You open a command-line interface by invoking the \fIcli()\fR function. 
+.PP
+.Vb 2
+\&        use Data::Walker;
+\&        Data::Walker->cli( $data_structure );
+.Ve
+You can customize certain features, like so:
+.PP
+.Vb 3
+\&        use Data::Walker;
+\&        $Data::Walker::Config{'skipdoublerefs'} = 0;
+\&        Data::Walker->cli( $data_structure );
+.Ve
+If you prefer to use object-style notation, then you 
+can use this syntax to customize the settings.
+You can invoke the \fIwalk()\fR method directly, our you
+can let the \fIcli()\fR method call \fIwalk()\fR implicitly: 
+.PP
+.Vb 4
+\&        use Data::Walker;
+\&        my $w1 = new Data::Walker;
+\&        $w1->walk( $data_structure );
+\&        $w1->cli;
+.Ve
+.Vb 2
+\&        my $w2 = new Data::Walker;
+\&        $w2->cli( $data_structure );
+.Ve
+.Vb 6
+\&        my $w3 = new Data::Walker( 'skipdoublerefs' => 0 );
+\&        $w3->walk( $data_structure );
+\&        $w3->cli();
+\&        
+\&        $w3->showrecursion(0);
+\&        $w3->cli();
+.Ve
+You can also import most of the functions directly into 
+the current package.  This is especially useful from within 
+the debugger (see the example below).
+.PP
+.Vb 5
+\&        use Data::Walker qw(:direct);
+\&        walk $data_structure;
+\&        ls "-al";
+\&        pwd;
+\&        cli;
+.Ve
+When you use the :direct pragma and invoke the \fIwalk()\fR function,
+a Data::Walker object is implicitly created, and is available 
+as \f(CW$Data::Walker::WALKER\fR. 
+.PP
+Imagine a data structure like so:  
+.PP
+.Vb 1
+\&        my $s = {
+.Ve
+.Vb 11
+\&        a => [ 10, 20, "thirty" ],
+\&        b => {
+\&                "w" => "forty",
+\&                "x" => "fifty",
+\&                "y" => 60,
+\&                "z" => \e70,
+\&        },
+\&        c => sub { print "I'm a data structure!\en"; },
+\&        d => 80,
+\&        };
+\&        $s->{e} = \e$s->{d};
+.Ve
+Here is a sample CLI session examining this structure ('/>\*(R' is the prompt):
+.PP
+.Vb 52
+\&        /> 
+\&        /> ls -l
+\&        a               ARRAY                     (3)
+\&        b               HASH                      (4)
+\&        c               CODE                      
+\&        d               scalar                    80
+\&        e               SCALAR                    80
+\&        /> cd a
+\&        /->{a}> ls -al
+\&        ..              HASH                      (5)
+\&        .               ARRAY                     (3)
+\&        0               scalar                    10
+\&        1               scalar                    20
+\&        2               scalar                    'thirty'
+\&        /->{a}> cd ../b
+\&        /->{b}> ls -al
+\&        ..              HASH                      (5)
+\&        .               HASH                      (4)
+\&        w               scalar                    'forty'
+\&        x               scalar                    'fifty'
+\&        y               scalar                    60
+\&        z               SCALAR                    70
+\&        /->{b}> cd ..
+\&        /> dump b
+\&        dump--> 'b'
+\&        $b = {
+\&          'x' => 'fifty',
+\&          'y' => 60,
+\&          'z' => \e70,
+\&          'w' => 'forty'
+\&        };
+\&        /> ls -al
+\&        ..              HASH                      (5)
+\&        .               HASH                      (5)
+\&        a               ARRAY                     (3)
+\&        b               HASH                      (4)
+\&        c               CODE                      
+\&        d               scalar                    80
+\&        e               SCALAR                    80
+\&        /> ! $cur->{d} += 3
+\&        eval--> $cur->{d} += 3
+\&        retv--> 83
+\&        /> ls -al
+\&        ..              HASH                      (5)
+\&        .               HASH                      (5)
+\&        a               ARRAY                     (3)
+\&        b               HASH                      (4)
+\&        c               CODE                      
+\&        d               scalar                    83
+\&        e               SCALAR                    83
+\&        /> 
+\&        
+.Ve
+Below is a sample debugger session examining this structure.
+.PP
+Note that the \fIwalk()\fR function returns a reference to the \*(L"cursor\*(R",
+which is itself a reference to whatever is the \*(L"current directory,\*(R"
+so to speak.  The actual Data::Walker object iself is managed
+implicitly, and is available as \f(CW$Data::Walker::WALKER\fR. 
+When you are finished, you can undef this object directly, 
+or use the \fIunwalk()\fR function, which does this for you. 
+But if you saved a copy of the cursor, then you will need to 
+undef this on your own. 
+.PP
+.Vb 1
+\&        (violet) ~/perl/walker/Data-Walker-0.18 > perl -d sample_db
+.Ve
+.Vb 2
+\&        Loading DB routines from perl5db.pl version 1.0401
+\&        Emacs support available.
+.Ve
+.Vb 1
+\&        Enter h or `h h' for help.
+.Ve
+.Vb 6
+\&        main::(sample:19):              d => 80,
+\&          DB<1> n
+\&        main::(sample:22):      $s->{e}      = \e$s->{d};
+\&          DB<1> n
+\&        main::(sample:30):      1;
+\&          DB<1> use Data::Walker qw(:direct)
+.Ve
+.Vb 1
+\&          DB<2> $cur = walk $s
+.Ve
+.Vb 44
+\&          DB<3> pwd
+\&        /
+\&          DB<4> ls
+\&        a       b       c       d       e
+\&          DB<5> lal
+\&        ..              HASH                      (5)
+\&        .               HASH                      (5)
+\&        a               ARRAY                     (3)
+\&        b               HASH                      (4)
+\&        c               CODE
+\&        d               scalar                    80
+\&        e               SCALAR                    80
+\&          DB<6> cd a
+\&        /->{a}        
+\&          DB<7> ll
+\&        0               scalar                    10
+\&        1               scalar                    20
+\&        2               scalar                    'thirty'      
+\&          DB<8> cd '../b'
+\&        /->{b}
+\&          DB<9> lal
+\&        ..              HASH                      (5)
+\&        .               HASH                      (4)
+\&        w               scalar                    'forty'
+\&        x               scalar                    'fifty'
+\&        y               scalar                    60
+\&        z               SCALAR                    70       
+\&          DB<10> cd '..'
+\&        /
+\&          DB<11> dump b
+\&        dump--> 'b'
+\&        $b = {
+\&          'x' => 'fifty',
+\&          'y' => 60,
+\&          'z' => \e70,
+\&          'w' => 'forty'
+\&        };                  
+\&          DB<12> ll
+\&        a               ARRAY                     (3)
+\&        b               HASH                      (4)
+\&        c               CODE
+\&        d               scalar                    80
+\&        e               SCALAR                    80
+\&          DB<13> $$cur->{d} += 3
+.Ve
+.Vb 21
+\&          DB<14> ll
+\&        a               ARRAY                     (3)
+\&        b               HASH                      (4)
+\&        c               CODE
+\&        d               scalar                    83
+\&        e               SCALAR                    83
+\&          DB<15>                   
+\&          DB<16> pwd
+\&        /
+\&          DB<17> cli
+\&        /> cd b
+\&        /->{b}> ls -l
+\&        w               scalar                    'forty'
+\&        x               scalar                    'fifty'
+\&        y               scalar                    60
+\&        z               SCALAR                    70     
+\&        /->{b}> print y
+\&        60
+\&        /->{b}> print x
+\&        fifty
+\&        /->{b}> exit
+.Ve
+.Vb 8
+\&          DB<18> pwd
+\&        /->{b}
+\&          DB<19> ll
+\&        w               scalar                    'forty'
+\&        x               scalar                    'fifty'
+\&        y               scalar                    60
+\&        z               SCALAR                    70
+\&          DB<20> unwalk
+.Ve
+.Vb 1
+\&          DB<21> undef $cur
+.Ve
+.Vb 1
+\&          DB<22> 
+.Ve
+The following commands are available from within the CLI.
+With these commands, you can navigate around the data 
+structure as if it were a directory tree.
+.PP
+.Vb 9
+\&        cd <target>          like UNIX cd
+\&        ls                   like UNIX ls (also respects options -a, -l)
+\&        print <target>       prints the item as a scalar
+\&        dump <target>        invokes Data::Dumper
+\&        set <key> <value>    set configuration variables
+\&        show <key>           show configuration variables
+\&        ! or eval            eval arbitrary perl (careful!)
+\&        help                 this help message
+\&        help set             lists the available config variables
+.Ve
+For each session (or object) the following items can be configured:
+.PP
+.Vb 4
+\&        rootname        (default:  '/'    )  displays the root node 
+\&        refname         (default:  'ref'  )  displays embedded refs
+\&        scalarname      (default: 'scalar')  displays simple scalars
+\&        undefname       (default: 'undef' )  displays undefined scalars
+.Ve
+.Vb 4
+\&        maxdepth        (default:   1 )  maximum dump-depth (Data::Dumper)
+\&        indent          (default:   1 )  amount of indent (Data::Dumper)
+\&        lscol1width     (default:  15 )  column widths for 'ls' displays
+\&        lscol2width     (default:  25 )  column widths for 'ls' displays
+.Ve
+.Vb 6
+\&        showrecursion   (default:   1 )  note recursion in the prompt
+\&        showids         (default:   0 )  show ref id numbers in ls lists
+\&        skipdoublerefs  (default:   1 )  hop over ref-to-refs during walks
+\&        skipwarning     (default:   1 )  warn when hopping over ref-to-refs
+\&        truncatescalars (default:  37 )  truncate scalars in 'ls' displays
+\&        autoprint       (default:   1 )  print directory after chdir when not in CLI
+.Ve
+.Vb 3
+\&        promptchar      (default:  '>')  customize the session prompt
+\&        arrowshaft      (default:  '-')  ('-' in '->')
+\&        arrowhead       (default:  '>')  ('>' in '->')
+.Ve
+.Vb 2
+\&        curname         (default:  'cur'  )  how to refer to the cursor for evals
+\&        parname         (default:  'par'  )  how to refer to the parent ref for evals
+.Ve
+.SH "CHANGES"
+.Ip "\(bu Version 1.01" 4
+.Sp
+.Vb 4
+\&        Minor changes to the documentation.
+\&        Added walker_http.pl, which is a library for using 
+\&        Data::Walker together with HTTP::Daemon to view objects 
+\&        with a Web browser.  Two example scripts are also included. 
+.Ve
+.Ip "\(bu Version 0.21" 4
+.Sp
+.Vb 1
+\&        Minor changes to the documentation
+.Ve
+.Ip "\(bu Version 0.19-0.20" 4
+.Sp
+.Vb 1
+\&        Added new tests and updated the documentation.
+.Ve
+.Ip "\(bu Version 0.18" 4
+.Sp
+.Vb 4
+\&        Completely separated the CLI loop, command-parsing regexes, 
+\&        and the functions which implement the commands.  AUTOLOAD is now
+\&        set up to handle any commands that the CLI can parse (except
+\&        for eval() ).  
+.Ve
+.Vb 3
+\&        By using the :direct pragma, you can now import AUTOLOADed functions 
+\&        into the current package, so that you can easily invoke them 
+\&        from the perl debugger.
+.Ve
+.Ip "\(bu Version 0.16-0.17" 4
+.Sp
+.Vb 1
+\&        The Data::Walker objects are now fully encapsulated. 
+.Ve
+.Vb 3
+\&        NOTE:  The walk() function has been separated into two functions, 
+\&        namely walk() and cli(). The usage instructions have changed.  
+\&        Please have a look.
+.Ve
+.Ip "\(bu Version 0.15" 4
+.Sp
+.Vb 2
+\&        Reorganized the installation tests.  
+\&        A few minor changes to the module itself.
+.Ve
+.Ip "\(bu Version 0.13-0.14" 4
+.Sp
+.Vb 2
+\&        Moved some functionality from the CLI-loop
+\&        into distinct functions.
+.Ve
+.Ip "\(bu Version 0.12" 4
+.Sp
+.Vb 6
+\&        Blessed references to non-hashes are now handled correctly.
+\&        Modified the output of "ls" commands (looks different).
+\&        Added new options:  
+\&           showids, lscol2width, scalarname, undefname,
+\&           skipwarning
+\&        Numerous internal changes.
+.Ve
+.Ip "\(bu Version 0.11" 4
+.Sp
+.Vb 4
+\&        Fixed some misspellings in the help information.
+\&        Modified the pretty-print format of scalars.
+\&        Added some new comments to the source code.
+\&        Various other small updates.
+.Ve
+.SH "THANKS"
+Thanks to Gurusamy Sarathy for writing Data::Dumper,
+and to Dominique Dumont for writing Tk::ObjScanner.
+.PP
+Thanks to Matthew Persico for sending some ideas on 
+how this module might be useful in the debugger. 
+.PP
+Thanks to Scott Lindsey for pointing out that this module
+is useful for reading files created with the Storable module,
+and for sending a sample script to do this. 
+.SH "AUTHOR"
+John Nolan  jpnolan@sonic.net  1999,2000.
+A copyright statment is contained within the source code itself. 
+
+.rn }` ''
+.IX Title "Data::Walker 3"
+.IX Name "B<Data::Walker> - A tool for navigating through Perl data structures"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "INSTALLATION"
+
+.IX Header "USAGE"
+
+.IX Header "CHANGES"
+
+.IX Item "\(bu Version 1.01"
+
+.IX Item "\(bu Version 0.21"
+
+.IX Item "\(bu Version 0.19-0.20"
+
+.IX Item "\(bu Version 0.18"
+
+.IX Item "\(bu Version 0.16-0.17"
+
+.IX Item "\(bu Version 0.15"
+
+.IX Item "\(bu Version 0.13-0.14"
+
+.IX Item "\(bu Version 0.12"
+
+.IX Item "\(bu Version 0.11"
+
+.IX Header "THANKS"
+
+.IX Header "AUTHOR"
+

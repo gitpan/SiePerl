@@ -1,0 +1,796 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Tk::Columns 3 "perl 5.005, patch 03" "26/Nov/1999" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Tk::Columns \- A multicolumn list widget with sortable & sizeable columns
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\&    use Tk::Columns;
+.Ve
+.Vb 8
+\&    $Columns = $parent->B<Columns>
+\&       (
+\&        '-columnlabels' => [qw (column1 column2)]
+\&        '-listbackground' => 'white',
+\&        '-listforeground' => 'black',
+\&        '-buttonforeground' => 'black',
+\&        '-buttonbackground' => 'blue',
+\&       );
+.Ve
+.Vb 17
+\&    $ColumnHeader = $Columns->B<ColumnButton>
+\&       (
+\&        '-listfont' => '-adobe-new century schoolbook-medium-r-normal--14-*-*-*-*-*-*-*',
+\&        '-buttoncolor' => 'beige',
+\&        '-text' => 'column3',
+\&        '-width' => 15,
+\&        '-trimcount' => 2,
+\&        '-listbackground' => 'white',
+\&        '-listforeground' => 'black',
+\&        '-buttonforeground' => 'black',
+\&        '-buttonbackground' => 'blue',
+\&        '-sort' => 'true',
+\&        '-sortcommand' => '$a cmp $b',
+\&        '-image' => $icon_image,
+\&        '-buttoncommand' => sub {...},
+\&        '-selectcommand' => sub {...}
+\&       );
+.Ve
+.Vb 4
+\&   $Columns->insert ('end', ['List', 'Row', 'Contents']);
+\&   $Columns->insert ('end', {'column1' => 'List', 'column2' => 'Row', 'column3' => 'Contents'});
+\&   $Columns->insert ('end', 'List', 'Row', 'Contents');
+\&   $Columns->delete (0, 'end');
+.Ve
+.Vb 1
+\&   ...
+.Ve
+.Vb 1
+\&   Tk::MainLoop;
+.Ve
+.SH "DESCRIPTION"
+Implements a multicolumn list with resizeable, scrollable columns and configurable
+sorting by column. Other features include column selection callbacks and row selection
+callbacks, global and per-column color and font selection, and column insertion
+data specified by column label (hash) or by index (list).
+.SH "STANDARD OPTIONS"
+.Ip "Columns" 4
+\fI\-background \-foreground \-font \-bg\fR
+.Ip "ColumnButton" 4
+\fI\-font \-image \-foreground \-background \-borderwidth \-relief \-text \-width \-bg\fR
+.PP
+See \fITk\fR for details of the standard options.
+.SH "WIDGET\-SPECIFIC OPTIONS"
+.Ip "Name:	\fBbuttonbackground\fR" 4
+.Ip "Class:	\fBButtonBackground\fR" 4
+.Ip "Switch:	\fB\-buttonbackground\fR" 4
+.Ip "Aliases:	\fB\-buttoncolor\fR \fB\-color\fR" 4
+Specifies the background (surface) color for all existing buttons
+.Ip "Name:	\fBbuttoncommand\fR" 4
+.Ip "Class:	\fBButtonCommand\fR" 4
+.Ip "Switch:	\fB\-buttoncommand\fR" 4
+Specifies a callback to be executed when a column header is clicked. The
+callback is passed the list index. When specified, this callback is
+registered for every existing listbox and sets the default for new ones.
+If the \fB\-sort\fR option is turned on, it overrides this option but does
+not negate it, allowing it to return when the \fB\-sort\fR option is turned off.
+.Ip "Name:	\fBbuttonfont\fR" 4
+.Ip "Class:	\fBButtonFont\fR" 4
+.Ip "Switch:	\fB\-buttonfont\fR" 4
+Specifies the font to use for all the existing column header labels
+.Ip "Name:	\fBcolumns\fR" 4
+.Ip "Class:	\fBColumns\fR" 4
+.Ip "Switch:	\fB\-columns\fR" 4
+.Ip "Aliases:	\fB\-columnlabels\fR" 4
+This option takes a reference to a list of options. If the list consists of
+scalar values, these are assumed to be the labels for column headers. These
+elements are created with default options which should normally be alright.
+If the list consists of references to arrays, then these are assumed to be
+key => value pairs specifying the options to pass to \f(CW$Columns\fR\->\fBaddcolumn\fR.
+.Ip "Name:	\fBimage\fR" 4
+.Ip "Class:	\fBImage\fR" 4
+.Ip "Switch:	\fB\-image\fR" 4
+Setting this to a reference to a Tk::Image causes that image to be set for all
+of the column labels and sets the default for all future columns. By default
+column headers are displayed without icons.
+.Sp
+See the \fITk::Label\fR manpage
+.Ip "Name:	\fBlistbackground\fR" 8
+.Ip "Class:	\fBListBackground\fR" 8
+.Ip "Switch:	\fB\-listbackground\fR" 8
+.Ip "Aliases:	\fB\-listcolor\fR \fB\-background\fR \fB\-bg\fR" 8
+Specifies the background (surface) color for all existing listboxes and sets the default for all new ones. Default is \*(L'white\*(R'
+.Ip "Name:	\fBlistfont\fR" 8
+.Ip "Class:	\fBListFont\fR" 8
+.Ip "Switch:	\fB\-listfont\fR" 8
+.Ip "Alias:	\fB\-font\fR" 8
+Specifies the font for all existing listboxes and sets the default for all
+new ones. The default is to use the system default font.
+.Ip "Name:	\fBlistforeground\fR" 8
+.Ip "Class:	\fBListForeground\fR" 8
+.Ip "Switch:	\fB\-listforeground\fR" 8
+Specifies the foreground (writing) color for all existing listboxes and sets the default for all new ones. Default is \*(L'black\*(R'
+.Ip "Name:	\fBselectcommand\fR" 8
+.Ip "Class:	\fBSelectCommand\fR" 8
+.Ip "Switch:	\fB\-selectcommand\fR" 8
+.Ip "Aliases:	\fB\-command\fR" 8
+Specifies a callback to be executed when a list entry is double-clicked.
+The callback is passed the list index. When specified, this callback is
+registered for every existing listbox and sets the default for new ones.
+.Ip "Name:	\fBselectmode\fR" 8
+.Ip "Class:	\fBSelectMode\fR" 8
+.Ip "Switch:	\fB\-selectmode\fR" 8
+Sets the selection mode for all existing listboxes and sets the default to
+use for new ones. The default is \*(L'browse\*(R'.
+.Ip "Name:	\fBtrimcount\fR" 8
+.Ip "Class:	\fBTrimCount\fR" 8
+.Ip "Switch:	\fB\-trimcount\fR" 8
+Specifies the number of button trim \*(L'handles\*(R' for all existing buttons.
+.Ip "Name:	\fBzoom\fR" 8
+.Ip "Class:	\fBZoom\fR" 8
+.Ip "Switch:	\fB\-zoom\fR" 8
+This option takes a boolean argument. When set to 1, all the existing columns
+are \*(L'zoomed\*(R', that is, reduced to their smallest width. When set to 0, all the
+columns are returned to the original widths
+.SH "WIDGET METHODS"
+.Ip "\fI$Button\fR = \fI$Columns\fR\->\fBColumnButton\fR (\fIoption\fR => \fBvalue\fR, ...)" 8
+.Ip "\fI$Button\fR = \fI$Columns\fR\->\fBaddcolumn\fR (\fIoption\fR => \fBvalue\fR, ...)" 8
+.Ip "\fI$Button\fR = \fI$Columns\fR\->\fBColumn\fR (\fIoption\fR => \fBvalue\fR, ...)" 8
+.Ip "\fI$Button\fR = \fI$Columns\fR\->\fBButton\fR (\fIoption\fR => \fBvalue\fR, ...)" 8
+.Ip "\fI$Button\fR = \fI$Columns\fR\->\fBcolumn\fR (\fIoption\fR => \fBvalue\fR, ...)" 8
+Creates a column header and an attached listbox. The listbox is \*(L'tied\*(R' to any preexisting
+ones. The new listbox is padded with empty rows to match its siblings. This method really
+invokes an instantiation of the ColumnButton class. All the options given apply to the
+ColumnButton. The widget reference returned can be used to alter the column's behaviour
+later. The following options are available :-
+\&
+.Ip "\fB\-background\fR => \fBcolor\fR" 16
+.Ip "\fB\-buttonbackground\fR => \fBcolor\fR" 16
+.Ip "\fB\-bg\fR => \fBcolor\fR" 16
+.Ip "\fB\-buttoncolor\fR => \fBcolor\fR" 16
+.Ip "\fB\-color\fR => \fBcolor\fR" 16
+Specifies the button's background (surface) color.
+\&
+.Ip "\fB\-buttoncommand\fR => \fBcallback\fR" 16
+Specifies a callback to be executed when a column header is clicked. The
+callback is passed the list index. If the \fB\-sort\fR option is turned on,
+it overrides this option but does not negate it, allowing it to return
+when the \fB\-sort\fR option is turned off.
+\&
+.Ip "\fB\-font\fR => \fBfontspec\fR" 16
+.Ip "\fB\-buttonfont\fR => \fBfontspec\fR" 16
+Specifies the font for the text in the button label.
+\&
+.Ip "\fB\-foreground\fR => \fBcolor\fR" 16
+.Ip "\fB\-buttonforeground\fR => \fBcolor\fR" 16
+.Ip "\fB\-fg\fR => \fBcolor\fR" 16
+Specifies the button's foreground (text) color. Defaults to black.
+\&
+.Ip "\fB\-image\fR => \fBimage\fR" 16
+Setting this to a reference to a Tk::Image causes that image to be displayed in the
+column label.
+.Sp
+See the \fITk::Label\fR manpage
+\&
+.Ip "\fB\-listbackground\fR => \fBcolor\fR" 16
+.Ip "\fB\-slavecolor\fR => \fBcolor\fR" 16
+Sets the background color for the attached listbox
+\&
+.Ip "\fB\-listfont\fR => \fBfontspec\fR" 16
+Specifies the font for the text in the attached listbox.
+\&
+.Ip "\fB\-listforeground\fR => \fBcolor\fR" 16
+Sets the foreground (text) color for the attached listbox.
+\&
+.Ip "\fB\-listselectmode\fR => \fBmode\fR" 16
+Sets the selection mode for the attached listbox.
+\&
+.Ip "\fB\-selectcommand\fR => \fBcallback\fR" 16
+.Ip "\fB\-command\fR => \fBcallback\fR" 16
+Specifies a callback to be executed when a list entry is double-clicked.
+The callback is passed the list index.
+\&
+.Ip "\fB\-slave\fR => \fBwidget\fR" 16
+\s-1DO\s0 \s-1NOT\s0 \s-1USE\s0 ! This option is use to inform the button which widget it must
+manage. It is provided here only for completeness.
+\&
+.Ip "\fB\-sort\fR => \fBboolean\fR" 16
+Setting this to boolean \*(L'true\*(R' allows all columns to be sorted by this column
+when the button is pressed. Each invocation reverses the sort order. The sort
+method can be specified with \fB\-sortcommand\fR. Setting this to boolean false (0)
+disables the sorting. When active, this option overrides any existing
+\fB\-buttoncommand\fR. When inactive, any preexisting \fB\-buttoncommand\fR is re-enabled.
+\&
+.Ip "\fB\-sortcommand\fR => \fBstring\fR" 16
+.Ip "\fB\-sortfunction\fR => \fBstring\fR" 16
+.Ip "\fB\-sortmethod\fR => \fBstring\fR" 16
+This specifies the sort function to pass to the \fBsort\fR Perl function for sorting
+of this column. The default is \*(L'{lc ($a) cmp lc ($b)}\*(R' for (caseless) alphanumeric
+comparison.
+.Sp
+Read the \fBperlfunc\fR documentation for more details on \fBsort\fR.
+\&
+.Ip "\fB\-trimcount\fR => \fBinteger\fR" 16
+Specifies the number of trim \*(L'handles\*(R' for the button. It defaults to 2.
+Setting it to 0 makes the column unresizeable.
+\&
+.Ip "\fB\-width\fR => \fBinteger\fR" 16
+Set this to the desired width of the column, in characters. The default is the natural
+width of the text and image parts combined.
+\&
+.Ip "\fB\-zoom\fR => \fBboolean\fR" 16
+This option takes a boolean argument. When set to 1, the column is \*(L'zoomed\*(R',
+that is, its width is reduced to the smallest possible setting. When set to 0,
+the column is returned to its original width.
+.Ip "\fI$Columns\fR\->\fBactivate\fR(\fIindex\fR) " 8
+Sets the row element to the one indicated by index. If index is outside the
+range of elements in the listbox then the closest element is activated. The
+active element is drawn with an underline when the widget has the input focus,
+and its index may be retrieved with the index active. 
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBbbox\fR(\fIindex\fR, \fI[columnspec]\fR)" 8
+Returns a list of four numbers describing the bounding box of the text in the
+element given by index in the listbox specified by \fBcolumn\fR or the first listbox
+in the composite. The first two elements of the list give the x and y coordinates
+of the upper-left corner of the screen area covered by the text (specified in pixels
+relative to the widget) and the last two elements give the width and height of the
+area, in pixels. If no part of the element given by index is visible on the screen,
+or if index refers to a non-existent element, then the result is an empty string;
+if the element is partially visible, the result gives the full area of the element,
+including any parts that are not visible. 
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBbuttonhash\fR()" 8
+Returns a hash of column buttons keyed by column label
+.Ip "\fI$Columns\fR\->\fBbuttons\fR()" 8
+Returns an ordered list of the column buttons
+.Ip "\fI$Columns\fR\->\fBbuttonwidth\fR(\fIcolumnspec\fR, \fI?newwidth?\fR)" 8
+.Ip "\fI$Columns\fR\->\fBcolumnwidth\fR(\fIcolumnspec\fR, \fI?newwidth?\fR)" 8
+.Ip "\fI$Columns\fR\->\fBwidth\fR(\fIcolumnspec\fR, \fI?newwidth?\fR)" 8
+This uses the numeric or textual \fBcolumnspec\fR to locate a column header and sets the
+width to \fBnewwidth\fR if present, or returns the current width of that column. It the
+column doesn't exist then the return value 0 is quietly returned.
+.Ip "\fI$Columns\fR\->\fBcolumnlabels\fR(\fIarray reference\fR)" 8
+.Ip "\fI$Columns\fR\->\fBcolumns\fR(\fIarray reference\fR)" 8
+This invokes \fI$Columns\fR\->configure (\fI\-columnlabels\fR => \fBarray reference\fR). See \fB\-columnlabels\fR
+for details as this is a convenience method.
+.Ip "\fI$Columns\fR\->\fBcurselection\fR()" 8
+Returns a list containing the numerical indices of all of the elements in the
+listbox that are currently selected. If there are no elements selected in the
+listbox then an empty string is returned. 
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBdelete\fR(\fIwhere\fR, \fIwhere\fR)" 8
+This has identical behaviour to listbox->\fBdelete\fR.
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBget\fR(\fIfrom\fR, \fIto\fR)" 8
+Retrieves the rows in the range \fIfrom\fR .. \fIto\fR. This method is an
+analog of the \fIlistbox\fR\->\fBget\fR method. The data returned is
+an array of references to the row lists specified.
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBindex\fR(\fIindex\fR)" 8
+Returns the integer index value that corresponds to index. If index is end the
+return value is a count of the number of elements in the listbox (not the index
+of the last element). 
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBindexedbutton\fR(\fIcolumnspec\fR)" 8
+Returns the column button associated with the numeric column index or the textual column
+name.
+.Ip "\fI$Columns\fR\->\fBindexedlist\fR(\fIcolumnspec\fR)" 8
+Returns the listbox associated with the numeric column index or the textual column
+name.
+.Ip "\fI$Columns\fR\->\fBinsert\fR(\fIwhere\fR, ?<option>?, ...)" 8
+This method inserts rows across all listboxes. \fBwhere\fR is the same as documented in the
+\fBlistbox\fR pod. The following options can be a list of scalars, a list of references to
+hashes, or a list of references to arrays. These can appear in any order. A list of scalars
+will be interpreted up to an array reference or the end of the parameter list, whichever comes
+first. The list is padded out so it can be applied to all listboxes. It is then inserted using
+\fBwhere\fR.
+.Sp
+An array reference is dereferenced and applied just as the inline list. A hash is assumed to
+be keyed by the column header labels. It is converted into a list using the column header order
+and applied normally after \*(L'padding\*(R'.
+.Sp
+\s-1NOTE\s0: The insertions are \*(L'cached\*(R' and then applied to each listbox at once, avoiding flicker and
+slow updates.
+.Ip "\fI$Columns\fR\->\fBlabels\fR()" 8
+Returns an ordered list of the column names
+.Ip "\fI$Columns\fR\->\fBlisthash\fR()" 8
+.Ip "\fI$Columns\fR\->\fBhash\fR()" 8
+Returns a hash of listboxes keyed by column label
+.Ip "\fI$Columns\fR\->\fBlists\fR()" 8
+Returns an ordered list of the column listboxes
+.Ip "\fI$Columns\fR\->\fBnearest\fR(\fIy\fR)" 8
+Given a y-coordinate within the listbox window, this command returns the index of the
+(visible) listbox element nearest to that y-coordinate. 
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBselection\fR (\fIoption\fR, \fIargument\fR)" 8
+Adjusts the selection. It has several forms, depending on \fBoption\fR.
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBsee\fR(\fIindex\fR)" 8
+Makes row \fIindex\fR visible.
+.Sp
+See \fIlistbox\fR for more details.
+.Ip "\fI$Columns\fR\->\fBsize\fR()" 8
+.Ip "\fI$Columns\fR\->\fBrows\fR()" 8
+Returns the number of rows.
+.Ip "\fI$Columns\fR\->\fBupdate\fR(\fIwhere\fR, ...)" 8
+.Ip "\fI$Columns\fR\->\fBreplace\fR(\fIwhere\fR, ...)" 8
+This takes the same options as <$Columns>\->\fBinsert\fR but deletes the row found there first.
+.SH "BINDINGS"
+.Ip "\fB[1]\fR" 8
+Pressing and releasing the left mouse button on a columns label will cause the \fB\-sortcommand\fR or the default
+sort method to be invoked if the \fB\-sort\fR option has been enabled. Otherwise, the callback
+specified in \fB\-buttoncommand\fR is invoked if it is defined.
+.Ip "\fB[2]\fR" 8
+Double-clicking the left mouse button on any listbox will cause the callback specified by
+\fB\-selectcommand\fR to be invoked with the row index of the selected listbox item.
+.Ip "\fB[3]\fR" 8
+Pressing and releasing the right mouse button on the column label trim elements will cause that column to \*(L'zoom\*(R'.
+That is, it will collapse the column to its smallest size without the need to drag it. When pressed
+again, the column will return to its original size. The mouse pointer will change to a \*(L'resize\*(R' form
+when this action is possible.
+.Ip "\fB[4]\fR" 8
+Pressing the left mouse button on the column label trim elements will initiate resizing of that column. The edge of
+the column will follow the mouse horizontally until the button is released whereupon the column will remain
+at the selected size. The mouse pointer will change to a \*(L'resize\*(R' form when this action is possible.
+.SH "REQUIREMENTS"
+.Ip "\fBTk::TiedListbox\fR from \fBTk-Contrib-0.06\fR" 8
+.SH "CAVEATS"
+I regret that there appears to be no way to justify the listboxes. If anyone knows, please
+tell me how.
+.SH "AUTHORS"
+Damion K. Wilson, dwilson@ibl.bm, http://pwp.ibl.bm/~dkw
+.SH "COPYRIGHT"
+Copyright (c) 1999 Damion K. Wilson.
+.Sp
+All rights reserved.
+.Sp
+This program is free software, you may redistribute it and/or modify it
+under the same terms as Perl itself.
+.SH "HISTORY"
+.Ip "\fBJuly 4, 1999\fR: fixed scrollbar redisplay failure after insertion bug" 8
+.Ip "\fBSeptember 1, 1999\fR: Rewrite with legacy support" 8
+.Ip "\fBNovember 25, 1999\fR: Fixed index and delete methods" 8
+
+.rn }` ''
+.IX Title "Tk::Columns 3"
+.IX Name "Tk::Columns - A multicolumn list widget with sortable & sizeable columns"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "STANDARD OPTIONS"
+
+.IX Item "Columns"
+
+.IX Item "ColumnButton"
+
+.IX Header "WIDGET\-SPECIFIC OPTIONS"
+
+.IX Item "Name:	\fBbuttonbackground\fR"
+
+.IX Item "Class:	\fBButtonBackground\fR"
+
+.IX Item "Switch:	\fB\-buttonbackground\fR"
+
+.IX Item "Aliases:	\fB\-buttoncolor\fR \fB\-color\fR"
+
+.IX Item "Name:	\fBbuttoncommand\fR"
+
+.IX Item "Class:	\fBButtonCommand\fR"
+
+.IX Item "Switch:	\fB\-buttoncommand\fR"
+
+.IX Item "Name:	\fBbuttonfont\fR"
+
+.IX Item "Class:	\fBButtonFont\fR"
+
+.IX Item "Switch:	\fB\-buttonfont\fR"
+
+.IX Item "Name:	\fBcolumns\fR"
+
+.IX Item "Class:	\fBColumns\fR"
+
+.IX Item "Switch:	\fB\-columns\fR"
+
+.IX Item "Aliases:	\fB\-columnlabels\fR"
+
+.IX Item "Name:	\fBimage\fR"
+
+.IX Item "Class:	\fBImage\fR"
+
+.IX Item "Switch:	\fB\-image\fR"
+
+.IX Item "Name:	\fBlistbackground\fR"
+
+.IX Item "Class:	\fBListBackground\fR"
+
+.IX Item "Switch:	\fB\-listbackground\fR"
+
+.IX Item "Aliases:	\fB\-listcolor\fR \fB\-background\fR \fB\-bg\fR"
+
+.IX Item "Name:	\fBlistfont\fR"
+
+.IX Item "Class:	\fBListFont\fR"
+
+.IX Item "Switch:	\fB\-listfont\fR"
+
+.IX Item "Alias:	\fB\-font\fR"
+
+.IX Item "Name:	\fBlistforeground\fR"
+
+.IX Item "Class:	\fBListForeground\fR"
+
+.IX Item "Switch:	\fB\-listforeground\fR"
+
+.IX Item "Name:	\fBselectcommand\fR"
+
+.IX Item "Class:	\fBSelectCommand\fR"
+
+.IX Item "Switch:	\fB\-selectcommand\fR"
+
+.IX Item "Aliases:	\fB\-command\fR"
+
+.IX Item "Name:	\fBselectmode\fR"
+
+.IX Item "Class:	\fBSelectMode\fR"
+
+.IX Item "Switch:	\fB\-selectmode\fR"
+
+.IX Item "Name:	\fBtrimcount\fR"
+
+.IX Item "Class:	\fBTrimCount\fR"
+
+.IX Item "Switch:	\fB\-trimcount\fR"
+
+.IX Item "Name:	\fBzoom\fR"
+
+.IX Item "Class:	\fBZoom\fR"
+
+.IX Item "Switch:	\fB\-zoom\fR"
+
+.IX Header "WIDGET METHODS"
+
+.IX Item "\fI$Button\fR = \fI$Columns\fR\->\fBColumnButton\fR (\fIoption\fR => \fBvalue\fR, ...)"
+
+.IX Item "\fI$Button\fR = \fI$Columns\fR\->\fBaddcolumn\fR (\fIoption\fR => \fBvalue\fR, ...)"
+
+.IX Item "\fI$Button\fR = \fI$Columns\fR\->\fBColumn\fR (\fIoption\fR => \fBvalue\fR, ...)"
+
+.IX Item "\fI$Button\fR = \fI$Columns\fR\->\fBButton\fR (\fIoption\fR => \fBvalue\fR, ...)"
+
+.IX Item "\fI$Button\fR = \fI$Columns\fR\->\fBcolumn\fR (\fIoption\fR => \fBvalue\fR, ...)"
+
+.IX Item "\fB\-background\fR => \fBcolor\fR"
+
+.IX Item "\fB\-buttonbackground\fR => \fBcolor\fR"
+
+.IX Item "\fB\-bg\fR => \fBcolor\fR"
+
+.IX Item "\fB\-buttoncolor\fR => \fBcolor\fR"
+
+.IX Item "\fB\-color\fR => \fBcolor\fR"
+
+.IX Item "\fB\-buttoncommand\fR => \fBcallback\fR"
+
+.IX Item "\fB\-font\fR => \fBfontspec\fR"
+
+.IX Item "\fB\-buttonfont\fR => \fBfontspec\fR"
+
+.IX Item "\fB\-foreground\fR => \fBcolor\fR"
+
+.IX Item "\fB\-buttonforeground\fR => \fBcolor\fR"
+
+.IX Item "\fB\-fg\fR => \fBcolor\fR"
+
+.IX Item "\fB\-image\fR => \fBimage\fR"
+
+.IX Item "\fB\-listbackground\fR => \fBcolor\fR"
+
+.IX Item "\fB\-slavecolor\fR => \fBcolor\fR"
+
+.IX Item "\fB\-listfont\fR => \fBfontspec\fR"
+
+.IX Item "\fB\-listforeground\fR => \fBcolor\fR"
+
+.IX Item "\fB\-listselectmode\fR => \fBmode\fR"
+
+.IX Item "\fB\-selectcommand\fR => \fBcallback\fR"
+
+.IX Item "\fB\-command\fR => \fBcallback\fR"
+
+.IX Item "\fB\-slave\fR => \fBwidget\fR"
+
+.IX Item "\fB\-sort\fR => \fBboolean\fR"
+
+.IX Item "\fB\-sortcommand\fR => \fBstring\fR"
+
+.IX Item "\fB\-sortfunction\fR => \fBstring\fR"
+
+.IX Item "\fB\-sortmethod\fR => \fBstring\fR"
+
+.IX Item "\fB\-trimcount\fR => \fBinteger\fR"
+
+.IX Item "\fB\-width\fR => \fBinteger\fR"
+
+.IX Item "\fB\-zoom\fR => \fBboolean\fR"
+
+.IX Item "\fI$Columns\fR\->\fBactivate\fR(\fIindex\fR) "
+
+.IX Item "\fI$Columns\fR\->\fBbbox\fR(\fIindex\fR, \fI[columnspec]\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBbuttonhash\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBbuttons\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBbuttonwidth\fR(\fIcolumnspec\fR, \fI?newwidth?\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBcolumnwidth\fR(\fIcolumnspec\fR, \fI?newwidth?\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBwidth\fR(\fIcolumnspec\fR, \fI?newwidth?\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBcolumnlabels\fR(\fIarray reference\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBcolumns\fR(\fIarray reference\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBcurselection\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBdelete\fR(\fIwhere\fR, \fIwhere\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBget\fR(\fIfrom\fR, \fIto\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBindex\fR(\fIindex\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBindexedbutton\fR(\fIcolumnspec\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBindexedlist\fR(\fIcolumnspec\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBinsert\fR(\fIwhere\fR, ?<option>?, ...)"
+
+.IX Item "\fI$Columns\fR\->\fBlabels\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBlisthash\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBhash\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBlists\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBnearest\fR(\fIy\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBselection\fR (\fIoption\fR, \fIargument\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBsee\fR(\fIindex\fR)"
+
+.IX Item "\fI$Columns\fR\->\fBsize\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBrows\fR()"
+
+.IX Item "\fI$Columns\fR\->\fBupdate\fR(\fIwhere\fR, ...)"
+
+.IX Item "\fI$Columns\fR\->\fBreplace\fR(\fIwhere\fR, ...)"
+
+.IX Header "BINDINGS"
+
+.IX Item "\fB[1]\fR"
+
+.IX Item "\fB[2]\fR"
+
+.IX Item "\fB[3]\fR"
+
+.IX Item "\fB[4]\fR"
+
+.IX Header "REQUIREMENTS"
+
+.IX Item "\fBTk::TiedListbox\fR from \fBTk-Contrib-0.06\fR"
+
+.IX Header "CAVEATS"
+
+.IX Header "AUTHORS"
+
+.IX Header "COPYRIGHT"
+
+.IX Header "HISTORY"
+
+.IX Item "\fBJuly 4, 1999\fR: fixed scrollbar redisplay failure after insertion bug"
+
+.IX Item "\fBSeptember 1, 1999\fR: Rewrite with legacy support"
+
+.IX Item "\fBNovember 25, 1999\fR: Fixed index and delete methods"
+

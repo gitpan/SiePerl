@@ -1,0 +1,527 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH LWPCOOK 1 "libwww-perl-5.48" "7/Apr/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+lwpcook \- libwww-perl cookbook
+.SH "DESCRIPTION"
+This document contain some examples that show typical usage of the
+libwww-perl library.  You should consult the documentation for the
+individual modules for more detail.
+.PP
+All examples should be runnable programs. You can, in most cases, test
+the code sections by piping the program text directly to perl.
+.SH "GET"
+It is very easy to use this library to just fetch documents from the
+net.  The LWP::Simple module provides the \fIget()\fR function that return
+the document specified by its URL argument:
+.PP
+.Vb 2
+\&  use LWP::Simple;
+\&  $doc = get 'http://www.sn.no/libwww-perl/';
+.Ve
+or, as a perl one-liner using the \fIgetprint()\fR function:
+.PP
+.Vb 1
+\&  perl -MLWP::Simple -e 'getprint "http://www.sn.no/libwww-perl/"'
+.Ve
+or, how about fetching the latest perl by running this command:
+.PP
+.Vb 3
+\&  perl -MLWP::Simple -e '
+\&    getstore "ftp://ftp.sunet.se/pub/lang/perl/CPAN/src/latest.tar.gz",
+\&             "perl.tar.gz"'
+.Ve
+You will probably first want to find a CPAN site closer to you by
+running something like the following command:
+.PP
+.Vb 1
+\&  perl -MLWP::Simple -e 'getprint "http://www.perl.com/perl/CPAN/CPAN.html"'
+.Ve
+Enough of this simple stuff!  The LWP object oriented interface gives
+you more control over the request sent to the server.  Using this
+interface you have full control over headers sent and how you want to
+handle the response returned.
+.PP
+.Vb 4
+\&  use LWP::UserAgent;
+\&  $ua = LWP::UserAgent->new;
+\&  $ua->agent("$0/0.1 " . $ua->agent);
+\&  # $ua->agent("Mozilla/8.0") # pretend we are very capable browser
+.Ve
+.Vb 2
+\&  $req = HTTP::Request->new(GET => 'http://www.linpro.no/lwp');
+\&  $req->header('Accept' => 'text/html');
+.Ve
+.Vb 2
+\&  # send request
+\&  $res = $ua->request($req);
+.Ve
+.Vb 6
+\&  # check the outcome
+\&  if ($res->is_success) {
+\&     print $res->content;
+\&  } else {
+\&     print "Error: " . $res->status_line . "\en";
+\&  }
+.Ve
+The lwp-request program (alias GET) that is distributed with the
+library can also be used to fetch documents from WWW servers.
+  
+.SH "HEAD"
+If you just want to check if a document is present (i.e. the URL is
+valid) try to run code that looks like this:
+.PP
+.Vb 1
+\&  use LWP::Simple;
+.Ve
+.Vb 3
+\&  if (head($url)) {
+\&     # ok document exists
+\&  }
+.Ve
+The \fIhead()\fR function really returns a list of meta-information about
+the document.  The first three values of the list returned are the
+document type, the size of the document, and the age of the document.
+.PP
+More control over the request or access to all header values returned
+require that you use the object oriented interface described for GET
+above.  Just s/GET/HEAD/g.
+.SH "POST"
+There is no simple procedural interface for posting data to a WWW server.  You
+must use the object oriented interface for this. The most common POST
+operation is to access a WWW form application:
+.PP
+.Vb 2
+\&  use LWP::UserAgent;
+\&  $ua = LWP::UserAgent->new;
+.Ve
+.Vb 3
+\&  my $req = HTTP::Request->new(POST => 'http://www.perl.com/cgi-bin/BugGlimpse');
+\&  $req->content_type('application/x-www-form-urlencoded');
+\&  $req->content('match=www&errors=0');
+.Ve
+.Vb 2
+\&  my $res = $ua->request($req);
+\&  print $res->as_string;
+.Ve
+Lazy people use the HTTP::Request::Common module to set up a suitable
+POST request message (it handles all the escaping issues) and has a
+suitable default for the content_type:
+.PP
+.Vb 3
+\&  use HTTP::Request::Common qw(POST);
+\&  use LWP::UserAgent;
+\&  $ua = LWP::UserAgent->new;
+.Ve
+.Vb 2
+\&  my $req = POST 'http://www.perl.com/cgi-bin/BugGlimpse',
+\&                [ search => 'www', errors => 0 ];
+.Ve
+.Vb 1
+\&  print $ua->request($req)->as_string;
+.Ve
+The lwp-request program (alias POST) that is distributed with the
+library can also be used for posting data.
+.SH "PROXIES"
+Some sites use proxies to go through fire wall machines, or just as
+cache in order to improve performance.  Proxies can also be used for
+accessing resources through protocols not supported directly (or
+supported badly :\-) by the libwww-perl library.
+.PP
+You should initialize your proxy setting before you start sending
+requests:
+.PP
+.Vb 7
+\&  use LWP::UserAgent;
+\&  $ua = LWP::UserAgent->new;
+\&  $ua->env_proxy; # initialize from environment variables
+\&  # or
+\&  $ua->proxy(ftp  => 'http://proxy.myorg.com');
+\&  $ua->proxy(wais => 'http://proxy.myorg.com');
+\&  $ua->no_proxy(qw(no se fi));
+.Ve
+.Vb 2
+\&  my $req = HTTP::Request->new(GET => 'wais://xxx.com/');
+\&  print $ua->request($req)->as_string;
+.Ve
+The LWP::Simple interface will call \fIenv_proxy()\fR for you automatically.
+Applications that use the \f(CW$ua\fR\->\fIenv_proxy()\fR method will normally not
+use the \f(CW$ua\fR\->\fIproxy()\fR and \f(CW$ua\fR\->\fIno_proxy()\fR methods.
+.PP
+Some proxies also require that you send it a username/password in
+order to let requests through.  You should be able to add the
+required header, with something like this:
+.PP
+.Vb 1
+\& use LWP::UserAgent;
+.Ve
+.Vb 2
+\& $ua = LWP::UserAgent->new;
+\& $ua->proxy(['http', 'ftp'] => 'http://proxy.myorg.com');
+.Ve
+.Vb 2
+\& $req = HTTP::Request->new('GET',"http://www.perl.com");
+\& $req->proxy_authorization_basic("proxy_user", "proxy_password");
+.Ve
+.Vb 2
+\& $res = $ua->request($req);
+\& print $res->content if $res->is_success;
+.Ve
+Replace \f(CWproxy.myorg.com\fR, \f(CWproxy_user\fR and
+\f(CWproxy_password\fR with something suitable for your site.
+.SH "ACCESS TO PROTECTED DOCUMENTS"
+Documents protected by basic authorization can easily be accessed
+like this:
+.PP
+.Vb 5
+\&  use LWP::UserAgent;
+\&  $ua = LWP::UserAgent->new;
+\&  $req = HTTP::Request->new(GET => 'http://www.linpro.no/secret/');
+\&  $req->authorization_basic('aas', 'mypassword');
+\&  print $ua->request($req)->as_string;
+.Ve
+The other alternative is to provide a subclass of \fILWP::UserAgent\fR that
+overrides the \fIget_basic_credentials()\fR method. Study the \fIlwp-request\fR
+program for an example of this.
+.SH "COOKIES"
+Some sites like to play games with cookies.  By default LWP ignore
+cookies provided by the servers it visit.  You can make it start
+collecting them by setting up a cookie jar.
+.PP
+.Vb 2
+\&  use LWP::UserAgent;
+\&  use HTTP::Cookies;
+.Ve
+.Vb 3
+\&  $ua = LWP::UserAgent->new;
+\&  $ua->cookie_jar(HTTP::Cookies->new(file => "lwpcookies.txt",
+\&                                     autosave => 1));
+.Ve
+.Vb 3
+\&  # and then send requests just as you used to do
+\&  $res = $ua->request(HTTP::Request->new(GET => "http://www.yahoo.no"));
+\&  print $res->status_line, "\en";
+.Ve
+As you visit sites that send you cookies to keep, then the file
+\fIlwpcookies.txt\*(R"\fR will grow.
+.SH "HTTPS"
+URLs with https scheme are accessed in exactly the same way as with
+http scheme, provided that an SSL interface module for LWP has been
+properly installed (see the \fIREADME.SSL\fR file found in the
+libwww-perl distribution for more details).  If no SSL interface is
+installed for LWP to use, then you will get \*(L"501 Protocol scheme
+\&'https\*(R' is not supported\*(R" errors when accessing such URLs.
+.PP
+Here's an example of fetching and printing a WWW page using SSL:
+.PP
+.Vb 1
+\&  use LWP::UserAgent;
+.Ve
+.Vb 8
+\&  my $ua = LWP::UserAgent->new;
+\&  my $req = HTTP::Request->new(GET => 'https://www.helsinki.fi/');
+\&  my $res = $ua->request($req);
+\&  if ($res->is_success) {
+\&      print $res->as_string;
+\&  } else {
+\&      print "Failed: ", $res->status_line, "\en";
+\&  }
+.Ve
+.SH "MIRRORING"
+If you want to mirror documents from a WWW server, then try to run
+code similar to this at regular intervals:
+.PP
+.Vb 1
+\&  use LWP::Simple;
+.Ve
+.Vb 6
+\&  %mirrors = (
+\&     'http://www.sn.no/'             => 'sn.html',
+\&     'http://www.perl.com/'          => 'perl.html',
+\&     'http://www.sn.no/libwww-perl/' => 'lwp.html',
+\&     'gopher://gopher.sn.no/'        => 'gopher.html',
+\&  );
+.Ve
+.Vb 3
+\&  while (($url, $localfile) = each(%mirrors)) {
+\&     mirror($url, $localfile);
+\&  }
+.Ve
+Or, as a perl one-liner:
+.PP
+.Vb 1
+\&  perl -MLWP::Simple -e 'mirror("http://www.perl.com/", "perl.html")';
+.Ve
+The document will not be transfered unless it has been updated.
+.SH "LARGE DOCUMENTS"
+If the document you want to fetch is too large to be kept in memory,
+then you have two alternatives.  You can instruct the library to write
+the document content to a file (second \f(CW$ua\fR\->\fIrequest()\fR argument is a file
+name):
+.PP
+.Vb 2
+\&  use LWP::UserAgent;
+\&  $ua = LWP::UserAgent->new;
+.Ve
+.Vb 9
+\&  my $req = HTTP::Request->new(GET =>
+\&                'http://www.linpro.no/lwp/libwww-perl-5.46.tar.gz');
+\&  $res = $ua->request($req, "libwww-perl.tar.gz");
+\&  if ($res->is_success) {
+\&     print "ok\en";
+\&  }
+\&  else {
+\&     print $res->status_line, "\en";
+\&  }
+.Ve
+Or you can process the document as it arrives (second \f(CW$ua\fR\->\fIrequest()\fR
+argument is a code reference):
+.PP
+.Vb 3
+\&  use LWP::UserAgent;
+\&  $ua = LWP::UserAgent->new;
+\&  $URL = 'ftp://ftp.unit.no/pub/rfc/rfc-index.txt';
+.Ve
+.Vb 15
+\&  my $expected_length;
+\&  my $bytes_received = 0;
+\&  my $res = 
+\&     $ua->request(HTTP::Request->new(GET => $URL),
+\&               sub {
+\&                   my($chunk, $res) = @_;
+\&                   $bytes_received += length($chunk);
+\&                   unless (defined $expected_length) {
+\&                      $expected_length = $res->content_length || 0;
+\&                   }
+\&                   if ($expected_length) {
+\&                        printf STDERR "%d%% - ",
+\&                                  100 * $bytes_received / $expected_length;
+\&                   }
+\&                   print STDERR "$bytes_received bytes received\en";
+.Ve
+.Vb 4
+\&                   # XXX Should really do something with the chunk itself
+\&                   # print $chunk;
+\&               });
+\&   print $res->status_line, "\en";
+.Ve
+.SH "COPYRIGHT"
+Copyright 1996-2000, Gisle Aas
+.PP
+This library is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+.rn }` ''
+.IX Title "LWPCOOK 1"
+.IX Name "lwpcook - libwww-perl cookbook"
+
+.IX Header "NAME"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "GET"
+
+.IX Header "HEAD"
+
+.IX Header "POST"
+
+.IX Header "PROXIES"
+
+.IX Header "ACCESS TO PROTECTED DOCUMENTS"
+
+.IX Header "COOKIES"
+
+.IX Header "HTTPS"
+
+.IX Header "MIRRORING"
+
+.IX Header "LARGE DOCUMENTS"
+
+.IX Header "COPYRIGHT"
+

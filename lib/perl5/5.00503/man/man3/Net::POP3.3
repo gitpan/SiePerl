@@ -1,0 +1,364 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Net::POP3 3 "perl 5.005, patch 03" "31/Jan/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Net::POP3 \- Post Office Protocol 3 Client class (RFC1081)
+.SH "SYNOPSIS"
+.PP
+.Vb 5
+\&    use Net::POP3;
+\&    
+\&    # Constructors
+\&    $pop = Net::POP3->new('pop3host');
+\&    $pop = Net::POP3->new('pop3host', Timeout => 60);
+.Ve
+.SH "DESCRIPTION"
+This module implements a client interface to the POP3 protocol, enabling
+a perl5 application to talk to POP3 servers. This documentation assumes
+that you are familiar with the POP3 protocol described in RFC1081.
+.PP
+A new Net::POP3 object must be created with the \fInew\fR method. Once
+this has been done, all POP3 commands are accessed via method calls
+on the object.
+.SH "EXAMPLES"
+.PP
+.Vb 1
+\&    Need some small examples in here :-)
+.Ve
+.SH "CONSTRUCTOR"
+.Ip "new ( [ \s-1HOST\s0, ] [ \s-1OPTIONS\s0 ] )" 4
+This is the constructor for a new Net::\s-1POP3\s0 object. \f(CWHOST\fR is the
+name of the remote host to which a \s-1POP3\s0 connection is required.
+.Sp
+If \f(CWHOST\fR is not given, then the \f(CWPOP3_Host\fR specified in \f(CWNet::Config\fR
+will be used.
+.Sp
+\f(CWOPTIONS\fR are passed in a hash like fashion, using key and value pairs.
+Possible options are:
+.Sp
+\fBResvPort\fR \- If given then the socket for the \f(CWNet::POP3\fR object
+will be bound to the local port given using \f(CWbind\fR when the socket is
+created.
+.Sp
+\fBTimeout\fR \- Maximum time, in seconds, to wait for a response from the
+\s-1POP3\s0 server (default: 120)
+.Sp
+\fBDebug\fR \- Enable debugging information
+.SH "METHODS"
+Unless otherwise stated all methods return either a \fItrue\fR or \fIfalse\fR
+value, with \fItrue\fR meaning that the operation was a success. When a method
+states that it returns a value, failure will be returned as \fIundef\fR or an
+empty list.
+.Ip "user ( \s-1USER\s0 )" 4
+Send the \s-1USER\s0 command.
+.Ip "pass ( \s-1PASS\s0 )" 4
+Send the \s-1PASS\s0 command. Returns the number of messages in the mailbox.
+.Ip "login ( [ \s-1USER\s0 [, \s-1PASS\s0 ]] )" 4
+Send both the the \s-1USER\s0 and \s-1PASS\s0 commands. If \f(CWPASS\fR is not given the
+\f(CWNet::POP3\fR uses \f(CWNet::Netrc\fR to lookup the password using the host
+and username. If the username is not specified then the current user name
+will be used.
+.Sp
+Returns the number of messages in the mailbox. However if there are no
+messages on the server the string \f(CW"0E0"\fR will be returned. This is
+will give a true value in a boolean context, but zero in a numeric context.
+.Sp
+If there was an error authenticating the user then \fIundef\fR will be returned.
+.Ip "apop ( \s-1USER\s0, \s-1PASS\s0 )" 4
+Authenticate with the server identifying as \f(CWUSER\fR with password \f(CWPASS\fR.
+Similar ti the \fIlogin\fR manpage, but the password is not sent in clear text. 
+.Sp
+To use this method you must have the \s-1MD5\s0 package installed, if you do not
+this method will return \fIundef\fR
+.Ip "top ( \s-1MSGNUM\s0 [, \s-1NUMLINES\s0 ] )" 4
+Get the header and the first \f(CWNUMLINES\fR of the body for the message
+\f(CWMSGNUM\fR. Returns a reference to an array which contains the lines of text
+read from the server.
+.Ip "list ( [ \s-1MSGNUM\s0 ] )" 4
+If called with an argument the \f(CWlist\fR returns the size of the message
+in octets.
+.Sp
+If called without arguments a reference to a hash is returned. The
+keys will be the \f(CWMSGNUM\fR's of all undeleted messages and the values will
+be their size in octets.
+.Ip "get ( \s-1MSGNUM\s0 [, \s-1FH\s0 ] )" 4
+Get the message \f(CWMSGNUM\fR from the remote mailbox. If \f(CWFH\fR is not given
+then get returns a reference to an array which contains the lines of
+text read from the server. If \f(CWFH\fR is given then the lines returned
+from the server are printed to the filehandle \f(CWFH\fR.
+.Ip "last ()" 4
+Returns the highest \f(CWMSGNUM\fR of all the messages accessed.
+.Ip "popstat ()" 4
+Returns a list of two elements. These are the number of undeleted
+elements and the size of the mbox in octets.
+.Ip "ping ( \s-1USER\s0 )" 4
+Returns a list of two elements. These are the number of new messages
+and the total number of messages for \f(CWUSER\fR.
+.Ip "uidl ( [ \s-1MSGNUM\s0 ] )" 4
+Returns a unique identifier for \f(CWMSGNUM\fR if given. If \f(CWMSGNUM\fR is not
+given \f(CWuidl\fR returns a reference to a hash where the keys are the
+message numbers and the values are the unique identifiers.
+.Ip "delete ( \s-1MSGNUM\s0 )" 4
+Mark message \f(CWMSGNUM\fR to be deleted from the remote mailbox. All messages
+that are marked to be deleted will be removed from the remote mailbox
+when the server connection closed.
+.Ip "reset ()" 4
+Reset the status of the remote \s-1POP3\s0 server. This includes reseting the
+status of all messages to not be deleted.
+.Ip "quit ()" 4
+Quit and close the connection to the remote \s-1POP3\s0 server. Any messages marked
+as deleted will be deleted from the remote mailbox.
+.SH "NOTES"
+If a \f(CWNet::POP3\fR object goes out of scope before \f(CWquit\fR method is called
+then the \f(CWreset\fR method will called before the connection is closed. This
+means that any messages marked to be deleted will not be.
+.SH "SEE ALSO"
+the \fINet::Netrc\fR manpage
+the \fINet::Cmd\fR manpage
+.SH "AUTHOR"
+Graham Barr <gbarr@pobox.com>
+.SH "COPYRIGHT"
+Copyright (c) 1995-1997 Graham Barr. All rights reserved.
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+.rn }` ''
+.IX Title "Net::POP3 3"
+.IX Name "Net::POP3 - Post Office Protocol 3 Client class (RFC1081)"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "EXAMPLES"
+
+.IX Header "CONSTRUCTOR"
+
+.IX Item "new ( [ \s-1HOST\s0, ] [ \s-1OPTIONS\s0 ] )"
+
+.IX Header "METHODS"
+
+.IX Item "user ( \s-1USER\s0 )"
+
+.IX Item "pass ( \s-1PASS\s0 )"
+
+.IX Item "login ( [ \s-1USER\s0 [, \s-1PASS\s0 ]] )"
+
+.IX Item "apop ( \s-1USER\s0, \s-1PASS\s0 )"
+
+.IX Item "top ( \s-1MSGNUM\s0 [, \s-1NUMLINES\s0 ] )"
+
+.IX Item "list ( [ \s-1MSGNUM\s0 ] )"
+
+.IX Item "get ( \s-1MSGNUM\s0 [, \s-1FH\s0 ] )"
+
+.IX Item "last ()"
+
+.IX Item "popstat ()"
+
+.IX Item "ping ( \s-1USER\s0 )"
+
+.IX Item "uidl ( [ \s-1MSGNUM\s0 ] )"
+
+.IX Item "delete ( \s-1MSGNUM\s0 )"
+
+.IX Item "reset ()"
+
+.IX Item "quit ()"
+
+.IX Header "NOTES"
+
+.IX Header "SEE ALSO"
+
+.IX Header "AUTHOR"
+
+.IX Header "COPYRIGHT"
+

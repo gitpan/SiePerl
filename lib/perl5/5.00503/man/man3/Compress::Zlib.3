@@ -1,0 +1,994 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH Zlib 3 "perl 5.005, patch 03" "9/Jan/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+Compress::Zlib \- Interface to zlib compression library
+.SH "SYNOPSIS"
+.PP
+.Vb 1
+\&    use Compress::Zlib ;
+.Ve
+.Vb 4
+\&    ($d, $status) = deflateInit( [OPT] ) ;
+\&    ($out, $status) = $d->deflate($buffer) ;
+\&    ($out, $status) = $d->flush() ;
+\&    $d->dict_adler() ;
+.Ve
+.Vb 3
+\&    ($i, $status) = inflateInit( [OPT] ) ;
+\&    ($out, $status) = $i->inflate($buffer) ;
+\&    $i->dict_adler() ;
+.Ve
+.Vb 2
+\&    $dest = compress($source) ;
+\&    $dest = uncompress($source) ;
+.Ve
+.Vb 8
+\&    $gz = gzopen($filename or filehandle, $mode) ;
+\&    $bytesread = $gz->gzread($buffer [,$size]) ;
+\&    $bytesread = $gz->gzreadline($line) ;
+\&    $byteswritten = $gz->gzwrite($buffer) ;
+\&    $status = $gz->gzflush($flush) ;
+\&    $status = $gz->gzclose() ;
+\&    $errstring = $gz->gzerror() ; 
+\&    $gzerrno
+.Ve
+.Vb 1
+\&    $dest = Compress::Zlib::memGzip($buffer) ;
+.Ve
+.Vb 2
+\&    $crc = adler32($buffer [,$crc]) ;
+\&    $crc = crc32($buffer [,$crc]) ;
+.Ve
+.Vb 1
+\&    ZLIB_VERSION
+.Ve
+.SH "DESCRIPTION"
+The \fICompress::Zlib\fR module provides a Perl interface to the \fIzlib\fR
+compression library (see the \f(CWAUTHORS\fR entry elsewhere in this documentfor details about where to get
+\fIzlib\fR). Most of the functionality provided by \fIzlib\fR is available
+in \fICompress::Zlib\fR.
+.PP
+The module can be split into two general areas of functionality, namely
+in-memory compression/decompression and read/write access to \fIgzip\fR
+files. Each of these areas will be discussed separately below.
+.SH "DEFLATE"
+The interface \fICompress::Zlib\fR provides to the in-memory \fIdeflate\fR
+(and \fIinflate\fR) functions has been modified to fit into a Perl model.
+.PP
+The main difference is that for both inflation and deflation, the Perl
+interface will \fIalways\fR consume the complete input buffer before
+returning. Also the output buffer returned will be automatically grown
+to fit the amount of output available.
+.PP
+Here is a definition of the interface available:
+.Sh "\fB($d, $status) = deflateInit( [\s-1OPT\s0] )\fR"
+Initialises a deflation stream. 
+.PP
+It combines the features of the \fIzlib\fR functions \fBdeflateInit\fR,
+\fBdeflateInit2\fR and \fBdeflateSetDictionary\fR.
+.PP
+If successful, it will return the initialised deflation stream, \fB$d\fR
+and \fB$status\fR of \f(CWZ_OK\fR in a list context. In scalar context it
+returns the deflation stream, \fB$d\fR, only.
+.PP
+If not successful, the returned deflation stream (\fB$d\fR) will be
+\fIundef\fR and \fB$status\fR will hold the exact \fIzlib\fR error code.
+.PP
+The function optionally takes a number of named options specified as
+\f(CW-Name=>value\fR pairs. This allows individual options to be
+tailored without having to specify them all in the parameter list.
+.PP
+For backward compatability, it is also possible to pass the parameters
+as a reference to a hash containing the name=>value pairs.
+.PP
+The function takes one optional parameter, a reference to a hash.  The
+contents of the hash allow the deflation interface to be tailored.
+.PP
+Here is a list of the valid options:
+.Ip "\fB\-Level\fR" 5
+Defines the compression level. Valid values are 1 through 9,
+\f(CWZ_BEST_SPEED\fR, \f(CWZ_BEST_COMPRESSION\fR, and \f(CWZ_DEFAULT_COMPRESSION\fR.
+.Sp
+The default is \f(CW-Level =>Z_DEFAULT_COMPRESSION\fR.
+.Ip "\fB\-Method\fR" 5
+Defines the compression method. The only valid value at present (and
+the default) is \f(CW-Method =>Z_DEFLATED\fR.
+.Ip "\fB\-WindowBits\fR" 5
+For a definition of the meaning and valid values for \fBWindowBits\fR
+refer to the \fIzlib\fR documentation for \fIdeflateInit2\fR.
+.Sp
+Defaults to \f(CW-WindowBits =>MAX_WBITS\fR.
+.Ip "\fB\-MemLevel\fR" 5
+For a definition of the meaning and valid values for \fBMemLevel\fR
+refer to the \fIzlib\fR documentation for \fIdeflateInit2\fR.
+.Sp
+Defaults to \f(CW-MemLevel =>MAX_MEM_LEVEL\fR.
+.Ip "\fB\-Strategy\fR" 5
+Defines the strategy used to tune the compression. The valid values are
+\f(CWZ_DEFAULT_STRATEGY\fR, \f(CWZ_FILTERED\fR and \f(CWZ_HUFFMAN_ONLY\fR. 
+.Sp
+The default is \f(CW-Strategy =>Z_DEFAULT_STRATEGY\fR.
+.Ip "\fB\-Dictionary\fR" 5
+When a dictionary is specified \fICompress::Zlib\fR will automatically
+call \fBdeflateSetDictionary\fR directly after calling \fBdeflateInit\fR. The
+Adler32 value for the dictionary can be obtained by calling tht method 
+\f(CW$d-\fR\fIdict_adler()\fR>.
+.Sp
+The default is no dictionary.
+.Ip "\fB\-Bufsize\fR" 5
+Sets the initial size for the deflation buffer. If the buffer has to be
+reallocated to increase the size, it will grow in increments of
+\fBBufsize\fR.
+.Sp
+The default is 4096.
+.PP
+Here is an example of using the \fBdeflateInit\fR optional parameter list
+to override the default buffer size and compression level. All other
+options will take their default values.
+.PP
+.Vb 2
+\&    deflateInit( -Bufsize => 300, 
+\&                 -Level => Z_BEST_SPEED  ) ;
+.Ve
+.Sh "\fB($out, $status) = $d->deflate($buffer)\fR"
+Deflates the contents of \fB$buffer\fR. The buffer can either be a scalar
+or a scalar reference.  When finished, \fB$buffer\fR will be
+completely processed (assuming there were no errors). If the deflation
+was successful it returns the deflated output, \fB$out\fR, and a status
+value, \fB$status\fR, of \f(CWZ_OK\fR.
+.PP
+On error, \fB$out\fR will be \fIundef\fR and \fB$status\fR will contain the
+\fIzlib\fR error code.
+.PP
+In a scalar context \fBdeflate\fR will return \fB$out\fR only.
+.PP
+As with the \fIdeflate\fR function in \fIzlib\fR, it is not necessarily the
+case that any output will be produced by this method. So don't rely on
+the fact that \fB$out\fR is empty for an error test.
+.Sh "\fB($out, $status) = $d->flush()\fR"
+Finishes the deflation. Any pending output will be returned via \fB$out\fR.
+\fB$status\fR will have a value \f(CWZ_OK\fR if successful.
+.PP
+In a scalar context \fBflush\fR will return \fB$out\fR only.
+.PP
+Note that flushing can degrade the compression ratio, so it should only
+be used to terminate a decompression.
+.Sh "\fB$d->dict_adler()\fR"
+Returns the adler32 value for the dictionary.
+.Sh "Example"
+Here is a trivial example of using \fBdeflate\fR. It simply reads standard
+input, deflates it and writes it to standard output.
+.PP
+.Vb 1
+\&    use Compress::Zlib ;
+.Ve
+.Vb 2
+\&    binmode STDIN;
+\&    binmode STDOUT;
+.Ve
+.Vb 2
+\&    $x = deflateInit()
+\&       or die "Cannot create a deflation stream\en" ;
+.Ve
+.Vb 6
+\&    while (<>)
+\&    {
+\&        ($output, $status) = $x->deflate($_) ;
+\&    
+\&        $status == Z_OK
+\&            or die "deflation failed\en" ;
+.Ve
+.Vb 2
+\&        print $output ;
+\&    }
+.Ve
+.Vb 1
+\&    ($output, $status) = $x->flush() ;
+.Ve
+.Vb 2
+\&    $status == Z_OK
+\&        or die "deflation failed\en" ;
+.Ve
+.Vb 1
+\&    print $output ;
+.Ve
+.SH "INFLATE"
+Here is a definition of the interface:
+.Sh "\fB($i, $status) = inflateInit()\fR"
+Initialises an inflation stream. 
+.PP
+In a list context it returns the inflation stream, \fB$i\fR, and the
+\fIzlib\fR status code (\fB$status\fR). In a scalar context it returns the
+inflation stream only.
+.PP
+If successful, \fB$i\fR will hold the inflation stream and \fB$status\fR will
+be \f(CWZ_OK\fR.
+.PP
+If not successful, \fB$i\fR will be \fIundef\fR and \fB$status\fR will hold the
+\fIzlib\fR error code.
+.PP
+The function optionally takes a number of named options specified as
+\f(CW-Name=>value\fR pairs. This allows individual options to be
+tailored without having to specify them all in the parameter list.
+ 
+For backward compatability, it is also possible to pass the parameters
+as a reference to a hash containing the name=>value pairs.
+ 
+The function takes one optional parameter, a reference to a hash.  The
+contents of the hash allow the deflation interface to be tailored.
+ 
+Here is a list of the valid options:
+.Ip "\fB\-WindowBits\fR" 5
+For a definition of the meaning and valid values for \fBWindowBits\fR
+refer to the \fIzlib\fR documentation for \fIinflateInit2\fR.
+.Sp
+Defaults to \f(CW-WindowBits =>MAX_WBITS\fR.
+.Ip "\fB\-Bufsize\fR" 5
+Sets the initial size for the inflation buffer. If the buffer has to be
+reallocated to increase the size, it will grow in increments of
+\fBBufsize\fR. 
+.Sp
+Default is 4096.
+.Ip "\fB\-Dictionary\fR" 5
+The default is no dictionary.
+.PP
+Here is an example of using the \fBinflateInit\fR optional parameter to
+override the default buffer size.
+.PP
+.Vb 1
+\&    inflateInit( -Bufsize => 300 ) ;
+.Ve
+.Sh "\fB($out, $status) = $i->inflate($buffer)\fR"
+Inflates the complete contents of \fB$buffer\fR. The buffer can either be
+a scalar or a scalar reference.
+.PP
+Returns \f(CWZ_OK\fR if successful and \f(CWZ_STREAM_END\fR if the end of the
+compressed data has been successfully reached. 
+If not successful, \fB$out\fR will be \fIundef\fR and \fB$status\fR will hold
+the \fIzlib\fR error code.
+.PP
+The \f(CW$buffer\fR parameter is modified by \f(CWinflate\fR. On completion it
+will contain what remains of the input buffer after inflation. This
+means that \f(CW$buffer\fR will be an empty string when the return status is
+\f(CWZ_OK\fR. When the return status is \f(CWZ_STREAM_END\fR the \f(CW$buffer\fR
+parameter will contains what (if anything) was stored in the input
+buffer after the deflated data stream.
+.PP
+This feature is useful when processing a file format that encapsulates
+a  compressed data stream (e.g. gzip, zip).
+.Sh "\fB$i->dict_adler()\fR"
+Returns the adler32 value for the dictionary.
+.Sh "Example"
+Here is an example of using \fBinflate\fR.
+.PP
+.Vb 1
+\&    use Compress::Zlib ;
+.Ve
+.Vb 2
+\&    $x = inflateInit()
+\&       or die "Cannot create a inflation stream\en" ;
+.Ve
+.Vb 3
+\&    $input = '' ;
+\&    binmode STDIN;
+\&    binmode STDOUT;
+.Ve
+.Vb 3
+\&    while (read(STDIN, $input, 4096))
+\&    {
+\&        ($output, $status) = $x->inflate(\e$input) ;
+.Ve
+.Vb 2
+\&        print $output 
+\&            if $status == Z_OK or $status == Z_STREAM_END ;
+.Ve
+.Vb 2
+\&        last if $status != Z_OK ;
+\&    }
+.Ve
+.Vb 2
+\&    die "inflation failed\en"
+\&        unless $status == Z_STREAM_END ;
+.Ve
+.SH "COMPRESS/UNCOMPRESS"
+Two high-level functions are provided by \fIzlib\fR to perform in-memory
+compression. They are \fBcompress\fR and \fBuncompress\fR. Two Perl subs are
+provided which provide similar functionality.
+.Ip "\fB$dest = compress($source) ;\fR" 5
+Compresses \fB$source\fR. If successful it returns the
+compressed data. Otherwise it returns \fIundef\fR.
+.Sp
+The source buffer can either be a scalar or a scalar reference.
+.Ip "\fB$dest = uncompress($source) ;\fR" 5
+Uncompresses \fB$source\fR. If successful it returns the uncompressed
+data. Otherwise it returns \fIundef\fR.
+.Sp
+The source buffer can either be a scalar or a scalar reference.
+.SH "GZIP INTERFACE"
+A number of functions are supplied in \fIzlib\fR for reading and writing
+\fIgzip\fR files. This module provides an interface to most of them. In
+general the interface provided by this module operates identically to
+the functions provided by \fIzlib\fR. Any differences are explained
+below.
+.Ip "\fB$gz = gzopen(filename or filehandle, mode)\fR" 5
+This function operates identically to the \fIzlib\fR equivalent except
+that it returns an object which is used to access the other \fIgzip\fR
+methods.
+.Sp
+As with the \fIzlib\fR equivalent, the \fBmode\fR parameter is used to
+specify both whether the file is opened for reading or writing and to
+optionally specify a a compression level. Refer to the \fIzlib\fR
+documentation for the exact format of the \fBmode\fR parameter.
+.Sp
+If a reference to an open filehandle is passed in place of the
+filename, gzdopen will be called behind the scenes. The third example
+at the end of this section, \fIgzstream\fR, uses this feature.
+.Ip "\fB$bytesread = $gz->gzread($buffer [, $size]) ;\fR" 5
+Reads \fB$size\fR bytes from the compressed file into \fB$buffer\fR. If
+\fB$size\fR is not specified, it will default to 4096. If the scalar
+\fB$buffer\fR is not large enough, it will be extended automatically.
+.Sp
+Returns the number of bytes actually read. On \s-1EOF\s0 it returns 0 and in
+the case of an error, \-1.
+.Ip "\fB$bytesread = $gz->gzreadline($line) ;\fR" 5
+Reads the next line from the compressed file into \fB$line\fR. 
+.Sp
+Returns the number of bytes actually read. On \s-1EOF\s0 it returns 0 and in
+the case of an error, \-1.
+.Sp
+It is legal to intermix calls to \fBgzread\fR and \fBgzreadline\fR.
+.Sp
+At this time \fBgzreadline\fR ignores the variable \f(CW$/\fR
+(\f(CW$INPUT_RECORD_SEPARATOR\fR or \f(CW$RS\fR when \f(CWEnglish\fR is in use). The
+end of a line is denoted by the C character \f(CW'\en'\fR.
+.Ip "\fB$byteswritten = $gz->gzwrite($buffer) ;\fR" 5
+Writes the contents of \fB$buffer\fR to the compressed file. Returns the
+number of bytes actually written, or 0 on error.
+.Ip "\fB$status = $gz->gzflush($flush) ;\fR" 5
+Flushes all pending output into the compressed file.
+Works identically to the \fIzlib\fR function it interfaces to. Note that
+the use of \fBgzflush\fR can degrade compression.
+.Sp
+Refer to the \fIzlib\fR documentation for the valid values of \fB$flush\fR.
+.Ip "\fB$gz->gzclose\fR" 5
+Closes the compressed file. Any pending data is flushed to the file
+before it is closed.
+.Ip "\fB$gz->gzerror\fR" 5
+Returns the \fIzlib\fR error message or number for the last operation
+associated with \fB$gz\fR. The return value will be the \fIzlib\fR error
+number when used in a numeric context and the \fIzlib\fR error message
+when used in a string context. The \fIzlib\fR error number constants,
+shown below, are available for use.
+.Sp
+.Vb 7
+\&    Z_OK
+\&    Z_STREAM_END
+\&    Z_ERRNO
+\&    Z_STREAM_ERROR
+\&    Z_DATA_ERROR
+\&    Z_MEM_ERROR
+\&    Z_BUF_ERROR
+.Ve
+.Ip "\fB$gzerrno\fR" 5
+The \fB$gzerrno\fR scalar holds the error code associated with the most
+recent \fIgzip\fR routine. Note that unlike \fBgzerror()\fR, the error is
+\fInot\fR associated with a particular file.
+.Sp
+As with \fBgzerror()\fR it returns an error number in numeric context and
+an error message in string context. Unlike \fBgzerror()\fR though, the
+error message will correspond to the \fIzlib\fR message when the error is
+associated with \fIzlib\fR itself, or the \s-1UNIX\s0 error message when it is
+not (i.e. \fIzlib\fR returned \f(CWZ_ERRORNO\fR).
+.Sp
+As there is an overlap between the error numbers used by \fIzlib\fR and
+\s-1UNIX\s0, \fB$gzerrno\fR should only be used to check for the presence of
+\fIan\fR error in numeric context. Use \fBgzerror()\fR to check for specific
+\fIzlib\fR errors. The \fIgzcat\fR example below shows how the variable can
+be used safely.
+.Sh "Examples"
+Here is an example script which uses the interface. It implements a
+\fIgzcat\fR function.
+.PP
+.Vb 1
+\&    use Compress::Zlib ;
+.Ve
+.Vb 2
+\&    die "Usage: gzcat file...\en"
+\&        unless @ARGV ;
+.Ve
+.Vb 3
+\&    foreach $file (@ARGV) {
+\&        $gz = gzopen($file, "rb") 
+\&            or die "Cannot open $file: $gzerrno\en" ;
+.Ve
+.Vb 7
+\&        print $buffer 
+\&            while $gz->gzread($buffer) > 0 ;
+\&        die "Error reading from $file: $gzerrno\en" 
+\&            if $gzerrno != Z_STREAM_END ;
+\&    
+\&        $gz->gzclose() ;
+\&    }
+.Ve
+Below is a script which makes use of \fBgzreadline\fR. It implements a
+very simple \fIgrep\fR like script.
+.PP
+.Vb 1
+\&    use Compress::Zlib ;
+.Ve
+.Vb 2
+\&    die "Usage: gzgrep pattern file...\en"
+\&        unless @ARGV >= 2;
+.Ve
+.Vb 1
+\&    $pattern = shift ;
+.Ve
+.Vb 13
+\&    foreach $file (@ARGV) {
+\&        $gz = gzopen($file, "rb") 
+\&             or die "Cannot open $file: $gzerrno\en" ;
+\&    
+\&        while ($gz->gzreadline($_) > 0) {
+\&            print if /$pattern/ ;
+\&        }
+\&    
+\&        die "Error reading from $file: $gzerrno\en" 
+\&            if $gzerrno != Z_STREAM_END ;
+\&    
+\&        $gz->gzclose() ;
+\&    }
+.Ve
+This script, \fIgzstream\fR, does the opposite of the \fIgzcat\fR script
+above. It reads from standard input and writes a gzip file to standard
+output.
+.PP
+.Vb 1
+\&    use Compress::Zlib ;
+.Ve
+.Vb 1
+\&    binmode STDOUT; # gzopen only sets it on the fd
+.Ve
+.Vb 2
+\&    my $gz = gzopen(\e*STDOUT, "wb")
+\&          or die "Cannot open stdout: $gzerrno\en" ;
+.Ve
+.Vb 4
+\&    while (<>) {
+\&        $gz->gzwrite($_) 
+\&            or die "error writing: $gzerrno\en" ;
+\&    }
+.Ve
+.Vb 1
+\&    $gz->gzclose ;
+.Ve
+.Sh "Compress::Zlib::memGzip"
+This function is used to create an in-memory gzip file. 
+It creates a minimal gzip header.
+.PP
+.Vb 1
+\&    $dest = Compress::Zlib::memGzip($buffer) ;
+.Ve
+If successful, it returns the in-memory gzip file, otherwise it returns
+undef.
+.PP
+The buffer parameter can either be a scalar or a scalar reference.
+.SH "CHECKSUM FUNCTIONS"
+Two functions are provided by \fIzlib\fR to calculate a checksum. For the
+Perl interface, the order of the two parameters in both functions has
+been reversed. This allows both running checksums and one off
+calculations to be done.
+.PP
+.Vb 2
+\&    $crc = adler32($buffer [,$crc]) ;
+\&    $crc = crc32($buffer [,$crc]) ;
+.Ve
+The buffer parameters can either be a scalar or a scalar reference.
+.PP
+If the \f(CW$crc\fR parameters is \f(CWundef\fR, the crc value will be reset.
+.SH "ACCESSING ZIP FILES"
+If you want to use this module to access zip files there are a number of
+undocumented features in the zlib library you need to be aware of.
+.Ip "1." 5
+When calling \fBinflateInit\fR or \fBdeflateInit\fR the \fBWindowBits\fR parameter
+must be set to \f(CW-MAX_WBITS\fR. This disables the creation of the zlib
+header.
+.Ip "2." 5
+The zlib function \fBinflate\fR, and so the \fBinflate\fR method supplied in
+this module, assume that there is at leat one trailing byte after the
+compressed data stream. Normally this isn't a problem because both
+the gzip and zip file formats will guarantee that there is data directly
+after the compressed data stream.
+.SH "CONSTANTS"
+All the \fIzlib\fR constants are automatically imported when you make use
+of \fICompress::Zlib\fR.
+.SH "AUTHOR"
+The \fICompress::Zlib\fR module was written by Paul Marquess,
+\fIPaul.Marquess@btinternet.com\fR. The latest copy of the module can be
+found on CPAN in \fImodules/by-module/Compress/Compress-Zlib-x.x.tar.gz\fR.
+.PP
+The primary site for the \fIzlib\fR compression library is
+\fIhttp://www.cdrom.com/pub/infozip/zlib/\fR.
+.SH "MODIFICATION HISTORY"
+.Sh "0.1 2nd October 1995."
+First public release of \fICompress::Zlib\fR.
+.Sh "0.2 5th October 1995."
+Fixed a minor allocation problem in Zlib.xs
+.Sh "0.3 12th October 1995."
+Added prototype specification.
+.Sh "0.4 25th June 1996."
+.Ip "1." 5
+Documentation update.
+.Ip "2." 5
+Upgraded to support zlib 1.0.2
+.Ip "3." 5
+Added dictionary interface.
+.Ip "4." 5
+Fixed bug in gzreadline \- previously it would keep returning the same
+buffer. This bug was reported by Helmut Jarausch
+.Ip "5." 5
+Removed dependancy to zutil.h and so dropped support for 
+	
+    \s-1DEF_MEM_LEVEL\s0 (use \s-1MAX_MEM_LEVEL\s0 instead)
+    \s-1DEF_WBITS\s0     (use \s-1MAX_WBITS\s0 instead)
+.Sh "0.50 19th Feb 1997"
+.Ip "1." 5
+Confirmed that no changes were necessary for zlib 1.0.3 or 1.0.4.
+.Ip "2." 5
+The optional parameters for deflateInit and inflateInit can now be
+specified as an associative array in addition to a reference to an
+associative array. They can also accept the \-Name syntax.
+.Ip "3." 5
+gzopen can now optionally take a reference to an open filehandle in
+place of a filename. In this case it will call gzdopen.
+.Ip "4." 5
+Added gzstream example script.
+.Sh "1.00 14 Nov 1997"
+.Ip "1." 5
+The following functions can now take a scalar reference in place of a
+scalar for their buffer parameters:
+.Sp
+.Vb 6
+\&    compress
+\&    uncompress
+\&    deflate
+\&    inflate
+\&    crc32
+\&    adler32
+.Ve
+This should mean applications that make use of the module don't have to
+copy large buffers around.
+.Ip "2." 5
+Normally the inflate method consumes \fIall\fR of the input buffer before
+returning. The exception to this is when inflate detects the end of the
+stream (Z_STREAM_END). In this case the input buffer need not be
+completely consumed. To allow processing of file formats that embed a
+deflation stream (e.g. zip, gzip), the inflate method now sets the
+buffer parameter to be what remains after inflation.
+.Sp
+When the return status is Z_STREAM_END, it will be what remains of the
+buffer (if any) after deflation. When the status is Z_OK it will be an
+empty string.
+.Sp
+This change means that the buffer parameter must be a lvalue.
+.Ip "3." 5
+Fixed crc32 and adler32. They were both very broken. 
+.Ip "4," 5
+Added the Compress::Zlib::memGzip function.
+.Sh "1.01 23 Nov 1997"
+.Ip "1." 5
+A number of fixes to the test suite and the example scripts to allow
+them to work under win32. All courtesy of Gurusamy Sarathy.
+.Sh "1.02 10 Jan 1998"
+.Ip "1." 5
+The return codes for gzread, gzreadline and gzwrite were documented
+incorrectly as returning a status code.
+.Ip "2." 5
+The test harness was missing a \*(L"gzclose\*(R". This caused problem showed up
+on an amiga. Thanks to Erik van Roode for reporting this one.
+.Ip "3." 5
+Patched zlib.t for \s-1OS/2\s0. Thanks to Ilya Zakharevich for the patch.
+.Sh "1.03 17 Mar 1999"
+.Ip "1." 5
+Updated to use the new \s-1PL_\s0 symbols. 
+Means the module can be built with Perl 5.005_5*
+.Sh "1.04 27 May 1999"
+.Ip "1." 10
+Bug 19990527.001: \fIcompress\fR\|(undef) core dumps -- Fixed.
+.Sh "1.05 3 June 1999"
+.Ip "1." 10
+Previous release used newSVpvn, which doesn't exist in 5.004_04 or
+earlier. Changed to use newSVpv instead.
+.Ip "2." 10
+The module needs Perl 5.004 or better, so updated the version checking in
+Zlib.pm and Makefile.\s-1PL\s0
+.Sh "1.06 20 September 1999"
+.Ip "1." 10
+Fixed a nasty problem where inflate could truncate the data
+returned. Thanks to Douglas Thomson <dougt@mugc.cc.monash.edu.au> for
+both spotting the problem and fixing the bug.
+.Ip "2." 10
+Added a note about the undocumented features in zlib that are required
+when accessing zip files.
+.Ip "3." 10
+gzclose will now get called automaticallly when the gzip object is
+destroyed.
+.Sh "1.07 27 November 1999"
+.Ip "1." 10
+\s-1ANSI\s0\-ified the static functions in Zlib.xs
+.Ip "2." 10
+Added the ability to build zlib along with the module.
+This feature is 90% based on a Makefile provided by Gurusamy Sarathy.
+.Sh "1.08 27 January 2000"
+.Ip "1." 10
+uncompress was clobbering its input parameter. Now it doesn't.  
+This bug was spotted by Deven T. Corzine.
+.Ip "2." 10
+If a variable that only ever contained a number was given to compress
+or delate, it would not be compresed properly. Now it will be coerced
+to a string and then compressed. This bug was spotted by Deven T. Corzine.
+
+.rn }` ''
+.IX Title "Zlib 3"
+.IX Name "Compress::Zlib - Interface to zlib compression library"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "DEFLATE"
+
+.IX Subsection "\fB($d, $status) = deflateInit( [\s-1OPT\s0] )\fR"
+
+.IX Item "\fB\-Level\fR"
+
+.IX Item "\fB\-Method\fR"
+
+.IX Item "\fB\-WindowBits\fR"
+
+.IX Item "\fB\-MemLevel\fR"
+
+.IX Item "\fB\-Strategy\fR"
+
+.IX Item "\fB\-Dictionary\fR"
+
+.IX Item "\fB\-Bufsize\fR"
+
+.IX Subsection "\fB($out, $status) = $d->deflate($buffer)\fR"
+
+.IX Subsection "\fB($out, $status) = $d->flush()\fR"
+
+.IX Subsection "\fB$d->dict_adler()\fR"
+
+.IX Subsection "Example"
+
+.IX Header "INFLATE"
+
+.IX Subsection "\fB($i, $status) = inflateInit()\fR"
+
+.IX Item "\fB\-WindowBits\fR"
+
+.IX Item "\fB\-Bufsize\fR"
+
+.IX Item "\fB\-Dictionary\fR"
+
+.IX Subsection "\fB($out, $status) = $i->inflate($buffer)\fR"
+
+.IX Subsection "\fB$i->dict_adler()\fR"
+
+.IX Subsection "Example"
+
+.IX Header "COMPRESS/UNCOMPRESS"
+
+.IX Item "\fB$dest = compress($source) ;\fR"
+
+.IX Item "\fB$dest = uncompress($source) ;\fR"
+
+.IX Header "GZIP INTERFACE"
+
+.IX Item "\fB$gz = gzopen(filename or filehandle, mode)\fR"
+
+.IX Item "\fB$bytesread = $gz->gzread($buffer [, $size]) ;\fR"
+
+.IX Item "\fB$bytesread = $gz->gzreadline($line) ;\fR"
+
+.IX Item "\fB$byteswritten = $gz->gzwrite($buffer) ;\fR"
+
+.IX Item "\fB$status = $gz->gzflush($flush) ;\fR"
+
+.IX Item "\fB$gz->gzclose\fR"
+
+.IX Item "\fB$gz->gzerror\fR"
+
+.IX Item "\fB$gzerrno\fR"
+
+.IX Subsection "Examples"
+
+.IX Subsection "Compress::Zlib::memGzip"
+
+.IX Header "CHECKSUM FUNCTIONS"
+
+.IX Header "ACCESSING ZIP FILES"
+
+.IX Item "1."
+
+.IX Item "2."
+
+.IX Header "CONSTANTS"
+
+.IX Header "AUTHOR"
+
+.IX Header "MODIFICATION HISTORY"
+
+.IX Subsection "0.1 2nd October 1995."
+
+.IX Subsection "0.2 5th October 1995."
+
+.IX Subsection "0.3 12th October 1995."
+
+.IX Subsection "0.4 25th June 1996."
+
+.IX Item "1."
+
+.IX Item "2."
+
+.IX Item "3."
+
+.IX Item "4."
+
+.IX Item "5."
+
+.IX Subsection "0.50 19th Feb 1997"
+
+.IX Item "1."
+
+.IX Item "2."
+
+.IX Item "3."
+
+.IX Item "4."
+
+.IX Subsection "1.00 14 Nov 1997"
+
+.IX Item "1."
+
+.IX Item "2."
+
+.IX Item "3."
+
+.IX Item "4,"
+
+.IX Subsection "1.01 23 Nov 1997"
+
+.IX Item "1."
+
+.IX Subsection "1.02 10 Jan 1998"
+
+.IX Item "1."
+
+.IX Item "2."
+
+.IX Item "3."
+
+.IX Subsection "1.03 17 Mar 1999"
+
+.IX Item "1."
+
+.IX Subsection "1.04 27 May 1999"
+
+.IX Item "1."
+
+.IX Subsection "1.05 3 June 1999"
+
+.IX Item "1."
+
+.IX Item "2."
+
+.IX Subsection "1.06 20 September 1999"
+
+.IX Item "1."
+
+.IX Item "2."
+
+.IX Item "3."
+
+.IX Subsection "1.07 27 November 1999"
+
+.IX Item "1."
+
+.IX Item "2."
+
+.IX Subsection "1.08 27 January 2000"
+
+.IX Item "1."
+
+.IX Item "2."
+

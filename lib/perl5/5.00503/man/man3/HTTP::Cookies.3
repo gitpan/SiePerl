@@ -1,0 +1,357 @@
+.rn '' }`
+''' $RCSfile$$Revision$$Date$
+'''
+''' $Log$
+'''
+.de Sh
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp
+.if t .sp .5v
+.if n .sp
+..
+.de Ip
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve
+.ft R
+
+.fi
+..
+'''
+'''
+'''     Set up \*(-- to give an unbreakable dash;
+'''     string Tr holds user defined translation string.
+'''     Bell System Logo is used as a dummy character.
+'''
+.tr \(*W-|\(bv\*(Tr
+.ie n \{\
+.ds -- \(*W-
+.ds PI pi
+.if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\" diablo 12 pitch
+.ds L" ""
+.ds R" ""
+'''   \*(M", \*(S", \*(N" and \*(T" are the equivalent of
+'''   \*(L" and \*(R", except that they are used on ".xx" lines,
+'''   such as .IP and .SH, which do another additional levels of
+'''   double-quote interpretation
+.ds M" """
+.ds S" """
+.ds N" """""
+.ds T" """""
+.ds L' '
+.ds R' '
+.ds M' '
+.ds S' '
+.ds N' '
+.ds T' '
+'br\}
+.el\{\
+.ds -- \(em\|
+.tr \*(Tr
+.ds L" ``
+.ds R" ''
+.ds M" ``
+.ds S" ''
+.ds N" ``
+.ds T" ''
+.ds L' `
+.ds R' '
+.ds M' `
+.ds S' '
+.ds N' `
+.ds T' '
+.ds PI \(*p
+'br\}
+.\"	If the F register is turned on, we'll generate
+.\"	index entries out stderr for the following things:
+.\"		TH	Title 
+.\"		SH	Header
+.\"		Sh	Subsection 
+.\"		Ip	Item
+.\"		X<>	Xref  (embedded
+.\"	Of course, you have to process the output yourself
+.\"	in some meaninful fashion.
+.if \nF \{
+.de IX
+.tm Index:\\$1\t\\n%\t"\\$2"
+..
+.nr % 0
+.rr F
+.\}
+.TH lib::HTTP::Cookies 3 "libwww-perl-5.48" "7/Apr/2000" "User Contributed Perl Documentation"
+.UC
+.if n .hy 0
+.if n .na
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.de CQ          \" put $1 in typewriter font
+.ft CW
+'if n "\c
+'if t \\&\\$1\c
+'if n \\&\\$1\c
+'if n \&"
+\\&\\$2 \\$3 \\$4 \\$5 \\$6 \\$7
+'.ft R
+..
+.\" @(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2
+.	\" AM - accent mark definitions
+.bd B 3
+.	\" fudge factors for nroff and troff
+.if n \{\
+.	ds #H 0
+.	ds #V .8m
+.	ds #F .3m
+.	ds #[ \f1
+.	ds #] \fP
+.\}
+.if t \{\
+.	ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.	ds #V .6m
+.	ds #F 0
+.	ds #[ \&
+.	ds #] \&
+.\}
+.	\" simple accents for nroff and troff
+.if n \{\
+.	ds ' \&
+.	ds ` \&
+.	ds ^ \&
+.	ds , \&
+.	ds ~ ~
+.	ds ? ?
+.	ds ! !
+.	ds /
+.	ds q
+.\}
+.if t \{\
+.	ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.	ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.	ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.	ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.	ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.	ds ? \s-2c\h'-\w'c'u*7/10'\u\h'\*(#H'\zi\d\s+2\h'\w'c'u*8/10'
+.	ds ! \s-2\(or\s+2\h'-\w'\(or'u'\v'-.8m'.\v'.8m'
+.	ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.	ds q o\h'-\w'o'u*8/10'\s-4\v'.4m'\z\(*i\v'-.4m'\s+4\h'\w'o'u*8/10'
+.\}
+.	\" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds v \\k:\h'-(\\n(.wu*9/10-\*(#H)'\v'-\*(#V'\*(#[\s-4v\s0\v'\*(#V'\h'|\\n:u'\*(#]
+.ds _ \\k:\h'-(\\n(.wu*9/10-\*(#H+(\*(#F*2/3))'\v'-.4m'\z\(hy\v'.4m'\h'|\\n:u'
+.ds . \\k:\h'-(\\n(.wu*8/10)'\v'\*(#V*4/10'\z.\v'-\*(#V*4/10'\h'|\\n:u'
+.ds 3 \*(#[\v'.2m'\s-2\&3\s0\v'-.2m'\*(#]
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.ds oe o\h'-(\w'o'u*4/10)'e
+.ds Oe O\h'-(\w'O'u*4/10)'E
+.	\" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.	\" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.	ds : e
+.	ds 8 ss
+.	ds v \h'-1'\o'\(aa\(ga'
+.	ds _ \h'-1'^
+.	ds . \h'-1'.
+.	ds 3 3
+.	ds o a
+.	ds d- d\h'-1'\(ga
+.	ds D- D\h'-1'\(hy
+.	ds th \o'bp'
+.	ds Th \o'LP'
+.	ds ae ae
+.	ds Ae AE
+.	ds oe oe
+.	ds Oe OE
+.\}
+.rm #[ #] #H #V #F C
+.SH "NAME"
+HTTP::Cookies \- Cookie storage and management
+.SH "SYNOPSIS"
+.PP
+.Vb 2
+\& use HTTP::Cookies;
+\& $cookie_jar = HTTP::Cookies->new;
+.Ve
+.Vb 2
+\& $cookie_jar->add_cookie_header($request);
+\& $cookie_jar->extract_cookies($response);
+.Ve
+.SH "DESCRIPTION"
+Cookies are a general mechanism which server side connections can use
+to both store and retrieve information on the client side of the
+connection.  For more information about cookies refer to
+<URL:http://www.netscape.com/newsref/std/cookie_spec.html> and
+<URL:http://www.cookiecentral.com/>.  This module also implements the
+new style cookies described in \fIdraft-ietf-http-state-man-mec-08.txt\fR.
+The two variants of cookies are supposed to be able to coexist happily.
+.PP
+Instances of the class \fIHTTP::Cookies\fR are able to store a collection
+of Set-Cookie2: and Set-Cookie: headers and are able to use this
+information to initialize Cookie-headers in \fIHTTP::Request\fR objects.
+The state of a \fIHTTP::Cookies\fR object can be saved in and restored from
+files.
+.SH "METHODS"
+The following methods are provided:
+.Ip "$cookie_jar = \s-1HTTP::\s0Cookies->new;" 4
+The constructor takes hash style parameters.  The following
+parameters are recognized:
+.Sp
+.Vb 3
+\&  file:            name of the file to restore cookies from and save cookies to
+\&  autosave:        save during destruction (bool)
+\&  ignore_discard:  save even cookies that are requested to be discarded (bool)
+.Ve
+Future parameters might include (not yet implemented):
+.Sp
+.Vb 3
+\&  max_cookies               300
+\&  max_cookies_per_domain    20
+\&  max_cookie_size           4096
+.Ve
+.Vb 1
+\&  no_cookies   list of domain names that we never return cookies to
+.Ve
+.Ip "$cookie_jar->add_cookie_header($request);" 4
+The \fIadd_cookie_header()\fR method will set the appropriate Cookie:\-header
+for the \fI\s-1HTTP::\s0Request\fR object given as argument.  The \f(CW$request\fR must
+have a valid url attribute before this method is called.
+.Ip "$cookie_jar->extract_cookies($response);" 4
+The \fIextract_cookies()\fR method will look for Set-Cookie: and
+Set-Cookie2: headers in the \fI\s-1HTTP::\s0Response\fR object passed as
+argument.  Any of these headers that are found are used to update
+the state of the \f(CW$cookie_jar\fR.
+.Ip "$cookie_jar->set_cookie($version, $key, $val, $path, $domain, $port, $path_spec, $secure, $maxage, $discard, \e%rest)" 4
+The \fIset_cookie()\fR method updates the state of the \f(CW$cookie_jar\fR.  The
+\f(CW$key\fR, \f(CW$val\fR, \f(CW$domain\fR, \f(CW$port\fR and \f(CW$path\fR arguments are strings.  The
+\f(CW$path_spec\fR, \f(CW$secure\fR, \f(CW$discard\fR arguments are boolean values. The \f(CW$maxage\fR
+value is a number indicating number of seconds that this cookie will
+live.  A value <= 0 will delete this cookie.  \f(CW%rest\fR defines
+various other attributes like \*(L"Comment\*(R" and \*(L"CommentURL\*(R".
+.Ip "$cookie_jar->save( [$file] );" 4
+This method file saves the state of the \f(CW$cookie_jar\fR to a file.
+The state can then be restored later using the \fIload()\fR method.  If a
+filename is not specified we will use the name specified during
+construction.  If the attribute \fIignore_discared\fR is set, then we
+will even save cookies that are marked to be discarded.
+.Sp
+The default is to save a sequence of \*(L"Set-Cookie3\*(R" lines.
+\*(L"Set-Cookie3\*(R" is a proprietary \s-1LWP\s0 format, not known to be compatible
+with any browser.  The \fI\s-1HTTP::\s0Cookies::Netscape\fR sub-class can
+be used to save in a format compatible with Netscape.
+.Ip "$cookie_jar->load( [$file] );" 4
+This method reads the cookies from the file and adds them to the
+\f(CW$cookie_jar\fR.  The file must be in the format written by the \fIsave()\fR
+method.
+.Ip "$cookie_jar->revert;" 4
+This method empties the \f(CW$cookie_jar\fR and re-loads the \f(CW$cookie_jar\fR
+from the last save file.
+.Ip "$cookie_jar->clear( [$domain, [$path, [$key] ] ]);" 4
+Invoking this method without arguments will empty the whole
+\f(CW$cookie_jar\fR.  If given a single argument only cookies belonging to
+that domain will be removed.  If given two arguments, cookies
+belonging to the specified path within that domain are removed.  If
+given three arguments, then the cookie with the specified key, path
+and domain is removed.
+.Ip "$cookie_jar->scan( \e&callback );" 4
+The argument is a subroutine that will be invoked for each cookie
+stored in the \f(CW$cookie_jar\fR.  The subroutine will be invoked with
+the following arguments:
+.Sp
+.Vb 11
+\&  0  version
+\&  1  key
+\&  2  val
+\&  3  path
+\&  4  domain
+\&  5  port
+\&  6  path_spec
+\&  7  secure
+\&  8  expires
+\&  9  discard
+\& 10  hash
+.Ve
+.Ip "$cookie_jar->as_string( [$skip_discard] );" 4
+The \fIas_string()\fR method will return the state of the \f(CW$cookie_jar\fR
+represented as a sequence of \*(L"Set-Cookie3\*(R" header lines separated by
+\*(L"\en\*(R".  If \f(CW$skip_discard\fR is \s-1TRUE\s0, it will not return lines for
+cookies with the \fIDiscard\fR attribute.
+.SH "SUB CLASSES"
+We also provide a subclass called \fIHTTP::Cookies::Netscape\fR which
+loads and saves Netscape compatible cookie files.  You
+should be able to have LWP share Netscape's cookies by constructing
+your \f(CW$cookie_jar\fR like this:
+.PP
+.Vb 4
+\& $cookie_jar = HTTP::Cookies::Netscape->new(
+\&                   File     => "$ENV{HOME}/.netscape/cookies",
+\&                   AutoSave => 1,
+\&               );
+.Ve
+Please note that the Netscape cookie file format is not able to store
+all the information available in the Set-Cookie2 headers, so you will
+probably loose some information if you save in this format.
+.SH "COPYRIGHT"
+Copyright 1997-1999 Gisle Aas
+.PP
+This library is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+.rn }` ''
+.IX Title "lib::HTTP::Cookies 3"
+.IX Name "HTTP::Cookies - Cookie storage and management"
+
+.IX Header "NAME"
+
+.IX Header "SYNOPSIS"
+
+.IX Header "DESCRIPTION"
+
+.IX Header "METHODS"
+
+.IX Item "$cookie_jar = \s-1HTTP::\s0Cookies->new;"
+
+.IX Item "$cookie_jar->add_cookie_header($request);"
+
+.IX Item "$cookie_jar->extract_cookies($response);"
+
+.IX Item "$cookie_jar->set_cookie($version, $key, $val, $path, $domain, $port, $path_spec, $secure, $maxage, $discard, \e%rest)"
+
+.IX Item "$cookie_jar->save( [$file] );"
+
+.IX Item "$cookie_jar->load( [$file] );"
+
+.IX Item "$cookie_jar->revert;"
+
+.IX Item "$cookie_jar->clear( [$domain, [$path, [$key] ] ]);"
+
+.IX Item "$cookie_jar->scan( \e&callback );"
+
+.IX Item "$cookie_jar->as_string( [$skip_discard] );"
+
+.IX Header "SUB CLASSES"
+
+.IX Header "COPYRIGHT"
+
