@@ -3100,3 +3100,157 @@ C<EXE_FILES: >
 
 =back
 
+=head2 Tue Jun 12 09:35:04 2001: C<Module> L<File::Spec|File::Spec>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/local/lib/perl5/5.6.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.82>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Jun 12 09:37:47 2001: C<Module> L<HTML-TableExtract|HTML-TableExtract>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/local/lib/perl5/site_perl/5.6.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.06>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Jun 12 10:17:10 2001: C<Module> L<Finance::Quote|Finance::Quote>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/local/lib/perl5/site_perl/5.6.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.05>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Jun 12 10:42:48 2001: C<Module> L<Text::Autoformat|Text::Autoformat>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/local/lib/perl5/site_perl/5.6.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.04>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Jun 12 10:50:05 2001: C<Module> L<Text::Template|Text::Template>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/local/lib/perl5/site_perl/5.6.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.31>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Jun 12 10:58:26 2001: C<Module> L<IO-stringy|IO-stringy>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/local/lib/perl5/site_perl/5.6.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.220>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Tue Jun 12 11:26:44 2001: C<Module> L<MIME-tools|MIME-tools>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/local/lib/perl5/site_perl/5.6.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 5.411>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

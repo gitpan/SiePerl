@@ -1,0 +1,14 @@
+File::Spec.3
+File::Spec::Functions.3
+File::Spec::Mac.3
+File::Spec::OS2.3
+File::Spec::Unix.3
+File::Spec::VMS.3
+File::Spec::Win32.3
+Functions.pm
+Mac.pm
+OS2.pm
+Spec.pm
+Unix.pm
+VMS.pm
+Win32.pm
